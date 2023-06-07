@@ -4,25 +4,30 @@ const Admin = require('../models/admin');
 const router = express.Router();
 
 router
-.post('/signin', (req, res) => {
+.post('/', (req, res) => {
+    Admin.find({}).then((admins) => {
+        return res.status(200).json({admins});
+    }
+    ).catch((err) => {
+        return res.status(500).json({error: err});
+    });
+})
+.post('/signIn', (req, res) => {
     const {email, password} = req.body;
+    console.log({email, password});
     Admin.findOne({email, password}).then((admin) => {
         if (admin) {
             return res.status(200).json({admin});
         }
         else{
-            Admin.create({email, password}).then((admin) => {
-                return res.status(200).json({admin});
-            }).catch((err) => {
-                return res.status(500).json({error: err});
-            })
+            return res.status(404).json({error: "Admin not found"});
         }
     }
     ).catch((err) => {
         return res.status(500).json({error: err});
     });
 })
-.post('/signup', (req, res) => {
+.post('/signUp', (req, res) => {
     const {email, password} = req.body;
     Admin.create({email, password}).then((admin) => {   
         return res.status(200).json({admin});
