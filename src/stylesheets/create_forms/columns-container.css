@@ -1,12 +1,7 @@
 .columns-container {
-    display: grid;
-    grid-template-rows: 1fr 2fr 1 fr;
-    overflow: hidden;
-    padding-top: 3rem;
-}
-
-.column {
-    height: 100%;
-}
-
-/*# sourceMappingURL=columns-container.css.map */
+  display: flex;
+  padding-top: 3rem;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}/*# sourceMappingURL=columns-container.css.map */

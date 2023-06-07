@@ -1,13 +1,19 @@
-import React from 'react';
+import React from "react";
 
-function FormDisplay(props) {
-    return (
-        <div className="column middle-column-container">
-            <div>
-                form display
-            </div>
-        </div>
-    );
+function FormDisplay({ formComponentsObj }) {
+  return (
+    <div className="column middle-column-container">
+      <div>
+        {formComponentsObj && (
+          <ul>
+            {Object.values(formComponentsObj).map((value, index) => (
+              <li key={index}>{value}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default FormDisplay;

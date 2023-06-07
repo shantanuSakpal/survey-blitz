@@ -19,6 +19,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
+  height: -moz-max-content;
   height: max-content;
   align-content: center;
   border: 3px solid black;
@@ -33,15 +34,15 @@ body {
   width: 30vw;
   height: 100%;
   border: 2px solid black;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 0.5rem;
 }
 .left-column-container h3 {
   margin: 5px;
+  font-size: 0.8rem;
 }
 
-.inputs-container, .form-components-container {
+.inputs-container {
   background-color: white;
   border-radius: 10px;
   height: 35%;
@@ -54,30 +55,29 @@ body {
   flex-wrap: wrap;
   overflow-y: auto;
 }
-.inputs-container .input-name-and-logo-container, .form-components-container .input-name-and-logo-container {
+.inputs-container .input-name-and-logo-container {
   display: flex;
   gap: 5px;
   text-align: center;
+  width: -moz-max-content;
   width: max-content;
   padding: 5px;
+  height: -moz-max-content;
   height: max-content;
   margin: 5px;
   align-content: center;
   border: 0.6px gray solid;
   border-radius: 10px;
 }
-.inputs-container .input-name-and-logo-container:hover, .form-components-container .input-name-and-logo-container:hover {
+.inputs-container .input-name-and-logo-container:hover {
   cursor: pointer;
 }
-.inputs-container .input-name-and-logo-container h4, .form-components-container .input-name-and-logo-container h4 {
+.inputs-container .input-name-and-logo-container h4 {
   font-size: 0.8rem;
   display: inline;
   margin: auto;
+  height: -moz-max-content;
   height: max-content;
-}
-
-.form-components-container {
-  height: 45%;
 }
 
 .right-column-container {
@@ -86,6 +86,7 @@ body {
   width: 30vw;
   height: 100%;
   border: 2px solid black;
+  padding: 0.5rem;
 }
 
 .middle-column-container {
@@ -94,6 +95,7 @@ body {
   width: 60vw;
   height: 100%;
   border: 2px solid black;
+  padding: 0.5rem;
 }
 
 .columns-container {
@@ -114,6 +116,4 @@ body {
 
 .page-container {
   min-height: 100vh;
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
