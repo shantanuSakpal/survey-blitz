@@ -1,0 +1,65 @@
+.left-column-container {
+  background-color: $theme-color;
+  color: white;
+  width: 30vw;
+  height: 100%;
+  border: 2px solid black;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0.5rem;
+
+
+  h3 {
+    margin: 5px;
+  }
+}
+
+
+.inputs-container {
+  background-color: white;
+  border-radius: 10px;
+  height: 35%;
+  color: black;
+  padding: 0.5rem;
+  margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+
+  .input-name-and-logo-container {
+    display: flex;
+    gap: 5px;
+    text-align: center;
+    width: max-content;
+    padding: 5px;
+    height: max-content;
+    margin: 5px;
+    align-content: center;
+    border: 0.6px gray solid;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    h4 {
+      font-size: 0.8rem;
+      display: inline;
+      margin: auto;
+      height: max-content;
+    }
+
+
+  }
+
+
+}
+
+.form-components-container {
+  @extend .inputs-container;
+  height: 45%;
+
+}
+

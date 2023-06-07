@@ -1,15 +1,26 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
   margin: 0;
-  padding:0;
+  padding: 0;
 }
 
-@import "base";
-
-.first-page{
-  h1{
-    color: green;
-  };
-  p{
-    color: red;
-  }
+body {
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
+
+
+$theme-color: #2C2D32;
+
+@import "./create_forms/navbar";
+@import "./create_forms/left_column";
+@import "./create_forms/right_column";
+@import "./create_forms/middle_column";
+@import "./create_forms/columns-container";
+@import "button";
+
+.page-container {
+  min-height: 100vh;
+}
+
