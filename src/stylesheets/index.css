@@ -152,6 +152,27 @@ body {
   padding: 0.5rem;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
 .page-container {
   min-height: 100vh;
 }/*# sourceMappingURL=index.css.map */
