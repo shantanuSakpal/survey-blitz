@@ -24,22 +24,32 @@
   left: 30vw;
   z-index: 5;
   color: black; 
-  padding: 5px; 
   background-color: gray; 
   height: 50vh;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 10px;
+  
+  
+  
+  
+ 
   
   
   .input-name-and-logo-container {
     display: flex;
     gap: 5px;
     text-align: center;
-    width: max-content;
+    width: 90%;
     padding: 5px;
     height: max-content;
-    margin: 10px 10px;
+    
     align-content: center;
     border-radius: 10px;
+    margin: 5px 0;
+    
 
     &:hover {
       cursor: pointer;
