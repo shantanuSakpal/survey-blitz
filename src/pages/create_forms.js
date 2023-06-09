@@ -6,27 +6,33 @@ import FormComponents from '../components/create_form_page_components/FormCompon
 
 function CreateForms(props) {
     let formName = "Contact Info Form";
-    const [formComponentsObj, setFormComponentsObj] = useState({});
+    const [formComponentsArray, setFormComponentsArray] = useState([]);
     
-    const addClickedComponent = (date,id) => {
-        setFormComponentsObj(prevClickedElements  => ({...prevClickedElements ,[date]:id }))
-        console.log(formComponentsObj);
+    const addSection = (section) => {
+        setFormComponentsArray([...formComponentsArray, section])
     }
     
-    const removeClickedComponent = (date) => {
-        const {[date]: value, ...rest} = formComponentsObj;
-        setFormComponentsObj(rest);
-        console.log(formComponentsObj);
+    
+    //section is an object with section_id and section_components
+    const removeSection = (section_id) => {
+        setFormComponentsArray(formComponentsArray.filter((section) => section.section_id !== section_id))
     }
+    
+    console.log("formComponentsArray", formComponentsArray);
+    
 
     return (
         <>
             <CreateFormNavBar formName={formName}/>
             <div className="columns-container">
-                <FormComponents addClickedComponent={addClickedComponent} formComponentsObj={formComponentsObj}
-                removeClickedComponent={removeClickedComponent}
+                <FormComponents  
+                formComponentsArray={formComponentsArray}
+                addSection={addSection}
+                removeSection={removeSection}
+                setFormComponentsArray={setFormComponentsArray}
+               
                 />
-                <FormDisplay formComponentsObj={formComponentsObj}/>
+                <FormDisplay formComponentsArray={formComponentsArray}/>
                 <EditInputFeatures/>
 
             </div>

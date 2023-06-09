@@ -21,17 +21,13 @@
   background-color: white;
   border-radius: 10px;
   position: absolute;
-  left: 10%;
-  top: 3rem;
+  left: 30vw;
+  z-index: 5;
   color: black; 
   padding: 5px; 
   background-color: gray; 
   height: 50vh;
   overflow-y: scroll;
-  
-  
-  
-
   
   
   .input-name-and-logo-container {
@@ -43,7 +39,6 @@
     height: max-content;
     margin: 10px 10px;
     align-content: center;
-    border: 0.6px rgb(166, 165, 165) solid;
     border-radius: 10px;
 
     &:hover {
@@ -74,9 +69,6 @@
   overflow-x: hidden;
   overflow-y: auto;
   height: 80%;
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 0.5rem;
   
 }
 
@@ -108,3 +100,7 @@
   
   
 }
+
+@import "add-input-button";
+@import "add_section_button";
+@import "section_styles";

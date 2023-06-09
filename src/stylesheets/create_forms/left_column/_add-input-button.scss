@@ -1,0 +1,22 @@
+.add-input-button{
+        
+        display: flex;
+        flex-wrap: wrap;
+        width: fit-content;
+        height: fit-content;
+        justify-content: center;
+        align-items: center;
+        margin: 5px auto;
+        box-sizing: border-box;    
+        
+        p{
+            font-size: 0.6rem;
+            margin: 0 5px;
+        }
+        
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(103, 103, 103);
+            border-radius: 10px;
+        }
+}

@@ -1,70 +1,59 @@
-import React, { useState } from "react";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+import React, { createContext, useState } from "react";
+import { AddSectionButton } from "../buttons/AddSectionButton";
+import { SectionComponent } from "./SectionComponent";
 import AddInput from "./AddInput";
-import CancelIcon from "@mui/icons-material/Cancel";
-import { ComponentTreeItem } from "./ComponentTreeItem";
 
 function FormComponents({
-  addClickedComponent,
-  formComponentsObj,
-  removeClickedComponent,
+  formComponentsArray,
+  addSection,
+  removeSection,
+  setFormComponentsArray,
 }) {
+  /* 
+  the array formComponentsArray is of the form 
+  [{section_id: <datetime in milisec> , section_components: []},
+   ... ] 
+  */
+
   const [addInputVisible, setAddInputVisible] = useState(false);
+  const [currSectionId, setCurrSectionId] = useState(null);
+
+  const sectionContext = createContext();
 
   return (
     <>
-      <div className=" column left-column-container">
-        <AddInput addClickedComponent={addClickedComponent} />
-
+      <AddInput
+        currSectionId={currSectionId}
+        setFormComponentsArray={setFormComponentsArray}
+      />
+      <div className="  left-column-container">
         <div
           style={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
-            borderBottom: "1px solid gray",
+            margin: "0.5rem 0",
           }}
         >
           <h3>Components</h3>
-          <div
-            onClick={() => {
-              var el = document.getElementById("addInput");
-              el.classList.toggle("hide");
-              setAddInputVisible(!addInputVisible);
-              console.log("clicked");
-            }}
-            style={{ padding: "10px" }}
-          >
-            {addInputVisible ? (
-              <CancelIcon
-                sx={{
-                  display: "inline",
-
-                  ":hover": { cursor: "pointer" },
-                }}
-                fontSize="medium"
-              />
-            ) : (
-              <AddBoxIcon
-                sx={{
-                  display: "inline",
-
-                  ":hover": { cursor: "pointer" },
-                }}
-                fontSize="medium"
-              />
-            )}
-          </div>
         </div>
 
-        {formComponentsObj && (
+        {formComponentsArray && (
           <div className="form-components-container">
-            {Object.entries(formComponentsObj).map(([key, value]) => (
-              <ComponentTreeItem
-                name={value}
-                date={key}
-                removeClickedComponent={removeClickedComponent}
-              />
-            ))}
+            {formComponentsArray.map((component, index) => {
+              return (
+                <div key={index}>
+                  <SectionComponent
+                    section_id={component.section_id}
+                    removeSection={removeSection}
+                    formComponentsArray={formComponentsArray}
+                    index={index}
+                    setCurrSectionId={setCurrSectionId}
+                  />
+                </div>
+              );
+            })}
+            <AddSectionButton addSection={addSection} />
           </div>
         )}
       </div>

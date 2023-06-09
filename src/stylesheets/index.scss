@@ -14,10 +14,7 @@ body {
 $theme-color: #2C2D32;
 
 @import "./create_forms/navbar";
-@import "./create_forms/left_column";
-@import "./create_forms/right_column";
-@import "./create_forms/middle_column";
-@import "./create_forms/columns-container";
+@import "create_forms/columns-container";
 @import "button";
 @import "signin";
 
