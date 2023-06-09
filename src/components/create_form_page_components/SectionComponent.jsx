@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { AddInputButton } from "../buttons/AddInputButton";
+import { ComponentTreeItem } from "./ComponentTreeItem";
 
 export const SectionComponent = ({
   section_id,
@@ -8,6 +9,7 @@ export const SectionComponent = ({
   index,
   setCurrSectionId,
   formComponentsArray,
+  setFormComponentsArray,
 }) => {
   return (
     <div id={section_id} className="section-style">
@@ -44,7 +46,12 @@ export const SectionComponent = ({
           (component, index) => {
             return (
               <div className="section-component" key={index}>
-                <p>{component.input_type}</p>
+                <ComponentTreeItem
+                  type={component.input_type}
+                  formComponentsArray={formComponentsArray}
+                  id={component.input_id}
+                  setFormComponentsArray={setFormComponentsArray}
+                />
               </div>
             );
           }

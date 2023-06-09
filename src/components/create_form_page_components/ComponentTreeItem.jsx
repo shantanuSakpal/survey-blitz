@@ -1,4 +1,4 @@
-//this component holds the item that the user has selected to add to the form , so this is like the body of the item, just pass the name
+//this component holds the item that the user has selected to add to the form , so this is like the body of the item, just pass the type
 
 import React from "react";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -11,51 +11,65 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-export const ComponentTreeItem = (props) => {
+export const ComponentTreeItem = ({ type, id, setFormComponentsArray }) => {
+  //a function to remove the component from the form using id
+  const removeComponent = (id) => {
+    setFormComponentsArray((prevFormComponentsArray) => {
+      const updatedArray = prevFormComponentsArray.map((section) => {
+        const updatedComponents = section.section_components.filter(
+          (component) => component.input_id !== id
+        );
+        return {
+          ...section,
+          section_components: updatedComponents,
+        };
+      });
+      return updatedArray;
+    });
+  };
+
   return (
     <div className="component-tree-item">
       <div style={{ display: "flex", alignItems: "center" }}>
         {
           //conditional rendering of icons
-          props.name === "checkboxes" ? (
+          type === "checkboxes" ? (
             <CheckCircleOutlineIcon
               fontSize="small"
               sx={{ marginRight: "10px" }}
             />
-          ) : props.name === "multiple_choice" ? (
+          ) : type === "multiple_choice" ? (
             <RadioButtonCheckedIcon
               fontSize="small"
               sx={{ marginRight: "10px" }}
             />
-          ) : props.name === "short_text" ? (
+          ) : type === "short_text" ? (
             <ShortTextIcon fontSize="small" sx={{ marginRight: "10px" }} />
-          ) : props.name === "long_text" ? (
+          ) : type === "long_text" ? (
             <SubjectIcon fontSize="small" sx={{ marginRight: "10px" }} />
-          ) : props.name === "dropdown" ? (
+          ) : type === "dropdown" ? (
             <ArrowDropDownCircleIcon
               fontSize="small"
               sx={{ marginRight: "10px" }}
             />
-          ) : props.name === "date" ? (
+          ) : type === "date" ? (
             <EventIcon fontSize="small" />
-          ) : props.name === "time" ? (
+          ) : type === "time" ? (
             <AccessTimeIcon fontSize="small" sx={{ marginRight: "10px" }} />
-          ) : props.name === "upload_file" ? (
+          ) : type === "upload_file" ? (
             <UploadFileIcon fontSize="small" sx={{ marginRight: "10px" }} />
           ) : (
             <div>no icon</div>
           )
         }
-        <h4>{props.name}</h4>
+        <h4>{type}</h4>
       </div>
       <div
-        id={props.name}
+        id={type}
         onClick={
           //delete the item from the form
           () => {
-            console.log("delete clicked");
-            console.log(props.date);
-            props.removeClickedComponent(props.date);
+            removeComponent(id);
           }
         }
       >

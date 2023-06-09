@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import CreateForms from "./pages/create_forms";
+import CreateForms from "./pages/CreateForms";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import "./stylesheets/index.css";

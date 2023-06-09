@@ -80,9 +80,9 @@ export default function AddInput({ currSectionId, setFormComponentsArray }) {
       {inputOptions.map((option) => (
         <div
           key={option.id}
-          id={option.id}
+          id={option.id.toLowerCase()}
           className="input-name-and-logo-container"
-          onClick={() => addInput(option.id)}
+          onClick={() => addInput(option.id.toLowerCase())}
         >
           {option.icon}
           <h4>{option.label}</h4>

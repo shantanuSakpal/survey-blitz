@@ -15,10 +15,7 @@ function FormComponents({
    ... ] 
   */
 
-  const [addInputVisible, setAddInputVisible] = useState(false);
   const [currSectionId, setCurrSectionId] = useState(null);
-
-  const sectionContext = createContext();
 
   return (
     <>
@@ -49,6 +46,7 @@ function FormComponents({
                     formComponentsArray={formComponentsArray}
                     index={index}
                     setCurrSectionId={setCurrSectionId}
+                    setFormComponentsArray={setFormComponentsArray}
                   />
                 </div>
               );
