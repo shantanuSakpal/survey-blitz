@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 import { AddSectionButton } from "../buttons/AddSectionButton";
 import { SectionComponent } from "./SectionComponent";
 import AddInput from "./AddInput";
-import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function FormComponents({
   formComponentsArray,
@@ -13,8 +13,13 @@ function FormComponents({
   /* 
   the array formComponentsArray is of the form 
   [{section_id: <datetime in milisec> , section_components: []},
-   ... ] 
+  ... ] 
   */
+  const [addInputState, setAddInputState] = useState(false); // Track the visibility of AddInput component
+
+  const handleAddComponentClick = () => {
+    setAddInputState(!addInputState); // Toggle the visibility of AddInput component
+  };
 
   const [currSectionId, setCurrSectionId] = useState(null);
 
@@ -33,16 +38,8 @@ function FormComponents({
         setFormComponentsArray={setFormComponentsArray}
       />
       <div className="left-column-container">
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            margin: "0.5rem 0",
-          }}
-        >
-          <h3>Components</h3>
-        </div>
+        <h3>Components</h3>
+
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="form-components-container">
             {(provided) => (
@@ -73,6 +70,10 @@ function FormComponents({
                                 index={index}
                                 setCurrSectionId={setCurrSectionId}
                                 setFormComponentsArray={setFormComponentsArray}
+                                handleAddComponentClick={
+                                  handleAddComponentClick
+                                }
+                                addInputState={addInputState}
                               />
                             </div>
                           </div>
@@ -81,10 +82,10 @@ function FormComponents({
                     );
                   })}
                 {provided.placeholder}
-            <AddSectionButton addSection={addSection} />
-          </div>
-        )}
-      </Droppable>
+                <AddSectionButton addSection={addSection} />
+              </div>
+            )}
+          </Droppable>
         </DragDropContext>
       </div>
     </>

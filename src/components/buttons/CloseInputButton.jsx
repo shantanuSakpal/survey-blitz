@@ -1,26 +1,21 @@
 import React, { useContext } from "react";
-import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
 
-export const AddInputButton = ({
-  setCurrSectionId,
-  section_id,
-  handleAddComponentClick,
-}) => {
+export const CloseInputButton = ({ handleAddComponentClick, section_id }) => {
   //on click , toggle the .hide class on AddInput component
 
   return (
     <div
+      id={section_id}
       className="add-input-button"
       onClick={() => {
-        setCurrSectionId(section_id);
-        // console.log("section id:", section_id);
         //toggle the .hide class on AddInput component
 
         document.querySelector("#addInput").classList.toggle("hide");
         handleAddComponentClick();
       }}
     >
-      <AddIcon fontSize="small" />
+      <CloseIcon fontSize="small" />
     </div>
   );
 };

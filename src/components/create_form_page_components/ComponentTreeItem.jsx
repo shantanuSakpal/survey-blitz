@@ -9,7 +9,7 @@ import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import EventIcon from "@mui/icons-material/Event";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { DeleteButton } from "../buttons/DeleteButton";
 
 export const ComponentTreeItem = ({ type, id, setFormComponentsArray }) => {
   //a function to remove the component from the form using id
@@ -73,7 +73,7 @@ export const ComponentTreeItem = ({ type, id, setFormComponentsArray }) => {
           }
         }
       >
-        <DeleteForeverIcon fontSize="small" sx={{ marginRight: "10px" }} />
+        <DeleteButton color="white" />
       </div>
     </div>
   );

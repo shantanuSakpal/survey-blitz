@@ -1,0 +1,23 @@
+.button-style {
+  background-color: $button-background-color;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.done-button {
+  border: none;
+  border-radius: 5px;
+  scale: 0.6;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $theme-color-2;
+  }
+}
+
+.delete-section-button {
+  position: absolute;
+  right: 0;
+}

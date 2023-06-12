@@ -9,7 +9,11 @@ export const AddSectionButton = ({ addSection }) => {
       className="add-section-button"
       onClick={() => {
         let date = Date.now();
-        addSection({ section_id: date, section_components: [] });
+        addSection({
+          section_id: date,
+          section_components: [],
+          section_name: "",
+        });
       }}
     >
       <AddBoxIcon fontSize="small" />

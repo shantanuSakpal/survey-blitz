@@ -7,7 +7,10 @@
         justify-content: center;
         align-items: center;
         margin: 5px auto;
-        box-sizing: border-box;    
+        box-sizing: border-box;  
+        transition: all 0.2s ease-out;
+        border-radius: 5px ;
+  
         
         p{
             font-size: 0.6rem;
@@ -16,7 +19,6 @@
         
         &:hover{
             cursor: pointer;
-            background-color: rgb(103, 103, 103);
-            border-radius: 10px;
+            background-color: $theme-color-2;
         }
 }

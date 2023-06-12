@@ -8,14 +8,17 @@
 body {
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
+  position: relative;
 }
 
 
 $theme-color: #2C2D32;
+$theme-color-2: gray;
+$button-background-color : rgb(80, 159, 186);
 
 @import "./create_forms/navbar";
 @import "create_forms/columns-container";
-@import "button";
+@import "./buttons/button";
 @import "signin";
 
 .page-container {

@@ -75,7 +75,7 @@ export default function AddInput({ currSectionId, setFormComponentsArray }) {
   ];
 
   return (
-    <div id="addInput" className="inputs-container">
+    <div id="addInput" className="inputs-container hide">
       <h3>Select the input type</h3>
       {inputOptions.map((option) => (
         <div
