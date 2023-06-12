@@ -1,31 +1,26 @@
-
 .component-tree-item {
-    display: flex;
-    gap: 5px;
-    width: 10rem;
-    padding: 5px;
-    justify-content: space-between;
-    scale: 0.9;
-    margin: 5px auto;
-    border-radius: 10px;
-    align-items: center;
-    border: 2px solid $theme-color;
-    transition: all 0.2s ease-out;
+  display: flex;
 
-    
+  width: 10rem;
+  padding: 5px;
+  justify-content: space-between;
+  scale: 0.9;
 
-    
-  
-    &:hover {
-      cursor: pointer;
-      border: 2px solid $theme-color-2;
-    }
-  
-    h4 {
-      font-size: 0.8rem;
-      display: inline;
-      margin: auto;
-      height: max-content;
-      font-weight: lighter;
-    }
+  border-radius: 10px;
+  align-items: center;
+  border: 2px solid $theme-color;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    cursor: pointer;
+    border: 2px solid $theme-color-2;
   }
+
+  h4 {
+    font-size: 0.8rem;
+    display: inline;
+    margin: auto;
+    height: max-content;
+    font-weight: lighter;
+  }
+}

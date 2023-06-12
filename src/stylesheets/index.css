@@ -77,6 +77,7 @@ body {
 }
 .inputs-container::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
   padding: 2px;
 }
 .inputs-container::-webkit-scrollbar-track {
@@ -108,15 +109,21 @@ body {
   cursor: pointer;
 }
 .inputs-container .input-name-and-logo-container h4 {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   display: inline;
   margin: auto;
   height: -moz-max-content;
   height: max-content;
 }
 .inputs-container h3 {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   margin: 5px;
+  display: inline;
+}
+.inputs-container .header-and-close-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .form-components-container {
@@ -131,6 +138,7 @@ body {
 }
 .form-components-container::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
   padding: 2px;
 }
 .form-components-container::-webkit-scrollbar-track {
@@ -149,16 +157,15 @@ body {
 
 .hide {
   display: none;
+  transition: all 0.2s ease-out;
 }
 
 .component-tree-item {
   display: flex;
-  gap: 5px;
   width: 10rem;
   padding: 5px;
   justify-content: space-between;
   scale: 0.9;
-  margin: 5px auto;
   border-radius: 10px;
   align-items: center;
   border: 2px solid #2C2D32;
@@ -175,29 +182,6 @@ body {
   height: -moz-max-content;
   height: max-content;
   font-weight: lighter;
-}
-
-.add-input-button {
-  display: flex;
-  flex-wrap: wrap;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  justify-content: center;
-  align-items: center;
-  margin: 5px auto;
-  box-sizing: border-box;
-  transition: all 0.2s ease-out;
-  border-radius: 5px;
-}
-.add-input-button p {
-  font-size: 0.6rem;
-  margin: 0 5px;
-}
-.add-input-button:hover {
-  cursor: pointer;
-  background-color: gray;
 }
 
 .add-section-button {
@@ -281,6 +265,29 @@ body {
 }
 .middle-column-container .form-item h3 {
   margin: 5px 0;
+}
+
+.add-input-button {
+  display: flex;
+  flex-wrap: wrap;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  margin: 5px auto;
+  box-sizing: border-box;
+  transition: all 0.2s ease-out;
+  border-radius: 5px;
+}
+.add-input-button p {
+  font-size: 0.6rem;
+  margin: 0 5px;
+}
+.add-input-button:hover {
+  cursor: pointer;
+  background-color: gray;
 }
 
 .right-column-container {

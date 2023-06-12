@@ -52,15 +52,22 @@
     }
 
     h4 {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       display: inline;
       margin: auto;
       height: max-content;
     }
   }
   h3 {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     margin: 5px;
+    display: inline;
+  }
+
+  .header-and-close-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -75,9 +82,9 @@
 
 .hide {
   display: none;
+  transition: all 0.2s ease-out;
 }
 
 @import "component_tree_item";
-@import "add-input-button";
 @import "add_section_button";
 @import "section_styles";

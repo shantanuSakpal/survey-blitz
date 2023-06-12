@@ -1,7 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import { AddSectionButton } from "../buttons/AddSectionButton";
 import { SectionComponent } from "./SectionComponent";
-import AddInput from "./AddInput";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function FormComponents({
@@ -9,19 +8,14 @@ function FormComponents({
   addSection,
   removeSection,
   setFormComponentsArray,
+  setCurrSectionId,
+  setAddInputState,
 }) {
   /* 
   the array formComponentsArray is of the form 
   [{section_id: <datetime in milisec> , section_components: []},
   ... ] 
   */
-  const [addInputState, setAddInputState] = useState(false); // Track the visibility of AddInput component
-
-  const handleAddComponentClick = () => {
-    setAddInputState(!addInputState); // Toggle the visibility of AddInput component
-  };
-
-  const [currSectionId, setCurrSectionId] = useState(null);
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
@@ -33,10 +27,6 @@ function FormComponents({
 
   return (
     <>
-      <AddInput
-        currSectionId={currSectionId}
-        setFormComponentsArray={setFormComponentsArray}
-      />
       <div className="left-column-container">
         <h3>Components</h3>
 
@@ -62,7 +52,17 @@ function FormComponents({
                             {...provided.dragHandleProps}
                             ref={provided.innerRef}
                           >
-                            <div key={index}>
+                            <div
+                              key={index}
+                              onClick={() => {
+                                console.log(
+                                  "clicked on section ",
+                                  component.section_id
+                                );
+                                setCurrSectionId(component.section_id);
+                                setAddInputState(false);
+                              }}
+                            >
                               <SectionComponent
                                 section_id={component.section_id}
                                 removeSection={removeSection}
@@ -70,10 +70,6 @@ function FormComponents({
                                 index={index}
                                 setCurrSectionId={setCurrSectionId}
                                 setFormComponentsArray={setFormComponentsArray}
-                                handleAddComponentClick={
-                                  handleAddComponentClick
-                                }
-                                addInputState={addInputState}
                               />
                             </div>
                           </div>
@@ -82,7 +78,10 @@ function FormComponents({
                     );
                   })}
                 {provided.placeholder}
-                <AddSectionButton addSection={addSection} />
+                <AddSectionButton
+                  addSection={addSection}
+                  setCurrSectionId={setCurrSectionId}
+                />
               </div>
             )}
           </Droppable>

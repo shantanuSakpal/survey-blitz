@@ -4,6 +4,7 @@ import { CloseInputButton } from "../buttons/CloseInputButton";
 import { ComponentTreeItem } from "./ComponentTreeItem";
 import { DeleteButton } from "../buttons/DeleteButton";
 import DoneIcon from "@mui/icons-material/Done";
+import ConfirmDelete from "../modals/ConfirmDelete";
 
 export const SectionComponent = ({
   section_id,
@@ -15,45 +16,12 @@ export const SectionComponent = ({
   handleAddComponentClick,
   addInputState,
 }) => {
-  const [inputValue, setInputValue] = useState(
-    formComponentsArray[index].section_name
-  );
-  const [showButton, setShowButton] = useState(false);
-  const inputRef = useRef(null);
-
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleInputClick = () => {
-    setShowButton(true);
-  };
-
-  const handleSaveClick = () => {
-    const updatedArray = [...formComponentsArray];
-    updatedArray[index].section_name = inputValue;
-    setFormComponentsArray(updatedArray);
-    setShowButton(false);
-    inputRef.current.blur();
-  };
-
   return (
     <div id={section_id} className="section-style">
       <div className="section-header">
-        <input
-          ref={inputRef}
-          id="section_name"
-          placeholder="tap to edit section name"
-          value={inputValue}
-          onChange={handleInputChange}
-          onClick={handleInputClick}
-        />
-        {showButton && (
-          <button className="done-button" onClick={handleSaveClick}>
-            <DoneIcon />
-          </button>
-        )}
-
+        <div className="section-name">
+          {formComponentsArray[index].section_name}
+        </div>
         <div
           className="delete-section-button"
           onClick={
@@ -64,7 +32,7 @@ export const SectionComponent = ({
             }
           }
         >
-          <DeleteButton color="white" />
+          {formComponentsArray.length > 1 && <DeleteButton color="white" />}
         </div>
       </div>
 
@@ -83,22 +51,6 @@ export const SectionComponent = ({
             );
           }
         )}
-        {
-          //if addInputState is true, then show the AddInput component
-          addInputState ? (
-            <CloseInputButton
-              handleAddComponentClick={handleAddComponentClick}
-              section_id={section_id}
-            />
-          ) : (
-            <AddInputButton
-              id={"addInput_" + section_id}
-              handleAddComponentClick={handleAddComponentClick}
-              setCurrSectionId={setCurrSectionId}
-              section_id={section_id}
-            />
-          )
-        }
       </div>
     </div>
   );

@@ -7,18 +7,16 @@
   padding: 0.5rem;
   position: relative;
   overflow-y: auto;
-  
-  .form-item{
+
+  .form-item {
     margin: 10px 5px;
     border: 1px $theme-color-2 solid;
     padding: 10px;
     border-radius: 10px;
-    
-    
-    
-    h3{
+
+    h3 {
       margin: 5px 0;
     }
   }
-  
 }
+@import "add-input-button";

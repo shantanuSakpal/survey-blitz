@@ -53,7 +53,7 @@ export const ComponentTreeItem = ({ type, id, setFormComponentsArray }) => {
               sx={{ marginRight: "10px" }}
             />
           ) : type === "date" ? (
-            <EventIcon fontSize="small" />
+            <EventIcon fontSize="small" sx={{ marginRight: "10px" }} />
           ) : type === "time" ? (
             <AccessTimeIcon fontSize="small" sx={{ marginRight: "10px" }} />
           ) : type === "upload_file" ? (

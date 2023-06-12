@@ -7,8 +7,13 @@ import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import EventIcon from "@mui/icons-material/Event";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import { CloseInputButton } from "../buttons/CloseInputButton";
 
-export default function AddInput({ currSectionId, setFormComponentsArray }) {
+export default function AddInput({
+  currSectionId,
+  setFormComponentsArray,
+  handleAddComponentClick,
+}) {
   const setSectionObj = (inputObj) => {
     if (currSectionId === null) {
       return;
@@ -76,7 +81,10 @@ export default function AddInput({ currSectionId, setFormComponentsArray }) {
 
   return (
     <div id="addInput" className="inputs-container hide">
-      <h3>Select the input type</h3>
+      <div className="header-and-close-input-container">
+        <h3>Select the input type</h3>
+        <CloseInputButton handleAddComponentClick={handleAddComponentClick} />
+      </div>
       {inputOptions.map((option) => (
         <div
           key={option.id}
