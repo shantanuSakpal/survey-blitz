@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CloseInputButton } from "../buttons/CloseInputButton";
 import { AddInputButton } from "../buttons/AddInputButton";
 import AddInput from "./AddInput";
+import { SectionHeader } from "./inputComponents/SectionHeader";
 
 function FormDisplay({
   formComponentsArray,
@@ -38,15 +39,10 @@ function FormDisplay({
               return (
                 <div key={section.section_id}>
                   <div>
-                    <input
-                      id="section_name"
-                      placeholder="tap to edit section name"
-                      value={formComponentsArray[index].section_name}
-                      onChange={(e) => {
-                        const updatedArray = [...formComponentsArray];
-                        updatedArray[index].section_name = e.target.value;
-                        setFormComponentsArray(updatedArray);
-                      }}
+                    <SectionHeader
+                      formComponentsArray={formComponentsArray}
+                      setFormComponentsArray={setFormComponentsArray}
+                      index={index}
                     />
                   </div>
                   {section.section_components.map((component) => {

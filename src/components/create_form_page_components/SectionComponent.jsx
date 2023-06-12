@@ -1,25 +1,18 @@
-import React, { useRef, useState } from "react";
-import { AddInputButton } from "../buttons/AddInputButton";
-import { CloseInputButton } from "../buttons/CloseInputButton";
+import React from "react";
 import { ComponentTreeItem } from "./ComponentTreeItem";
 import { DeleteButton } from "../buttons/DeleteButton";
-import DoneIcon from "@mui/icons-material/Done";
-import ConfirmDelete from "../modals/ConfirmDelete";
 
 export const SectionComponent = ({
   section_id,
   removeSection,
   index,
-  setCurrSectionId,
   formComponentsArray,
   setFormComponentsArray,
-  handleAddComponentClick,
-  addInputState,
 }) => {
   return (
-    <div id={section_id} className="section-style">
-      <div className="section-header">
-        <div className="section-name">
+    <div id={section_id} className="component-tree-section-style">
+      <div className="component-tree-section-header">
+        <div className="component-tree-section-name">
           {formComponentsArray[index].section_name}
         </div>
         <div

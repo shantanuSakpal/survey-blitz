@@ -1,0 +1,56 @@
+.inputs-container {
+  position: absolute;
+  z-index: 5;
+  color: white;
+  background-color: $theme-color;
+  height: 50vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 1rem;
+  right: 5px;
+  bottom: 5rem;
+  @import "../../scrollbars/scrollbar_style.scss";
+
+  .input-name-and-logo-container {
+    display: flex;
+    gap: 5px;
+    text-align: center;
+    width: 90%;
+    padding: 5px;
+    height: max-content;
+    border-bottom: 1px gray solid;
+    align-content: center;
+    margin: 5px 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    h4 {
+      font-size: 0.7rem;
+      display: inline;
+      margin: auto;
+      height: max-content;
+    }
+  }
+  h3 {
+    font-size: 0.6rem;
+    margin: 5px;
+    display: inline;
+  }
+
+  .header-and-close-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.hide {
+  display: none;
+  transition: all 0.2s ease-out;
+}

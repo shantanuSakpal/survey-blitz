@@ -83,7 +83,6 @@ export default function AddInput({
     <div id="addInput" className="inputs-container hide">
       <div className="header-and-close-input-container">
         <h3>Select the input type</h3>
-        <CloseInputButton handleAddComponentClick={handleAddComponentClick} />
       </div>
       {inputOptions.map((option) => (
         <div

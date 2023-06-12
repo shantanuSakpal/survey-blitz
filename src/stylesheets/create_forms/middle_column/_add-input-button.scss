@@ -1,24 +1,25 @@
-.add-input-button{
-        
-        display: flex;
-        flex-wrap: wrap;
-        width: fit-content;
-        height: fit-content;
-        justify-content: center;
-        align-items: center;
-        margin: 5px auto;
-        box-sizing: border-box;  
-        transition: all 0.2s ease-out;
-        border-radius: 5px ;
-  
-        
-        p{
-            font-size: 0.6rem;
-            margin: 0 5px;
-        }
-        
-        &:hover{
-            cursor: pointer;
-            background-color: $theme-color-2;
-        }
+.add-input-button {
+  display: flex;
+  width: 1rem;
+  height: 1rem;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-out;
+  border-radius: 5px;
+  padding: 0.5rem;
+  position: absolute;
+  right: 3rem;
+  bottom: 3rem;
+  background-color: $theme-color-2;
+
+  p {
+    font-size: 0.6rem;
+    margin: 0 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $theme-color;
+    color: white;
+  }
 }

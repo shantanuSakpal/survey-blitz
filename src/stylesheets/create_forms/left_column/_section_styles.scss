@@ -1,43 +1,20 @@
-.section-style {
+.component-tree-section-style {
   margin: 1rem 0;
   border-bottom: 1px solid $theme-color-2;
   border: 1px solid $theme-color-2;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: $theme-color;
+  position: relative;
 
-  .section-header {
+  .component-tree-section-header {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
-    border-bottom: 1px solid $theme-color-2;
+    width: 100%;
+  }
 
-    input {
-      max-width: 60%;
-      border: none;
-      border-radius: 5px;
-      height: 1rem;
-      padding: 5px;
-      background-color: $theme-color;
-      color: white;
-      font-size: 1rem;
-    }
-
-    input:focus {
-      outline: none;
-      background-color: $theme-color; /* Add this line to maintain the background color when focused */
-    }
-
-    .delete-section-button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:hover {
-        cursor: pointer;
-        color: $theme-color-2;
-      }
-    }
+  .section-name {
+    margin: 10px 0;
   }
 }

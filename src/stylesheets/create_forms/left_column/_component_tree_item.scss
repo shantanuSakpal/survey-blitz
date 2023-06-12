@@ -1,11 +1,10 @@
 .component-tree-item {
   display: flex;
 
-  width: 10rem;
   padding: 5px;
   justify-content: space-between;
   scale: 0.9;
-
+  margin: 0 0 0 10px;
   border-radius: 10px;
   align-items: center;
   border: 2px solid $theme-color;
