@@ -1,28 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { AddSectionButton } from "../buttons/AddSectionButton";
 import { SectionComponent } from "./SectionComponent";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
-function FormComponents({
-  formComponentsArray,
-  addSection,
-  removeSection,
-  setFormComponentsArray,
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {
+  changeAddInputState,
+  reorderSections,
   setCurrSectionId,
-  setAddInputState,
-}) {
+} from "../../reducers/formObjectReducer";
+
+function FormComponents() {
+  const formSectionsArray = useSelector(
+    (state) => state.formObject.form_sections
+  );
+
   /* 
-  the array formComponentsArray is of the form 
+  the array formSectionsArray is of the form 
   [{section_id: <datetime in milisec> , section_components: []},
   ... ] 
   */
 
+  const dispatch = useDispatch();
+
   const onDragEnd = (result) => {
     if (!result.destination) return;
-    const items = Array.from(formComponentsArray);
+    const items = Array.from(formSectionsArray);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-    setFormComponentsArray(items);
+    dispatch(reorderSections(items));
   };
 
   return (
@@ -38,8 +44,8 @@ function FormComponents({
                 ref={provided.innerRef}
                 className="form-components-container"
               >
-                {formComponentsArray &&
-                  formComponentsArray.map((component, index) => {
+                {formSectionsArray &&
+                  formSectionsArray.map((component, index) => {
                     return (
                       <Draggable
                         key={component.section_id}
@@ -55,21 +61,19 @@ function FormComponents({
                             <div
                               key={index}
                               onClick={() => {
-                                console.log(
-                                  "clicked on section ",
-                                  component.section_id
+                                dispatch(
+                                  setCurrSectionId(component.section_id)
                                 );
-                                setCurrSectionId(component.section_id);
-                                setAddInputState(false);
+                                dispatch(changeAddInputState(false));
+                                console.log(
+                                  "formSectionsArray --------> ",
+                                  formSectionsArray
+                                );
                               }}
                             >
                               <SectionComponent
                                 section_id={component.section_id}
-                                removeSection={removeSection}
-                                formComponentsArray={formComponentsArray}
                                 index={index}
-                                setCurrSectionId={setCurrSectionId}
-                                setFormComponentsArray={setFormComponentsArray}
                               />
                             </div>
                           </div>
@@ -78,10 +82,7 @@ function FormComponents({
                     );
                   })}
                 {provided.placeholder}
-                <AddSectionButton
-                  addSection={addSection}
-                  setCurrSectionId={setCurrSectionId}
-                />
+                <AddSectionButton />
               </div>
             )}
           </Droppable>

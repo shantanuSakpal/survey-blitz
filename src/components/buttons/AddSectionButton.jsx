@@ -1,20 +1,25 @@
 import React from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import { useDispatch } from "react-redux";
+import { addSection, setCurrSectionId } from "../../reducers/formObjectReducer";
 
-export const AddSectionButton = ({ addSection, setCurrSectionId }) => {
+export const AddSectionButton = () => {
   //add a section component to the formComponentsObj with key as current Date.now() and value as section
+  const dispatch = useDispatch();
 
   return (
     <div
       className="add-section-button"
       onClick={() => {
         let date = Date.now();
-        addSection({
-          section_id: date,
-          section_components: [],
-          section_name: "Untitled Section",
-        });
-        setCurrSectionId(date);
+        dispatch(
+          addSection({
+            section_id: date,
+            section_name: "Untitled Section",
+            section_components: [],
+          })
+        );
+        dispatch(setCurrSectionId(date));
       }}
     >
       <AddBoxIcon fontSize="small" />

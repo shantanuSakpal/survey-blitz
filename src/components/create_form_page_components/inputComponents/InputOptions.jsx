@@ -1,29 +1,23 @@
 import React from "react";
 import { DeleteButton } from "../../buttons/DeleteButton";
+import { useDispatch } from "react-redux";
+import { removeSectionComponent } from "../../../reducers/formObjectReducer";
 
-export const InputOptions = ({
-  formComponentsArray,
-  setFormComponentsArray,
-  input_id,
-  currSectionId,
-}) => {
+export const InputOptions = ({ component_id, currSectionId }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className="input-options-container">
       <div
         className="delete-input-button"
         //delete the component from the formComponentsArray using the input_id and the currSectionId
         onClick={() => {
-          const updatedFormComponentsArray = formComponentsArray.map(
-            (section) => {
-              if (section.section_id === currSectionId) {
-                section.section_components = section.section_components.filter(
-                  (component) => component.input_id !== input_id
-                );
-              }
-              return section;
-            }
+          dispatch(
+            removeSectionComponent({
+              component_id: component_id,
+              section_id: currSectionId,
+            })
           );
-          setFormComponentsArray(updatedFormComponentsArray);
         }}
       >
         <DeleteButton />

@@ -5,77 +5,54 @@ import { AddInputButton } from "../buttons/AddInputButton";
 import AddInput from "./AddInput";
 import { SectionHeader } from "./inputComponents/SectionHeader";
 import { FormInputContainer } from "./inputComponents/FormInputContainer";
+import { useSelector } from "react-redux";
 
-function FormDisplay({
-  formComponentsArray,
-  currSectionId,
-  setFormComponentsArray,
-  addInputState,
-  handleAddComponentClick,
-}) {
-  //render the section name and component name in form from the object
-  // formComponentsArray
-
-  //get the index of the section with the currentSectionId
-
-  let index = formComponentsArray.findIndex(
-    (section) => section.section_id === currSectionId
+function FormDisplay({}) {
+  const formSectionsArray = useSelector(
+    (state) => state.formObject.form_sections
   );
 
-  if (index === -1) {
-    currSectionId = formComponentsArray[0].section_id;
-    index = 0;
-  }
+  const currSectionId = useSelector((state) => state.formObject.currSectionId);
 
-  console.log(" currSectionId:", currSectionId);
-  console.log(" index:", index);
+  const addInputState = useSelector((state) => state.formObject.addInputState);
+
+  /* 
+  the array formSectionsArray is of the form 
+  [{section_id: <datetime in milisec> , section_components: []},
+  ... ] 
+  */
+
+  console.log("formSectionsArray", formSectionsArray);
+  console.log("currSectionId", currSectionId);
 
   return (
     <div className=" middle-column-container">
       {
-        //find the section with the currentSectionId from the formComponentsArray and render its name and components
-        formComponentsArray &&
-          formComponentsArray.map((section) => {
+        //find the section with the currentSectionId from the formSectionsArray and render its name and components
+        formSectionsArray &&
+          formSectionsArray.map((section) => {
             if (section.section_id === currSectionId) {
               return (
                 <div key={section.section_id}>
                   <div>
-                    <SectionHeader
-                      formComponentsArray={formComponentsArray}
-                      setFormComponentsArray={setFormComponentsArray}
-                      index={index}
-                    />
+                    <SectionHeader />
                   </div>
                   {section.section_components.map((component) => (
                     <FormInputContainer
-                      key={component.input_id}
-                      formComponentsArray={formComponentsArray}
-                      setFormComponentsArray={setFormComponentsArray}
-                      input_id={component.input_id}
-                      currSectionId={currSectionId}
-                      input_type={component.input_type}
+                      key={component.component_id}
+                      component_id={component.component_id}
+                      component_type={component.component_type}
                     />
                   ))}
                   {
                     //if addInputState is true, then show the AddInput component
                     addInputState ? (
-                      <CloseInputButton
-                        handleAddComponentClick={handleAddComponentClick}
-                        section_id={currSectionId}
-                      />
+                      <CloseInputButton />
                     ) : (
-                      <AddInputButton
-                        id={"addInput_" + currSectionId}
-                        handleAddComponentClick={handleAddComponentClick}
-                        section_id={currSectionId}
-                      />
+                      <AddInputButton currSectionId={currSectionId} />
                     )
                   }
-                  <AddInput
-                    currSectionId={currSectionId}
-                    setFormComponentsArray={setFormComponentsArray}
-                    handleAddComponentClick={handleAddComponentClick}
-                  />
+                  <AddInput />
                 </div>
               );
             }

@@ -17,26 +17,26 @@ export const ShortTextInput = ({
   };
   return (
     <div className="short-text-input-container">
-      <div class="form question">
+      <div className="form question">
         <textarea
-          class="input"
+          className="input"
           placeholder="Question"
           required={required}
           type="text"
           onChange={handleChange}
         />
-        <span class="input-border"></span>
+        <span className="input-border"></span>
       </div>
 
-      <div class="form answer">
+      <div className="form answer">
         <input
           readOnly
-          class="input"
+          className="input"
           placeholder="Short text answer"
           required=""
           type="text"
         />
-        <span class="input-border"></span>
+        <span className="input-border"></span>
       </div>
     </div>
   );

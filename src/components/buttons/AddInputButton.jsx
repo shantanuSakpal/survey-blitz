@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import { changeAddInputState } from "../../reducers/formObjectReducer";
+import { useSelector } from "react-redux";
 
-export const AddInputButton = ({ section_id, handleAddComponentClick }) => {
-  //on click , toggle the .hide class on AddInput component
+export const AddInputButton = () => {
+  //on click , toggle the .hide class on AddInput
+  const addInputState = useSelector((state) => state.formObject.addInputState);
 
+  const dispatch = useDispatch();
   return (
     <div
       className="add-input-button"
@@ -12,7 +17,7 @@ export const AddInputButton = ({ section_id, handleAddComponentClick }) => {
         //toggle the .hide class on AddInput component
 
         document.querySelector("#addInput").classList.toggle("hide");
-        handleAddComponentClick();
+        dispatch(changeAddInputState(!addInputState));
       }}
     >
       <AddIcon fontSize="small" />

@@ -7,41 +7,28 @@ import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import EventIcon from "@mui/icons-material/Event";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import { CloseInputButton } from "../buttons/CloseInputButton";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addSectionComponent } from "../../reducers/formObjectReducer";
 
-export default function AddInput({
-  currSectionId,
-  setFormComponentsArray,
-  handleAddComponentClick,
-}) {
-  const setSectionObj = (inputObj) => {
-    if (currSectionId === null) {
-      return;
-    }
+export default function AddInput() {
+  const currSectionId = useSelector((state) => state.formObject.currSectionId);
 
-    setFormComponentsArray((formComponentsArray) => {
-      const updatedArray = formComponentsArray.map((section) => {
-        if (section.section_id === currSectionId) {
-          return {
-            ...section,
-            section_components: [...section.section_components, inputObj],
-          };
-        }
-        return section;
-      });
-      return updatedArray;
-    });
-  };
+  const dispatch = useDispatch();
 
   // Rest of the component code...
 
   const addInput = (inputType) => {
-    let inputObj = {
-      input_id: Date.now(),
-      input_type: inputType,
+    let component = {
+      component_id: Date.now(),
+      component_type: inputType,
     };
-
-    setSectionObj(inputObj);
+    dispatch(
+      addSectionComponent({
+        section_id: currSectionId,
+        component: component,
+      })
+    );
   };
 
   const inputOptions = [

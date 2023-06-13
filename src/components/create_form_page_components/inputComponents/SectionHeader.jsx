@@ -1,10 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { updateSectionName } from "../../../reducers/formObjectReducer";
 
-export const SectionHeader = ({
-  formComponentsArray,
-  setFormComponentsArray,
-  index,
-}) => {
+export const SectionHeader = ({}) => {
+  const formComponentsArray = useSelector(
+    (state) => state.formObject.form_sections
+  );
+
+  const currSectionId = useSelector((state) => state.formObject.currSectionId);
+
+  const index = formComponentsArray.findIndex(
+    (section) => section.section_id === currSectionId
+  );
+
+  const dispatch = useDispatch();
+
   return (
     <div className="section-header">
       <div className="section-name">
@@ -20,13 +31,16 @@ export const SectionHeader = ({
           }}
           value={formComponentsArray[index].section_name}
           onChange={(e) => {
-            const updatedArray = [...formComponentsArray];
-            updatedArray[index].section_name = e.target.value;
-            setFormComponentsArray(updatedArray);
+            dispatch(
+              updateSectionName({
+                section_id: currSectionId,
+                section_name: e.target.value,
+              })
+            );
           }}
         />
-        <span class="section-name-highlight"></span>
-        <span class="section-name-bar"></span>
+        <span className="section-name-highlight"></span>
+        <span className="section-name-bar"></span>
         <label>Section Name</label>
       </div>
     </div>
