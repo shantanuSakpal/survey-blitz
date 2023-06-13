@@ -1,5 +1,5 @@
 .inputs-container {
-  position: absolute;
+  position: fixed;
   z-index: 5;
   color: white;
   background-color: $theme-color;
@@ -11,7 +11,7 @@
   padding: 10px;
   border-radius: 10px;
   margin-top: 1rem;
-  right: 5px;
+  right: 30vw;
   bottom: 5rem;
   @import "../../scrollbars/scrollbar_style.scss";
 
@@ -22,12 +22,15 @@
     width: 90%;
     padding: 5px;
     height: max-content;
-    border-bottom: 1px gray solid;
+    border: 1px solid $theme-color;
     align-content: center;
     margin: 5px 0;
+    border-radius: 10px;
+    transition: all 0.2s ease-out;
 
     &:hover {
       cursor: pointer;
+      border: 1px solid $theme-color-2;
     }
 
     h4 {

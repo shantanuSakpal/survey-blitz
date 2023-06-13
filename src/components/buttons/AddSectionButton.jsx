@@ -12,7 +12,7 @@ export const AddSectionButton = ({ addSection, setCurrSectionId }) => {
         addSection({
           section_id: date,
           section_components: [],
-          section_name: "Edit section name",
+          section_name: "Untitled Section",
         });
         setCurrSectionId(date);
       }}

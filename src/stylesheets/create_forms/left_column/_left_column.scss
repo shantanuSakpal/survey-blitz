@@ -9,13 +9,13 @@
   flex-wrap: "wrap";
   justify-content: "space-between";
   margin: "0.5rem 0";
-  text-align: center;
   padding: 10px;
   box-sizing: border-box;
 
   h3 {
-    margin: auto;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    padding: 0 20px;
+    margin: 10px 0;
   }
 }
 
@@ -25,9 +25,8 @@
   overflow-y: auto;
   height: 85%;
   @import "../../scrollbars/scrollbar_style.scss";
-  padding: 5px;
 }
 
 @import "component_tree_item";
 @import "add_section_button";
-@import "section_styles";
+@import "component_tree_section_styles.scss";

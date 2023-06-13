@@ -48,13 +48,13 @@ body {
   flex-wrap: "wrap";
   justify-content: "space-between";
   margin: "0.5rem 0";
-  text-align: center;
   padding: 10px;
   box-sizing: border-box;
 }
 .left-column-container h3 {
-  margin: auto;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  padding: 0 20px;
+  margin: 10px 0;
 }
 
 .form-components-container {
@@ -65,7 +65,6 @@ body {
   /* Track */
   /* Handle */
   /* Handle on hover */
-  padding: 5px;
 }
 .form-components-container::-webkit-scrollbar {
   width: 10px;
@@ -148,57 +147,22 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
-.component-tree-section-style .section-name {
-  margin: 10px 0;
+  margin-bottom: 0.5rem;
 }
 
 .middle-column-container {
-  background-color: whiter;
+  background-color: rgb(217, 217, 217);
   color: black;
   width: 60vw;
-  height: 100%;
+  height: 90%;
   border-top: 1px solid gray;
-  padding: 0.5rem;
+  padding: 1rem 1rem 3rem 1rem;
   position: relative;
   overflow-y: auto;
 }
-.middle-column-container .form-item {
-  margin: 10px 5px;
-  border: 1px gray solid;
-  padding: 10px;
-  border-radius: 10px;
-}
-.middle-column-container .form-item h3 {
-  margin: 5px 0;
-}
-
-.add-input-button {
-  display: flex;
-  width: 1rem;
-  height: 1rem;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s ease-out;
-  border-radius: 5px;
-  padding: 0.5rem;
-  position: absolute;
-  right: 3rem;
-  bottom: 3rem;
-  background-color: gray;
-}
-.add-input-button p {
-  font-size: 0.6rem;
-  margin: 0 5px;
-}
-.add-input-button:hover {
-  cursor: pointer;
-  background-color: #2C2D32;
-  color: white;
-}
 
 .inputs-container {
-  position: absolute;
+  position: fixed;
   z-index: 5;
   color: white;
   background-color: #2C2D32;
@@ -210,7 +174,7 @@ body {
   padding: 10px;
   border-radius: 10px;
   margin-top: 1rem;
-  right: 5px;
+  right: 30vw;
   bottom: 5rem;
   /* Track */
   /* Handle */
@@ -242,12 +206,15 @@ body {
   padding: 5px;
   height: -moz-max-content;
   height: max-content;
-  border-bottom: 1px gray solid;
+  border: 1px solid #2C2D32;
   align-content: center;
   margin: 5px 0;
+  border-radius: 10px;
+  transition: all 0.2s ease-out;
 }
 .inputs-container .input-name-and-logo-container:hover {
   cursor: pointer;
+  border: 1px solid gray;
 }
 .inputs-container .input-name-and-logo-container h4 {
   font-size: 0.7rem;
@@ -272,6 +239,165 @@ body {
   transition: all 0.2s ease-out;
 }
 
+.form-input-container {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  margin: 10px 0;
+}
+
+.section-header {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+
+.section-name {
+  position: relative;
+  margin-top: 1rem;
+}
+.section-name .section-name-input {
+  font-size: 1.5rem;
+  padding: 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+.section-name .section-name-input:focus {
+  outline: none;
+}
+.section-name label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.section-name .section-name-input:focus ~ label,
+.section-name .section-name-input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264ae;
+}
+.section-name .section-name-bar {
+  position: relative;
+  display: block;
+  width: 200px;
+}
+.section-name .section-name-bar:before,
+.section-name .section-name-bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  left: 5px;
+  position: absolute;
+  background: #5264ae;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.section-name .section-name-bar:before {
+  left: 50%;
+}
+.section-name .section-name-bar:after {
+  right: 50%;
+}
+.section-name .section-name-input:focus ~ .section-name-bar:before,
+.section-name .section-name-input:focus ~ .section-name-bar:after {
+  width: 100%;
+}
+.section-name .section-name-highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.section-name .section-name-input:focus ~ .section-name-highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+.short-text-input-container {
+  /* styling of Input */
+  /* styling of animated border */
+  /* Hover on Input */
+  /* here is code of animated border */
+}
+.short-text-input-container .form {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  margin: 0.5rem 0;
+}
+.short-text-input-container .input {
+  color: #000000;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  resize: none;
+}
+.short-text-input-container .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+.short-text-input-container .input:hover {
+  background: var(--input-hovered-color);
+}
+.short-text-input-container .input:focus {
+  outline: none;
+}
+.short-text-input-container .input:focus ~ .input-border {
+  width: 100%;
+}
+.short-text-input-container .question {
+  font-size: 1rem;
+}
+.short-text-input-container .answer .input {
+  font-size: 0.7rem;
+}
+
+.input-options-container {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .right-column-container {
   background-color: #2C2D32;
   color: white;
@@ -292,6 +418,51 @@ body {
 .delete-section-button {
   display: inline;
   width: 2rem;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete-section-button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.delete-input-button {
+  display: inline;
+  width: 2rem;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.delete-input-button:hover {
+  cursor: pointer;
+  color: #2C2D32;
+}
+
+.add-input-button {
+  display: flex;
+  width: 1rem;
+  height: 1rem;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-out;
+  border-radius: 5px;
+  padding: 0.5rem;
+  position: fixed;
+  right: 30vw;
+  bottom: 3rem;
+  background-color: gray;
+}
+.add-input-button p {
+  font-size: 0.6rem;
+  margin: 0 5px;
+}
+.add-input-button:hover {
+  cursor: pointer;
+  background-color: #2C2D32;
+  color: white;
 }
 
 .header {

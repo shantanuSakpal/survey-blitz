@@ -1,4 +1,4 @@
-.delete-section-button {
+.delete-input-button {
   display: inline;
   width: 2rem;
   color: $theme-color-2;
@@ -7,6 +7,6 @@
   align-items: center;
   &:hover {
     cursor: pointer;
-    color: white;
+    color: $theme-color;
   }
 }

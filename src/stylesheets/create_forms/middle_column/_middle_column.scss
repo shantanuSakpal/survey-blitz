@@ -1,24 +1,14 @@
 .middle-column-container {
-  background-color: whiter;
+  background-color: rgb(217, 217, 217);
   color: black;
   width: 60vw;
-  height: 100%;
+  height: 90%;
   border-top: 1px solid $theme-color-2;
-  padding: 0.5rem;
+  padding: 1rem 1rem 3rem 1rem;
   position: relative;
   overflow-y: auto;
-
-  .form-item {
-    margin: 10px 5px;
-    border: 1px $theme-color-2 solid;
-    padding: 10px;
-    border-radius: 10px;
-
-    h3 {
-      margin: 5px 0;
-    }
-  }
 }
-@import "add-input-button";
+
 @import "add_inputs_container";
-@import "./form_components_styles/section_header";
+@import "./form_components_styles/form_input_container";
+@import "./input_options_container";

@@ -1,17 +1,43 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
+import React, { useState } from "react";
+import { DeleteButton } from "../../buttons/DeleteButton";
 
-export const ShortTextInput = (props) => {
+export const ShortTextInput = ({
+  formComponentsArray,
+  setFormComponentsArray,
+  input_id,
+  currSectionId,
+  required,
+}) => {
+  const [text, setText] = useState("");
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+    event.target.style.height = "auto"; // Reset the height
+    event.target.style.height = `${event.target.scrollHeight}px`; // Set the height based on the content
+  };
   return (
-    <div>
-      <h3 className="input-label">{props.label}</h3>
-      <TextField
-        id="outlined-basic"
-        label={props.label}
-        placeholder={props.placeholder}
-        variant="outlined"
-        fullWidth
-      />
+    <div className="short-text-input-container">
+      <div class="form question">
+        <textarea
+          class="input"
+          placeholder="Question"
+          required={required}
+          type="text"
+          onChange={handleChange}
+        />
+        <span class="input-border"></span>
+      </div>
+
+      <div class="form answer">
+        <input
+          readOnly
+          class="input"
+          placeholder="Short text answer"
+          required=""
+          type="text"
+        />
+        <span class="input-border"></span>
+      </div>
     </div>
   );
 };

@@ -4,5 +4,5 @@ import { useState } from "react";
 import ConfirmDelete from "../modals/ConfirmDelete";
 
 export const DeleteButton = ({ color }) => {
-  return <DeleteForeverIcon fontSize="small" />;
+  return <DeleteForeverIcon fontSize="small" color={color} />;
 };

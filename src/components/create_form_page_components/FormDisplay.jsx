@@ -4,6 +4,7 @@ import { CloseInputButton } from "../buttons/CloseInputButton";
 import { AddInputButton } from "../buttons/AddInputButton";
 import AddInput from "./AddInput";
 import { SectionHeader } from "./inputComponents/SectionHeader";
+import { FormInputContainer } from "./inputComponents/FormInputContainer";
 
 function FormDisplay({
   formComponentsArray,
@@ -45,30 +46,16 @@ function FormDisplay({
                       index={index}
                     />
                   </div>
-                  {section.section_components.map((component) => {
-                    {
-                      /* if (component.component_type === "short_text_input") {
-                      return (
-                        <ShortTextInput
-                          key={component.component_id}
-                          component={component}
-                        />
-                      );
-                    } else if (
-                      component.component_type === "long_text_input"
-                    ) {
-                      return (
-                        <LongTextInput
-                          key={component.component_id}
-                          component={component}
-                        />
-                      );
-                    } */
-                    }
-                    return (
-                      <div key={component.input_id}>{component.input_type}</div>
-                    );
-                  })}
+                  {section.section_components.map((component) => (
+                    <FormInputContainer
+                      key={component.input_id}
+                      formComponentsArray={formComponentsArray}
+                      setFormComponentsArray={setFormComponentsArray}
+                      input_id={component.input_id}
+                      currSectionId={currSectionId}
+                      input_type={component.input_type}
+                    />
+                  ))}
                   {
                     //if addInputState is true, then show the AddInput component
                     addInputState ? (

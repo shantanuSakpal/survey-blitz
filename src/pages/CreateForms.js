@@ -11,7 +11,7 @@ function CreateForms(props) {
     {
       section_components: [],
       section_id: date,
-      section_name: "Edit section name",
+      section_name: "Untitled Section",
     },
   ]);
   const [currSectionId, setCurrSectionId] = useState(
