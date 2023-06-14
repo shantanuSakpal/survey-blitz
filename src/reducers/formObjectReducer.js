@@ -29,11 +29,6 @@ export const formObjectSlice = createSlice({
       state.form_sections = state.form_sections.filter(
         (section) => section.section_id !== action.payload
       );
-
-      // If the section being removed is the current section, set the current section to the first section
-      if (state.currSectionId === action.payload) {
-        state.currSectionId = state.form_sections[0].section_id;
-      }
     },
 
     setCurrSectionId: (state, action) => {
@@ -64,9 +59,24 @@ export const formObjectSlice = createSlice({
     },
 
     duplicateSectionComponent: (state, action) => {
+      //push after the component being duplicated
+      let index = 0;
       state.form_sections.forEach((section) => {
         if (section.section_id === action.payload.section_id) {
-          section.section_components.push(action.payload.newComponent);
+          section.section_components.forEach((component) => {
+            if (component.component_id === action.payload.component_id) {
+              index = section.section_components.indexOf(component);
+            }
+          });
+        }
+      });
+      state.form_sections.forEach((section) => {
+        if (section.section_id === action.payload.section_id) {
+          section.section_components.splice(
+            index + 1,
+            0,
+            action.payload.newComponent
+          );
         }
       });
     },
@@ -75,7 +85,7 @@ export const formObjectSlice = createSlice({
       state.form_sections.forEach((section) => {
         if (section.section_id === action.payload.section_id) {
           section.section_components.forEach((component) => {
-            if (component.component_id == action.payload.component_id) {
+            if (component.component_id === action.payload.component_id) {
               component.is_required = !component.is_required;
             }
           });

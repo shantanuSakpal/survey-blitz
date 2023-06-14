@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setComponentPropObject } from "../../../reducers/formObjectReducer";
+import TextareaAutosize from "react-textarea-autosize";
 
 export const ShortTextInput = ({ component_id, currSectionId }) => {
   const formSectionsArray = useSelector(
@@ -15,8 +16,6 @@ export const ShortTextInput = ({ component_id, currSectionId }) => {
   const handleChange = (event) => {
     const updatedText = event.target.value;
     setText(updatedText);
-    event.target.style.height = "auto"; // Reset the height
-    event.target.style.height = `${event.target.scrollHeight}px`; // Set the height based on the content
     setComponent_prop_object({
       ...component_prop_object,
       question: updatedText,
@@ -46,11 +45,12 @@ export const ShortTextInput = ({ component_id, currSectionId }) => {
   return (
     <div className="short-text-input-container">
       <div className="form question">
-        <textarea
+        <TextareaAutosize
           className="input"
           placeholder="Question"
           value={text}
           onChange={handleChange}
+          minRows={1}
         />
         <span className="input-border"></span>
       </div>
@@ -58,6 +58,7 @@ export const ShortTextInput = ({ component_id, currSectionId }) => {
       <div className="form answer">
         <input
           className="input"
+          readOnly
           placeholder="Short text answer"
           required=""
           type="text"

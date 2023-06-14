@@ -388,7 +388,172 @@ body {
   font-size: 1rem;
 }
 .short-text-input-container .answer .input {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
+}
+
+.long-text-input-container {
+  /* styling of Input */
+  /* styling of animated border */
+  /* Hover on Input */
+  /* here is code of animated border */
+}
+.long-text-input-container .form {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  margin: 0.5rem 0;
+}
+.long-text-input-container .input {
+  color: #000000;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  resize: none;
+}
+.long-text-input-container .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+.long-text-input-container .input:hover {
+  background: var(--input-hovered-color);
+}
+.long-text-input-container .input:focus {
+  outline: none;
+}
+.long-text-input-container .input:focus ~ .input-border {
+  width: 100%;
+}
+.long-text-input-container .question {
+  font-size: 1rem;
+}
+.long-text-input-container .answer .input {
+  font-size: 0.9rem;
+}
+
+.time-input-container {
+  /* styling of Input */
+  /* styling of animated border */
+  /* Hover on Input */
+  /* here is code of animated border */
+}
+.time-input-container .form {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  margin: 0.5rem 0;
+}
+.time-input-container .input {
+  color: #000000;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  resize: none;
+}
+.time-input-container .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+.time-input-container .input:hover {
+  background: var(--input-hovered-color);
+}
+.time-input-container .input:focus {
+  outline: none;
+}
+.time-input-container .input:focus ~ .input-border {
+  width: 100%;
+}
+.time-input-container .question {
+  font-size: 1rem;
+}
+.time-input-container .answer .input {
+  font-size: 0.9rem;
+}
+
+.date-input-container {
+  /* styling of Input */
+  /* styling of animated border */
+  /* Hover on Input */
+  /* here is code of animated border */
+}
+.date-input-container .form {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  margin: 0.5rem 0;
+}
+.date-input-container .input {
+  color: #000000;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  resize: none;
+}
+.date-input-container .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+.date-input-container .input:hover {
+  background: var(--input-hovered-color);
+}
+.date-input-container .input:focus {
+  outline: none;
+}
+.date-input-container .input:focus ~ .input-border {
+  width: 100%;
+}
+.date-input-container .question {
+  font-size: 1rem;
+}
+.date-input-container .answer .input {
+  font-size: 0.9rem;
 }
 
 .more-options-container {

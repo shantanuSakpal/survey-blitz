@@ -55,9 +55,31 @@ export const ComponentTreeItem = ({
             <div>no icon</div>
           )
         }
-        <h4>{component_type}</h4>
+        <h4>
+          {
+            //conditional rendering of text
+            component_type === "checkboxes"
+              ? "Checkboxes"
+              : component_type === "multiple_choice"
+              ? "Multiple Choice"
+              : component_type === "short_text"
+              ? "Short Answer"
+              : component_type === "long_text"
+              ? "Paragraph"
+              : component_type === "dropdown"
+              ? "Dropdown"
+              : component_type === "date"
+              ? "Date"
+              : component_type === "time"
+              ? "Time"
+              : component_type === "upload_file"
+              ? "File Upload"
+              : "No text"
+          }
+        </h4>
       </div>
       <div
+        className="delete-section-button"
         onClick={
           //delete the item from the form
           () => {
@@ -70,7 +92,7 @@ export const ComponentTreeItem = ({
           }
         }
       >
-        <DeleteButton color="white" />
+        <DeleteButton />
       </div>
     </div>
   );

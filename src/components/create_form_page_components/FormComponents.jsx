@@ -15,12 +15,6 @@ function FormComponents() {
     (state) => state.formObject.form_sections
   );
 
-  /* 
-  the array formSectionsArray is of the form 
-  [{section_id: <datetime in milisec> , section_components: []},
-  ... ] 
-  */
-
   const dispatch = useDispatch();
 
   const onDragEnd = (result) => {
@@ -29,6 +23,12 @@ function FormComponents() {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     dispatch(reorderSections(items));
+  };
+
+  const handleSectionClick = (sectionId) => {
+    dispatch(setCurrSectionId(sectionId));
+    dispatch(changeAddInputState(false));
+    console.log("formSectionsArray --------> ", formSectionsArray);
   };
 
   return (
@@ -60,15 +60,14 @@ function FormComponents() {
                           >
                             <div
                               key={index}
-                              onClick={() => {
-                                dispatch(
-                                  setCurrSectionId(component.section_id)
+                              onClick={(event) => {
+                                const target = event.target;
+                                const deleteButton = target.closest(
+                                  ".delete-section-button"
                                 );
-                                dispatch(changeAddInputState(false));
-                                console.log(
-                                  "formSectionsArray --------> ",
-                                  formSectionsArray
-                                );
+                                if (!deleteButton) {
+                                  handleSectionClick(component.section_id);
+                                }
                               }}
                             >
                               <SectionComponent

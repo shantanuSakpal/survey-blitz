@@ -28,11 +28,13 @@ export const SectionComponent = ({ section_id, index }) => {
             //delete the item from the form
             () => {
               dispatch(removeSection(section_id));
-              // If the component being removed is the current component, set the current component to the first component
+              // If the component being removed is the current component, set the current component to the first component in the form
 
               if (section_id === currSectionId) {
                 dispatch(setCurrSectionId(formSectionsArray[0].section_id));
               }
+
+              //if the component being removed is the first component in the form, set the current component to the next component in the form
 
               // console.log("deleted section id:", section_id);
             }
