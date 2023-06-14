@@ -2,10 +2,10 @@ import {useState} from 'react';
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import TextField from '@mui/material/TextField';
 
-export default function TimeInput() {
+export default function DateInput() {
   const [value, setValue] = useState(dayjs(new Date()));
   const [text, setText] = useState("");
   const handleChange = (event) => {
@@ -27,7 +27,7 @@ export default function TimeInput() {
       </div>
     </div>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <MobileTimePicker
+        <DatePicker
           label="select time"
           defaultValue={dayjs(new Date())}
             value={value}
