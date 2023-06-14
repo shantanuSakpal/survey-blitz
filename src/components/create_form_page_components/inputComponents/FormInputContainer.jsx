@@ -3,6 +3,7 @@ import { ShortTextInput } from "./ShortTextInput";
 import { LongTextInput } from "./LongTextInput";
 import { InputOptions } from "./InputOptions";
 import { useSelector } from "react-redux";
+import TimeInput from "./TimeInput";
 
 export const FormInputContainer = ({ component_id, component_type }) => {
   const currSectionId = useSelector((state) => state.formObject.currSectionId);
@@ -23,9 +24,17 @@ export const FormInputContainer = ({ component_id, component_type }) => {
             component_id={component_id}
             currSectionId={currSectionId}
           />
-        ) : (
+        ) : component_type === 'time' ? (
+          <TimeInput 
+          key = {component_id}
+          component_id = {component_id}
+          currSectionId = {currSectionId}
+          />
+        )
+        : (
           <div>some other component</div>
         )
+
       }
       <InputOptions component_id={component_id} currSectionId={currSectionId} />
     </div>
