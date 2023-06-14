@@ -1,17 +1,22 @@
 .component-tree-section-style {
-  margin: 1rem 0;
-  border-bottom: 1px solid $theme-color-2;
-  border: 1px solid $theme-color-2;
+  margin-bottom: 1.5rem;
   border-radius: 5px;
   padding: 0.5rem;
   background-color: $theme-color;
   position: relative;
+  border: 1px solid $theme-color;
+  transition: all 0.2s ease-out;
 
   .component-tree-section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px $theme-color-2;
   }
 }

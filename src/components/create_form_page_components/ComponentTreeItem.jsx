@@ -23,34 +23,34 @@ export const ComponentTreeItem = ({
 
   return (
     <div className="component-tree-item">
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div className="component-tree-item-logo">
         {
           //conditional rendering of icons
           component_type === "checkboxes" ? (
             <CheckCircleOutlineIcon
-              fontSize="small"
+              fontSize="smaller"
               sx={{ marginRight: "10px" }}
             />
           ) : component_type === "multiple_choice" ? (
             <RadioButtonCheckedIcon
-              fontSize="small"
+              fontSize="smaller"
               sx={{ marginRight: "10px" }}
             />
           ) : component_type === "short_text" ? (
-            <ShortTextIcon fontSize="small" sx={{ marginRight: "10px" }} />
+            <ShortTextIcon fontSize="smaller" sx={{ marginRight: "10px" }} />
           ) : component_type === "long_text" ? (
-            <SubjectIcon fontSize="small" sx={{ marginRight: "10px" }} />
+            <SubjectIcon fontSize="smaller" sx={{ marginRight: "10px" }} />
           ) : component_type === "dropdown" ? (
             <ArrowDropDownCircleIcon
-              fontSize="small"
+              fontSize="smaller"
               sx={{ marginRight: "10px" }}
             />
           ) : component_type === "date" ? (
-            <EventIcon fontSize="small" sx={{ marginRight: "10px" }} />
+            <EventIcon fontSize="smaller" sx={{ marginRight: "10px" }} />
           ) : component_type === "time" ? (
-            <AccessTimeIcon fontSize="small" sx={{ marginRight: "10px" }} />
+            <AccessTimeIcon fontSize="smaller" sx={{ marginRight: "10px" }} />
           ) : component_type === "upload_file" ? (
-            <UploadFileIcon fontSize="small" sx={{ marginRight: "10px" }} />
+            <UploadFileIcon fontSize="smaller" sx={{ marginRight: "10px" }} />
           ) : (
             <div>no icon</div>
           )

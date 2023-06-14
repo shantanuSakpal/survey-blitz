@@ -58,7 +58,7 @@ body {
 }
 
 .form-components-container {
-  margin: 10px;
+  padding: 10px;
   overflow-x: auto;
   overflow-y: auto;
   height: 85%;
@@ -89,8 +89,7 @@ body {
   display: flex;
   padding: 5px;
   justify-content: space-between;
-  scale: 0.9;
-  margin: 0 0 0 10px;
+  margin-left: 15px;
   border-radius: 10px;
   align-items: center;
   border: 2px solid #2C2D32;
@@ -101,12 +100,19 @@ body {
   border: 2px solid gray;
 }
 .component-tree-item h4 {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   display: inline;
   margin: auto;
   height: -moz-max-content;
   height: max-content;
   font-weight: lighter;
+}
+.component-tree-item .delete-section-button {
+  scale: 0.8;
+}
+.component-tree-item .component-tree-item-logo {
+  display: flex;
+  align-items: center;
 }
 
 .add-section-button {
@@ -134,20 +140,24 @@ body {
 }
 
 .component-tree-section-style {
-  margin: 1rem 0;
-  border-bottom: 1px solid gray;
-  border: 1px solid gray;
+  margin-bottom: 1.5rem;
   border-radius: 5px;
   padding: 0.5rem;
   background-color: #2C2D32;
   position: relative;
+  border: 1px solid #2C2D32;
+  transition: all 0.2s ease-out;
 }
 .component-tree-section-style .component-tree-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+.component-tree-section-style:hover {
+  box-shadow: 0 0 10px gray;
 }
 
 .middle-column-container {
@@ -554,6 +564,80 @@ body {
 }
 .date-input-container .answer .input {
   font-size: 0.9rem;
+}
+
+.checkbox-input-container {
+  /* styling of Input */
+}
+.checkbox-input-container .form {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  margin: 0.5rem 0;
+  /* styling of animated border */
+  /* Hover on Input */
+  /* here is code of animated border */
+}
+.checkbox-input-container .form .input {
+  color: #000000;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  resize: none;
+}
+.checkbox-input-container .form .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+.checkbox-input-container .form .input:hover {
+  background: var(--input-hovered-color);
+}
+.checkbox-input-container .form .input:focus {
+  outline: none;
+}
+.checkbox-input-container .form .input:focus ~ .input-border {
+  width: 100%;
+}
+.checkbox-input-container .question {
+  font-size: 1rem;
+}
+.checkbox-input-container .answer .input {
+  font-size: 0.9rem;
+}
+
+.checkboxes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.checkboxes-container .checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.checkboxes-container .checkbox-container .checkbox-icon {
+  color: gray;
+  font-size: smaller;
 }
 
 .more-options-container {

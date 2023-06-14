@@ -5,6 +5,8 @@ import { InputOptions } from "./InputOptions";
 import { useSelector } from "react-redux";
 import { TimeInput } from "./TimeInput";
 import { DateInput } from "./DateInput";
+import { Check } from "@mui/icons-material";
+import { CheckboxInput } from "./CheckboxInput";
 
 export const FormComonentContainer = ({ component_id, component_type }) => {
   const currSectionId = useSelector((state) => state.formObject.currSectionId);
@@ -37,8 +39,14 @@ export const FormComonentContainer = ({ component_id, component_type }) => {
             component_id={component_id}
             currSectionId={currSectionId}
           />
+        ) : component_type === "checkboxes" ? (
+          <CheckboxInput
+            key={component_id}
+            component_id={component_id}
+            currSectionId={currSectionId}
+          />
         ) : (
-          <>Some other component</>
+          <div>Component type not found</div>
         )
       }
       <InputOptions

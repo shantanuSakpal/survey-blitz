@@ -1,10 +1,9 @@
 .component-tree-item {
   display: flex;
-
   padding: 5px;
   justify-content: space-between;
-  scale: 0.9;
-  margin: 0 0 0 10px;
+
+  margin-left: 15px;
   border-radius: 10px;
   align-items: center;
   border: 2px solid $theme-color;
@@ -16,10 +15,19 @@
   }
 
   h4 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+
     display: inline;
     margin: auto;
     height: max-content;
     font-weight: lighter;
+  }
+
+  .delete-section-button {
+    scale: 0.8;
+  }
+  .component-tree-item-logo {
+    display: flex;
+    align-items: center;
   }
 }
