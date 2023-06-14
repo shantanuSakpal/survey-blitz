@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DeleteButton } from "../../buttons/DeleteButton";
 import { useDispatch } from "react-redux";
 import {
@@ -9,8 +9,14 @@ import {
 import { DuplicateComponent } from "../../buttons/DuplicateComponent";
 import IsRequiredToggle from "../../buttons/IsRequiredToggle";
 import { useSelector } from "react-redux";
+import { MoreOptionsButton } from "../../buttons/MoreOptionsButton";
+import { TextInputMoreOptions } from "./more_options/TextInputMoreOptions";
 
-export const InputOptions = ({ component_id, currSectionId }) => {
+export const InputOptions = ({
+  component_id,
+  currSectionId,
+  component_type,
+}) => {
   const formSectionsArray = useSelector(
     (state) => state.formObject.form_sections
   );
@@ -24,6 +30,8 @@ export const InputOptions = ({ component_id, currSectionId }) => {
 
   const dispatch = useDispatch();
   const [isToggleClicked, setIsToggleClicked] = useState(false);
+  const [isMoreOptionsOpen, setIsMoreOptionsOpen] = useState(false);
+  const moreOptionsRef = useRef(null);
 
   const handleIsRequiredToggleMouseDown = () => {
     setIsToggleClicked(true);
@@ -41,6 +49,23 @@ export const InputOptions = ({ component_id, currSectionId }) => {
       );
     }
   };
+
+  const handleOutsideClick = (event) => {
+    if (
+      moreOptionsRef.current &&
+      !moreOptionsRef.current.contains(event.target)
+    ) {
+      setIsMoreOptionsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   return (
     <div className="input-options-container">
@@ -80,7 +105,33 @@ export const InputOptions = ({ component_id, currSectionId }) => {
         onMouseDown={handleIsRequiredToggleMouseDown}
         onClick={handleIsRequiredToggleClick}
       >
-        <IsRequiredToggle />
+        <IsRequiredToggle
+          component_id={component_id}
+          currSectionId={currSectionId}
+        />
+      </div>
+
+      <div
+        className="more-options-button"
+        ref={moreOptionsRef}
+        onClick={() => {
+          setIsMoreOptionsOpen(!isMoreOptionsOpen);
+        }}
+      >
+        {isMoreOptionsOpen && (
+          <div className="more-options-content">
+            {component_type === "short_text" ||
+            component_type === "long_text" ? (
+              <TextInputMoreOptions
+                component_id={component_id}
+                currSectionId={currSectionId}
+              />
+            ) : (
+              <div>some other more options</div>
+            )}
+          </div>
+        )}
+        <MoreOptionsButton />
       </div>
     </div>
   );

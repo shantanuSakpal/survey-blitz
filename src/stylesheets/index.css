@@ -391,6 +391,26 @@ body {
   font-size: 0.7rem;
 }
 
+.more-options-container {
+  position: absolute;
+  right: 0;
+  bottom: 2rem;
+  background-color: white;
+  border: 1px solid rgb(192, 192, 192);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px gray;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 0.8rem;
+}
+.more-options-container .more-options-item {
+  padding: 0.5rem;
+}
+.more-options-container .more-options-item:hover {
+  color: black;
+  background-color: lightgray;
+}
+
 .input-options-container {
   padding: 5px;
   display: flex;
@@ -549,6 +569,19 @@ body {
 }
 .isrequired-toggle-button .toggle-switch input[type=checkbox]:checked + .toggle-switch-background .toggle-switch-handle {
   transform: translateX(40px);
+}
+
+.more-options-button {
+  display: inline;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.more-options-button:hover {
+  cursor: pointer;
+  color: black;
 }
 
 .header {

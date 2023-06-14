@@ -1,0 +1,13 @@
+.more-options-button {
+  display: inline;
+
+  color: $theme-color-2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+    color: black;
+  }
+}

@@ -94,6 +94,19 @@ export const formObjectSlice = createSlice({
         }
       });
     },
+
+    setComponentPropObject: (state, action) => {
+      state.form_sections.forEach((section) => {
+        if (section.section_id === action.payload.section_id) {
+          section.section_components.forEach((component) => {
+            if (component.component_id === action.payload.component_id) {
+              component.component_prop_object =
+                action.payload.component_prop_object;
+            }
+          });
+        }
+      });
+    },
   },
 });
 
@@ -109,6 +122,7 @@ export const {
   updateSectionName,
   duplicateSectionComponent,
   updateComponentIsRequired,
+  setComponentPropObject,
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;

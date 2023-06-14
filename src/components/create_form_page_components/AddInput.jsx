@@ -23,6 +23,7 @@ export default function AddInput() {
       component_id: Date.now(),
       component_type: inputType,
       is_required: false,
+      component_prop_object: {},
     };
     dispatch(
       addSectionComponent({
