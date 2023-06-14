@@ -15,7 +15,6 @@ export const SectionComponent = ({ section_id, index }) => {
   const currSectionId = useSelector((state) => state.formObject.currSectionId);
 
   const dispatch = useDispatch();
-  console.log(index);
 
   return (
     <div id={section_id} className="component-tree-section-style">

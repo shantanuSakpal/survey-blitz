@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { DeleteButton } from "../../buttons/DeleteButton";
 
-export const ShortTextInput = ({
-  formComponentsArray,
-  setFormComponentsArray,
-  input_id,
-  currSectionId,
-  required,
-}) => {
+export const ShortTextInput = ({ component_id, currSectionId }) => {
   const [text, setText] = useState("");
 
   const handleChange = (event) => {
@@ -21,7 +15,6 @@ export const ShortTextInput = ({
         <textarea
           className="input"
           placeholder="Question"
-          required={required}
           type="text"
           onChange={handleChange}
         />

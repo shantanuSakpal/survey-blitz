@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import CreateFormNavBar from "../components/Navbar";
 import EditInputFeatures from "../components/create_form_page_components/EditInputFeatures";
 import FormDisplay from "../components/create_form_page_components/FormDisplay";

@@ -27,11 +27,7 @@ export const FormInputContainer = ({ component_id, component_type }) => {
           <div>some other component</div>
         )
       }
-      <InputOptions
-        key={component_id}
-        component_id={component_id}
-        currSectionId={currSectionId}
-      />
+      <InputOptions component_id={component_id} currSectionId={currSectionId} />
     </div>
   );
 };

@@ -1,0 +1,12 @@
+.duplicate-component-button {
+  display: inline;
+  width: 2rem;
+  color: $theme-color-2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    color: $theme-color;
+  }
+}

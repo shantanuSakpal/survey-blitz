@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { CloseInputButton } from "../buttons/CloseInputButton";
 import { AddInputButton } from "../buttons/AddInputButton";
 import AddInput from "./AddInput";
@@ -21,9 +20,6 @@ function FormDisplay({}) {
   [{section_id: <datetime in milisec> , section_components: []},
   ... ] 
   */
-
-  console.log("formSectionsArray", formSectionsArray);
-  console.log("currSectionId", currSectionId);
 
   return (
     <div className=" middle-column-container">

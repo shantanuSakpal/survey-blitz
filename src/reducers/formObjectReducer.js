@@ -61,11 +61,26 @@ export const formObjectSlice = createSlice({
           );
         }
       });
+    },
 
-      // If the component being removed is the current component, set the current component to the first component
-      if (state.currSectionId === action.payload.section_id) {
-        state.currSectionId = state.form_sections[0].section_id;
-      }
+    duplicateSectionComponent: (state, action) => {
+      state.form_sections.forEach((section) => {
+        if (section.section_id === action.payload.section_id) {
+          section.section_components.push(action.payload.newComponent);
+        }
+      });
+    },
+
+    updateComponentIsRequired: (state, action) => {
+      state.form_sections.forEach((section) => {
+        if (section.section_id === action.payload.section_id) {
+          section.section_components.forEach((component) => {
+            if (component.component_id == action.payload.component_id) {
+              component.is_required = !component.is_required;
+            }
+          });
+        }
+      });
     },
 
     changeAddInputState: (state, action) => {
@@ -92,6 +107,8 @@ export const {
   setCurrSectionId,
   changeAddInputState,
   updateSectionName,
+  duplicateSectionComponent,
+  updateComponentIsRequired,
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;
