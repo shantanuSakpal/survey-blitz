@@ -366,7 +366,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.short-text-input-container .form, .short-text-input-container .options-container .option-label, .options-container .short-text-input-container .option-label, .short-text-input-container .checkboxes-container .checkbox-label, .checkboxes-container .short-text-input-container .checkbox-label {
+.short-text-input-container .form, .short-text-input-container .choices-container .choice-label, .choices-container .short-text-input-container .choice-label, .short-text-input-container .options-container .option-label, .options-container .short-text-input-container .option-label, .short-text-input-container .checkboxes-container .checkbox-label, .checkboxes-container .short-text-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -425,7 +425,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.long-text-input-container .form, .long-text-input-container .options-container .option-label, .options-container .long-text-input-container .option-label, .long-text-input-container .checkboxes-container .checkbox-label, .checkboxes-container .long-text-input-container .checkbox-label {
+.long-text-input-container .form, .long-text-input-container .choices-container .choice-label, .choices-container .long-text-input-container .choice-label, .long-text-input-container .options-container .option-label, .options-container .long-text-input-container .option-label, .long-text-input-container .checkboxes-container .checkbox-label, .checkboxes-container .long-text-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -484,7 +484,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.time-input-container .form, .time-input-container .options-container .option-label, .options-container .time-input-container .option-label, .time-input-container .checkboxes-container .checkbox-label, .checkboxes-container .time-input-container .checkbox-label {
+.time-input-container .form, .time-input-container .choices-container .choice-label, .choices-container .time-input-container .choice-label, .time-input-container .options-container .option-label, .options-container .time-input-container .option-label, .time-input-container .checkboxes-container .checkbox-label, .checkboxes-container .time-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -540,7 +540,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.date-input-container .form, .date-input-container .options-container .option-label, .options-container .date-input-container .option-label, .date-input-container .checkboxes-container .checkbox-label, .checkboxes-container .date-input-container .checkbox-label {
+.date-input-container .form, .date-input-container .choices-container .choice-label, .choices-container .date-input-container .choice-label, .date-input-container .options-container .option-label, .options-container .date-input-container .option-label, .date-input-container .checkboxes-container .checkbox-label, .checkboxes-container .date-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -593,7 +593,7 @@ body {
 .checkbox-input-container {
   /* styling of Input */
 }
-.checkbox-input-container .form, .checkbox-input-container .options-container .option-label, .options-container .checkbox-input-container .option-label, .checkbox-input-container .checkboxes-container .checkbox-label, .checkboxes-container .checkbox-input-container .checkbox-label {
+.checkbox-input-container .form, .checkbox-input-container .choices-container .choice-label, .choices-container .checkbox-input-container .choice-label, .checkbox-input-container .options-container .option-label, .options-container .checkbox-input-container .option-label, .checkbox-input-container .checkboxes-container .checkbox-label, .checkboxes-container .checkbox-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -606,7 +606,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.checkbox-input-container .form .input, .checkbox-input-container .options-container .option-label .input, .options-container .checkbox-input-container .option-label .input, .checkbox-input-container .checkboxes-container .checkbox-label .input, .checkboxes-container .checkbox-input-container .checkbox-label .input {
+.checkbox-input-container .form .input, .checkbox-input-container .choices-container .choice-label .input, .choices-container .checkbox-input-container .choice-label .input, .checkbox-input-container .options-container .option-label .input, .options-container .checkbox-input-container .option-label .input, .checkbox-input-container .checkboxes-container .checkbox-label .input, .checkboxes-container .checkbox-input-container .checkbox-label .input {
   color: #000000;
   font-size: 1rem;
   background-color: transparent;
@@ -620,7 +620,7 @@ body {
   overflow: hidden;
   resize: none;
 }
-.checkbox-input-container .form .input-border, .checkbox-input-container .options-container .option-label .input-border, .options-container .checkbox-input-container .option-label .input-border, .checkbox-input-container .checkboxes-container .checkbox-label .input-border, .checkboxes-container .checkbox-input-container .checkbox-label .input-border {
+.checkbox-input-container .form .input-border, .checkbox-input-container .choices-container .choice-label .input-border, .choices-container .checkbox-input-container .choice-label .input-border, .checkbox-input-container .options-container .option-label .input-border, .options-container .checkbox-input-container .option-label .input-border, .checkbox-input-container .checkboxes-container .checkbox-label .input-border, .checkboxes-container .checkbox-input-container .checkbox-label .input-border {
   position: absolute;
   background: var(--border-after-color);
   width: 0%;
@@ -629,13 +629,13 @@ body {
   left: 0;
   transition: 0.3s;
 }
-.checkbox-input-container .form .input:hover, .checkbox-input-container .options-container .option-label .input:hover, .options-container .checkbox-input-container .option-label .input:hover, .checkbox-input-container .checkboxes-container .checkbox-label .input:hover, .checkboxes-container .checkbox-input-container .checkbox-label .input:hover {
+.checkbox-input-container .form .input:hover, .checkbox-input-container .choices-container .choice-label .input:hover, .choices-container .checkbox-input-container .choice-label .input:hover, .checkbox-input-container .options-container .option-label .input:hover, .options-container .checkbox-input-container .option-label .input:hover, .checkbox-input-container .checkboxes-container .checkbox-label .input:hover, .checkboxes-container .checkbox-input-container .checkbox-label .input:hover {
   background: var(--input-hovered-color);
 }
-.checkbox-input-container .form .input:focus, .checkbox-input-container .options-container .option-label .input:focus, .options-container .checkbox-input-container .option-label .input:focus, .checkbox-input-container .checkboxes-container .checkbox-label .input:focus, .checkboxes-container .checkbox-input-container .checkbox-label .input:focus {
+.checkbox-input-container .form .input:focus, .checkbox-input-container .choices-container .choice-label .input:focus, .choices-container .checkbox-input-container .choice-label .input:focus, .checkbox-input-container .options-container .option-label .input:focus, .options-container .checkbox-input-container .option-label .input:focus, .checkbox-input-container .checkboxes-container .checkbox-label .input:focus, .checkboxes-container .checkbox-input-container .checkbox-label .input:focus {
   outline: none;
 }
-.checkbox-input-container .form .input:focus ~ .input-border, .checkbox-input-container .options-container .option-label .input:focus ~ .input-border, .options-container .checkbox-input-container .option-label .input:focus ~ .input-border, .checkbox-input-container .checkboxes-container .checkbox-label .input:focus ~ .input-border, .checkboxes-container .checkbox-input-container .checkbox-label .input:focus ~ .input-border {
+.checkbox-input-container .form .input:focus ~ .input-border, .checkbox-input-container .choices-container .choice-label .input:focus ~ .input-border, .choices-container .checkbox-input-container .choice-label .input:focus ~ .input-border, .checkbox-input-container .options-container .option-label .input:focus ~ .input-border, .options-container .checkbox-input-container .option-label .input:focus ~ .input-border, .checkbox-input-container .checkboxes-container .checkbox-label .input:focus ~ .input-border, .checkboxes-container .checkbox-input-container .checkbox-label .input:focus ~ .input-border {
   width: 100%;
 }
 .checkbox-input-container .question {
@@ -708,7 +708,7 @@ body {
 .dropdown-input-container {
   /* styling of Input */
 }
-.dropdown-input-container .form, .dropdown-input-container .options-container .option-label, .options-container .dropdown-input-container .option-label, .dropdown-input-container .checkboxes-container .checkbox-label, .checkboxes-container .dropdown-input-container .checkbox-label {
+.dropdown-input-container .form, .dropdown-input-container .choices-container .choice-label, .choices-container .dropdown-input-container .choice-label, .dropdown-input-container .options-container .option-label, .options-container .dropdown-input-container .option-label, .dropdown-input-container .checkboxes-container .checkbox-label, .checkboxes-container .dropdown-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -721,7 +721,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.dropdown-input-container .form .input, .dropdown-input-container .options-container .option-label .input, .options-container .dropdown-input-container .option-label .input, .dropdown-input-container .checkboxes-container .checkbox-label .input, .checkboxes-container .dropdown-input-container .checkbox-label .input {
+.dropdown-input-container .form .input, .dropdown-input-container .choices-container .choice-label .input, .choices-container .dropdown-input-container .choice-label .input, .dropdown-input-container .options-container .option-label .input, .options-container .dropdown-input-container .option-label .input, .dropdown-input-container .checkboxes-container .checkbox-label .input, .checkboxes-container .dropdown-input-container .checkbox-label .input {
   color: #000000;
   font-size: 1rem;
   background-color: transparent;
@@ -735,7 +735,7 @@ body {
   overflow: hidden;
   resize: none;
 }
-.dropdown-input-container .form .input-border, .dropdown-input-container .options-container .option-label .input-border, .options-container .dropdown-input-container .option-label .input-border, .dropdown-input-container .checkboxes-container .checkbox-label .input-border, .checkboxes-container .dropdown-input-container .checkbox-label .input-border {
+.dropdown-input-container .form .input-border, .dropdown-input-container .choices-container .choice-label .input-border, .choices-container .dropdown-input-container .choice-label .input-border, .dropdown-input-container .options-container .option-label .input-border, .options-container .dropdown-input-container .option-label .input-border, .dropdown-input-container .checkboxes-container .checkbox-label .input-border, .checkboxes-container .dropdown-input-container .checkbox-label .input-border {
   position: absolute;
   background: var(--border-after-color);
   width: 0%;
@@ -744,13 +744,13 @@ body {
   left: 0;
   transition: 0.3s;
 }
-.dropdown-input-container .form .input:hover, .dropdown-input-container .options-container .option-label .input:hover, .options-container .dropdown-input-container .option-label .input:hover, .dropdown-input-container .checkboxes-container .checkbox-label .input:hover, .checkboxes-container .dropdown-input-container .checkbox-label .input:hover {
+.dropdown-input-container .form .input:hover, .dropdown-input-container .choices-container .choice-label .input:hover, .choices-container .dropdown-input-container .choice-label .input:hover, .dropdown-input-container .options-container .option-label .input:hover, .options-container .dropdown-input-container .option-label .input:hover, .dropdown-input-container .checkboxes-container .checkbox-label .input:hover, .checkboxes-container .dropdown-input-container .checkbox-label .input:hover {
   background: var(--input-hovered-color);
 }
-.dropdown-input-container .form .input:focus, .dropdown-input-container .options-container .option-label .input:focus, .options-container .dropdown-input-container .option-label .input:focus, .dropdown-input-container .checkboxes-container .checkbox-label .input:focus, .checkboxes-container .dropdown-input-container .checkbox-label .input:focus {
+.dropdown-input-container .form .input:focus, .dropdown-input-container .choices-container .choice-label .input:focus, .choices-container .dropdown-input-container .choice-label .input:focus, .dropdown-input-container .options-container .option-label .input:focus, .options-container .dropdown-input-container .option-label .input:focus, .dropdown-input-container .checkboxes-container .checkbox-label .input:focus, .checkboxes-container .dropdown-input-container .checkbox-label .input:focus {
   outline: none;
 }
-.dropdown-input-container .form .input:focus ~ .input-border, .dropdown-input-container .options-container .option-label .input:focus ~ .input-border, .options-container .dropdown-input-container .option-label .input:focus ~ .input-border, .dropdown-input-container .checkboxes-container .checkbox-label .input:focus ~ .input-border, .checkboxes-container .dropdown-input-container .checkbox-label .input:focus ~ .input-border {
+.dropdown-input-container .form .input:focus ~ .input-border, .dropdown-input-container .choices-container .choice-label .input:focus ~ .input-border, .choices-container .dropdown-input-container .choice-label .input:focus ~ .input-border, .dropdown-input-container .options-container .option-label .input:focus ~ .input-border, .options-container .dropdown-input-container .option-label .input:focus ~ .input-border, .dropdown-input-container .checkboxes-container .checkbox-label .input:focus ~ .input-border, .checkboxes-container .dropdown-input-container .checkbox-label .input:focus ~ .input-border {
   width: 100%;
 }
 .dropdown-input-container .question {
@@ -821,6 +821,121 @@ body {
   margin-left: 5px;
 }
 
+.multiple-choice-input-container {
+  /* styling of Input */
+}
+.multiple-choice-input-container .form, .multiple-choice-input-container .choices-container .choice-label, .choices-container .multiple-choice-input-container .choice-label, .multiple-choice-input-container .checkboxes-container .checkbox-label, .checkboxes-container .multiple-choice-input-container .checkbox-label, .multiple-choice-input-container .options-container .option-label, .options-container .multiple-choice-input-container .option-label {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  margin: 0.5rem 0;
+  /* styling of animated border */
+  /* Hover on Input */
+  /* here is code of animated border */
+}
+.multiple-choice-input-container .form .input, .multiple-choice-input-container .choices-container .choice-label .input, .choices-container .multiple-choice-input-container .choice-label .input, .multiple-choice-input-container .checkboxes-container .checkbox-label .input, .checkboxes-container .multiple-choice-input-container .checkbox-label .input, .multiple-choice-input-container .options-container .option-label .input, .options-container .multiple-choice-input-container .option-label .input {
+  color: #000000;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  resize: none;
+}
+.multiple-choice-input-container .form .input-border, .multiple-choice-input-container .choices-container .choice-label .input-border, .choices-container .multiple-choice-input-container .choice-label .input-border, .multiple-choice-input-container .checkboxes-container .checkbox-label .input-border, .checkboxes-container .multiple-choice-input-container .checkbox-label .input-border, .multiple-choice-input-container .options-container .option-label .input-border, .options-container .multiple-choice-input-container .option-label .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+.multiple-choice-input-container .form .input:hover, .multiple-choice-input-container .choices-container .choice-label .input:hover, .choices-container .multiple-choice-input-container .choice-label .input:hover, .multiple-choice-input-container .checkboxes-container .checkbox-label .input:hover, .checkboxes-container .multiple-choice-input-container .checkbox-label .input:hover, .multiple-choice-input-container .options-container .option-label .input:hover, .options-container .multiple-choice-input-container .option-label .input:hover {
+  background: var(--input-hovered-color);
+}
+.multiple-choice-input-container .form .input:focus, .multiple-choice-input-container .choices-container .choice-label .input:focus, .choices-container .multiple-choice-input-container .choice-label .input:focus, .multiple-choice-input-container .checkboxes-container .checkbox-label .input:focus, .checkboxes-container .multiple-choice-input-container .checkbox-label .input:focus, .multiple-choice-input-container .options-container .option-label .input:focus, .options-container .multiple-choice-input-container .option-label .input:focus {
+  outline: none;
+}
+.multiple-choice-input-container .form .input:focus ~ .input-border, .multiple-choice-input-container .choices-container .choice-label .input:focus ~ .input-border, .choices-container .multiple-choice-input-container .choice-label .input:focus ~ .input-border, .multiple-choice-input-container .checkboxes-container .checkbox-label .input:focus ~ .input-border, .checkboxes-container .multiple-choice-input-container .checkbox-label .input:focus ~ .input-border, .multiple-choice-input-container .options-container .option-label .input:focus ~ .input-border, .options-container .multiple-choice-input-container .option-label .input:focus ~ .input-border {
+  width: 100%;
+}
+.multiple-choice-input-container .question {
+  font-size: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+.multiple-choice-input-container .answer {
+  border-bottom: 1px dotted lightgray;
+}
+.multiple-choice-input-container .answer .input {
+  font-size: 0.9rem;
+}
+
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.choices-container .choice-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  scale: 0.8;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+}
+.choices-container .choice-container .choice-icon {
+  color: gray;
+  font-size: smaller;
+}
+.choices-container .choice-remove-button {
+  color: gray;
+  font-size: smaller;
+  cursor: pointer;
+}
+.choices-container .choice-remove-button:hover {
+  color: black;
+}
+.choices-container .drag-choice {
+  cursor: grab;
+  color: gray;
+  font-size: smaller;
+  scale: 0.8;
+}
+.choices-container .drag-choice:hover {
+  color: black;
+}
+.choices-container .drag-choice:active {
+  cursor: grabbing;
+}
+.choices-container .add-choice-button {
+  color: gray;
+  font-size: smaller;
+  padding: 10px;
+  margin: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 0 0 5px lightgray;
+}
+.choices-container .add-choice-button:hover {
+  cursor: pointer;
+  color: black;
+  border-color: black;
+}
 .more-options-container {
   position: absolute;
   right: 0;

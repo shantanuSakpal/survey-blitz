@@ -10,6 +10,7 @@ import { CheckboxInput } from "./CheckboxInput";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { handleComponentReorder } from "../../../reducers/formObjectReducer";
 import { DropDown } from "./DropDown";
+import { MultipleChoice } from "./MultipleChoice";
 
 export const FormComponentContainer = ({ component_id, component_type }) => {
   const currSectionId = useSelector((state) => state.formObject.currSectionId);
@@ -83,6 +84,12 @@ export const FormComponentContainer = ({ component_id, component_type }) => {
               />
             ) : component_type === "dropdown" ? (
               <DropDown
+                key={component_id}
+                component_id={component_id}
+                currSectionId={currSectionId}
+              />
+            ) : component_type === "multiple_choice" ? (
+              <MultipleChoice
                 key={component_id}
                 component_id={component_id}
                 currSectionId={currSectionId}
