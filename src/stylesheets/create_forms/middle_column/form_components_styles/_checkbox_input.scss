@@ -50,12 +50,14 @@
 
   .question {
     font-size: 1rem;
+    border-bottom: 1px solid lightgray;
   }
 
   .answer {
     .input {
       font-size: 0.9rem;
     }
+    border-bottom: 1px dotted lightgray;
   }
 }
 
@@ -71,11 +73,60 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 5px;
+    scale: 0.8;
+    padding: 0 10px;
+    border-radius: 10px;
 
     .checkbox-icon {
       color: gray;
       font-size: smaller;
     }
+    border: 1px solid lightgray;
+  }
+
+  .checkbox-remove-button {
+    color: gray;
+    font-size: smaller;
+    cursor: pointer;
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  .drag-checkbox {
+    cursor: grab;
+    color: gray;
+    font-size: smaller;
+    scale: 0.8;
+
+    &:hover {
+      color: black;
+    }
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  .add-checkbox-button {
+    color: gray;
+    font-size: smaller;
+
+    padding: 10px;
+    margin: 1rem;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 0 5px lightgray;
+
+    &:hover {
+      cursor: pointer;
+      color: black;
+      border-color: black;
+    }
+  }
+
+  .checkbox-label {
+    @extend .form;
   }
 }

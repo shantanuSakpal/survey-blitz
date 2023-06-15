@@ -4,6 +4,8 @@ import { setComponentPropObject } from "../../../reducers/formObjectReducer";
 import { TextareaAutosize } from "@mui/base";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CloseIcon from "@mui/icons-material/Close";
+import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 export const CheckboxInput = ({ component_id, currSectionId }) => {
   const formSectionsArray = useSelector(
@@ -75,6 +77,29 @@ export const CheckboxInput = ({ component_id, currSectionId }) => {
     );
   };
 
+  const handleDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const updatedLabels = [...checkboxLabels];
+    const [removed] = updatedLabels.splice(result.source.index, 1);
+    updatedLabels.splice(result.destination.index, 0, removed);
+
+    setCheckboxLabels(updatedLabels);
+
+    dispatch(
+      setComponentPropObject({
+        component_id: component_id,
+        section_id: currSectionId,
+        component_prop_object: {
+          ...component_prop_object,
+          checkboxes: updatedLabels,
+        },
+      })
+    );
+  };
+
   useEffect(() => {
     const currSection = formSectionsArray.find(
       (section) => section.section_id === currSectionId
@@ -121,28 +146,64 @@ export const CheckboxInput = ({ component_id, currSectionId }) => {
           <span className="input-border"></span>
         </div>
         <div className="checkboxes-container">
-          {checkboxLabels.map((label, index) => (
-            <div className="checkbox-container">
-              <div className="checkbox-icon">
-                <CheckBoxOutlineBlankIcon />
-              </div>
-              <div className="checkbox-label" key={index}>
-                <input
-                  className="input"
-                  type="text"
-                  value={label}
-                  onChange={(event) => handleLabelChange(index, event)}
-                />
-              </div>
-              <div
-                className="checkbox-remove-button"
-                onClick={() => handleRemoveCheckbox(index)}
-              >
-                <CloseIcon />
-              </div>
-            </div>
-          ))}
-          <button onClick={handleAddCheckbox}>Add Checkbox</button>
+          <DragDropContext onDragEnd={handleDragEnd}>
+            <Droppable droppableId="checkboxes">
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  {checkboxLabels.map((label, index) => (
+                    <Draggable
+                      key={index}
+                      draggableId={`checkbox-${index}`}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          className="checkbox-container"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <div className="drag-checkbox">
+                            <DragIndicatorIcon />
+                          </div>
+                          <div className="checkbox-icon">
+                            <CheckBoxOutlineBlankIcon />
+                          </div>
+                          <div className="checkbox-label">
+                            <input
+                              className="input"
+                              type="text"
+                              value={label}
+                              placeholder="label"
+                              onChange={(event) =>
+                                handleLabelChange(index, event)
+                              }
+                            />
+                            <span className="input-border"></span>
+                          </div>
+                          <div
+                            className="checkbox-remove-button"
+                            onClick={() => handleRemoveCheckbox(index)}
+                          >
+                            <CloseIcon />
+                          </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+          <div
+            className="add-checkbox-button"
+            onClick={() => {
+              handleAddCheckbox();
+            }}
+          >
+            Add Checkbox
+          </div>
         </div>
       </div>
     </>

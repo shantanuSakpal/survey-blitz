@@ -3,7 +3,7 @@ import { CloseInputButton } from "../buttons/CloseInputButton";
 import { AddInputButton } from "../buttons/AddInputButton";
 import AddInput from "./AddInput";
 import { SectionHeader } from "./inputComponents/SectionHeader";
-import { FormComonentContainer } from "./inputComponents/FormComonentContainer";
+import { FormComponentContainer } from "./inputComponents/FormComponentContainer";
 import { useSelector } from "react-redux";
 
 function FormDisplay({}) {
@@ -34,7 +34,7 @@ function FormDisplay({}) {
                     <SectionHeader />
                   </div>
                   {section.section_components.map((component) => (
-                    <FormComonentContainer
+                    <FormComponentContainer
                       key={component.component_id}
                       component_id={component.component_id}
                       component_type={component.component_type}

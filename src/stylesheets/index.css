@@ -249,12 +249,26 @@ body {
   transition: all 0.2s ease-out;
 }
 
-.form-input-container {
+.form-component-container {
   background-color: white;
   padding: 0.5rem;
   border-radius: 10px;
   border: 1px solid lightgray;
   margin: 10px 0;
+}
+.form-component-container .drag-component {
+  transform: rotate(90deg);
+  cursor: move;
+  color: rgb(156, 156, 156);
+  font-size: smaller;
+  scale: 0.8;
+  margin: -10px auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 10px;
+}
+.form-component-container .drag-component:hover {
+  color: black;
 }
 
 .section-header {
@@ -352,7 +366,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.short-text-input-container .form {
+.short-text-input-container .form, .short-text-input-container .checkboxes-container .checkbox-label, .checkboxes-container .short-text-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -396,6 +410,10 @@ body {
 }
 .short-text-input-container .question {
   font-size: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+.short-text-input-container .answer {
+  border-bottom: 1px dotted lightgray;
 }
 .short-text-input-container .answer .input {
   font-size: 0.9rem;
@@ -407,7 +425,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.long-text-input-container .form {
+.long-text-input-container .form, .long-text-input-container .checkboxes-container .checkbox-label, .checkboxes-container .long-text-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -451,6 +469,10 @@ body {
 }
 .long-text-input-container .question {
   font-size: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+.long-text-input-container .answer {
+  border-bottom: 1px dotted lightgray;
 }
 .long-text-input-container .answer .input {
   font-size: 0.9rem;
@@ -462,7 +484,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.time-input-container .form {
+.time-input-container .form, .time-input-container .checkboxes-container .checkbox-label, .checkboxes-container .time-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -506,6 +528,7 @@ body {
 }
 .time-input-container .question {
   font-size: 1rem;
+  border-bottom: 1px solid lightgray;
 }
 .time-input-container .answer .input {
   font-size: 0.9rem;
@@ -517,7 +540,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.date-input-container .form {
+.date-input-container .form, .date-input-container .checkboxes-container .checkbox-label, .checkboxes-container .date-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -561,6 +584,7 @@ body {
 }
 .date-input-container .question {
   font-size: 1rem;
+  border-bottom: 1px solid lightgray;
 }
 .date-input-container .answer .input {
   font-size: 0.9rem;
@@ -569,7 +593,7 @@ body {
 .checkbox-input-container {
   /* styling of Input */
 }
-.checkbox-input-container .form {
+.checkbox-input-container .form, .checkbox-input-container .checkboxes-container .checkbox-label, .checkboxes-container .checkbox-input-container .checkbox-label {
   --width-of-input: 100%;
   --border-height: 1px;
   --border-before-color: rgba(221, 221, 221, 0.39);
@@ -582,7 +606,7 @@ body {
   /* Hover on Input */
   /* here is code of animated border */
 }
-.checkbox-input-container .form .input {
+.checkbox-input-container .form .input, .checkbox-input-container .checkboxes-container .checkbox-label .input, .checkboxes-container .checkbox-input-container .checkbox-label .input {
   color: #000000;
   font-size: 1rem;
   background-color: transparent;
@@ -596,7 +620,7 @@ body {
   overflow: hidden;
   resize: none;
 }
-.checkbox-input-container .form .input-border {
+.checkbox-input-container .form .input-border, .checkbox-input-container .checkboxes-container .checkbox-label .input-border, .checkboxes-container .checkbox-input-container .checkbox-label .input-border {
   position: absolute;
   background: var(--border-after-color);
   width: 0%;
@@ -605,17 +629,21 @@ body {
   left: 0;
   transition: 0.3s;
 }
-.checkbox-input-container .form .input:hover {
+.checkbox-input-container .form .input:hover, .checkbox-input-container .checkboxes-container .checkbox-label .input:hover, .checkboxes-container .checkbox-input-container .checkbox-label .input:hover {
   background: var(--input-hovered-color);
 }
-.checkbox-input-container .form .input:focus {
+.checkbox-input-container .form .input:focus, .checkbox-input-container .checkboxes-container .checkbox-label .input:focus, .checkboxes-container .checkbox-input-container .checkbox-label .input:focus {
   outline: none;
 }
-.checkbox-input-container .form .input:focus ~ .input-border {
+.checkbox-input-container .form .input:focus ~ .input-border, .checkbox-input-container .checkboxes-container .checkbox-label .input:focus ~ .input-border, .checkboxes-container .checkbox-input-container .checkbox-label .input:focus ~ .input-border {
   width: 100%;
 }
 .checkbox-input-container .question {
   font-size: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+.checkbox-input-container .answer {
+  border-bottom: 1px dotted lightgray;
 }
 .checkbox-input-container .answer .input {
   font-size: 0.9rem;
@@ -633,13 +661,50 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 5px;
+  scale: 0.8;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray;
 }
 .checkboxes-container .checkbox-container .checkbox-icon {
   color: gray;
   font-size: smaller;
 }
-
+.checkboxes-container .checkbox-remove-button {
+  color: gray;
+  font-size: smaller;
+  cursor: pointer;
+}
+.checkboxes-container .checkbox-remove-button:hover {
+  color: black;
+}
+.checkboxes-container .drag-checkbox {
+  cursor: grab;
+  color: gray;
+  font-size: smaller;
+  scale: 0.8;
+}
+.checkboxes-container .drag-checkbox:hover {
+  color: black;
+}
+.checkboxes-container .drag-checkbox:active {
+  cursor: grabbing;
+}
+.checkboxes-container .add-checkbox-button {
+  color: gray;
+  font-size: smaller;
+  padding: 10px;
+  margin: 1rem;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 0 0 5px lightgray;
+}
+.checkboxes-container .add-checkbox-button:hover {
+  cursor: pointer;
+  color: black;
+  border-color: black;
+}
 .more-options-container {
   position: absolute;
   right: 0;

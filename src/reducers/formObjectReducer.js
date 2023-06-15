@@ -117,6 +117,28 @@ export const formObjectSlice = createSlice({
         }
       });
     },
+
+    // New action to handle component reorder
+    handleComponentReorder: (state, action) => {
+      const { sourceIndex, destinationIndex } = action.payload;
+      const { currSectionId } = state;
+
+      // Find the current section
+      const currentSection = state.form_sections.find(
+        (section) => section.section_id === currSectionId
+      );
+
+      // Reorder the components in the current section
+      const [reorderedComponent] = currentSection.section_components.splice(
+        sourceIndex,
+        1
+      );
+      currentSection.section_components.splice(
+        destinationIndex,
+        0,
+        reorderedComponent
+      );
+    },
   },
 });
 
@@ -133,6 +155,7 @@ export const {
   duplicateSectionComponent,
   updateComponentIsRequired,
   setComponentPropObject,
+  handleComponentReorder,
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;

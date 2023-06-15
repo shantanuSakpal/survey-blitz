@@ -1,0 +1,31 @@
+.form-component-container {
+  background-color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  margin: 10px 0;
+
+  .drag-component {
+    //rotate 90 degrees
+    transform: rotate(90deg);
+    cursor: move;
+    color: rgb(156, 156, 156);
+    font-size: smaller;
+    scale: 0.8;
+    margin: -10px auto;
+    width: fit-content;
+    border-radius: 10px;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+@import "./section_header";
+@import "./short_text";
+@import "./long_text";
+@import "./time_input";
+@import "./date_input";
+@import "./checkbox_input";
+@import "./more_options_container";
