@@ -23,15 +23,15 @@ function App() {
             <Route
                 path="/create-form"
                 element={
-                    <div className="page-container" id="page">
-                        <CreateForms/>
-                    </div>
+
+                    <CreateForms/>
+
                 }
             />
             <Route
                 path="/view-form"
                 element={
-                    <div className="page-container" id="page">
+                    <div className="form-page-container" id="page">
                         <FormPage/>
                     </div>
                 }

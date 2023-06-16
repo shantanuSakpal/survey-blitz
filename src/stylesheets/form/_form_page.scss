@@ -1,0 +1,45 @@
+$form-page-background-color: lightgray;
+$form-container-color: white;
+
+.form-page-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $form-page-background-color;
+
+  .form-container {
+    border-radius: 10px;
+    padding: 1rem;
+    max-width: 600px;
+    width: 100%;
+    background-color: $form-page-background-color;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+
+    .form-header {
+
+      padding: 10px 20px;
+      border-radius: 10px;
+      background-color: $form-container-color;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .form-name {
+        font-size: 2rem;
+      }
+
+      .form-description {
+        font-size: 0.8rem;
+      }
+    }
+
+    @import "./form_page_components/section_styles";
+  }
+
+}
+

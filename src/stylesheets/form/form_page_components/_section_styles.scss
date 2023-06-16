@@ -1,0 +1,21 @@
+.form-section-header {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: $form-container-color;
+  font-weight: bold;
+}
+
+.form-section-container {
+  padding: 0;
+}
+
+.form-section-footer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+

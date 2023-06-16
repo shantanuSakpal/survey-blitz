@@ -129,7 +129,7 @@ export const formObjectSlice = createSlice({
                 (section) => section.section_id === currSectionId
             );
 
-            // Reorder the components in the current section
+            // Reorder the form_components in the current section
             const [reorderedComponent] = currentSection.section_components.splice(
                 sourceIndex,
                 1

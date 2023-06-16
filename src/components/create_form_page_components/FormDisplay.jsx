@@ -24,7 +24,7 @@ function FormDisplay() {
     return (
         <div id="middle_column" className=" middle-column-container">
             {
-                //find the section with the currentSectionId from the formSectionsArray and render its name and components
+                //find the section with the currentSectionId from the formSectionsArray and render its name and form_components
                 formSectionsArray &&
                 formSectionsArray.map((section) => {
                     if (section.section_id === currSectionId) {
