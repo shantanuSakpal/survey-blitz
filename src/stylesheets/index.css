@@ -20,7 +20,6 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: -moz-max-content;
   height: max-content;
   align-content: center;
 }
@@ -50,6 +49,7 @@ body {
   margin: "0.5rem 0";
   padding: 10px;
   box-sizing: border-box;
+  position: relative;
 }
 .left-column-container h3 {
   font-size: 1rem;
@@ -61,7 +61,7 @@ body {
   padding: 10px;
   overflow-x: auto;
   overflow-y: auto;
-  height: 85%;
+  height: 70%;
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -72,17 +72,21 @@ body {
   padding: 2px;
 }
 .form-components-container::-webkit-scrollbar-track {
-  background: #2C2D32;
+  background: white;
   border-radius: 0 10px 10px 0;
 }
 .form-components-container::-webkit-scrollbar-thumb {
-  background: #2C2D32;
+  background: white;
   border-radius: 10px;
   box-shadow: inset 0 0 10px 10px gray;
-  border: solid 3px #2C2D32;
+  border: solid 3px white;
 }
 .form-components-container::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
+}
+.form-components-container .selected {
+  box-shadow: 0 0 5px white;
+  border-radius: 10px;
 }
 
 .component-tree-item {
@@ -103,7 +107,6 @@ body {
   font-size: 0.7rem;
   display: inline;
   margin: auto;
-  height: -moz-max-content;
   height: max-content;
   font-weight: lighter;
 }
@@ -118,9 +121,7 @@ body {
 .add-section-button {
   display: flex;
   flex-wrap: wrap;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   justify-content: center;
   align-items: center;
@@ -169,13 +170,34 @@ body {
   padding: 1rem 1rem 3rem 1rem;
   position: relative;
   overflow-y: auto;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.middle-column-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  padding: 2px;
+}
+.middle-column-container::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 0 10px 10px 0;
+}
+.middle-column-container::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px 10px gray;
+  border: solid 3px white;
+}
+.middle-column-container::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
 }
 
 .inputs-container {
-  position: fixed;
+  position: absolute;
   z-index: 5;
-  color: white;
-  background-color: #2C2D32;
+  color: black;
+  background-color: white;
   height: 50vh;
   overflow-y: scroll;
   display: flex;
@@ -184,8 +206,9 @@ body {
   padding: 10px;
   border-radius: 10px;
   margin-top: 1rem;
-  right: 30vw;
+  right: 3rem;
   bottom: 5rem;
+  box-shadow: 0 0 10px gray;
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -196,14 +219,14 @@ body {
   padding: 2px;
 }
 .inputs-container::-webkit-scrollbar-track {
-  background: #2C2D32;
+  background: white;
   border-radius: 0 10px 10px 0;
 }
 .inputs-container::-webkit-scrollbar-thumb {
-  background: #2C2D32;
+  background: white;
   border-radius: 10px;
   box-shadow: inset 0 0 10px 10px gray;
-  border: solid 3px #2C2D32;
+  border: solid 3px white;
 }
 .inputs-container::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
@@ -212,11 +235,9 @@ body {
   display: flex;
   gap: 5px;
   text-align: center;
-  width: 90%;
   padding: 5px;
-  height: -moz-max-content;
   height: max-content;
-  border: 1px solid #2C2D32;
+  border: 1px solid white;
   align-content: center;
   margin: 5px 0;
   border-radius: 10px;
@@ -224,13 +245,12 @@ body {
 }
 .inputs-container .input-name-and-logo-container:hover {
   cursor: pointer;
-  border: 1px solid gray;
+  border-color: gray;
 }
 .inputs-container .input-name-and-logo-container h4 {
   font-size: 0.7rem;
   display: inline;
   margin: auto;
-  height: -moz-max-content;
   height: max-content;
 }
 .inputs-container h3 {
@@ -263,7 +283,6 @@ body {
   font-size: smaller;
   scale: 0.8;
   margin: -10px auto;
-  width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
 }
@@ -349,7 +368,18 @@ body {
   opacity: 0.5;
 }
 .section-name .section-name-input:focus ~ .section-name-highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
+}
+
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
 @keyframes inputHighlighter {
   from {
@@ -944,9 +974,9 @@ body {
   border: 1px solid rgb(192, 192, 192);
   border-radius: 10px;
   box-shadow: 5px 5px 10px gray;
-  width: -moz-max-content;
   width: max-content;
   font-size: 0.8rem;
+  color: black;
 }
 .more-options-container .more-options-item {
   padding: 0.5rem;
@@ -1016,10 +1046,12 @@ body {
   transition: all 0.2s ease-out;
   border-radius: 5px;
   padding: 0.5rem;
-  position: fixed;
-  right: 30vw;
+  position: absolute;
+  color: black;
   bottom: 3rem;
-  background-color: gray;
+  right: 2rem;
+  background-color: white;
+  box-shadow: 0 0 10px gray;
 }
 .add-input-button p {
   font-size: 0.6rem;
@@ -1152,4 +1184,6 @@ body {
 
 .page-container {
   min-height: 100vh;
-}/*# sourceMappingURL=index.css.map */
+}
+
+/*# sourceMappingURL=index.css.map */

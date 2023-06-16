@@ -6,7 +6,7 @@ import { SectionHeader } from "./inputComponents/SectionHeader";
 import { FormComponentContainer } from "./inputComponents/FormComponentContainer";
 import { useSelector } from "react-redux";
 
-function FormDisplay({}) {
+function FormDisplay() {
   const formSectionsArray = useSelector(
     (state) => state.formObject.form_sections
   );
@@ -52,6 +52,7 @@ function FormDisplay({}) {
                 </div>
               );
             }
+            return null;
           })
       }
     </div>

@@ -7,10 +7,12 @@
   transition: all 0.2s ease-out;
   border-radius: 5px;
   padding: 0.5rem;
-  position: fixed;
-  right: 30vw;
+  position: absolute;
+  color: black;
   bottom: 3rem;
-  background-color: $theme-color-2;
+  right: 2rem;
+  background-color: white;
+  box-shadow: 0 0 10px $theme-color-2;
 
   p {
     font-size: 0.6rem;

@@ -11,6 +11,7 @@
   margin: "0.5rem 0";
   padding: 10px;
   box-sizing: border-box;
+  position: relative;
 
   h3 {
     font-size: 1rem;
@@ -23,8 +24,15 @@
   padding: 10px;
   overflow-x: auto;
   overflow-y: auto;
-  height: 85%;
+  height: 70%;
   @import "../../scrollbars/scrollbar_style.scss";
+
+  .selected {
+    box-shadow: 0 0 5px white;
+    border-radius: 10px;
+    
+  }
+
 }
 
 @import "component_tree_item";

@@ -1,8 +1,8 @@
 .inputs-container {
-  position: fixed;
+  position: absolute;
   z-index: 5;
-  color: white;
-  background-color: $theme-color;
+  color: black;
+  background-color: white;
   height: 50vh;
   overflow-y: scroll;
   display: flex;
@@ -11,18 +11,19 @@
   padding: 10px;
   border-radius: 10px;
   margin-top: 1rem;
-  right: 30vw;
+  right: 3rem;
   bottom: 5rem;
+  box-shadow: 0 0 10px $theme-color-2;
   @import "../../scrollbars/scrollbar_style.scss";
 
   .input-name-and-logo-container {
     display: flex;
     gap: 5px;
     text-align: center;
-    width: 90%;
     padding: 5px;
     height: max-content;
-    border: 1px solid $theme-color;
+    border: 1px solid white;
+
     align-content: center;
     margin: 5px 0;
     border-radius: 10px;
@@ -30,7 +31,7 @@
 
     &:hover {
       cursor: pointer;
-      border: 1px solid $theme-color-2;
+      border-color: $theme-color-2;
     }
 
     h4 {
