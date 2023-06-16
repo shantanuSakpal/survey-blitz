@@ -1,60 +1,77 @@
-.inputs-container {
-  position: absolute;
-  z-index: 5;
-  color: black;
-  background-color: white;
-  height: 50vh;
-  overflow-y: scroll;
+.add-input-container {
+  position: fixed;
+  bottom: 3vw;
+  left: 15vw;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 1rem;
-  right: 3rem;
-  bottom: 5rem;
-  box-shadow: 0 0 10px $theme-color-2;
-  @import "../../scrollbars/scrollbar_style.scss";
+  align-content: center;
+  justify-content: center;
+  text-align: center;
 
-  .input-name-and-logo-container {
+
+  .inputs-container {
+    position: absolute;
+    z-index: 5;
+    color: black;
+    background-color: white;
+    height: 50vh;
+    overflow-y: scroll;
     display: flex;
-    gap: 5px;
-    text-align: center;
-    padding: 5px;
-    height: max-content;
-    border: 1px solid white;
-
-    align-content: center;
-    margin: 5px 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 10px;
     border-radius: 10px;
-    transition: all 0.2s ease-out;
+    bottom: 0;
+    left: 2rem;
 
-    &:hover {
-      cursor: pointer;
-      border-color: $theme-color-2;
-    }
+    box-shadow: 0 0 10px $theme-color-2;
+    @import "../../scrollbars/scrollbar_style.scss";
 
-    h4 {
-      font-size: 0.7rem;
-      display: inline;
-      margin: auto;
+    .input-name-and-logo-container {
+      display: flex;
+      gap: 5px;
+      text-align: center;
+      padding: 5px;
       height: max-content;
+      border: 1px solid white;
+
+      align-content: center;
+      margin: 5px 0;
+      border-radius: 10px;
+      transition: all 0.2s ease-out;
+
+      &:hover {
+        cursor: pointer;
+        border-color: $theme-color-2;
+      }
+
+      h4 {
+        font-size: 0.7rem;
+        display: inline;
+        margin: auto;
+        height: max-content;
+      }
+    }
+
+    h3 {
+      font-size: 0.6rem;
+      margin: 5px;
+      display: inline;
+    }
+
+    .header-and-close-input-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
-  h3 {
-    font-size: 0.6rem;
-    margin: 5px;
-    display: inline;
+
+  .hide {
+    display: none;
+
   }
 
-  .header-and-close-input-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
 
-.hide {
-  display: none;
-  transition: all 0.2s ease-out;
-}
+

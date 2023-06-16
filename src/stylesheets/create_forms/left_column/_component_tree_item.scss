@@ -2,16 +2,16 @@
   display: flex;
   padding: 5px;
   justify-content: space-between;
-
   margin-left: 15px;
   border-radius: 10px;
   align-items: center;
-  border: 2px solid $theme-color;
+  border: 1px solid $theme-color;
   transition: all 0.2s ease-out;
+
 
   &:hover {
     cursor: pointer;
-    border: 2px solid $theme-color-2;
+    border: 1px solid $theme-color-2;
   }
 
   h4 {
@@ -26,6 +26,7 @@
   .delete-section-button {
     scale: 0.8;
   }
+
   .component-tree-item-logo {
     display: flex;
     align-items: center;

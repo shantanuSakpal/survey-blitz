@@ -4,8 +4,26 @@
   padding: 0.5rem;
   background-color: $theme-color;
   position: relative;
-  border: 1px solid $theme-color;
+  border: 1px solid #474747;
   transition: all 0.2s ease-out;
+  cursor: pointer;
+
+  .drag-component {
+    transform: rotate(90deg);
+    cursor: move;
+    color: rgb(156, 156, 156);
+    font-size: smaller;
+    scale: 0.6;
+    margin: -10px auto;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+  }
+
+  .drag-component:hover {
+    color: white;
+  }
+
 
   .component-tree-section-header {
     display: flex;

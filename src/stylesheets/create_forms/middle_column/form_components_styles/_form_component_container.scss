@@ -5,20 +5,22 @@
   border: 1px solid lightgray;
   margin: 10px 0;
 
-  .drag-component {
-    //rotate 90 degrees
-    transform: rotate(90deg);
-    cursor: move;
-    color: rgb(156, 156, 156);
-    font-size: smaller;
-    scale: 0.8;
-    margin: -10px auto;
-    width: fit-content;
-    border-radius: 10px;
 
-    &:hover {
-      color: black;
-    }
+}
+.drag-component {
+  //rotate 90 degrees
+  transform: rotate(90deg);
+  cursor: move;
+  color: rgb(156, 156, 156);
+  font-size: smaller;
+  scale: 0.8;
+  margin: -10px auto;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+
+  &:hover {
+    color: black;
   }
 }
 

@@ -66,27 +66,27 @@ body {
   /* Handle */
   /* Handle on hover */
 }
+.form-components-container .selected {
+  box-shadow: 0 0 5px white;
+  border-radius: 10px;
+}
 .form-components-container::-webkit-scrollbar {
   width: 10px;
   height: 10px;
   padding: 2px;
 }
 .form-components-container::-webkit-scrollbar-track {
-  background: white;
+  background: #2C2D32;
   border-radius: 0 10px 10px 0;
 }
 .form-components-container::-webkit-scrollbar-thumb {
-  background: white;
+  background: #2C2D32;
   border-radius: 10px;
   box-shadow: inset 0 0 10px 10px gray;
-  border: solid 3px white;
+  border: solid 3px #2C2D32;
 }
 .form-components-container::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
-}
-.form-components-container .selected {
-  box-shadow: 0 0 5px white;
-  border-radius: 10px;
 }
 
 .component-tree-item {
@@ -96,12 +96,12 @@ body {
   margin-left: 15px;
   border-radius: 10px;
   align-items: center;
-  border: 2px solid #2C2D32;
+  border: 1px solid #2C2D32;
   transition: all 0.2s ease-out;
 }
 .component-tree-item:hover {
   cursor: pointer;
-  border: 2px solid gray;
+  border: 1px solid gray;
 }
 .component-tree-item h4 {
   font-size: 0.7rem;
@@ -146,8 +146,23 @@ body {
   padding: 0.5rem;
   background-color: #2C2D32;
   position: relative;
-  border: 1px solid #2C2D32;
+  border: 1px solid #474747;
   transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+.component-tree-section-style .drag-component {
+  transform: rotate(90deg);
+  cursor: move;
+  color: rgb(156, 156, 156);
+  font-size: smaller;
+  scale: 0.6;
+  margin: -10px auto;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+}
+.component-tree-section-style .drag-component:hover {
+  color: white;
 }
 .component-tree-section-style .component-tree-section-header {
   display: flex;
@@ -168,7 +183,6 @@ body {
   height: 90%;
   border-top: 1px solid gray;
   padding: 1rem 1rem 3rem 1rem;
-  position: relative;
   overflow-y: auto;
   /* Track */
   /* Handle */
@@ -193,7 +207,18 @@ body {
   box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
 }
 
-.inputs-container {
+.add-input-container {
+  position: fixed;
+  bottom: 3vw;
+  left: 15vw;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+.add-input-container .inputs-container {
   position: absolute;
   z-index: 5;
   color: black;
@@ -205,33 +230,32 @@ body {
   box-sizing: border-box;
   padding: 10px;
   border-radius: 10px;
-  margin-top: 1rem;
-  right: 3rem;
-  bottom: 5rem;
+  bottom: 0;
+  left: 2rem;
   box-shadow: 0 0 10px gray;
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
-.inputs-container::-webkit-scrollbar {
+.add-input-container .inputs-container::-webkit-scrollbar {
   width: 10px;
   height: 10px;
   padding: 2px;
 }
-.inputs-container::-webkit-scrollbar-track {
+.add-input-container .inputs-container::-webkit-scrollbar-track {
   background: white;
   border-radius: 0 10px 10px 0;
 }
-.inputs-container::-webkit-scrollbar-thumb {
+.add-input-container .inputs-container::-webkit-scrollbar-thumb {
   background: white;
   border-radius: 10px;
   box-shadow: inset 0 0 10px 10px gray;
   border: solid 3px white;
 }
-.inputs-container::-webkit-scrollbar-thumb:hover {
+.add-input-container .inputs-container::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
 }
-.inputs-container .input-name-and-logo-container {
+.add-input-container .inputs-container .input-name-and-logo-container {
   display: flex;
   gap: 5px;
   text-align: center;
@@ -243,30 +267,28 @@ body {
   border-radius: 10px;
   transition: all 0.2s ease-out;
 }
-.inputs-container .input-name-and-logo-container:hover {
+.add-input-container .inputs-container .input-name-and-logo-container:hover {
   cursor: pointer;
   border-color: gray;
 }
-.inputs-container .input-name-and-logo-container h4 {
+.add-input-container .inputs-container .input-name-and-logo-container h4 {
   font-size: 0.7rem;
   display: inline;
   margin: auto;
   height: max-content;
 }
-.inputs-container h3 {
+.add-input-container .inputs-container h3 {
   font-size: 0.6rem;
   margin: 5px;
   display: inline;
 }
-.inputs-container .header-and-close-input-container {
+.add-input-container .inputs-container .header-and-close-input-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.hide {
+.add-input-container .hide {
   display: none;
-  transition: all 0.2s ease-out;
 }
 
 .form-component-container {
@@ -276,7 +298,8 @@ body {
   border: 1px solid lightgray;
   margin: 10px 0;
 }
-.form-component-container .drag-component {
+
+.drag-component {
   transform: rotate(90deg);
   cursor: move;
   color: rgb(156, 156, 156);
@@ -284,9 +307,10 @@ body {
   scale: 0.8;
   margin: -10px auto;
   width: fit-content;
+  height: fit-content;
   border-radius: 10px;
 }
-.form-component-container .drag-component:hover {
+.drag-component:hover {
   color: black;
 }
 
@@ -1046,10 +1070,7 @@ body {
   transition: all 0.2s ease-out;
   border-radius: 5px;
   padding: 0.5rem;
-  position: absolute;
   color: black;
-  bottom: 3rem;
-  right: 2rem;
   background-color: white;
   box-shadow: 0 0 10px gray;
 }
