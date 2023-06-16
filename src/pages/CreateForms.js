@@ -5,18 +5,19 @@ import FormComponents from "../components/create_form_page_components/FormCompon
 import CreateFormNavBar from "../components/create_form_page_components/CreateFormNavBar";
 
 function CreateForms(props) {
-  let formName = "Contact Info Form";
+    let formName = "Contact Info Form";
 
-  return (
-    <>
-      <CreateFormNavBar formName={formName} />
-      <div className="columns-container">
-        <FormComponents />
-        <FormDisplay />
-        <EditInputFeatures />
-      </div>
-    </>
-  );
+
+    return (
+        <>
+            <CreateFormNavBar formName={formName}/>
+            <div className="columns-container">
+                <FormComponents/>
+                <FormDisplay/>
+                <EditInputFeatures/>
+            </div>
+        </>
+    );
 }
 
 export default CreateForms;

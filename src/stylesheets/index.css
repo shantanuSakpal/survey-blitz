@@ -20,6 +20,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
+  height: -moz-max-content;
   height: max-content;
   align-content: center;
 }
@@ -107,6 +108,7 @@ body {
   font-size: 0.7rem;
   display: inline;
   margin: auto;
+  height: -moz-max-content;
   height: max-content;
   font-weight: lighter;
 }
@@ -121,7 +123,9 @@ body {
 .add-section-button {
   display: flex;
   flex-wrap: wrap;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   justify-content: center;
   align-items: center;
@@ -157,7 +161,9 @@ body {
   font-size: smaller;
   scale: 0.6;
   margin: -10px auto;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 10px;
 }
@@ -260,6 +266,7 @@ body {
   gap: 5px;
   text-align: center;
   padding: 5px;
+  height: -moz-max-content;
   height: max-content;
   border: 1px solid white;
   align-content: center;
@@ -275,6 +282,7 @@ body {
   font-size: 0.7rem;
   display: inline;
   margin: auto;
+  height: -moz-max-content;
   height: max-content;
 }
 .add-input-container .inputs-container h3 {
@@ -306,7 +314,9 @@ body {
   font-size: smaller;
   scale: 0.8;
   margin: -10px auto;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 10px;
 }
@@ -392,18 +402,7 @@ body {
   opacity: 0.5;
 }
 .section-name .section-name-input:focus ~ .section-name-highlight {
-  -webkit-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
-}
-
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
 }
 @keyframes inputHighlighter {
   from {
@@ -998,6 +997,7 @@ body {
   border: 1px solid rgb(192, 192, 192);
   border-radius: 10px;
   box-shadow: 5px 5px 10px gray;
+  width: -moz-max-content;
   width: max-content;
   font-size: 0.8rem;
   color: black;
@@ -1205,6 +1205,4 @@ body {
 
 .page-container {
   min-height: 100vh;
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
