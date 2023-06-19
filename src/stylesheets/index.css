@@ -22,9 +22,246 @@ body {
   right: 0;
   height: max-content;
   align-content: center;
+  z-index: 100;
+}
+.navbar-container .form-name-input {
+  background-color: #2C2D32;
+  color: white;
+  padding: 5px;
+  font-size: 1.3rem;
+  text-align: center;
+  border-radius: 10px;
+  min-width: 20rem;
+  border: none;
 }
 .navbar-container h2 {
   font-weight: bold;
+}
+.navbar-container .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark, transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-container .modal-overlay .modal-content {
+  background-color: white;
+  padding: 30px 20px 5px 20px;
+  border-radius: 8px;
+  color: black;
+  position: relative;
+  width: 50vw;
+  /* styling of Input */
+  /* styling of animated border */
+  /* Hover on Input */
+  /* here is code of animated border */
+}
+.navbar-container .modal-overlay .modal-content .close-modal-button {
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: small;
+  margin: 5px;
+  color: gray;
+}
+.navbar-container .modal-overlay .modal-content .close-modal-button:hover {
+  cursor: pointer;
+  color: black;
+}
+.navbar-container .modal-overlay .modal-content label {
+  font-weight: bold;
+  margin: 5px;
+}
+.navbar-container .modal-overlay .modal-content .form, .navbar-container .modal-overlay .modal-content .choices-container .choice-label, .choices-container .navbar-container .modal-overlay .modal-content .choice-label, .navbar-container .modal-overlay .modal-content .options-container .option-label, .options-container .navbar-container .modal-overlay .modal-content .option-label, .navbar-container .modal-overlay .modal-content .checkboxes-container .checkbox-label, .checkboxes-container .navbar-container .modal-overlay .modal-content .checkbox-label {
+  --width-of-input: 100%;
+  --border-height: 1px;
+  --border-before-color: rgba(221, 221, 221, 0.39);
+  --border-after-color: #5891ff;
+  --input-hovered-color: #4985e01f;
+  position: relative;
+  width: var(--width-of-input);
+  margin: 0.5rem 0;
+}
+.navbar-container .modal-overlay .modal-content .input {
+  color: #000000;
+  font-size: 1rem;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  resize: none;
+}
+.navbar-container .modal-overlay .modal-content .input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s;
+}
+.navbar-container .modal-overlay .modal-content .input:hover {
+  background: var(--input-hovered-color);
+}
+.navbar-container .modal-overlay .modal-content .input:focus {
+  outline: none;
+}
+.navbar-container .modal-overlay .modal-content .input:focus ~ .input-border {
+  width: 100%;
+}
+.navbar-container .modal-overlay .modal-content .question {
+  font-size: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+.navbar-container .modal-overlay .modal {
+  position: relative;
+  z-index: 1;
+}
+.navbar-container .modal-overlay .publish-button {
+  margin: 1rem;
+  width: fit-content;
+}
+
+.form-page-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: lightgray;
+}
+.form-page-container .form-container {
+  border-radius: 10px;
+  padding: 1rem;
+  max-width: 600px;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.form-page-container .form-container .form-header {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.form-page-container .form-container .form-header .form-name {
+  font-size: 2rem;
+}
+.form-page-container .form-container .form-header .form-description {
+  font-size: 0.8rem;
+}
+.form-page-container .form-container .form-section-header {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: white;
+  font-weight: bold;
+}
+.form-page-container .form-container .form-section-container {
+  padding: 0;
+}
+.form-page-container .form-container .form-section-footer {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+
+.home-page-container {
+  background-color: #2C2D32;
+  min-height: 100vh;
+  color: white;
+  padding: 1rem;
+}
+.home-page-container h3 {
+  margin-top: 0.5rem;
+}
+.home-page-container .form-buttons-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+  position: relative;
+}
+.home-page-container .form-button {
+  color: white;
+}
+.home-page-container .form-button button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+}
+.home-page-container .form-button button {
+  --primary-color: white;
+  --hovered-color: #c84747;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  font-size: 20px;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+}
+.home-page-container .form-button button p {
+  margin: 0;
+  position: relative;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+.home-page-container .form-button button::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  left: 0;
+  bottom: -7px;
+  background: var(--hovered-color);
+  height: 2px;
+  transition: 0.3s ease-out;
+}
+.home-page-container .form-button button p::before {
+  position: absolute;
+  /*   box-sizing: border-box; */
+  width: 0%;
+  inset: 0;
+  color: var(--hovered-color);
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+.home-page-container .form-button button:hover::after {
+  width: 100%;
+}
+.home-page-container .form-button button:hover p::before {
+  width: 100%;
+}
+.home-page-container .form-button button:hover svg {
+  transform: translateX(4px);
+  color: var(--hovered-color);
+}
+.home-page-container .form-button button svg {
+  color: var(--primary-color);
+  transition: 0.2s;
+  position: relative;
+  width: 15px;
+  transition-delay: 0.2s;
 }
 
 .columns-container {
@@ -1033,6 +1270,7 @@ body {
   border: none;
   border-radius: 10px;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .delete-section-button {
@@ -1268,6 +1506,28 @@ body {
   left: -30px;
 }
 
+.create-form-button {
+  width: 3rem;
+  height: 3rem;
+  background-color: white;
+  color: black;
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-form-button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+.create-form-button p {
+  font-size: 0.6rem;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -1287,57 +1547,6 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 2rem;
-}
-
-.form-page-container {
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: lightgray;
-}
-.form-page-container .form-container {
-  border-radius: 10px;
-  padding: 1rem;
-  max-width: 600px;
-  width: 100%;
-  background-color: lightgray;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-}
-.form-page-container .form-container .form-header {
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.form-page-container .form-container .form-header .form-name {
-  font-size: 2rem;
-}
-.form-page-container .form-container .form-header .form-description {
-  font-size: 0.8rem;
-}
-.form-page-container .form-container .form-section-header {
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 10px;
-  background-color: white;
-  font-weight: bold;
-}
-.form-page-container .form-container .form-section-container {
-  padding: 0;
-}
-.form-page-container .form-container .form-section-footer {
-  margin: 1rem 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  position: relative;
 }
 
 .page-container {

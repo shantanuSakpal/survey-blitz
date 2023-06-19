@@ -4,8 +4,8 @@ let date = Date.now();
 
 const initialState = {
     form_id: date - 1,
-    form_name: "Contact Info Form",
-    form_description: "This is a form for collecting contact information.",
+    form_name: "",
+    form_description: "",
     form_sections: [
         {
             section_id: date,
@@ -140,6 +140,11 @@ export const formObjectSlice = createSlice({
                 reorderedComponent
             );
         },
+
+        editFormName: (state, action) => {
+            state.form_name = action.payload;
+
+        }
     },
 });
 
@@ -157,6 +162,7 @@ export const {
     updateComponentIsRequired,
     setComponentPropObject,
     handleComponentReorder,
+    editFormName
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;

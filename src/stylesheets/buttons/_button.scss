@@ -4,6 +4,7 @@
   border: none;
   border-radius: 10px;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 @import "delete_section_button";
@@ -14,3 +15,4 @@
 @import "more_options_button";
 @import "next_section";
 @import "prev_section";
+@import "create_form_button";

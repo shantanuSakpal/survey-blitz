@@ -1,0 +1,25 @@
+.create-form-button {
+  width: 3rem;
+  height: 3rem;
+  background-color: white;
+  color: black;
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  p {
+    font-size: 0.6rem;
+
+  }
+}

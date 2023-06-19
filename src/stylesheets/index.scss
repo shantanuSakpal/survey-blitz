@@ -14,13 +14,14 @@ body {
 
 $theme-color: #2C2D32;
 $theme-color-2: gray;
-$button-background-color : rgb(80, 159, 186);
+$button-background-color: rgb(80, 159, 186);
 
 @import "./create_forms/navbar";
+@import "./form/form_page";
+@import "./home/home_page_container";
 @import "create_forms/columns-container";
 @import "./buttons/button";
 @import "signin";
-@import "./form/form_page";
 
 .page-container {
   min-height: 100vh;
