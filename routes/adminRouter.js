@@ -59,18 +59,20 @@ router
 
 
 // get all forms of a particular admin
-.get('/getForms', (req, res) => {
-    const {email} = req.body;
-    Admin.findOne({email}).then((admin) => {
-        if (admin) {
-            return res.status(200).json({forms: admin.formObjectsArray});
-        }
-        else{
-            return res.status(404).json({error: "Admin not found"});
-        }
-    }
-    ).catch((err) => {
-        return res.status(500).json({error: err});
+    .get('/getForms', (req, res) => {
+        const { email } = req.query;
+
+        Admin.findOne({ email })
+            .then((admin) => {
+                if (admin) {
+                    return res.status(200).json({ forms: admin.formObjectsArray });
+                } else {
+                    return res.status(404).json({ error: "Admin not found" });
+                }
+            })
+            .catch((err) => {
+                return res.status(500).json({ error: err });
+            });
     });
-})
+
 module.exports = router;
