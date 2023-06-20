@@ -7,11 +7,14 @@ function SectionHeader({currentSectionIndex}) {
     const formSections = formResponseObject.form_sections;
 
     const currentSection = formSections[currentSectionIndex];
-
+    //get the total number of sections
+    const totalSections = formSections.length;
 
     return (
 
-        <div className="form-section-header">
+        <div className="form-section-header"
+             onClick={() => console.log("currentsecction", currentSection)}>
+            <h4>Section {currentSectionIndex + 1} of {totalSections}</h4>
             {currentSection.section_name}
         </div>
 

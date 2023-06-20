@@ -1,4 +1,4 @@
-$form-page-background-color: lightgray;
+$form-page-background-color: $theme-color;
 $form-container-color: white;
 
 .form-page-container {
@@ -28,6 +28,7 @@ $form-container-color: white;
       display: flex;
       flex-direction: column;
       gap: 5px;
+      align-items: center;
 
       .form-name {
         font-size: 2rem;

@@ -1,9 +1,13 @@
 .form-section-header {
   padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border-radius: 10px;
   background-color: $form-container-color;
   font-weight: bold;
+
+  h4 {
+    font-size: 0.7rem;
+  }
 }
 
 .form-section-container {

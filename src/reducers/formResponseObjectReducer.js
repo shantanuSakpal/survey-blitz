@@ -187,18 +187,18 @@ export const formResponseSlice = createSlice({
 
         updateResponse: (state, action) => {
             //find the component object
-            let componentObject = state.form_sections.find(
-                (section) => section.section_id === action.payload.section_id
-            ).section_components.find(
-                (component) => component.component_id === action.payload.component_id
-            );
-            //if answer does not exist , create answer
-            if (!componentObject.answer) {
-                componentObject.answer = null;
+            state.form_sections.forEach((section) => {
+                if (section.section_id === action.payload.section_id) {
+                    section.section_components.forEach((component) => {
+                        if (component.component_id === action.payload.component_id) {
+                            component.component_prop_object =
+                                action.payload.component_prop_object;
+                        }
+                    });
+                }
+            });
 
-            } else {
-                componentObject.answer = action.payload.answer;
-            }
+
         }
 
     },
