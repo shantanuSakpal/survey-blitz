@@ -4,6 +4,8 @@ import SectionHeader from "../components/form_page_components/SectionHeader";
 import SectionContainer from "../components/form_page_components/SectionContainer";
 import PrevSectionButton from "../components/buttons/form_page_buttons/PrevSectionButton";
 import NextSectionButton from "../components/buttons/form_page_buttons/NextSectionButton";
+import SubmitFormButton from "../components/buttons/form_page_buttons/SubmitFormButton";
+import axios from "axios";
 
 export const FormPage = () => {
     //import the form object state
@@ -14,6 +16,24 @@ export const FormPage = () => {
 
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
+
+    const handleSubmitForm = () => {
+        console.log("submitting form...")
+        const requestBody = {
+            admin_id: "admin",
+            form_id: formResponseObject.form_id,
+            formObject: formResponseObject
+        };
+
+        axios
+            .post("http://localhost:3001/admin/submitForm", requestBody)
+            .then((response) => {
+                console.log("Success:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    };
 
     return (
         formResponseObject && (
@@ -34,7 +54,7 @@ export const FormPage = () => {
                 <SectionContainer
                     currentSectionIndex={currentSectionIndex}
                 />
-               
+
                 <div className="form-section-footer">
                     {currentSectionIndex > 0 && (
                         <div className="prev-section-button"
@@ -48,6 +68,13 @@ export const FormPage = () => {
                              onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
                         >
                             <NextSectionButton/>
+                        </div>
+                    )}
+                    {currentSectionIndex === formSections.length - 1 && (
+                        <div className="next-section-button"
+                             onClick={() => handleSubmitForm()}
+                        >
+                            <SubmitFormButton/>
                         </div>
                     )}
 

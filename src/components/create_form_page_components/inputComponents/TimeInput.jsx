@@ -71,6 +71,7 @@ export const TimeInput = ({component_id, currSectionId}) => {
                     }}
                     renderInput={(params) => <TextField {...params} />}
                     sx={{margin: "0.5rem"}}
+
                 />
             </LocalizationProvider>
         </>
