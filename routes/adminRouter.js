@@ -1,6 +1,7 @@
 const express = require('express');
 const _ = require('lodash');
 const Admin = require('../models/admin');
+const Form=require("../models/form")
 
 const router = express.Router();
 
@@ -106,6 +107,27 @@ router.get('/:id/:formName', (req, res) => {
         return res.status(500).json({ error: err });
     });
 });
+
+//post request to store the submitted for to the forms collection in test db
+router.post('/submitForm', (req, res) => {
+   //take the form-object and store it in the forms collection using form id
+    const formObject = req.body;
+    console.log("formObject", formObject);
+    //without using admin, directly store the formObject in the forms collection
+    Form.create(formObject).then((form) => {
+        return res.status(200).json({ form });
+
+    }).catch((err) => {
+        return res.status(500).json({ error: err });
+
+
+    });
+
+
+});
+
+
+
 
 
 module.exports = router;
