@@ -20,8 +20,13 @@ app.use('/admin', adminRouter);
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB)
+    console.log("Connected to MongoDB");
 }
-  
+app.get('/', (req, res) => {
+    res.send("Hello World");
+}
+);
+
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);
