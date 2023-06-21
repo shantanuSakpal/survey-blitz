@@ -1,13 +1,13 @@
-const express = require('express');
-const _ = require('lodash');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const Admin = require('../models/admin');
-const Form = require("../models/form")
+    const express = require('express');
+    const _ = require('lodash');
+    const bcrypt = require('bcrypt');
+    const jwt = require('jsonwebtoken');
+    const Admin = require('../models/admin');
+    const Form = require("../models/form")
 
-const router = express.Router();
+    const router = express.Router();
 
-const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
+    const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
 
 function emailIsValid (email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
