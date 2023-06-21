@@ -1,132 +1,110 @@
 const express = require('express');
 const _ = require('lodash');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
-const Form=require("../models/form")
+const Form = require("../models/form")
 
 const router = express.Router();
 
-router
-.post('/', (req, res) => {
-    Admin.find({}).then((admins) => {
-        return res.status(200).json({admins});
-    }
-    ).catch((err) => {
-        return res.status(500).json({error: err});
-    });
-})
-.post('/signIn', (req, res) => {
-    const {email, password} = req.body;
-    console.log({email, password});
-    Admin.findOne({email, password}).then((admin) => {
-        if (admin) {
-            return res.status(200).json({admin});
-        }
-        else{
-            return res.status(404).json({error: "Admin not found"});
-        }
-    }
-    ).catch((err) => {
-        return res.status(500).json({error: err});
-    });
-})
-.post('/signUp', (req, res) => {
-    const {email, password} = req.body;
-    Admin.findOne({email}).then((admin) => {
-        if (admin) {
-            return res.status(405).json({error: "Admin already exists"});
-        }
-    }).catch((err) => {
-        return res.status(500).json({error: err});
-    });
-    Admin.create({email, password}).then((admin) => {
-        return res.status(200).json({admin});
-    }
-    ).catch((err) => {
-        return res.status(500).json({error: err});
-    });
-})
-.post('/addForm', (req, res) => {
-    const { email, formObject } = req.body;
-    console.log("email", email);
-    var formattedName = _.kebabCase(formObject.form_name)
-    Admin.findOne({ email }) // Find admin document by email
-    .then((admin) => {
-        if (admin) {
-            formObject.url = "/" + admin._id + '/' + formattedName;
-            console.log("formobject", formObject);
-            // Push the form object to the admin's formObject array
-                admin.formObjectsArray.push(formObject);
-                admin.save();
-                return res.status(200).json({ admin });
-            } else {
-                return res.status(405).json({ error: "Admin not found" });
-            }
-        })
-        .catch((err) => {
-            return res.status(500).json({ error: err });
+const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
+
+function emailIsValid (email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
+// signUp route
+router.post('/signUp', async (req, res) => {
+    const { email, password } = req.body;
+
+    if(!emailIsValid(email)) 
+        return res.status(400).send({ message: 'Invalid email' });
+    
+    if(password.length < 6)
+        return res.status(400).send({ message: 'Password must be at least 6 characters' });
+
+    try {
+        const existingUser = await Admin.findOne({ email });
+        if (existingUser) 
+            return res.status(400).send({ message: 'User already exists' });
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        const admin = await Admin.create({
+            email,
+            password: hashedPassword,
         });
-})
+        const token = jwt.sign({email : admin.email ,id : admin._id }, SECRET_KEY);
+        res.status(200).json({ result: admin, token : token });
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+});
 
+router.post('/signIn', async (req, res) => {
+    const { email, password } = req.body;
 
-// get all forms of a particular admin
-.get('/getForms', (req, res) => {
-    const { email } = req.query;
+    try {
+        const existingUser = await Admin.findOne({ email });
+        if (!existingUser)
+            return res.status(404).json({ message: "User doesn't exist" });
 
-    Admin.findOne({ email })
-        .then((admin) => {
-            if (admin){
-                return res.status(200).json({ forms: admin.formObjectsArray });
+        const isPasswordCorrect = await bcrypt.compare( password, existingUser.password );
+        if (!isPasswordCorrect)
+            return res.status(400).json({ message: 'Invalid credentials' });
+
+        const token = jwt.sign({email : existingUser.email ,id : existingUser._id }, SECRET_KEY);
+        res.status(200).json({ result: existingUser, token : token });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+});
+
+router.post('/createForm', async (req, res) => {
+    const { email, token, formObject } = req.body;
+    try {
+        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: 'Unauthorized' });
             } else {
-                return res.status(404).json({ error: "Admin not found" });
+                const admin = await Admin.findOne({ email });
+                if (!admin)
+                    return res.status(404).json({ message: "User doesn't exist" });
+        
+                admin.form_id.push(formObject.form_id);          
+                await admin.save();
+
+                formObject.url = '/' + admin._id + '/' + _.kebabCase(formObject.form_name);
+                const form = await Form.create({admin_id : admin._id, form_id : formObject.form_id, formObject : formObject});
+                console.log(form);
+                res.status(200).json({ result : form });
             }
-        })
-        .catch((err) => {
-            return res.status(500).json({ error: err });
         });
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
 });
 
-// get request to get a specific form of a particular admin
-router.get('/:id/:formName', (req, res) => {
-    const { id, formName } = req.params;
-    console.log("id", id);
-    console.log("formName", formName);
-    var url = "/" + id + "/" + formName;
-    console.log("url", url);
-    Admin.find({ "formObjectsArray.url": url }).then((admin) => {
-        if (admin) {
-            console.log("admin", admin);
-            var formObject = admin[0].formObjectsArray.filter((form) => {
-                return form.url === url;
-            });
-            console.log("formObject", formObject);
-            return res.status(200).json({ formObject });
-        } else {
-            return res.status(404).json({ error: "Admin not found" });
-        }
-    }).catch((err) => {
-        return res.status(500).json({ error: err });
-    });
+// api to get all forms of a particular admin
+router.get('/getForms', async (req, res) => {
+    const { email, token } = req.body;
+    try {
+        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            } else {
+                const admin = await Admin.findOne({ email });
+                console.log(admin);
+                if (!admin)
+                    return res.status(404).json({ message: "User doesn't exist" });
+                const forms = await Form.find({admin_id : admin._id});
+                res.status(200).json({ forms : forms });
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
 });
-
-//post request to store the submitted for to the forms collection in test db
-router.post('/submitForm', (req, res) => {
-   //take the form-object and store it in the forms collection using form id
-    const formObject = req.body;
-    console.log("formObject", formObject);
-    //without using admin, directly store the formObject in the forms collection
-    Form.create(formObject).then((form) => {
-        return res.status(200).json({ form });
-
-    }).catch((err) => {
-        return res.status(500).json({ error: err });
-
-
-    });
-
-
-});
-
-
 
 
 
