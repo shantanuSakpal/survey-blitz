@@ -15,8 +15,8 @@ const port = 3001;
 
 app.use(express.json());
 app.use(cors());
-app.use('/', formRouter);
 app.use('/admin', adminRouter);
+app.use('/', formRouter);
 
 
 main().catch((err) => console.log(err));
