@@ -7,5 +7,5 @@ const responseSchema = new mongoose.Schema({
 });
 
 
-const Form = mongoose.model('Form', formSchema);
-module.exports = Form;
+const ResponseForm = mongoose.model('ResponseForm', responseSchema);
+module.exports = ResponseForm;

@@ -85,26 +85,28 @@ router.post('/createForm', async (req, res) => {
     }
 });
 
-// api to get all forms of a particular admin
-router.get('/getForms', async (req, res) => {
-    const { email, token } = req.body;
-    try {
-        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
-            if (err) {
-                return res.status(401).json({ message: 'Unauthorized' });
-            } else {
-                const admin = await Admin.findOne({ email });
-                console.log(admin);
-                if (!admin)
-                    return res.status(404).json({ message: "User doesn't exist" });
-                const forms = await Form.find({admin_id : admin._id});
-                res.status(200).json({ forms : forms });
-            }
-        });
-    } catch (error) {
-        res.status(500).json({ message: 'Something went wrong' });
-    }
-});
+    // api to get all forms of a particular admin
+    router.get('/getForms', async (req, res) => {
+        const { email, token } = req.query; // Update here
+        
+        try {
+            jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+                if (err) {
+                    return res.status(401).json({ message: 'Unauthorized' });
+                } else {
+                    const admin = await Admin.findOne({ email });
+                    console.log("admin, ", admin);
+                    if (!admin)
+                        return res.status(404).json({ message: "User doesn't exist" });
+                    const forms = await Form.find({ admin_id: admin._id });
+                    res.status(200).json({ forms: forms });
+                }
+            });
+        } catch (error) {
+            res.status(500).json({ message: 'Something went wrong' });
+        }
+    });
+
 
 
 

@@ -14,7 +14,7 @@ router.get('/:id/:form_name', async (req, res) => {
     try {
         const form = await Form.findOne({ 'formObject.url' : '/' + id + '/' + form_name });
         if (!form)
-            return res.status(404).json({ message: "Form doesn't exist" });
+            return res.status(404).json({ message: "Form doesnt exist" });
         res.status(200).json({ result: form });
     } catch (error) {
         res.status(500).json({ message: 'Something went wrong' });
