@@ -28,6 +28,8 @@ function SignUp() {
             .then((res) => {
                 console.log(res.data);
                 navigate("/");
+                localStorage.setItem('currUser', JSON.stringify(res.data));
+
             })
             .catch((err) => {
                 console.log(err);

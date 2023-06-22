@@ -5,6 +5,7 @@ let date = Date.now();
 const initialState = {
     form_id: date - 1,
     form_name: "",
+    url: "",
     form_description: "",
     form_sections: [
         {

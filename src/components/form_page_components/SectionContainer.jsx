@@ -23,6 +23,10 @@ function SectionContainer({currentSectionIndex}) {
                     return (
                         <div key={index}
                              className="form-component-container">
+                            {
+                                component.is_required &&
+                                <div className="required-question">This is a required question</div>
+                            }
                             {component.component_type === "short_text" ? (
                                 <ShortTextInput
                                     key={component.component_id}

@@ -32,7 +32,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/view-form"
+                    path="/:id/:form_name"
                     element={
                         <div className="form-page-container" id="page">
                             <FormPage/>

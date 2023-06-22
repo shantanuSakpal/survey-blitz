@@ -20,39 +20,38 @@ function PublishFormModal({setIsModalOpen}) {
         setUrl(newUrl);
     }
 
-    const handlePublish = () => {
-        console.log("Publishing form...")
+    const storeForm = () => {
         const email = "shantanuesakpal1420@gmail.com";
         const requestBody = {
             email: email,
+            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYW50YW51ZXNha3BhbDE0MjBAZ21haWwuY29tIiwiaWQiOiI2NDkzZGY2MzIzYzg1MDA5NWM1ODYwMzMiLCJpYXQiOjE2ODc0MTM3ODl9.bm321vGL4i8vWm6umhLHSzjnyz5yPi5JLPYyi3nNgHU", // Replace with your authentication token
             formObject: formObject,
         };
 
         axios
-            .post("http://localhost:3001/admin/addForm", requestBody)
+            .post("http://localhost:3001/admin/createForm", requestBody)
             .then((response) => {
                 console.log("Success:", response.data);
             })
             .catch((error) => {
                 console.error("Error:", error);
             });
+    };
+
+    const handlePublish = () => {
+        console.log("Publishing form...");
+        storeForm();
         setIsModalOpen(false);
     };
 
-    useEffect(
-        () => {
-            generateFormUrl(formObject.form_name);
-
-        }
-        , []
-    )
-
+    useEffect(() => {
+        generateFormUrl(formObject.form_name);
+    }, []);
 
     return (
         <div className="modal">
             <div className="modal-content">
-                <div className="close-modal-button"
-                     onClick={() => setIsModalOpen(false)}>
+                <div className="close-modal-button" onClick={() => setIsModalOpen(false)}>
                     <CloseIcon fontSize="small"/>
                 </div>
                 <label>Form Title:</label>
@@ -65,8 +64,8 @@ function PublishFormModal({setIsModalOpen}) {
                         placeholder="Tap to edit form title"
                         value={formObject.form_name}
                         onChange={(e) => {
-                            dispatch(editFormName(e.target.value))
-                            generateFormUrl(e.target.value)
+                            dispatch(editFormName(e.target.value));
+                            generateFormUrl(e.target.value);
                         }}
                         minRows={1}
                     />
@@ -77,18 +76,10 @@ function PublishFormModal({setIsModalOpen}) {
 
                 <br/>
                 <div className="form question">
-                    <TextareaAutosize
-                        className="input"
-                        readOnly
-                        value={url}
-                        minRows={1}
-                    />
+                    <TextareaAutosize className="input" readOnly value={url} minRows={1}/>
                     <span className="input-border"></span>
                 </div>
-                <div className="publish-button" onClick={
-                    handlePublish
-                }>
-
+                <div className="publish-button" onClick={handlePublish}>
                     <Button name="Publish"/>
                 </div>
             </div>

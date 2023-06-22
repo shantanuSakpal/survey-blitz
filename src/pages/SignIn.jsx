@@ -6,12 +6,11 @@ import UserContext from "../context/UserContext";
 
 function SignIn() {
     const navigate = useNavigate();
-    const {user, setUser} = useContext(UserContext);
-
+    const {setUser} = useContext(UserContext);
 
     const [inputValues, setInputValues] = useState({
-        email: "",
-        password: "",
+        email: '',
+        password: '',
     });
 
     const handleOnChange = (event) => {
@@ -21,19 +20,22 @@ function SignIn() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setUser(inputValues)
         console.log({inputValues});
         axios
-            .post("http://localhost:3001/admin/signIn", inputValues)
+            .post('http://localhost:3001/admin/signIn', inputValues)
             .then((res) => {
-                console.log(res.data);
-                navigate("/");
+                console.log("user data", res.data);
+                setUser(res.data); // Set the user information in the context
+                navigate('/');
+                //set user info in local storage
+                localStorage.setItem('currUser', JSON.stringify(res.data));
             })
             .catch((err) => {
                 console.log(err);
-                navigate("/signUp");
+                navigate('/signUp');
             });
     };
+
     return (
         <>
             <div className="header">

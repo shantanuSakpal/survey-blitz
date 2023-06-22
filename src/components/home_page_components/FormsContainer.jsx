@@ -1,15 +1,15 @@
 import React from 'react';
 import AdminFormsListItems from "./AdminFormsListItems";
 
-function FormsContainer({adminForms}) {
+function FormsContainer({forms}) {
     return (
         <div className="form-buttons-container">
 
 
             {
-                adminForms &&
+                forms &&
 
-                adminForms.map((form, index) => {
+                forms.map((form, index) => {
 
                     return (
                         <AdminFormsListItems
