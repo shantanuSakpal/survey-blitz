@@ -4,9 +4,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import CreateFormButton from "../buttons/CreateFormButton";
+import {useDispatch} from "react-redux";
+import {setInitialState} from "../../reducers/formObjectReducer";
 
 function AdminFormsListItems({form}) {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     return (
         <div className="form-card">
             <div className="name">{form.formObject.form_name}</div>
@@ -15,7 +18,12 @@ function AdminFormsListItems({form}) {
             <div className="form-options">
 
 
-                <button>
+                <button
+                    onClick={() => {
+                        dispatch(setInitialState(form.formObject));
+                        navigate("/create-form")
+                    }}
+                >
                     <EditIcon/>
                 </button>
                 <button

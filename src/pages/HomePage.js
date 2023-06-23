@@ -30,8 +30,8 @@ export const HomePage = () => {
             }
         };
 
-        fetchForms();
-        // console.log(forms);
+        fetchForms().then(r => console.log("fetched forms", forms));
+
     }, [navigate, setUser]);
 
     return (

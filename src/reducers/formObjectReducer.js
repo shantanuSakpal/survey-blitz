@@ -2,27 +2,20 @@ import {createSlice} from "@reduxjs/toolkit";
 
 let date = Date.now();
 
-const initialState = {
-    form_id: date - 1,
-    form_name: "",
-    url: "",
-    form_description: "",
-    form_sections: [
-        {
-            section_id: date,
-            section_name: "Untitled Section",
-            section_components: [],
-        },
-    ],
-    currSectionId: date,
-    addInputState: false,
+const initialState = null;
 
-};
 
 export const formObjectSlice = createSlice({
     name: "formObjectsArray",
     initialState,
     reducers: {
+        setInitialState: (state, action) => {
+
+            state = action.payload;
+            return state;
+
+        },
+
         addSection: (state, action) => {
             state.form_sections.push(action.payload);
         },
@@ -163,7 +156,8 @@ export const {
     updateComponentIsRequired,
     setComponentPropObject,
     handleComponentReorder,
-    editFormName
+    editFormName,
+    setInitialState
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;
