@@ -24,7 +24,7 @@ router.get('/:id/:form_name', async (req, res) => {
 
 router.post('/saveResponse', async (req, res) => {
     const { formObject } = req.body;
-    try {   
+    try {
         const response = new Response({ formObject });
         await response.save();
         res.status(201).json({ result: response });

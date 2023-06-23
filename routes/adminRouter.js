@@ -85,14 +85,25 @@ router.post('/createForm', async (req, res) => {
     }
 });
 
-// router.post('/updateForm', async (req, res) => {
-//     const { email, token, formObject } = req.body;
-//     try {   
-//         jwt.verify(token, SECRET_KEY, async (err, decoded) => {
-//             if (err) {
-//                 return res.status(401).json({ message: 'Unauthorized' });
-//             } else {
-//                 const form = await Form.
+router.post('/updateForm', async (req, res) => {
+    const { email, token, formObject } = req.body;
+    try {   
+        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            } else {
+                const form = await Form.findOne({form_id : formObject.form_id});
+                if (!form)
+                    return res.status(404).json({ message: "Form doesn't exist" });
+                form.formObject = formObject;
+                await form.save();
+                res.status(200).json({ result : form });
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Something went wrong' });
+    }
+});
 
 // api to get all forms of a particular admin
 router.get('/getForms', async (req, res) => {
