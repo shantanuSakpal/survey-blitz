@@ -60,42 +60,93 @@ router.post('/signIn', async (req, res) => {
     }
 });
 
-router.post('/createForm', async (req, res) => {
-    const { email, token, formObject } = req.body;
-    try {
-        jwt.verify(token, SECRET_KEY, async (err, decoded) => {
-            if (err) {
-                return res.status(401).json({ message: 'Unauthorized' });
-            } else {
-                const admin = await Admin.findOne({ email });
-                if (!admin)
-                    return res.status(404).json({ message: "User doesn't exist" });
-        
-                admin.form_id.push(formObject.form_id);          
-                await admin.save();
+    router.post('/createForm', async (req, res) => {
+        const { email, token, formObject } = req.body;
+        try {
+            jwt.verify(token, SECRET_KEY, async (err) => {
+                if (err) {
+                    return res.status(401).json({ message: 'Unauthorized' });
+                } else {
+                    const admin = await Admin.findOne({ email });
+                    if (!admin)
+                        return res.status(404).json({ message: "User doesn't exist" });
 
-                formObject.url = '/' + admin._id + '/' + _.kebabCase(formObject.form_name);
-                const form = await Form.create({admin_id : admin._id, form_id : formObject.form_id, formObject : formObject});
-                console.log(form);
-                res.status(200).json({ result : form });
-            }
-        });
-    } catch (error) {
-        res.status(500).json({ message: 'Something went wrong' });
-    }
-});
+                    // Check if a form with the same name already exists for the admin
+                    const existingForm = await Form.findOne({
+                        admin_id: admin._id,
+                        'formObject.form_name': formObject.form_name,
+                    });
+                    if (existingForm) {
+                        return res
+                            .status(400)
+                            .json({ message: 'Form with the same name already exists' });
+                    }
+
+                    admin.form_id.push(formObject.form_id);
+                    await admin.save();
+
+                    formObject.url =
+                        '/' + admin._id + '/' + _.kebabCase(formObject.form_name);
+                    const form = await Form.create({
+                        admin_id: admin._id,
+                        form_id: formObject.form_id,
+                        formObject: formObject,
+                    });
+                    res.status(200).json({ result: form });
+                }
+            });
+        } catch (error) {
+            res.status(500).json({ message: 'Something went wrong' });
+        }
+    });
+
+    // Update form API endpoint
+    router.put('/updateForm', async (req, res) => {
+        const { email, token, formObject } = req.body;
+        console.log("updating")
+        try {
+            jwt.verify(token, SECRET_KEY, async (err) => {
+                if (err) {
+                    return res.status(401).json({ message: 'Unauthorized' });
+                } else {
+                    const admin = await Admin.findOne({ email });
+                    if (!admin) {
+                        return res.status(404).json({ message: "User doesn't exist" });
+                    }
+
+                    // Find the form by form name and admin ID
+                    const form = await Form.findOne({
+                        admin_id: admin._id,
+                        'formObject.form_name': formObject.form_name,
+                    });
+
+                    if (!form) {
+                        return res.status(404).json({ message: "Form doesn't exist" });
+                    }
+
+                    // Update the formObject with the new formObject
+                    form.formObject = formObject;
+                    await form.save();
+
+                    res.status(200).json({ result: form });
+                }
+            });
+        } catch (error) {
+            res.status(500).json({ message: 'Something went wrong' });
+        }
+    });
+
 
     // api to get all forms of a particular admin
     router.get('/getForms', async (req, res) => {
         const { email, token } = req.query; // Update here
         
         try {
-            jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+            jwt.verify(token, SECRET_KEY, async (err) => {
                 if (err) {
                     return res.status(401).json({ message: 'Unauthorized' });
                 } else {
                     const admin = await Admin.findOne({ email });
-                    console.log("admin, ", admin);
                     if (!admin)
                         return res.status(404).json({ message: "User doesn't exist" });
                     const forms = await Form.find({ admin_id: admin._id });
