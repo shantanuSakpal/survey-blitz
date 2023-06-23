@@ -1,10 +1,10 @@
 import React from 'react';
 import AdminFormsListItems from "./AdminFormsListItems";
+import CreateFormButton from "../buttons/CreateFormButton";
 
 function FormsContainer({forms}) {
     return (
-        <div className="form-buttons-container">
-
+        <div className="form-card-container">
 
             {
                 forms &&
@@ -19,6 +19,7 @@ function FormsContainer({forms}) {
                     )
                 })
             }
+            <CreateFormButton/>
         </div>
     );
 }

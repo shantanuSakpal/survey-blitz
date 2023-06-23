@@ -2,8 +2,8 @@ import React, {useContext, useEffect, useState} from 'react';
 import UserContext from '../context/UserContext';
 import axios from 'axios';
 import FormsContainer from '../components/home_page_components/FormsContainer';
-import CreateFormButton from '../components/buttons/CreateFormButton';
 import {useNavigate} from 'react-router-dom';
+import Profile from "../components/home_page_components/Profile";
 
 export const HomePage = () => {
     const {user, setUser} = useContext(UserContext);
@@ -36,12 +36,13 @@ export const HomePage = () => {
 
     return (
         <div className="home-page-container">
-            <CreateFormButton/>
+            <Profile/>
             <h1>Welcome {user?.result.email}</h1>
             <h3>Your forms</h3>
             {forms.length === 0 ? <h3>No forms created yet</h3> :
 
                 <FormsContainer forms={forms}/>}
+
         </div>
     );
 };

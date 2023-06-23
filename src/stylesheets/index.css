@@ -193,80 +193,72 @@ body {
   color: white;
   padding: 1rem;
   box-sizing: border-box;
+  position: relative;
 }
 .home-page-container h3 {
   margin-top: 0.5rem;
 }
-.home-page-container .form-buttons-container {
+.home-page-container .form-card-container {
   display: flex;
   width: 100%;
   gap: 20px;
-  flex-direction: column;
+  flex-wrap: wrap;
   padding: 1rem;
   box-sizing: border-box;
-  position: relative;
+  align-items: center;
 }
-.home-page-container .form-button {
+.home-page-container .form-card-container .form-card {
+  color: white;
+  border: 1px solid gray;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 10px;
+  position: relative;
+  padding: 10px 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+.home-page-container .form-card-container .form-card .form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.home-page-container .form-card-container .form-card .form-options button {
+  background-color: transparent;
+  border: none;
+  color: gray;
+}
+.home-page-container .form-card-container .form-card .form-options button:hover {
+  cursor: pointer;
   color: white;
 }
-.home-page-container .form-button button {
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: none;
+.home-page-container .form-card-container .form-card .name {
+  font-size: 1.2rem;
+  margin: 5px;
 }
-.home-page-container .form-button button {
-  --primary-color: white;
-  --hovered-color: #c84747;
-  position: relative;
+.home-page-container .form-card-container .form-card .number-of-res {
+  font-size: 0.7rem;
+}
+.home-page-container .profile {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
   display: flex;
-  font-weight: 600;
-  font-size: 20px;
-  gap: 0.5rem;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: gray;
+  border-radius: 5px;
+  color: #2C2D32;
+}
+.home-page-container .profile:hover {
   cursor: pointer;
-}
-.home-page-container .form-button button div {
-  margin: 0;
-  position: relative;
-  font-size: 1rem;
-  color: var(--primary-color);
-}
-.home-page-container .form-button button::after {
-  position: absolute;
-  content: "";
-  width: 0;
-  left: 0;
-  bottom: -7px;
-  background: var(--hovered-color);
-  height: 2px;
-  transition: 0.3s ease-out;
-}
-.home-page-container .form-button button p::before {
-  position: absolute;
-  /*   box-sizing: border-box; */
-  width: 0%;
-  inset: 0;
-  color: var(--hovered-color);
-  overflow: hidden;
-  transition: 0.3s ease-out;
-}
-.home-page-container .form-button button:hover::after {
-  width: 100%;
-}
-.home-page-container .form-button button:hover p::before {
-  width: 100%;
-}
-.home-page-container .form-button button:hover svg {
-  transform: translateX(4px);
-  color: var(--hovered-color);
-}
-.home-page-container .form-button button svg {
-  color: var(--primary-color);
-  transition: 0.2s;
-  position: relative;
-  width: 15px;
-  transition-delay: 0.2s;
 }
 
 .columns-container {
@@ -1556,14 +1548,12 @@ body {
   height: 3rem;
   background-color: white;
   color: black;
-  position: fixed;
-  bottom: 3rem;
-  right: 3rem;
   border-radius: 10px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 20px;
 }
 .create-form-button:hover {
   cursor: pointer;

@@ -1,26 +1,36 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-
+import EditIcon from '@mui/icons-material/Edit';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
+import CreateFormButton from "../buttons/CreateFormButton";
 
 function AdminFormsListItems({form}) {
     const navigate = useNavigate();
     return (
-        <div className="form-button"
-             onClick={() => {
-                 navigate(`${form.formObject.url}`)
-             }
+        <div className="form-card">
+            <div className="name">{form.formObject.form_name}</div>
+            <div className="desc">{form.formObject.form_description}</div>
+            <div className="number-of-res">10 responses</div>
+            <div className="form-options">
 
-             }>
 
-            <button>
-                <div
+                <button>
+                    <EditIcon/>
+                </button>
+                <button
+                    onClick={() => {
+                        navigate(`${form.formObject.url}`)
+                    }}>
+                    <VisibilityIcon/>
+                </button>
+                <button>
+                    <AssessmentOutlinedIcon/>
+                </button>
 
-                >{form.formObject.form_name}</div>
-                <svg strokeWidth="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-6 w-6"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinejoin="round" strokeLinecap="round"></path>
-                </svg>
-            </button>
+            </div>
+
+
         </div>
     );
 }

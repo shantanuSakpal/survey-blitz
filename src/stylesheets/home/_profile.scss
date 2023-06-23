@@ -1,0 +1,20 @@
+.profile {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: $theme-color-2;
+  border-radius: 5px;
+  color: $theme-color;
+
+  &:hover {
+    cursor: pointer;
+
+  }
+
+
+}

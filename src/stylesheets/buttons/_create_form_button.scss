@@ -3,14 +3,12 @@
   height: 3rem;
   background-color: white;
   color: black;
-  position: fixed;
-  bottom: 3rem;
-  right: 3rem;
   border-radius: 10px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 20px;
 
 
   &:hover {
