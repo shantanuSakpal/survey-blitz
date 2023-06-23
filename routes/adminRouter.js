@@ -85,6 +85,15 @@ router.post('/createForm', async (req, res) => {
     }
 });
 
+// router.post('/updateForm', async (req, res) => {
+//     const { email, token, formObject } = req.body;
+//     try {   
+//         jwt.verify(token, SECRET_KEY, async (err, decoded) => {
+//             if (err) {
+//                 return res.status(401).json({ message: 'Unauthorized' });
+//             } else {
+//                 const form = await Form.
+
 // api to get all forms of a particular admin
 router.get('/getForms', async (req, res) => {
     const { email, token } = req.body;
