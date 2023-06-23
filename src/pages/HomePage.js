@@ -37,11 +37,14 @@ export const HomePage = () => {
     return (
         <div className="home-page-container">
             <Profile/>
-            <h1>Welcome {user?.result.email}</h1>
-            <h3>Your forms</h3>
-            {forms.length === 0 ? <h3>No forms created yet</h3> :
 
-                <FormsContainer forms={forms}/>}
+            <h1>Welcome {user?.result.email}</h1>
+            {
+                forms.length === 0 ? <h3>You have no forms</h3> : <h3>Your forms</h3>
+
+            }
+
+            <FormsContainer forms={forms}/>
 
         </div>
     );

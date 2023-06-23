@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-let date = Date.now();
 
 const initialState = null;
 

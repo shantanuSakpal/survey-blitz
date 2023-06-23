@@ -3,9 +3,9 @@ import {useNavigate} from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
-import CreateFormButton from "../buttons/CreateFormButton";
 import {useDispatch} from "react-redux";
 import {setInitialState} from "../../reducers/formObjectReducer";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function AdminFormsListItems({form}) {
     const navigate = useNavigate();
@@ -34,6 +34,9 @@ function AdminFormsListItems({form}) {
                 </button>
                 <button>
                     <AssessmentOutlinedIcon/>
+                </button>
+                <button>
+                    <DeleteForeverIcon/>
                 </button>
 
             </div>

@@ -18,7 +18,7 @@
     padding: 1rem;
     box-sizing: border-box;
     align-items: center;
-    
+
 
     .form-card {
       color: white;
@@ -47,6 +47,7 @@
           background-color: transparent;
           border: none;
           color: $theme-color-2;
+          scale: 0.8;
 
           &:hover {
             cursor: pointer;
