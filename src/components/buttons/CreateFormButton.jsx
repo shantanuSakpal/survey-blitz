@@ -29,6 +29,7 @@ function CreateFormButton() {
                      currSectionId: date,
                      addInputState: false,
                  }));
+                 localStorage.setItem("currFormId", date - 1)
                  navigate("/create-form")
              }}>
             <AddIcon/>

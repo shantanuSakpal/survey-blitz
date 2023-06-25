@@ -3,13 +3,14 @@ import {useNavigate} from "react-router-dom";
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setInitialState} from "../../reducers/formObjectReducer";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function AdminFormsListItems({form}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const formObject = useSelector((state) => state.formObject)
     return (
         <div className="form-card">
             <div className="name">{form.formObject.form_name}</div>
@@ -21,6 +22,7 @@ function AdminFormsListItems({form}) {
                 <button
                     onClick={() => {
                         dispatch(setInitialState(form.formObject));
+                        localStorage.setItem("currFormId", formObject.form_id)
                         navigate("/create-form")
                     }}
                 >

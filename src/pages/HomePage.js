@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import UserContext from '../context/UserContext';
 import axios from 'axios';
 import FormsContainer from '../components/home_page_components/FormsContainer';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import Profile from "../components/home_page_components/Profile";
 
 export const HomePage = () => {
@@ -11,6 +11,7 @@ export const HomePage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+
         const fetchForms = async () => {
             try {
                 const currUser = JSON.parse(localStorage.getItem('currUser'));
@@ -38,7 +39,7 @@ export const HomePage = () => {
         <div className="home-page-container">
             <Profile/>
 
-            <h1>Welcome {user?.result.email}</h1>
+            <h1>Welcome {user?.result.userName}</h1>
             {
                 forms.length === 0 ? <h3>You have no forms</h3> : <h3>Your forms</h3>
 

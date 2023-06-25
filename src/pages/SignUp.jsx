@@ -10,6 +10,7 @@ function SignUp() {
     const [inputValues, setInputValues] = useState({
         email: "",
         password: "",
+        userName: ""
     });
 
     const handleOnChange = (event) => {
@@ -33,7 +34,7 @@ function SignUp() {
             })
             .catch((err) => {
                 console.log(err);
-                navigate("/signup");
+                navigate("/signIn");
             });
     };
     return (
@@ -42,6 +43,12 @@ function SignUp() {
                 <h1>SignUp</h1>
             </div>
             <div className="userInput">
+                <input
+                    type="text"
+                    name="userName"
+                    placeholder="User Name"
+                    onChange={handleOnChange}
+                />
                 <input
                     type="text"
                     name="email"

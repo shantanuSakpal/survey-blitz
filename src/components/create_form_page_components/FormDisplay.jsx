@@ -15,11 +15,6 @@ function FormDisplay() {
 
     const addInputState = useSelector((state) => state.formObject.addInputState);
 
-    /*
-    the array formSectionsArray is of the form
-    [{section_id: <datetime in milisec> , section_components: []},
-    ... ]
-    */
 
     return (
         <div id="middle_column" className=" middle-column-container">

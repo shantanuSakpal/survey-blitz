@@ -7,9 +7,22 @@ import NextSectionButton from "../components/buttons/form_page_buttons/NextSecti
 import SubmitFormButton from "../components/buttons/form_page_buttons/SubmitFormButton";
 import axios from "axios";
 import {setInitialState} from "../reducers/formResponseObjectReducer";
+import {v4 as uuidv4} from "uuid";
+import {useNavigate} from "react-router-dom";
+
+function generateUserId() {
+    const existingUserId = localStorage.getItem("userId");
+    if (existingUserId) {
+        return existingUserId;
+    }
+    const newUserId = uuidv4();
+    localStorage.setItem("userId", newUserId);
+    return newUserId;
+}
 
 export const FormPage = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Fetch the form data from the API
@@ -19,17 +32,30 @@ export const FormPage = () => {
         const formUrlArray = currentUrl.split("/");
         const formUrl = formUrlArray[formUrlArray.length - 2] + "/" + formUrlArray[formUrlArray.length - 1];
         console.log("formUrl", formUrl);
+        const currUserId = localStorage.getItem("userId")
+
 
         const fetchForm = async () => {
 
             try {
-                const response = await axios.get(`http://localhost:3001/${formUrl}`);
-                const form = response.data.result.formObject;
-                console.log("form", form);
-                dispatch(setInitialState(form)); // Dispatch the action to store the form in the reducer
+                // Check if the user has already filled the form
+                // const userFormResponse = await axios.get(`http://localhost:3001/getUserResponse/${currUserId}`);
+                // if (userFormResponse.data.formObject) {
+                //     const userForm = userFormResponse.data.formObject;
+                //     console.log("userForm", userForm)
+                //     dispatch(setInitialState(userForm)); // Set the initial state with the user's form data
+                // } else
+                {
+                    // Fetch the form data from the API
+                    console.log("no user response found")
+                    const response = await axios.get(`http://localhost:3001/getFormQuestions/${formUrl}`);
+                    const form = response.data.result.formObject;
+                    dispatch(setInitialState(form)); // Set the initial state with the form data from the URL
+                }
             } catch (error) {
-                console.error('Error:', error);
+                console.error("Error:", error);
             }
+
         };
 
         fetchForm();
@@ -48,16 +74,18 @@ export const FormPage = () => {
     const handleSubmitForm = () => {
         console.log("submitting form...")
         console.log("formResponseObject", formResponseObject)
+        //get userId from local storage
+
         const requestBody = {
-            admin_id: "admin",
-            form_id: formResponseObject.form_id,
+            user_id: generateUserId(),
             formObject: formResponseObject
         };
 
         axios
-            .post("http://localhost:3001/admin/submitForm", requestBody)
+            .post("http://localhost:3001/saveResponse", requestBody)
             .then((response) => {
                 console.log("Success:", response.data);
+                navigate("/")
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -72,7 +100,7 @@ export const FormPage = () => {
         console.log("currentSection", currentSection);
         //check the currSection.section_components array and check whether the is_required is true, if it is and the ocomponent_prop.opbject.answer is empty, then return false
         const requiredFields = currentSection.section_components.filter((component) => {
-            return component.is_required === true;
+            return component.is_required === true
         });
         console.log("requiredFields", requiredFields);
         //loop through the requiredFields array and check whether the answer is empty
