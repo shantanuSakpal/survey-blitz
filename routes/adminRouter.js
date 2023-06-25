@@ -15,22 +15,23 @@ function emailIsValid (email) {
 
 // signUp route
 router.post('/signUp', async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password,userName } = req.body;
 
-    if(!emailIsValid(email)) 
+    if(!emailIsValid(email))
         return res.status(400).send({ message: 'Invalid email' });
-    
+
     if(password.length < 6)
         return res.status(400).send({ message: 'Password must be at least 6 characters' });
 
     try {
         const existingUser = await Admin.findOne({ email });
-        if (existingUser) 
+        if (existingUser)
             return res.status(400).send({ message: 'User already exists' });
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         const admin = await Admin.create({
             email,
+            userName,
             password: hashedPassword,
         });
         const token = jwt.sign({email : admin.email ,id : admin._id }, SECRET_KEY);
@@ -41,7 +42,7 @@ router.post('/signUp', async (req, res) => {
 });
 
 router.post('/signIn', async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password} = req.body;
 
     try {
         const existingUser = await Admin.findOne({ email });
@@ -140,7 +141,7 @@ router.post('/signIn', async (req, res) => {
     // api to get all forms of a particular admin
     router.get('/getForms', async (req, res) => {
         const { email, token } = req.query; // Update here
-        
+
         try {
             jwt.verify(token, SECRET_KEY, async (err) => {
                 if (err) {
@@ -157,8 +158,22 @@ router.post('/signIn', async (req, res) => {
             res.status(500).json({ message: 'Something went wrong' });
         }
     });
+    router.get('/getForm', async (req, res) => {
+        const { form_id } = req.query; // Use req.query instead of req.body
+        console.log(form_id);
+
+        try {
+            const form = await Form.findOne({ form_id:form_id });
+            if (!form)
+                return res.status(404).json({ message: "Form doesn't exist" });
+
+            res.status(200).json({ form: form.formObject });
+        } catch (error) {
+            res.status(500).json({ message: 'Something went wrong' });
+        }
+    });
 
 
 
 
-module.exports = router;
+    module.exports = router;
