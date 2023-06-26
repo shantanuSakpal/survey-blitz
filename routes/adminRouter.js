@@ -1,17 +1,16 @@
-    const express = require('express');
-    const _ = require('lodash');
-    const bcrypt = require('bcrypt');
-    const jwt = require('jsonwebtoken');
-    const Admin = require('../models/admin');
-    const Form = require("../models/form")
-    const Response = require("../models/response")
-    const router = express.Router();
+const express = require('express');
+const _ = require('lodash');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const Admin = require('../models/admin');
+const Form = require("../models/form")
+const Response = require("../models/response")
+const router = express.Router();
 
-    const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
+const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
 
-function emailIsValid (email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-}
+const emailIsValid = require('../helpers/helper').emailIsValid;
+const passwordIsValid = require('../helpers/helper').passwordIsValid;
 
 // signUp route
 router.post('/signUp', async (req, res) => {
@@ -20,7 +19,7 @@ router.post('/signUp', async (req, res) => {
     if(!emailIsValid(email))
         return res.status(400).send({ message: 'Invalid email' });
 
-    if(password.length < 6)
+    if(!passwordIsValid(password))
         return res.status(400).send({ message: 'Password must be at least 6 characters' });
 
     try {
@@ -102,9 +101,8 @@ router.post('/signIn', async (req, res) => {
     });
 
     // Update form API endpoint
-    router.put('/updateForm', async (req, res) => {
+    router.post('/updateForm', async (req, res) => {
         const { email, token, formObject } = req.body;
-        console.log("updating")
         try {
             jwt.verify(token, SECRET_KEY, async (err) => {
                 if (err) {
@@ -139,8 +137,8 @@ router.post('/signIn', async (req, res) => {
 
 
     // api to get all forms of a particular admin
-    router.get('/getForms', async (req, res) => {
-        const { email, token } = req.query; // Update here
+    router.post('/getForms', async (req, res) => {
+        const { email, token } = req.body;
 
         try {
             jwt.verify(token, SECRET_KEY, async (err) => {
@@ -154,19 +152,6 @@ router.post('/signIn', async (req, res) => {
                     res.status(200).json({ forms: forms });
                 }
             });
-        } catch (error) {
-            res.status(500).json({ message: 'Something went wrong' });
-        }
-    });
-
-    router.get('/getForm', async (req, res) => {
-        const { form_id } = req.query; // Use req.query instead of req.body
-        try {
-            const form = await Form.findOne({ form_id:form_id });
-            if (!form)
-                return res.status(404).json({ message: "Form doesn't exist" });
-
-            res.status(200).json({ form: form.formObject });
         } catch (error) {
             res.status(500).json({ message: 'Something went wrong' });
         }
