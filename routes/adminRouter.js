@@ -4,7 +4,7 @@
     const jwt = require('jsonwebtoken');
     const Admin = require('../models/admin');
     const Form = require("../models/form")
-
+    const Response = require("../models/response")
     const router = express.Router();
 
     const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
@@ -158,10 +158,9 @@ router.post('/signIn', async (req, res) => {
             res.status(500).json({ message: 'Something went wrong' });
         }
     });
+
     router.get('/getForm', async (req, res) => {
         const { form_id } = req.query; // Use req.query instead of req.body
-        console.log(form_id);
-
         try {
             const form = await Form.findOne({ form_id:form_id });
             if (!form)
@@ -173,7 +172,22 @@ router.post('/signIn', async (req, res) => {
         }
     });
 
+    router.post('/getFormById', async (req, res) => {
+       const {form_id, token} = req.body;
+       try {
+        jwt.verify(token, SECRET_KEY, async (err) => {
+            if (err) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            } else {
+                const responses = await Response.find({"formObject.form_id":form_id});
+                if (!responses)
+                    return res.status(404).json({ message: "Form doesn't exist" }); 
+                res.status(200).json({ responses: responses }); 
+            }
+        });
+       } catch(e) { 
+              return res.status(500).json({ message: 'Something went wrong' });
+       }
+    });
 
-
-
-    module.exports = router;
+module.exports = router;
