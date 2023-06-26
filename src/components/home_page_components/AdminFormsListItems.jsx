@@ -34,7 +34,10 @@ function AdminFormsListItems({form}) {
                     }}>
                     <VisibilityIcon/>
                 </button>
-                <button>
+                <button
+                    onClick={() => {
+                        localStorage.setItem("currFormId", formObject.form_id)
+                    }}>
                     <AssessmentOutlinedIcon/>
                 </button>
                 <button>

@@ -300,7 +300,6 @@ body {
 }
 .home-page-container .profile .dropdown div:hover {
   cursor: pointer;
-  color: gray;
   background-color: #2C2D32;
   color: white;
 }
@@ -1607,25 +1606,353 @@ body {
   font-size: 0.6rem;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.sign-in-page {
+  background-color: #2C2D32;
+  height: 100vh;
+  padding: 1rem;
 }
-
-.userInput {
+.sign-in-page .error {
+  color: red;
+  font-size: 0.7rem;
+  margin-top: 5px;
+}
+.sign-in-page #container {
+  margin: auto;
   display: flex;
+  color: #f8f9fa;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  width: fit-content;
+  max-width: 90vw;
+  box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
+  height: fit-content;
+  font-family: sans-serif;
+  background-color: #212529;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
-
-.submitButton {
+.sign-in-page #Heading {
+  padding: 10px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 900;
+}
+.sign-in-page label {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 10px 0;
+}
+.sign-in-page input {
+  padding: 10px;
+  border-top-right-radius: 10px;
+  background-color: #212529;
+  border-bottom-right-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 19px;
+  transition-duration: 0.15s;
+  color: #f8f9fa;
+}
+.sign-in-page input::placeholder {
+  color: #f8f9fa;
+  font-size: 19.2px;
+}
+.sign-in-page input:-webkit-autofill,
+.sign-in-page textarea:-webkit-autofill,
+.sign-in-page select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #212529 inset !important;
+  -webkit-text-fill-color: white !important;
+}
+.sign-in-page .row:not(.name) {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 50px;
+  position: relative;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.sign-in-page .name {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  margin-top: 10px;
+}
+.sign-in-page .name > input {
+  width: calc(50% - 5px);
+  margin: 5px;
+  border-radius: 10px;
+}
+.sign-in-page .icon {
+  background-color: #212529;
+  border-top-left-radius: 10px;
+  scale: 0.8;
+  border-bottom-left-radius: 10px;
+  fill: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+}
+.sign-in-page button {
+  width: fit-content;
+  margin: 20px auto;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  color: white;
+  background-color: #248277;
+  font-family: sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+.sign-in-page button:hover {
+  background-color: #036666;
+}
+.sign-in-page span {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.sign-in-page a {
+  text-decoration: none;
+  color: #99e2b4;
+}
+.sign-in-page span > span > a {
+  margin: 0 5px;
+}
+.sign-in-page a:hover {
+  color: #06d6a0;
+}
+.sign-in-page #MsgBx {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  padding: 20px;
+}
+.sign-in-page #MsgBx > li {
+  list-style: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #036666;
+  width: fit-content;
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+  animation: enteranceError 1s ease;
+  margin: 5px;
+}
+.sign-in-page input {
+  border: 1px solid transparent;
+}
+.sign-in-page input:focus {
+  border: 1px solid white;
+}
+.sign-in-page .show-icon {
+  position: absolute;
+  scale: 0.8;
+  right: 10px;
+  margin: 10px 0;
+}
+.sign-in-page .show-icon:hover {
+  cursor: pointer;
+}
+
+.sign-up-page {
+  background-color: #2C2D32;
+  height: 100vh;
+  padding: 1rem;
+}
+.sign-up-page .error {
+  color: red;
+  font-size: 0.7rem;
+  margin-top: 5px;
+}
+.sign-up-page #container {
+  margin: auto;
+  display: flex;
+  color: #f8f9fa;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 90vw;
+  box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
+  height: fit-content;
+  font-family: sans-serif;
+  background-color: #212529;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.sign-up-page #Heading {
+  padding: 10px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 900;
+}
+.sign-up-page label {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 10px 0;
+}
+.sign-up-page input {
+  padding: 10px;
+  border-top-right-radius: 10px;
+  background-color: #212529;
+  border-bottom-right-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 19px;
+  transition-duration: 0.15s;
+  color: #f8f9fa;
+}
+.sign-up-page input::placeholder {
+  color: #f8f9fa;
+  font-size: 19.2px;
+}
+.sign-up-page input:-webkit-autofill,
+.sign-up-page textarea:-webkit-autofill,
+.sign-up-page select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #212529 inset !important;
+  -webkit-text-fill-color: white !important;
+}
+.sign-up-page .row:not(.name) {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 50px;
+  position: relative;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.sign-up-page .name {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  margin-top: 10px;
+}
+.sign-up-page .name > input {
+  width: calc(50% - 5px);
+  margin: 5px;
+  border-radius: 10px;
+}
+.sign-up-page .icon {
+  background-color: #212529;
+  border-top-left-radius: 10px;
+  scale: 0.8;
+  border-bottom-left-radius: 10px;
+  fill: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sign-up-page button {
+  width: fit-content;
+  margin: 20px auto;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  color: white;
+  background-color: #248277;
+  font-family: sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+.sign-up-page button:hover {
+  background-color: #036666;
+}
+.sign-up-page span {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.sign-up-page a {
+  text-decoration: none;
+  color: #99e2b4;
+}
+.sign-up-page span > span > a {
+  margin: 0 5px;
+}
+.sign-up-page a:hover {
+  color: #06d6a0;
+}
+.sign-up-page #MsgBx {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  padding: 20px;
+}
+.sign-up-page #MsgBx > li {
+  list-style: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #036666;
+  width: fit-content;
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+  animation: enteranceError 1s ease;
+  margin: 5px;
+}
+.sign-up-page input {
+  border: 1px solid transparent;
+}
+.sign-up-page input:focus {
+  border: 1px solid white;
+}
+.sign-up-page .show-icon {
+  position: absolute;
+  scale: 0.8;
+  right: 10px;
+  margin: 10px 0;
+}
+.sign-up-page .show-icon:hover {
+  cursor: pointer;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-container .modal-content {
+  background-color: #2C2D32;
+  padding: 20px;
+  border-radius: 4px;
+  color: white;
+}
+.modal-container .modal-content h3 {
+  margin-top: 0;
+}
+.modal-container .modal-content input {
+  width: 50%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+.modal-container .modal-content button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .page-container {

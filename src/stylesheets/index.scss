@@ -22,6 +22,9 @@ $button-background-color: rgb(80, 159, 186);
 @import "create_forms/columns-container";
 @import "./buttons/button";
 @import "signin";
+@import "signup";
+@import "modals/modals";
+
 
 .page-container {
   min-height: 100vh;
