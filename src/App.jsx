@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Route, Routes} from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Navigate, Route, Routes} from "react-router-dom";
 import CreateForms from "./pages/CreateForms";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
@@ -9,38 +9,41 @@ import {HomePage} from "./pages/HomePage";
 import UserContext from "./context/UserContext";
 
 function App() {
-
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem("currUser"));
+        setUser(storedUser);
+        setIsLoading(false);
+    }, []);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <UserContext.Provider value={{user, setUser}}>
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <div className="page-container" id="page">
-                            <HomePage/>
-                        </div>
-                    }
-                />
-                <Route
-                    path="/create-form"
-                    element={
+                {user ? (
+                    <>
+                        <Route path="/" element={<HomePage/>}/>
+                        <Route path="/create-form" element={<CreateForms/>}/>
+                    </>
+                ) : (
+                    <Route path="/" element={<Navigate replace to="/signIn"/>}/>
+                )}
+                <Route path="/:id/:form_name" element={<FormPage/>}/>
+                {
+                    !user ? (
+                        <>
+                            <Route exact path="/signIn" element={<SignIn/>}/>
+                            <Route exact path="/signUp" element={<SignUp/>}/></>
+                    ) : (
+                        <Route path="*" element={<Navigate replace to="/"/>}/>
 
-                        <CreateForms/>
-
-                    }
-                />
-                <Route
-                    path="/:id/:form_name"
-                    element={
-                        <div className="form-page-container" id="page">
-                            <FormPage/>
-                        </div>
-                    }
-                />
-                <Route exact path="/signIn" element={<SignIn/>}/>
-                <Route exact path="/signUp" element={<SignUp/>}/>
+                    )
+                }
             </Routes>
         </UserContext.Provider>
     );

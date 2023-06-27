@@ -168,59 +168,61 @@ export const FormPage = () => {
 
     return (
         formResponseObject && (
-            <div className="form-container">
-                <div className="form-header">
-                    <div className="form-name">
-                        {formResponseObject.form_name}</div>
-                    <div className="form-description">
-                        {formResponseObject.form_description}
+            <div className="form-page-container" id="page">
+                <div className="form-container">
+                    <div className="form-header">
+                        <div className="form-name">
+                            {formResponseObject.form_name}</div>
+                        <div className="form-description">
+                            {formResponseObject.form_description}
+                        </div>
                     </div>
+
+                    <SectionHeader
+                        currentSectionIndex={currentSectionIndex}
+                    />
+
+
+                    <SectionContainer
+                        currentSectionIndex={currentSectionIndex}
+                    />
+
+                    <div className="form-section-footer">
+                        {currentSectionIndex > 0 && (
+                            <div className="prev-section-button"
+                                 onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
+                            >
+                                <PrevSectionButton/>
+                            </div>
+                        )}
+                        {currentSectionIndex < formSections.length - 1 && (
+                            <div className="next-section-button"
+                                 onClick={() => {
+                                     if (checkRequiredFields())
+                                         setCurrentSectionIndex(currentSectionIndex + 1);
+
+                                 }}
+                            >
+                                <NextSectionButton/>
+                            </div>
+                        )}
+                        {currentSectionIndex === formSections.length - 1 && (
+                            <div className="next-section-button"
+                                 onClick={() => {
+                                     if (checkRequiredFields()) {
+                                         handleSubmitForm()
+                                     }
+                                 }}
+                            >
+                                <SubmitFormButton/>
+                            </div>
+                        )}
+
+
+                    </div>
+
+
                 </div>
-
-                <SectionHeader
-                    currentSectionIndex={currentSectionIndex}
-                />
-
-
-                <SectionContainer
-                    currentSectionIndex={currentSectionIndex}
-                />
-
-                <div className="form-section-footer">
-                    {currentSectionIndex > 0 && (
-                        <div className="prev-section-button"
-                             onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
-                        >
-                            <PrevSectionButton/>
-                        </div>
-                    )}
-                    {currentSectionIndex < formSections.length - 1 && (
-                        <div className="next-section-button"
-                             onClick={() => {
-                                 if (checkRequiredFields())
-                                     setCurrentSectionIndex(currentSectionIndex + 1);
-
-                             }}
-                        >
-                            <NextSectionButton/>
-                        </div>
-                    )}
-                    {currentSectionIndex === formSections.length - 1 && (
-                        <div className="next-section-button"
-                             onClick={() => {
-                                 if (checkRequiredFields()) {
-                                     handleSubmitForm()
-                                 }
-                             }}
-                        >
-                            <SubmitFormButton/>
-                        </div>
-                    )}
-
-
-                </div>
-
-
             </div>
 
 

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import UserContext from "../context/UserContext";
@@ -11,7 +11,6 @@ import EnterOtpModal from "../components/modals/EnterOtpModal";
 
 function SignUp() {
     const navigate = useNavigate();
-    const {user, setUser} = useContext(UserContext);
 
     const [inputValues, setInputValues] = useState({
         email: "",
@@ -30,6 +29,7 @@ function SignUp() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
+
     const handleOnChange = (event) => {
         const {name, value} = event.target;
         setInputValues({...inputValues, [name]: value});
@@ -46,7 +46,10 @@ function SignUp() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({inputValues});
+        //capitalize first letter of all words in username
+        if (inputValues.username)
+            inputValues.username = inputValues.username.replace(/\b\w/g, l => l.toUpperCase());
+
 
         const {email, password, confirmPassword, username} = inputValues;
 
@@ -85,40 +88,10 @@ function SignUp() {
             return;
         }
 
-        // Check username contains only capital and small letters and space
-
-        // const usernameRegex = /^[a-zA-Z]+$/;
-        // if (!usernameRegex.test(username)) {
-        //     setErrors({username: "Username can only contain capital and small letters"});
-        //     return;
-        // }
 
         setShowModal(true);
     };
 
-    const handleModalSubmit = () => {
-        const {otp} = inputValues;
-
-        // Check if OTP is valid
-        if (!otp.match(/^\d{6}$/)) {
-            setErrors({otp: "Invalid OTP"});
-            return;
-        }
-
-        setUser(inputValues);
-
-        axios
-            .post("http://localhost:3001/admin/signUp", inputValues)
-            .then((res) => {
-                console.log(res.data);
-                navigate("/");
-                localStorage.setItem("currUser", JSON.stringify(res.data));
-            })
-            .catch((err) => {
-                console.log(err);
-                navigate("/signIn");
-            });
-    };
 
     return (
         <div className="sign-up-page">
@@ -206,7 +179,12 @@ function SignUp() {
             </form>
 
             {showModal && (
-                <EnterOtpModal/>
+                <EnterOtpModal
+                    inputValues={inputValues}
+                    handleOnChange={handleOnChange}
+                    errors={errors}
+                    setErrors={setErrors}
+                />
             )}
         </div>
     );

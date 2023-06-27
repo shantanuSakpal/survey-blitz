@@ -1,5 +1,5 @@
 .home-page-container {
-  background-color: $theme-color;
+  background-color: $theme-color-light;
   min-height: 100vh;
   color: white;
   padding: 1rem;
@@ -74,6 +74,9 @@
   }
 
 
-  @import "profile";
 }
+
+@import "profile";
+
+@import "home-page-navbar";
 

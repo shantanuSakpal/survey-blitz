@@ -8,6 +8,26 @@ body {
   min-height: 100vh;
   font-family: "Roboto", sans-serif;
   position: relative;
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  padding: 2px;
+}
+body::-webkit-scrollbar-track {
+  background: #2C2D32;
+}
+body::-webkit-scrollbar-thumb {
+  background: #2C2D32;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px 10px gray;
+  border: solid 3px #2C2D32;
+}
+body::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 10px 10px #99e2b4;
 }
 
 .navbar-container {
@@ -205,7 +225,7 @@ body {
 }
 
 .home-page-container {
-  background-color: #2C2D32;
+  background-color: #323236;
   min-height: 100vh;
   color: white;
   padding: 1rem;
@@ -262,46 +282,206 @@ body {
 .home-page-container .form-card-container .form-card .number-of-res {
   font-size: 0.7rem;
 }
-.home-page-container .profile {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+
+.profile {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  background-color: gray;
-  border-radius: 5px;
-  color: #2C2D32;
-  flex-direction: column;
-  z-index: 100;
-}
-.home-page-container .profile .profile-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.home-page-container .profile:hover {
-  cursor: pointer;
-}
-.home-page-container .profile .dropdown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.home-page-container .profile .dropdown div {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 10px;
-  width: 100%;
-}
-.home-page-container .profile .dropdown div:hover {
-  cursor: pointer;
-  background-color: #2C2D32;
   color: white;
+  width: fit-content;
+}
+.profile:hover {
+  cursor: pointer;
+  border-color: #06d6a0;
+}
+.profile .icon {
+  width: min-content;
+  scale: 0.7;
+  color: #06d6a0;
+}
+.profile .username {
+  font-weight: bold;
+}
+
+.home-page-navbar {
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+}
+.home-page-navbar * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.home-page-navbar a {
+  text-decoration: none;
+}
+.home-page-navbar .container {
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+.home-page-navbar .navbar,
+.home-page-navbar .navbar > .container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .home-page-navbar .navbar,
+  .home-page-navbar .navbar > .container {
+    display: block;
+  }
+}
+.home-page-navbar .navbar {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  background-color: #2C2D32;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #2C2D32;
+  /*
+  |-----------------------------------
+  | Start navbar logo or brand etc..
+  |-----------------------------------
+  */
+  /*
+  |-----------------------------------
+  | Start navbar menu
+  |-----------------------------------
+  */
+}
+.home-page-navbar .navbar .navbar-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.home-page-navbar .navbar .navbar-header .navbar-logo {
+  color: #06d6a0;
+  margin: 0 10px;
+  scale: 1.2;
+}
+@media (max-width: 768px) {
+  .home-page-navbar .navbar .navbar-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+}
+.home-page-navbar .navbar .navbar-header .navbar-toggler {
+  cursor: pointer;
+  border: none;
+  display: none;
+  outline: none;
+}
+@media (max-width: 768px) {
+  .home-page-navbar .navbar .navbar-header .navbar-toggler {
+    display: block;
+  }
+}
+.home-page-navbar .navbar .navbar-header .navbar-toggler span {
+  height: 2px;
+  width: 22px;
+  background-color: white;
+  display: block;
+}
+.home-page-navbar .navbar .navbar-header .navbar-toggler span:not(:last-child) {
+  margin-bottom: 0.2rem;
+}
+.home-page-navbar .navbar .navbar-header > a {
+  font-weight: 500;
+  color: #99e2b4;
+}
+.home-page-navbar .navbar .navbar-menu {
+  display: flex;
+  align-items: center;
+  flex-basis: auto;
+  flex-grow: 1;
+}
+@media (max-width: 768px) {
+  .home-page-navbar .navbar .navbar-menu {
+    display: none;
+    text-align: center;
+  }
+}
+.home-page-navbar .navbar .navbar-menu.active {
+  display: flex !important;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav {
+  margin-left: auto;
+  flex-direction: row;
+  display: flex;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  align-items: center;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav .search {
+  display: flex;
+  line-height: 28px;
+  align-items: center;
+  position: relative;
+  max-width: 250px;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav .search .input {
+  height: 40px;
+  line-height: 28px;
+  padding-right: 1rem;
+  padding-left: 2.5rem;
+  width: 100%;
+  outline: none;
+  background-color: #2C2D32;
+  color: #fff;
+  transition: 0.3s ease;
+  border: 2px solid;
+  border-image: conic-gradient(#06d6a0, #99e2b4, #06d6a0) 1;
+  border-radius: 10px;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav .search .input::placeholder {
+  color: gray;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav .search .input:focus::placeholder {
+  color: #999;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav .search .icon {
+  position: absolute;
+  left: 1rem;
+  fill: #fff;
+  width: 1rem;
+  height: 1rem;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav div {
+  margin: 0 10px;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav li a {
+  color: #99e2b4;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav li a:hover {
+  color: #06d6a0;
+}
+@media (max-width: 768px) {
+  .home-page-navbar .navbar .navbar-menu .navbar-nav li a {
+    border-bottom: 1px solid #2C2D32;
+  }
+}
+.home-page-navbar .navbar .navbar-menu .navbar-nav li.active a {
+  color: #06d6a0;
+}
+.home-page-navbar .navbar .navbar-header > a span {
+  color: #06d6a0;
+  font-weight: bolder;
+}
+.home-page-navbar .navbar .navbar-header h4 {
+  font-size: 1.25rem;
+}
+@media (max-width: 768px) {
+  .home-page-navbar .navbar .navbar-header h4 {
+    font-size: 1.05rem;
+  }
 }
 
 .columns-container {
@@ -1345,12 +1525,18 @@ body {
 }
 
 .button-style {
-  background-color: rgb(80, 159, 186);
+  background-color: #248277;
   color: white;
   border: none;
   border-radius: 10px;
   padding: 0.5rem;
   cursor: pointer;
+  transition-duration: 0.25s;
+  width: fit-content;
+  margin: 5px;
+}
+.button-style:hover {
+  background-color: #036666;
 }
 
 .delete-section-button {
@@ -1650,11 +1836,12 @@ body {
   border: none;
   font-size: 19px;
   transition-duration: 0.15s;
+  caret-color: #f8f9fa;
   color: #f8f9fa;
 }
 .sign-in-page input::placeholder {
   color: #f8f9fa;
-  font-size: 19.2px;
+  font-size: 19px;
 }
 .sign-in-page input:-webkit-autofill,
 .sign-in-page textarea:-webkit-autofill,
@@ -1715,13 +1902,11 @@ body {
 .sign-in-page span {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 10px;
 }
 .sign-in-page a {
   text-decoration: none;
   color: #99e2b4;
-}
-.sign-in-page span > span > a {
   margin: 0 5px;
 }
 .sign-in-page a:hover {
@@ -1872,13 +2057,11 @@ body {
 .sign-up-page span {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 10px;
 }
 .sign-up-page a {
   text-decoration: none;
   color: #99e2b4;
-}
-.sign-up-page span > span > a {
   margin: 0 5px;
 }
 .sign-up-page a:hover {
@@ -1943,7 +2126,7 @@ body {
 .modal-container .modal-content input {
   width: 50%;
   padding: 10px;
-  margin: 10px;
+  margin-top: 10px;
   border-radius: 10px;
 }
 .modal-container .modal-content button {
@@ -1953,6 +2136,204 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+.modal-container .error {
+  margin-bottom: 10px;
+}
+
+.account-setting-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+.account-setting-modal #container {
+  margin: auto;
+  display: flex;
+  color: #f8f9fa;
+  flex-direction: column;
+  gap: 20px;
+  width: fit-content;
+  max-width: 90vw;
+  box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
+  height: fit-content;
+  font-family: sans-serif;
+  background-color: #212529;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.account-setting-modal #container .email-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+}
+.account-setting-modal .error {
+  color: red;
+  font-size: 0.7rem;
+  margin-top: 5px;
+}
+.account-setting-modal h4 {
+  color: #99e2b4;
+}
+.account-setting-modal h4 span {
+  color: white;
+  font-weight: normal;
+}
+.account-setting-modal #Heading {
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+.account-setting-modal label {
+  font-size: 1em;
+  font-weight: 500;
+  margin: 10px 0;
+}
+.account-setting-modal input {
+  padding: 10px;
+  border-top-right-radius: 10px;
+  background-color: #212529;
+  border-bottom-right-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 0.8rem;
+  transition-duration: 0.15s;
+  caret-color: #f8f9fa;
+  color: #f8f9fa;
+}
+.account-setting-modal input::placeholder {
+  color: gray;
+  font-size: 0.8rem;
+}
+.account-setting-modal input:-webkit-autofill,
+.account-setting-modal textarea:-webkit-autofill,
+.account-setting-modal select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #212529 inset !important;
+  -webkit-text-fill-color: white !important;
+}
+.account-setting-modal .row:not(.name) {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 50px;
+  position: relative;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.account-setting-modal .name {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  margin-top: 10px;
+}
+.account-setting-modal .name > input {
+  width: calc(50% - 5px);
+  margin: 5px;
+  border-radius: 10px;
+}
+.account-setting-modal .icon {
+  background-color: #212529;
+  border-top-left-radius: 10px;
+  scale: 0.8;
+  border-bottom-left-radius: 10px;
+  fill: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account-setting-modal button {
+  width: fit-content;
+  margin: 20px auto;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-weight: 700;
+  color: white;
+  background-color: #248277;
+  font-family: sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}
+.account-setting-modal button:hover {
+  background-color: #036666;
+}
+.account-setting-modal span {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.account-setting-modal a {
+  text-decoration: none;
+  color: #99e2b4;
+  margin: 0 5px;
+}
+.account-setting-modal a:hover {
+  color: #06d6a0;
+}
+.account-setting-modal #MsgBx {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  padding: 20px;
+}
+.account-setting-modal #MsgBx > li {
+  list-style: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #036666;
+  width: fit-content;
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+  animation: enteranceError 1s ease;
+  margin: 5px;
+}
+.account-setting-modal input {
+  border: 1px solid transparent;
+}
+.account-setting-modal input:focus {
+  border: 1px solid #99e2b4;
+}
+.account-setting-modal .show-icon {
+  position: absolute;
+  scale: 0.8;
+  right: 10px;
+  margin: 10px 0;
+}
+.account-setting-modal .show-icon:hover {
+  cursor: pointer;
+}
+.account-setting-modal .modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.account-setting-modal .modal-buttons button {
+  margin: 0;
+}
+.account-setting-modal .modal-buttons .logout {
+  background-color: transparent;
+  color: red;
+  border: 2px solid red;
+}
+.account-setting-modal .modal-buttons .logout:hover {
+  background-color: red;
+  border-color: transparent;
+  color: #2C2D32;
 }
 
 .page-container {

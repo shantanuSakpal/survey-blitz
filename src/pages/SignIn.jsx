@@ -6,6 +6,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import EnterOtpModal from "../components/modals/EnterOtpModal";
 
 function SignIn() {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ function SignIn() {
     };
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
 
     const [inputValues, setInputValues] = useState({
@@ -55,18 +57,21 @@ function SignIn() {
             return;
         }
 
-        setUser(inputValues);
 
         axios
-            .post("http://localhost:3001/admin/signUp", inputValues)
+            .post("http://localhost:3001/admin/signIn", inputValues)
             .then((res) => {
-                console.log(res.data);
-                navigate("/");
                 localStorage.setItem("currUser", JSON.stringify(res.data));
+                setUser(res.data);
+                navigate("/");
             })
             .catch((err) => {
                 console.log(err);
-                navigate("/signIn");
+                if (err.response.status === 404) {
+                    setErrors({email: "Email does not exist. Please Sign Up to continue."})
+                } else if (err.response.status === 400) {
+                    setErrors({password: "Incorrect Password"})
+                }
             });
     };
 
@@ -112,6 +117,16 @@ function SignIn() {
                     </div>
                 </div>
                 {errors.password && <div className="error">{errors.password}</div>}
+                <span>
+       <span onClick={() => {
+           setShowModal(true)
+       }}>
+           <a href="#">Forgot Password</a>
+       </span>
+                    {showModal && (
+                        <EnterOtpModal/>
+                    )}
+        </span>
 
                 <button type="submit" onClick={handleSubmit}>
                     Sign In

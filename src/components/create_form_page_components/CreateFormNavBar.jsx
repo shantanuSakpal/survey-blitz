@@ -56,7 +56,7 @@ function CreateFormNavBar(props) {
             };
 
             // Add the form to the database
-            await axios.put('http://localhost:3001/admin/updateForm', requestBody);
+            await axios.post('http://localhost:3001/admin/updateForm', requestBody);
             console.log('Form stored successfully');
             navigate("/")
         } catch (error) {

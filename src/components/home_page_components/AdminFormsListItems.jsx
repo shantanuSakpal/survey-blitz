@@ -10,7 +10,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 function AdminFormsListItems({form}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const formObject = useSelector((state) => state.formObject)
+
     return (
         <div className="form-card">
             <div className="name">{form.formObject.form_name}</div>
@@ -22,7 +22,7 @@ function AdminFormsListItems({form}) {
                 <button
                     onClick={() => {
                         dispatch(setInitialState(form.formObject));
-                        localStorage.setItem("currFormId", formObject.form_id)
+                        localStorage.setItem("currFormId", form.formObject.form_id)
                         navigate("/create-form")
                     }}
                 >
@@ -36,7 +36,7 @@ function AdminFormsListItems({form}) {
                 </button>
                 <button
                     onClick={() => {
-                        localStorage.setItem("currFormId", formObject.form_id)
+                        localStorage.setItem("currFormId", form.formObject.form_id)
                     }}>
                     <AssessmentOutlinedIcon/>
                 </button>

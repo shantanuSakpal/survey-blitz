@@ -7,17 +7,21 @@ function FormsContainer({forms}) {
         <div className="form-card-container">
 
             {
-                forms &&
+                forms ? (
+                    forms.map((form, index) => {
 
-                forms.map((form, index) => {
+                        return (
+                            <AdminFormsListItems
+                                key={index}
+                                form={form}
+                            />
+                        )
+                    })
+                ) : (
+                    <div>Loading Forms...</div>
+                )
 
-                    return (
-                        <AdminFormsListItems
-                            key={index}
-                            form={form}
-                        />
-                    )
-                })
+
             }
             <CreateFormButton/>
         </div>
