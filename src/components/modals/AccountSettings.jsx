@@ -59,7 +59,7 @@ function AccountSettings({setModalOpen}) {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
         if (!passwordRegex.test(newPassword)) {
             setErrors({
-                newPassword: "Password must contain at least 6 characters, one uppercase letter, one lowercase letter, one digit, and one special character",
+                newPassword: "Password must contain at least 6 characters, one uppercase letter, one lowercase letter, one digit, and one special character - @$!%*?&",
             });
             return;
         }
@@ -74,9 +74,10 @@ function AccountSettings({setModalOpen}) {
                 email: user.result.email,
                 token: user.token,
                 password: newPassword,
+                currentPassword: currentPassword,
             });
 
-            console.log(response.data);
+            console.log("response.data", response.data);
 
             // Clear input fields
             setPasswords({
@@ -91,10 +92,13 @@ function AccountSettings({setModalOpen}) {
             // Show success toast
             toast.success(response.data.message);
         } catch (error) {
-            console.error(error);
-            // Handle error response
+            console.error("error", error);
+            // Handle error error
             // Show error toast
-            toast.error("Error occurred. Please try again.");
+            setErrors({
+                currentPassword: "Password is incorrect",
+            });
+            // toast.error(error.response.data.message);
         }
     };
 
@@ -108,7 +112,7 @@ function AccountSettings({setModalOpen}) {
             <form id="container">
                 <div className="heading">
 
-                    <h3 id="Heading">Hey there, {user?.result.username} !</h3>
+                    <h3 id="Heading">Hey there,<br/> {user?.result.username} !</h3>
                 </div>
                 <div className="email-container">
 
@@ -176,7 +180,7 @@ function AccountSettings({setModalOpen}) {
                             name="confirmPassword"
                             value={passwords.confirmPassword}
                             onChange={handleOnChange}
-                            
+
                         />
                         <div className="show-icon">
                             {showNewPassword ? (

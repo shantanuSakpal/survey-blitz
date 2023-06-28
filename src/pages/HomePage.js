@@ -2,14 +2,17 @@ import React, {useContext, useEffect, useState} from 'react';
 import UserContext from '../context/UserContext';
 import axios from 'axios';
 import FormsContainer from '../components/home_page_components/FormsContainer';
-import {useLocation, useNavigate} from 'react-router-dom';
-import Profile from "../components/home_page_components/Profile";
+import {useNavigate} from 'react-router-dom';
 import HomePageNavbar from "../components/home_page_components/HomePageNavbar";
+import {useDispatch, useSelector} from "react-redux";
+import {setInitialState} from "../reducers/adminFormsReducer";
 
 export const HomePage = () => {
     const {user, setUser} = useContext(UserContext);
-    const [forms, setForms] = useState([]);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const forms = useSelector((state) => state.adminFormsArray);
+
 
     useEffect(() => {
         //if user is not logged in, redirect to login page
@@ -37,7 +40,7 @@ export const HomePage = () => {
                         reqBody
                     );
                     const fetchedForms = response.data.forms;
-                    setForms(fetchedForms);
+                    dispatch(setInitialState(fetchedForms));
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -55,18 +58,15 @@ export const HomePage = () => {
 
 
             <HomePageNavbar username={user?.result.username}/>
-            <div className="home-page-container"
-                 onClick={() => {
-                     console.log(user)
-                 }}>
+            <div className="home-page-container">
 
 
                 {
-                    forms.length === 0 ? <h5>Create your first form</h5> : <h5>Your forms</h5>
+                    forms ? <h5>Create your first form</h5> : <h5>Your forms</h5>
 
                 }
 
-                <FormsContainer forms={forms}/>
+                <FormsContainer/>
 
             </div>
         </>

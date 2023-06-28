@@ -6,16 +6,26 @@ import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import {useDispatch, useSelector} from "react-redux";
 import {setInitialState} from "../../reducers/formObjectReducer";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ConfirmDelete from "../modals/ConfirmDelete";
+
 
 function AdminFormsListItems({form}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
 
     return (
         <div className="form-card">
+
+
+            <label className="switch">
+                <input type="checkbox" className="checkbox"/>
+                <div className="slider"></div>
+                Active
+            </label>
+
+
             <div className="name">{form.formObject.form_name}</div>
-            <div className="desc">{form.formObject.form_description}</div>
-            <div className="number-of-res">10 responses</div>
             <div className="form-options">
 
 
@@ -40,11 +50,22 @@ function AdminFormsListItems({form}) {
                     }}>
                     <AssessmentOutlinedIcon/>
                 </button>
-                <button>
+                <button className="delete-form-button"
+                        onClick={() => setDeleteModalOpen(true)}
+                >
                     <DeleteForeverIcon/>
                 </button>
 
             </div>
+            {
+                deleteModalOpen && (
+                    <ConfirmDelete
+                        form={form}
+                        what={"form"}
+                        setDeleteModalOpen={setDeleteModalOpen}
+                    />
+                )
+            }
 
 
         </div>

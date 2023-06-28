@@ -17,7 +17,7 @@
     color: #f8f9fa;
     flex-direction: column;
     gap: 20px;
-    width: fit-content;
+    width: 20rem;
     max-width: 90vw;
     box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
     height: fit-content;
@@ -209,6 +209,10 @@
     &:hover {
       cursor: pointer;
     }
+  }
+
+  p {
+    font-size: 0.8rem;
   }
 
   .modal-buttons {

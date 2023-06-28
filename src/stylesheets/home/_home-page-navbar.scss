@@ -80,6 +80,10 @@
       display: flex;
       align-items: center;
       padding: 10px;
+      font-family: 'Belanosima', sans-serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+
 
       .navbar-logo {
         color: $accent-color-1-dark;
@@ -240,7 +244,7 @@
   // Custom
   .navbar .navbar-header > a span {
     color: $base-color;
-    font-weight: bolder;
+    font-weight: 600;
   }
 
   .navbar .navbar-header h4 {

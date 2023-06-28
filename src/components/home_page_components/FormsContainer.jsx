@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AdminFormsListItems from "./AdminFormsListItems";
 import CreateFormButton from "../buttons/CreateFormButton";
+import {useSelector} from "react-redux";
 
-function FormsContainer({forms}) {
+function FormsContainer() {
+    const forms = useSelector(state => state.adminFormsArray);
+    
     return (
         <div className="form-card-container">
-
             {
                 forms ? (
                     forms.map((form, index) => {

@@ -33,6 +33,7 @@ function CreateFormButton() {
                  navigate("/create-form")
              }}>
             <AddIcon/>
+            New
         </div>
     );
 }

@@ -1,46 +1,93 @@
 .home-page-container {
-  background-color: $theme-color-light;
+  background-color: aliceblue;
   min-height: 100vh;
-  color: white;
+  color: black;
   padding: 1rem;
   box-sizing: border-box;
   position: relative;
+  overflow: auto;
 
   h3 {
     margin-top: 0.5rem;
   }
 
   .form-card-container {
+    height: 100%;
     display: flex;
+    flex-direction: column;
     width: 100%;
     gap: 20px;
-    flex-wrap: wrap;
     padding: 1rem;
     box-sizing: border-box;
-    align-items: center;
+    justify-content: flex-start;
 
 
     .form-card {
-      color: white;
-      border: 1px solid $theme-color-2;
-      width: 10rem;
-      height: 10rem;
+      color: black;
+      background-color: aliceblue;
+
       border-radius: 10px;
-      position: relative;
       padding: 10px 0;
       box-sizing: border-box;
       text-align: center;
+      display: flex;
+      box-shadow: 0 0 10px 1px $theme-color-light;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-start;
+      transition: all 0.2s ease-out;
+      position: relative;
+
+
+      &:hover {
+        box-shadow: 0 0 10px 1px $accent-color-1-dark;
+
+      }
+
+      .switch {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin: 0 20px;
+        font-size: 14px;
+        font-weight: bold;
+        width: fit-content;
+
+
+        @import "../buttons/is_active";
+
+      }
+
+
+      .name {
+        height: 100%;
+        font-size: 1rem;
+        margin: 5px;
+        width: fit-content;
+        max-width: 50%;
+        text-align: left;
+
+      }
+
+      .number-of-res {
+        font-size: 0.7rem;
+        width: fit-content;
+      }
 
       .form-options {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-
-        position: absolute;
+        gap: 20px;
+        margin: 0 20px;
         bottom: 0;
-        width: 100%;
         box-sizing: border-box;
-        margin-bottom: 10px;
+        height: 100%;
+        width: fit-content;
+        right: 0;
+        position: absolute;
 
 
         button {
@@ -51,25 +98,20 @@
 
           &:hover {
             cursor: pointer;
-            color: white;
+            color: black;
           }
 
+
+        }
+
+        .delete-form-button {
+          &:hover {
+            color: red;
+          }
         }
 
 
       }
-
-      .name {
-        font-size: 1.2rem;
-        margin: 5px;
-
-      }
-
-      .number-of-res {
-        font-size: 0.7rem;
-      }
-
-
     }
   }
 

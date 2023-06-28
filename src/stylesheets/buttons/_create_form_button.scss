@@ -1,23 +1,25 @@
 .create-form-button {
-  width: 3rem;
-  height: 3rem;
-  background-color: white;
+  width: 2rem;
+  height: 2rem;
+  box-shadow: 0 0 10px 1px $theme-color-light;
   color: black;
   border-radius: 10px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 20px;
+  flex-direction: column;
+  padding: 20px;
+  background-color: aliceblue;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s ease-out;
 
 
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    background-color: $accent-color-1-light;
   }
 
-  p {
-    font-size: 0.6rem;
-
-  }
 }

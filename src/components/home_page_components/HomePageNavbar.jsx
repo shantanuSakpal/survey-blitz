@@ -23,7 +23,7 @@ function HomePageNavbar({username}) {
                     <div className="navbar-header">
                         <div className="navbar-logo"><DynamicFormIcon/></div>
                         <a href="#">
-                            <h4>Forms<span>Generator</span></h4>
+                            Forms<span>Generator</span>
                         </a>
                     </div>
 
@@ -41,7 +41,6 @@ function HomePageNavbar({username}) {
 
                             <div className="profile" onClick={() => {
                                 setModalOpen(true);
-                                console.log("clicked")
                             }}>
                                 <div className="username">{username}</div>
                                 <div className="icon"><BorderColorIcon/></div>
@@ -54,7 +53,7 @@ function HomePageNavbar({username}) {
                             setModalOpen={setModalOpen}
                         />
                     }
-                    <ToastContainer position="top-right"/>
+                    <ToastContainer position="top-right" autoClose={2000}/>
                 </div>
             </nav>
         </div>
