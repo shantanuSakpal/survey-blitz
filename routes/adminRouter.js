@@ -14,7 +14,8 @@ const passwordIsValid = require('../helpers/helper').passwordIsValid;
 
 // signUp route
 router.post('/signUp', async (req, res) => {
-    const { email, password,userName } = req.body;
+    const { email, password,username } = req.body;
+
 
     if(!emailIsValid(email))
         return res.status(400).send({ message: 'Invalid email' });
@@ -30,7 +31,7 @@ router.post('/signUp', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
         const admin = await Admin.create({
             email,
-            userName,
+            username,
             password: hashedPassword,
         });
         const token = jwt.sign({email : admin.email ,id : admin._id }, SECRET_KEY);
@@ -157,7 +158,76 @@ router.post('/signIn', async (req, res) => {
         }
     });
 
-    router.post('/getFormById', async (req, res) => {
+    //delete form
+router.post('/deleteForm', async (req, res) => {
+    const { form_id, admin_id, token } = req.body;
+
+    try {
+        jwt.verify(token, SECRET_KEY, async (err) => {
+            if (err) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            }
+
+            const form = await Form.findOne({ form_id, admin_id });
+
+            if (!form) {
+                return res.status(404).json({ message: "Form doesn't exist" });
+            }
+
+            await form.deleteOne();
+
+            return res.status(200).json({ message: 'Form deleted successfully' });
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+
+
+//api to change password using token and email
+
+router.post('/changePassword', async (req, res) => {
+    const { email, token, password, currentPassword } = req.body;
+    try {
+        jwt.verify(token, SECRET_KEY, async (err) => {
+            if (err) {
+                return res.status(401).json({ message: 'Unauthorized' });
+            } else {
+                const admin = await Admin.findOne({ email });
+                if (!admin) {
+                    return res.status(404).json({ message: 'Admin not found' });
+                }
+
+                // Compare the current password with the hashed password in the database
+                const isMatch = await bcrypt.compare(currentPassword, admin.password);
+                if (!isMatch) {
+                    return res.status(401).json({ message: 'Current password is incorrect' });
+                }
+
+                const salt = await bcrypt.genSalt(10);
+                const hashedPassword = await bcrypt.hash(password, salt);
+
+                // Update the password in the database
+                await Admin.findOneAndUpdate({ email }, { password: hashedPassword });
+
+                return res.status(200).json({ message: 'Password changed successfully' });
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+
+
+
+
+
+
+router.post('/getFormById', async (req, res) => {
        const {form_id, token} = req.body;
        try {
         jwt.verify(token, SECRET_KEY, async (err) => {

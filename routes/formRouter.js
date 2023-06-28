@@ -34,8 +34,10 @@ router.get('/getUserResponse/:userId', async (req, res) => {
         }
     } catch (error) {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
+
     }
 });
+
 
 
 router.post('/saveResponse', async (req, res) => {
