@@ -9,12 +9,15 @@ import _ from "lodash";
 import UserContext from "../../context/UserContext";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import DynamicFormIcon from "@mui/icons-material/DynamicForm";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 
 function CreateFormNavBar(props) {
     const formObject = useSelector((state) => state.formObject);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    console.log(formObject)
 
     const [url, setUrl] = useState('');
 
@@ -92,16 +95,24 @@ function CreateFormNavBar(props) {
 
     return (
 
-        <div data-role="navbar" className="navbar-container">
+        <div data-role="navbar" className="create-forms-navbar">
 
-            <WebStoriesIcon/>
-            <input
-                className="form-name-input"
-                type="text"
-                placeholder="Tap to edit form title"
-                value={formObject.form_name}
-                onChange={(e) => dispatch(editFormName(e.target.value))}
-            />
+            <div className="navbar-header">
+                <div className="navbar-logo"><DynamicFormIcon/></div>
+                <a href="/">
+                    Forms<span>Generator</span>
+                </a>
+            </div>
+            <div className="edit-form-name">
+                <input
+                    className="form-name-input"
+                    type="text"
+                    placeholder="Tap to edit form title"
+                    value={formObject.form_name}
+                    onChange={(e) => dispatch(editFormName(e.target.value))}
+                />
+                <div className="icon"><BorderColorIcon/></div>
+            </div>
 
             <div onClick={handleNext}>
                 <Button name={"Next"}/>
