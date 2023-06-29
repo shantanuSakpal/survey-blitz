@@ -708,10 +708,6 @@ body::-webkit-scrollbar-thumb:hover {
   border: 1px solid #2C2D32;
   transition: all 0.2s ease-out;
 }
-.left-column-container .component-tree-item:hover {
-  cursor: pointer;
-  border: 1px solid gray;
-}
 .left-column-container .component-tree-item h4 {
   font-size: 0.7rem;
   display: inline;

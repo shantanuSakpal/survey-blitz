@@ -39,11 +39,21 @@ function CreateFormButton() {
                              {
                                  section_id: date,
                                  section_name: "Untitled Section",
-                                 section_components: [],
+                                 section_components: [
+                                     {
+                                         component_id: date - 1,
+                                         component_type: "short_text",
+                                         is_required: false,
+                                         component_prop_object: {
+                                             question: "",
+
+                                         }
+                                     },
+                                 ],
                              },
                          ],
                          currSectionId: date,
-                         currComponentId: null,
+                         currComponentId: date - 1,
                          is_active: true,
 
                      })

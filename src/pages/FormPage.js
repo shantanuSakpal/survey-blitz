@@ -10,6 +10,7 @@ import {setInitialState} from "../reducers/formResponseObjectReducer";
 import {v4 as uuidv4} from "uuid";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
+import {CircularProgress} from "@mui/material";
 
 function generateUserId() {
     const existingUserId = localStorage.getItem("userId");
@@ -24,6 +25,7 @@ function generateUserId() {
 export const FormPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         // Fetch the form data from the API
@@ -36,20 +38,19 @@ export const FormPage = () => {
         const currUserId = localStorage.getItem("userId")
         dispatch(setInitialState(null));
 
-        const fetchForm = async () => {
-
-            try {
-                // Fetch the form data from the API
-                console.log("no user response found")
-                const response = await axios.get(`http://localhost:3001/getFormQuestions/${formUrl}`);
-                const form = response.data.result.formObject;
-                dispatch(setInitialState(form)); // Set the initial state with the form data from the URL
-
-            } catch (error) {
-                console.error("Error:", error);
-            }
-
+        const fetchForm = () => {
+            axios
+                .get(`http://localhost:3001/getFormQuestions/${formUrl}`)
+                .then((response) => {
+                    console.log(response.data.result.formObject);
+                    dispatch(setInitialState(response.data.result.formObject));
+                    setIsLoading(false)
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
         };
+
 
         fetchForm();
     }, [dispatch]);
@@ -171,82 +172,88 @@ export const FormPage = () => {
     };
 
     return (
-        formResponseObject && formResponseObject.is_active ? (
-            <div className="form-page-container" id="page" onClick={() => {
-                console.log("formResponseObject", formResponseObject)
-            }}>
-                <div className="form-container">
-                    <div className="form-header">
-                        <div className="form-name">
-                            {formResponseObject.form_name}</div>
-                        <div className="form-description">
-                            {formResponseObject.form_description}
-                        </div>
-                    </div>
 
-                    <SectionHeader
-                        currentSectionIndex={currentSectionIndex}
-                    />
-
-
-                    <SectionContainer
-                        currentSectionIndex={currentSectionIndex}
-                    />
-
-                    <div className="form-section-footer">
-                        {currentSectionIndex > 0 && (
-                            <div className="prev-section-button"
-                                 onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
-                            >
-                                <PrevSectionButton/>
-                            </div>
-                        )}
-                        {currentSectionIndex < formSections.length - 1 && (
-                            <div className="next-section-button"
-                                 onClick={() => {
-                                     if (checkRequiredFields())
-                                         setCurrentSectionIndex(currentSectionIndex + 1);
-
-                                 }}
-                            >
-                                <NextSectionButton/>
-                            </div>
-                        )}
-                        {currentSectionIndex === formSections.length - 1 && (
-                            <div className="next-section-button"
-                                 onClick={() => {
-                                     if (checkRequiredFields()) {
-                                         handleSubmitForm()
-                                     }
-                                 }}
-                            >
-                                <SubmitFormButton/>
-                            </div>
-                        )}
-
-
-                    </div>
-
-
-                </div>
-            </div>
-
-
+        isLoading ? (
+            <CircularProgress/>
         ) : (
-            <div className="form-page-container" id="page" onClick={() => {
-                console.log("formResponseObject", formResponseObject)
-            }}>
-                <div className="form-container">
-                    <div className="form-header">
-                        <div className="form-name">
-                            This form owner is no longer taking responses.
+            formResponseObject && formResponseObject.is_active ? (
+                <div className="form-page-container" id="page" onClick={() => {
+                    console.log("formResponseObject", formResponseObject)
+                }}>
+                    <div className="form-container">
+                        <div className="form-header">
+                            <div className="form-name">
+                                {formResponseObject.form_name}</div>
+                            <div className="form-description">
+                                {formResponseObject.form_description}
+                            </div>
                         </div>
 
+                        <SectionHeader
+                            currentSectionIndex={currentSectionIndex}
+                        />
+
+
+                        <SectionContainer
+                            currentSectionIndex={currentSectionIndex}
+                        />
+
+                        <div className="form-section-footer">
+                            {currentSectionIndex > 0 && (
+                                <div className="prev-section-button"
+                                     onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
+                                >
+                                    <PrevSectionButton/>
+                                </div>
+                            )}
+                            {currentSectionIndex < formSections.length - 1 && (
+                                <div className="next-section-button"
+                                     onClick={() => {
+                                         if (checkRequiredFields())
+                                             setCurrentSectionIndex(currentSectionIndex + 1);
+
+                                     }}
+                                >
+                                    <NextSectionButton/>
+                                </div>
+                            )}
+                            {currentSectionIndex === formSections.length - 1 && (
+                                <div className="next-section-button"
+                                     onClick={() => {
+                                         if (checkRequiredFields()) {
+                                             handleSubmitForm()
+                                         }
+                                     }}
+                                >
+                                    <SubmitFormButton/>
+                                </div>
+                            )}
+
+
+                        </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
+
+
+            ) : (
+                <div className="form-page-container" id="page" onClick={() => {
+                    console.log("formResponseObject", formResponseObject)
+                }}>
+                    <div className="form-container">
+                        <div className="form-header">
+                            <div className="form-name">
+                                This form owner is no longer taking responses.
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            )
         )
+
     )
 };
