@@ -1,29 +1,27 @@
 .add-input-container {
-  position: fixed;
-  bottom: 3vw;
-  left: 15vw;
-  margin: 1rem;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   text-align: center;
+  position: relative;
 
 
   .inputs-container {
     position: absolute;
-    z-index: 5;
+    z-index: 10000;
     color: black;
     background-color: white;
     height: 50vh;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
+
     padding: 10px;
     border-radius: 10px;
-    bottom: 0;
     left: 2rem;
+    top: 0;
+
 
     box-shadow: 0 0 10px $theme-color-2;
     @import "../../scrollbars/scrollbar_style.scss";

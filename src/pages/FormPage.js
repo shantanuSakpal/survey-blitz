@@ -9,6 +9,7 @@ import axios from "axios";
 import {setInitialState} from "../reducers/formResponseObjectReducer";
 import {v4 as uuidv4} from "uuid";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 function generateUserId() {
     const existingUserId = localStorage.getItem("userId");
@@ -76,11 +77,14 @@ export const FormPage = () => {
         axios
             .post("http://localhost:3001/saveResponse", requestBody)
             .then((response) => {
+                toast.success(response.data.message)
                 console.log("Success:", response.data);
-                navigate("/")
+                navigate("/responseSubmitted");
             })
             .catch((error) => {
                 console.error("Error:", error);
+                toast.error(error.response.data.message)
+
             });
     };
 
@@ -167,8 +171,10 @@ export const FormPage = () => {
     };
 
     return (
-        formResponseObject && (
-            <div className="form-page-container" id="page">
+        formResponseObject.is_active ? (
+            <div className="form-page-container" id="page" onClick={() => {
+                console.log("formResponseObject", formResponseObject)
+            }}>
                 <div className="form-container">
                     <div className="form-header">
                         <div className="form-name">
@@ -226,6 +232,21 @@ export const FormPage = () => {
             </div>
 
 
+        ) : (
+            <div className="form-page-container" id="page" onClick={() => {
+                console.log("formResponseObject", formResponseObject)
+            }}>
+                <div className="form-container">
+                    <div className="form-header">
+                        <div className="form-name">
+                            This form owner is no longer taking responses.
+                        </div>
+
+                    </div>
+
+                
+                </div>
+            </div>
         )
     )
 };

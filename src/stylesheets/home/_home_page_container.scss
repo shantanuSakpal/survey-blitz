@@ -50,10 +50,20 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 5px;
-        margin: 0 20px;
+        margin: 0 10px;
         font-size: 14px;
         font-weight: bold;
         width: fit-content;
+
+        .active {
+          color: black;
+          width: 4rem;
+        }
+
+        .inactive {
+          color: $theme-color-2;
+          width: 4rem;
+        }
 
 
         @import "../buttons/is_active";

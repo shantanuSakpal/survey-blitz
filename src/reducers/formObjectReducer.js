@@ -5,7 +5,7 @@ const initialState = null;
 
 
 export const formObjectSlice = createSlice({
-    name: "formObjectsArray",
+    name: "formObject",
     initialState,
     reducers: {
         setInitialState: (state, action) => {
@@ -14,6 +14,11 @@ export const formObjectSlice = createSlice({
             return state;
 
         },
+        setIsActiveStatus: (state, action) => {
+            state.is_active = !state.is_active;
+            return state;
+        },
+
 
         addSection: (state, action) => {
             state.form_sections.push(action.payload);
@@ -156,7 +161,8 @@ export const {
     setComponentPropObject,
     handleComponentReorder,
     editFormName,
-    setInitialState
+    setInitialState,
+    setIsActiveStatus
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;

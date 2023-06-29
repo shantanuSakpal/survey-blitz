@@ -7,6 +7,7 @@ import "./stylesheets/index.css";
 import {FormPage} from "./pages/FormPage";
 import {HomePage} from "./pages/HomePage";
 import UserContext from "./context/UserContext";
+import ResponseSubmitted from "./pages/ResponseSubmitted";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -34,6 +35,7 @@ function App() {
                     <Route path="/" element={<Navigate replace to="/signIn"/>}/>
                 )}
                 <Route path="/:id/:form_name" element={<FormPage/>}/>
+                <Route path="/responseSubmitted" element={<ResponseSubmitted/>}/>
                 {
                     !user ? (
                         <>

@@ -13,15 +13,20 @@ function AdminFormsListItems({form}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
-
+    ;
     return (
         <div className="form-card">
 
 
             <label className="switch">
-                <input type="checkbox" className="checkbox"/>
-                <div className="slider"></div>
-                Active
+
+                {
+                    form.formObject.is_active ? (
+                        <div className="active">Active</div>
+                    ) : (
+                        <div className="inactive">Inactive</div>
+                    )
+                }
             </label>
 
 
@@ -32,7 +37,8 @@ function AdminFormsListItems({form}) {
                 <button
                     onClick={() => {
                         dispatch(setInitialState(form.formObject));
-                        localStorage.setItem("currFormId", form.formObject.form_id)
+                        //save the curr form object to local storage
+                        localStorage.setItem("currFormObject", JSON.stringify(form.formObject))
                         navigate("/create-form")
                     }}
                 >

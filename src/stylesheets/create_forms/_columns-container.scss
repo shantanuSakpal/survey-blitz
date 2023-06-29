@@ -1,13 +1,13 @@
 .columns-container {
   display: flex;
-  padding-top: 3rem;
+ 
   height: 100vh;
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
 
 }
- 
+
 @import "left_column/left_column";
 @import "middle_column/middle_column";
 @import "right_column/right_column";

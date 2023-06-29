@@ -35,13 +35,13 @@ body::-webkit-scrollbar-thumb:hover {
   color: white;
   padding: 0.5rem 1rem;
   display: flex;
-  justify-content: space-between;
-  position: fixed;
+  justify-content: center;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   height: max-content;
-  align-content: center;
+  align-items: center;
   z-index: 100;
 }
 .create-forms-navbar .navbar-header {
@@ -51,6 +51,8 @@ body::-webkit-scrollbar-thumb:hover {
   font-weight: 600;
   font-size: 1.3rem;
   align-items: center;
+  position: absolute;
+  left: 0;
 }
 .create-forms-navbar .navbar-header .navbar-logo {
   color: #06d6a0;
@@ -82,7 +84,7 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 1.3rem;
   text-align: center;
   border-radius: 10px;
-  min-width: 20rem;
+  min-width: 50%;
   border: 1px solid #99e2b4;
 }
 .create-forms-navbar .edit-form-name .form-name-input:focus {
@@ -212,6 +214,20 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: red;
   color: white;
 }
+.create-forms-navbar .next-button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: #99e2b4;
+  color: #2C2D32;
+  position: absolute;
+  right: 0;
+  margin: 10px;
+  font-weight: bold;
+}
+.create-forms-navbar .next-button:hover {
+  cursor: pointer;
+  background-color: #06d6a0;
+}
 
 .form-page-container {
   padding: 1rem;
@@ -314,10 +330,18 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 0 20px;
+  margin: 0 10px;
   font-size: 14px;
   font-weight: bold;
   width: fit-content;
+}
+.home-page-container .form-card-container .form-card .switch .active {
+  color: black;
+  width: 4rem;
+}
+.home-page-container .form-card-container .form-card .switch .inactive {
+  color: gray;
+  width: 4rem;
 }
 .home-page-container .form-card-container .form-card .switch .checkbox {
   display: none;
@@ -601,7 +625,6 @@ body::-webkit-scrollbar-thumb:hover {
 
 .columns-container {
   display: flex;
-  padding-top: 3rem;
   height: 100vh;
   overflow: hidden;
   box-sizing: border-box;
@@ -615,53 +638,54 @@ body::-webkit-scrollbar-thumb:hover {
   height: 100%;
   overflow: hidden;
   border-top: 1px solid gray;
-  display: "flex";
-  flex-wrap: "wrap";
-  justify-content: "space-between";
-  margin: "0.5rem 0";
+  display: flex;
+  flex-wrap: wrap;
   padding: 10px;
   box-sizing: border-box;
   position: relative;
 }
-.left-column-container h3 {
-  font-size: 1rem;
-  padding: 0 20px;
-  margin: 10px 0;
+.left-column-container .add-input-button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
-
-.form-components-container {
+.left-column-container .add-input-button-container h3 {
+  height: fit-content;
+}
+.left-column-container .form-components-container {
   padding: 10px;
   overflow-x: auto;
   overflow-y: auto;
-  height: 70%;
+  height: 80%;
+  width: 100%;
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
-.form-components-container .selected {
-  box-shadow: 0 0 5px white;
+.left-column-container .form-components-container .selected {
+  box-shadow: 0 0 5px 2px #99e2b4;
   border-radius: 10px;
 }
-.form-components-container::-webkit-scrollbar {
+.left-column-container .form-components-container::-webkit-scrollbar {
   width: 10px;
   height: 10px;
   padding: 2px;
 }
-.form-components-container::-webkit-scrollbar-track {
+.left-column-container .form-components-container::-webkit-scrollbar-track {
   background: #2C2D32;
   border-radius: 0 10px 10px 0;
 }
-.form-components-container::-webkit-scrollbar-thumb {
+.left-column-container .form-components-container::-webkit-scrollbar-thumb {
   background: #2C2D32;
   border-radius: 10px;
   box-shadow: inset 0 0 10px 10px gray;
   border: solid 3px #2C2D32;
 }
-.form-components-container::-webkit-scrollbar-thumb:hover {
+.left-column-container .form-components-container::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
 }
-
-.component-tree-item {
+.left-column-container .component-tree-item {
   display: flex;
   padding: 5px;
   justify-content: space-between;
@@ -671,26 +695,25 @@ body::-webkit-scrollbar-thumb:hover {
   border: 1px solid #2C2D32;
   transition: all 0.2s ease-out;
 }
-.component-tree-item:hover {
+.left-column-container .component-tree-item:hover {
   cursor: pointer;
   border: 1px solid gray;
 }
-.component-tree-item h4 {
+.left-column-container .component-tree-item h4 {
   font-size: 0.7rem;
   display: inline;
   margin: auto;
   height: max-content;
   font-weight: lighter;
 }
-.component-tree-item .delete-section-button {
+.left-column-container .component-tree-item .delete-section-button {
   scale: 0.8;
 }
-.component-tree-item .component-tree-item-logo {
+.left-column-container .component-tree-item .component-tree-item-logo {
   display: flex;
   align-items: center;
 }
-
-.add-section-button {
+.left-column-container .add-section-button {
   display: flex;
   flex-wrap: wrap;
   width: fit-content;
@@ -703,16 +726,15 @@ body::-webkit-scrollbar-thumb:hover {
   transition: all 0.2s ease-out;
   border-radius: 10px;
 }
-.add-section-button p {
+.left-column-container .add-section-button p {
   font-size: 0.6rem;
   margin: 0 5px;
 }
-.add-section-button:hover {
+.left-column-container .add-section-button:hover {
   cursor: pointer;
   background-color: gray;
 }
-
-.component-tree-section-style {
+.left-column-container .component-tree-section-style {
   margin-bottom: 1.5rem;
   border-radius: 5px;
   padding: 0.5rem;
@@ -722,7 +744,7 @@ body::-webkit-scrollbar-thumb:hover {
   transition: all 0.2s ease-out;
   cursor: pointer;
 }
-.component-tree-section-style .drag-component {
+.left-column-container .component-tree-section-style .drag-component {
   transform: rotate(90deg);
   cursor: move;
   color: rgb(156, 156, 156);
@@ -733,10 +755,10 @@ body::-webkit-scrollbar-thumb:hover {
   height: fit-content;
   border-radius: 10px;
 }
-.component-tree-section-style .drag-component:hover {
+.left-column-container .component-tree-section-style .drag-component:hover {
   color: white;
 }
-.component-tree-section-style .component-tree-section-header {
+.left-column-container .component-tree-section-style .component-tree-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -744,7 +766,7 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 0.9rem;
   margin-bottom: 5px;
 }
-.component-tree-section-style:hover {
+.left-column-container .component-tree-section-style:hover {
   box-shadow: 0 0 10px gray;
 }
 
@@ -780,30 +802,26 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .add-input-container {
-  position: fixed;
-  bottom: 3vw;
-  left: 15vw;
-  margin: 1rem;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
   text-align: center;
+  position: relative;
 }
 .add-input-container .inputs-container {
   position: absolute;
-  z-index: 5;
+  z-index: 10000;
   color: black;
   background-color: white;
   height: 50vh;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   padding: 10px;
   border-radius: 10px;
-  bottom: 0;
   left: 2rem;
+  top: 0;
   box-shadow: 0 0 10px gray;
   /* Track */
   /* Handle */
@@ -1647,6 +1665,74 @@ body::-webkit-scrollbar-thumb:hover {
   border-top: 1px solid gray;
   padding: 0.5rem;
 }
+.right-column-container .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.right-column-container .status .divider {
+  border-right: 1px solid gray;
+  height: 20px;
+  margin: 0 10px;
+}
+.right-column-container .status .switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  width: fit-content;
+  text-align: center;
+}
+.right-column-container .status .switch .active {
+  color: white;
+  width: 3rem;
+}
+.right-column-container .status .switch .inactive {
+  color: gray;
+  width: 3rem;
+}
+.right-column-container .status .switch .checkbox {
+  display: none;
+}
+.right-column-container .status .switch .slider {
+  width: 30px;
+  height: 10px;
+  background-color: lightgray;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 4px solid transparent;
+  transition: 0.3s;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25) inset;
+  cursor: pointer;
+}
+.right-column-container .status .switch .slider::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 100%;
+  background-color: #fff;
+  transform: translateX(0px);
+  border-radius: 10px;
+  transition: 0.3s;
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.25);
+}
+.right-column-container .status .switch .checkbox:checked ~ .slider::before {
+  transform: translateX(20px);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.25);
+}
+.right-column-container .status .switch .checkbox:checked ~ .slider {
+  background-color: #06d6a0;
+}
+.right-column-container .status .switch .checkbox:active ~ .slider::before {
+  transform: translate(0);
+}
 
 .button-style {
   background-color: #99e2b4;
@@ -1656,10 +1742,10 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 0.5rem;
   cursor: pointer;
   transition-duration: 0.25s;
-  width: fit-content;
-  margin: 5px;
+  width: 3rem;
   font-size: small;
   font-weight: bold;
+  text-align: center;
 }
 .button-style:hover {
   background-color: #06d6a0;
@@ -2564,6 +2650,53 @@ body::-webkit-scrollbar-thumb:hover {
   border: 1px solid #D1D5DB;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   cursor: pointer;
+}
+
+.confirm-deactivate-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+.confirm-deactivate-modal .container {
+  margin: auto 10px;
+  display: flex;
+  color: #f8f9fa;
+  flex-direction: column;
+  gap: 20px;
+  width: 20rem;
+  max-width: 90vw;
+  box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
+  height: fit-content;
+  font-family: sans-serif;
+  background-color: #212529;
+  padding: 20px 20px;
+  border-radius: 10px;
+  position: relative;
+}
+.confirm-deactivate-modal .container .close-modal-button {
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: small;
+  margin: 10px;
+  color: #99e2b4;
+}
+.confirm-deactivate-modal .container .close-modal-button:hover {
+  cursor: pointer;
+  color: #06d6a0;
+}
+.confirm-deactivate-modal .error {
+  color: red;
+  font-size: 1rem;
+  margin-top: 5px;
 }
 
 .page-container {

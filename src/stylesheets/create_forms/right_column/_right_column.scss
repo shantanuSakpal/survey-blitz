@@ -5,4 +5,49 @@
   height: 100%;
   border-top: 1px solid $theme-color-2;
   padding: 0.5rem;
+
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .divider {
+      border-right: 1px solid $theme-color-2;
+      height: 20px;
+      margin: 0 10px;
+    }
+
+    .switch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      font-size: 14px;
+      font-weight: bold;
+      width: fit-content;
+      text-align: center;
+
+
+      .active {
+        color: white;
+
+        width: 3rem;
+      }
+
+      .inactive {
+        color: $theme-color-2;
+        width: 3rem;
+      }
+
+
+      @import "../../buttons/is_active";
+
+    }
+  }
+
+
 }

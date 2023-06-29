@@ -1,7 +1,5 @@
 import React from "react";
-import {CloseInputButton} from "../buttons/CloseInputButton";
-import {AddInputButton} from "../buttons/AddInputButton";
-import AddInput from "./AddInput";
+
 import {SectionHeader} from "./inputComponents/SectionHeader";
 import {FormComponentContainer} from "./inputComponents/FormComponentContainer";
 import {useSelector} from "react-redux";
@@ -12,9 +10,7 @@ function FormDisplay() {
     );
 
     const currSectionId = useSelector((state) => state.formObject.currSectionId);
-
-    const addInputState = useSelector((state) => state.formObject.addInputState);
-
+    
 
     return (
         <div id="middle_column" className=" middle-column-container">
@@ -44,21 +40,7 @@ function FormDisplay() {
                     return null;
                 })
             }
-            <div className="add-input-container">
 
-                <AddInput/>
-                {
-                    //if addInputState is true, then show the AddInput component
-                    addInputState ? (
-                        <CloseInputButton/>
-                    ) : (
-                        <AddInputButton currSectionId={currSectionId}/>
-                    )
-                }
-                {/*<h3>*/}
-                {/*    Add Input to Section*/}
-                {/*</h3>*/}
-            </div>
         </div>
     );
 }

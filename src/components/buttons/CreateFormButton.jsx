@@ -28,8 +28,26 @@ function CreateFormButton() {
                      ],
                      currSectionId: date,
                      addInputState: false,
+                     is_active: true,
                  }));
-                 localStorage.setItem("currFormId", date - 1)
+                 localStorage.setItem("currFormObject", JSON.stringify({
+                         form_id: date - 1,
+                         form_name: "",
+                         url: "",
+                         form_description: "",
+                         form_sections: [
+                             {
+                                 section_id: date,
+                                 section_name: "Untitled Section",
+                                 section_components: [],
+                             },
+                         ],
+                         currSectionId: date,
+                         addInputState: false,
+                         is_active: true,
+
+                     })
+                 );
                  navigate("/create-form")
              }}>
             <AddIcon/>

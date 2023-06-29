@@ -8,6 +8,10 @@ import {
     reorderSections,
     setCurrSectionId,
 } from "../../reducers/formObjectReducer";
+import {AddInputButton} from "../buttons/AddInputButton";
+import AddInput from "./AddInput";
+import {CloseInputButton} from "../buttons/CloseInputButton";
+
 
 function FormComponents() {
     const formSectionsArray = useSelector(
@@ -16,7 +20,8 @@ function FormComponents() {
 
     const formObject = useSelector((state) => state.formObject);
 
-    const currSectionId = useSelector((state) => state.formObject.currSectionId);
+    const currSectionId = formObject.currSectionId;
+    const addInputState = formObject.addInputState;
 
     const dispatch = useDispatch();
 
@@ -28,7 +33,7 @@ function FormComponents() {
         dispatch(reorderSections(items));
     };
 
-    const [selectedSectionId, setSelectedSectionId] = useState(null);
+    const [selectedSectionId, setSelectedSectionId] = useState(currSectionId);
 
     const handleSectionClick = (sectionId) => {
         dispatch(setCurrSectionId(sectionId));
@@ -40,8 +45,24 @@ function FormComponents() {
     return (
         <>
             <div className="left-column-container">
-                <h3>Components</h3>
+                <div className="add-input-button-container">
+                    <h3>Components</h3>
+                    <div className="add-input-container">
 
+                        <AddInput/>
+                        {
+                            //if addInputState is true, then show the AddInput component
+                            addInputState ? (
+                                <CloseInputButton/>
+                            ) : (
+                                <AddInputButton currSectionId={currSectionId}/>
+                            )
+                        }
+                        {/*<h3>*/}
+                        {/*    Add Input to Section*/}
+                        {/*</h3>*/}
+                    </div>
+                </div>
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="form-components-container">
                         {(provided) => (

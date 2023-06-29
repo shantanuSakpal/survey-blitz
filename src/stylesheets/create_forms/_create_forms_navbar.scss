@@ -4,14 +4,15 @@
   color: white;
   padding: 0.5rem 1rem;
   display: flex;
-  justify-content: space-between;
-  position: fixed;
+  justify-content: center;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   height: max-content;
-  align-content: center;
+  align-items: center;
   z-index: 100;
+
 
   .navbar-header {
 
@@ -21,6 +22,8 @@
     font-weight: 600;
     font-size: 1.3rem;
     align-items: center;
+    position: absolute;
+    left: 0;
 
 
     .navbar-logo {
@@ -63,7 +66,7 @@
       font-size: 1.3rem;
       text-align: center;
       border-radius: 10px;
-      min-width: 20rem;
+      min-width: 50%;
       border: 1px solid $accent-color-1-light;
 
 
@@ -211,6 +214,7 @@
 
     }
 
+
     .cancel-button {
       margin: 1rem;
       width: fit-content;
@@ -228,6 +232,23 @@
     }
 
 
+  }
+
+  .next-button {
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: $accent-color-1-light;
+    color: $theme-color;
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $accent-color-1-dark;
+    }
   }
 
 }

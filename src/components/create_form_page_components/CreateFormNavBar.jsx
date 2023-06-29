@@ -1,6 +1,4 @@
 import React, {useContext, useEffect, useState} from "react";
-import Button from "../buttons/button";
-import WebStoriesIcon from "@mui/icons-material/WebStories";
 import {useDispatch, useSelector} from "react-redux";
 import {editFormName} from "../../reducers/formObjectReducer";
 import PublishFormModal from "../modals/PublishFormModal";
@@ -11,13 +9,13 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import {toast} from 'react-toastify';
 
 
 function CreateFormNavBar(props) {
     const formObject = useSelector((state) => state.formObject);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log(formObject)
 
     const [url, setUrl] = useState('');
 
@@ -38,15 +36,18 @@ function CreateFormNavBar(props) {
             };
 
             // Add the form to the database
-            await axios.post('http://localhost:3001/admin/createForm', requestBody);
-            console.log('Form stored successfully');
+            const response = await axios.post('http://localhost:3001/admin/createForm', requestBody);
+            console.log('Form stored successfully', response);
+            toast.success(response.data.message);
             navigate("/")
         } catch (error) {
+
             if (error.response && error.response.status === 400) {
                 setIsUpdateModalOpen(true);
                 console.log("open modal")
             } else {
                 console.error('Error:', error);
+                toast.error(error.response.data.message)
             }
         }
     };
@@ -59,10 +60,12 @@ function CreateFormNavBar(props) {
             };
 
             // Add the form to the database
-            await axios.post('http://localhost:3001/admin/updateForm', requestBody);
+            const response = await axios.post('http://localhost:3001/admin/updateForm', requestBody);
             console.log('Form stored successfully');
+            toast.success(response.data.message)
             navigate("/")
         } catch (error) {
+            toast.error(error.response.data.message)
             console.error('Error:', error);
         }
     }
@@ -114,8 +117,8 @@ function CreateFormNavBar(props) {
                 <div className="icon"><BorderColorIcon/></div>
             </div>
 
-            <div onClick={handleNext}>
-                <Button name={"Next"}/>
+            <div className="next-button" onClick={handleNext}>
+                Next
             </div>
 
             {isModalOpen && (
@@ -135,6 +138,7 @@ function CreateFormNavBar(props) {
                         setIsUpdateModalOpen={setIsUpdateModalOpen}/>
                 </div>
             )}
+
         </div>
     );
 }
