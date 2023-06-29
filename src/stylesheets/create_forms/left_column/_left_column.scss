@@ -6,21 +6,18 @@
   overflow: hidden;
   border-top: 1px solid $theme-color-2;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
   flex-wrap: wrap;
   padding: 10px;
-  box-sizing: border-box;
-  position: relative;
 
-  .add-input-button-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
 
-    h3 {
-      height: fit-content;
-    }
-
+  p {
+    font-size: smaller;
+    font-weight: bold;
+    height: fit-content;
 
   }
 
@@ -29,8 +26,9 @@
     padding: 10px;
     overflow-x: auto;
     overflow-y: auto;
-    height: 80%;
+    height: 70%;
     width: 100%;
+    box-sizing: border-box;
 
 
     .selected {

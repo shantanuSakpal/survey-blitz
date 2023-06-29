@@ -5,11 +5,13 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease-out;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 0.5rem;
   color: black;
   background-color: white;
-  box-shadow: 0 0 10px $theme-color-2;
+
+  margin: 20px auto;
+  border: 2px solid $theme-color;
 
   p {
     font-size: 0.6rem;
@@ -18,7 +20,9 @@
 
   &:hover {
     cursor: pointer;
-    background-color: $theme-color;
-    color: white;
+    background-color: $accent-color-1-dark;
+    border-color: $accent-color-1-dark;
+    box-shadow: 0 0 5px 5px $accent-color-1-light;
+    color: black;
   }
 }

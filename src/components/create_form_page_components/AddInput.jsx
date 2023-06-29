@@ -1,95 +1,87 @@
-import React from "react";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-import ShortTextIcon from "@mui/icons-material/ShortText";
-import SubjectIcon from "@mui/icons-material/Subject";
-import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
-import EventIcon from "@mui/icons-material/Event";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
-import {useSelector} from "react-redux";
-import {useDispatch} from "react-redux";
-import {addSectionComponent, changeAddInputState} from "../../reducers/formObjectReducer";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import {
+    CheckCircleOutline,
+    RadioButtonChecked,
+    ShortText,
+    Subject,
+    ArrowDropDownCircle,
+    Event,
+    AccessTime,
+    UploadFile,
+} from "@mui/icons-material";
+import {changeInputType} from "../../reducers/formObjectReducer";
 
 export default function AddInput() {
     const currSectionId = useSelector((state) => state.formObject.currSectionId);
-    const addInputState = useSelector((state) => state.formObject.addInputState);
-
+    const currComponentId = useSelector((state) => state.formObject.currComponentId);
     const dispatch = useDispatch();
+    const formObject = useSelector((state) => state.formObject);
+    //get the component type of the current component
+    const currComponentType = formObject.form_sections
+        .find((section) => section.section_id === currSectionId)
+        .section_components.find((component) => component.component_id === currComponentId)
+        .component_type;
 
-    // Rest of the component code...
 
-    const addInput = (inputType) => {
-        let component = {
-            component_id: Date.now(),
-            component_type: inputType,
-            is_required: false,
-            component_prop_object: {},
-        };
-        dispatch(
-            addSectionComponent({
-                section_id: currSectionId,
-                component: component,
-            })
-        );
+    const handleOptionChange = (event) => {
+       
+        dispatch(changeInputType({
+            section_id: currSectionId,
+            component_id: currComponentId,
+            component_type: event.target.value
+        }));
     };
 
+
     const inputOptions = [
-        {
-            id: "short_text",
-            label: "Short text",
-            icon: <ShortTextIcon fontSize="small"/>,
-        },
-        {
-            id: "long_text",
-            label: "Long text",
-            icon: <SubjectIcon fontSize="small"/>,
-        },
-        {
-            id: "Checkboxes",
-            label: "Checkboxes",
-            icon: <CheckCircleOutlineIcon fontSize="small"/>,
-        },
-        {
-            id: "Multiple_choice",
-            label: "Multiple choice",
-            icon: <RadioButtonCheckedIcon fontSize="small"/>,
-        },
-        {
-            id: "dropdown",
-            label: "Dropdown",
-            icon: <ArrowDropDownCircleIcon fontSize="small"/>,
-        },
-        {id: "Date", label: "Date", icon: <EventIcon fontSize="small"/>},
-        {id: "Time", label: "Time", icon: <AccessTimeIcon fontSize="small"/>},
-        {
-            id: "Upload_file",
-            label: "Upload file",
-            icon: <UploadFileIcon fontSize="small"/>,
-        },
+        {id: "short_text", label: "Short text", icon: <ShortText fontSize="smaller"/>},
+        {id: "long_text", label: "Long text", icon: <Subject fontSize="smaller"/>},
+        {id: "checkboxes", label: "Checkboxes", icon: <CheckCircleOutline fontSize="smaller"/>},
+        {id: "multiple_choice", label: "Multiple choice", icon: <RadioButtonChecked fontSize="smaller"/>},
+        {id: "dropdown", label: "Dropdown", icon: <ArrowDropDownCircle fontSize="smaller"/>},
+        {id: "date", label: "Date", icon: <Event fontSize="smaller"/>},
+        {id: "time", label: "Time", icon: <AccessTime fontSize="smaller"/>},
+        {id: "upload_file", label: "Upload file", icon: <UploadFile fontSize="smaller"/>},
     ];
+    const selectClasses = {
+        // Add your custom classes here
+        root: "custom-root-class",
+        select: "custom-select-class",
+    };
+
 
     return (
-        <div id="addInput" className="inputs-container hide">
+        <div id="addInput" className="inputs-container">
             <div className="header-and-close-input-container">
-                <h3>Select the input type</h3>
+                <h3>Change the input type</h3>
             </div>
-            {inputOptions.map((option) => (
-                <div
-                    key={option.id}
-                    id={option.id.toLowerCase()}
-                    className="input-name-and-logo-container"
-                    onClick={() => {
-                        addInput(option.id.toLowerCase());
-                        document.querySelector("#addInput").classList.toggle("hide");
-                        dispatch(changeAddInputState(!addInputState));
+            <FormControl>
+                <Select
+                    classes={selectClasses}
 
-                    }}
+                    value={currComponentType}
+                    onChange={handleOptionChange}
+                    displayEmpty
+                    inputProps={{"aria-label": "Select input type"}}
                 >
-                    {option.icon}
-                    <h4>{option.label}</h4>
-                </div>
-            ))}
+                    <MenuItem value="" disabled>
+                        Select an option
+                    </MenuItem>
+                    {inputOptions.map((option) => (
+                        <MenuItem key={option.id} value={option.id}>
+                            {option.icon}
+                            <div style={{marginLeft: "10px"}}>
+                                {option.label}
+                            </div>
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
         </div>
     );
 }

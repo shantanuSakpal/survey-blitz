@@ -117,8 +117,9 @@ function CreateFormNavBar(props) {
                 <div className="icon"><BorderColorIcon/></div>
             </div>
 
-            <div className="next-button" onClick={handleNext}>
-                Next
+            <div className="nav-buttons">
+                <a href="/">Home</a>
+                <div className="next-button" onClick={handleNext}>Next</div>
             </div>
 
             {isModalOpen && (

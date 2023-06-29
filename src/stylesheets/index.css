@@ -214,19 +214,33 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: red;
   color: white;
 }
-.create-forms-navbar .next-button {
+.create-forms-navbar .nav-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  margin: 10px;
+  gap: 20px;
+}
+.create-forms-navbar .nav-buttons .next-button {
   padding: 5px 10px;
   border-radius: 10px;
   background-color: #99e2b4;
   color: #2C2D32;
-  position: absolute;
-  right: 0;
-  margin: 10px;
   font-weight: bold;
 }
-.create-forms-navbar .next-button:hover {
+.create-forms-navbar .nav-buttons .next-button:hover {
   cursor: pointer;
   background-color: #06d6a0;
+}
+.create-forms-navbar .nav-buttons a {
+  color: #99e2b4;
+  text-decoration: none;
+  font-weight: bold;
+}
+.create-forms-navbar .nav-buttons a:hover {
+  color: #06d6a0;
 }
 
 .form-page-container {
@@ -639,26 +653,25 @@ body::-webkit-scrollbar-thumb:hover {
   overflow: hidden;
   border-top: 1px solid gray;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
   flex-wrap: wrap;
   padding: 10px;
-  box-sizing: border-box;
-  position: relative;
 }
-.left-column-container .add-input-button-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-.left-column-container .add-input-button-container h3 {
+.left-column-container p {
+  font-size: smaller;
+  font-weight: bold;
   height: fit-content;
 }
 .left-column-container .form-components-container {
   padding: 10px;
   overflow-x: auto;
   overflow-y: auto;
-  height: 80%;
+  height: 70%;
   width: 100%;
+  box-sizing: border-box;
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -799,86 +812,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .middle-column-container::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
-}
-
-.add-input-container {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-}
-.add-input-container .inputs-container {
-  position: absolute;
-  z-index: 10000;
-  color: black;
-  background-color: white;
-  height: 50vh;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  border-radius: 10px;
-  left: 2rem;
-  top: 0;
-  box-shadow: 0 0 10px gray;
-  /* Track */
-  /* Handle */
-  /* Handle on hover */
-}
-.add-input-container .inputs-container::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  padding: 2px;
-}
-.add-input-container .inputs-container::-webkit-scrollbar-track {
-  background: white;
-  border-radius: 0 10px 10px 0;
-}
-.add-input-container .inputs-container::-webkit-scrollbar-thumb {
-  background: white;
-  border-radius: 10px;
-  box-shadow: inset 0 0 10px 10px gray;
-  border: solid 3px white;
-}
-.add-input-container .inputs-container::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 10px 10px rgb(102, 102, 102);
-}
-.add-input-container .inputs-container .input-name-and-logo-container {
-  display: flex;
-  gap: 5px;
-  text-align: center;
-  padding: 5px;
-  height: max-content;
-  border: 1px solid white;
-  align-content: center;
-  margin: 5px 0;
-  border-radius: 10px;
-  transition: all 0.2s ease-out;
-}
-.add-input-container .inputs-container .input-name-and-logo-container:hover {
-  cursor: pointer;
-  border-color: gray;
-}
-.add-input-container .inputs-container .input-name-and-logo-container h4 {
-  font-size: 0.7rem;
-  display: inline;
-  margin: auto;
-  height: max-content;
-}
-.add-input-container .inputs-container h3 {
-  font-size: 0.6rem;
-  margin: 5px;
-  display: inline;
-}
-.add-input-container .inputs-container .header-and-close-input-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.add-input-container .hide {
-  display: none;
 }
 
 .form-component-container {
@@ -1664,6 +1597,9 @@ body::-webkit-scrollbar-thumb:hover {
   height: 100%;
   border-top: 1px solid gray;
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .right-column-container .status {
   display: flex;
@@ -1733,6 +1669,32 @@ body::-webkit-scrollbar-thumb:hover {
 .right-column-container .status .switch .checkbox:active ~ .slider::before {
   transform: translate(0);
 }
+.right-column-container .inputs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.right-column-container .inputs-container .header-and-close-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.right-column-container .inputs-container h3 {
+  font-size: 0.7rem;
+  margin: 5px;
+  display: inline;
+}
+.right-column-container .inputs-container .custom-root-class {
+  color: white;
+}
+.right-column-container .inputs-container .custom-select-class {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  border: 1px gray solid;
+  border-radius: 10px;
+}
 
 .button-style {
   background-color: #99e2b4;
@@ -1784,11 +1746,12 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease-out;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 0.5rem;
   color: black;
   background-color: white;
-  box-shadow: 0 0 10px gray;
+  margin: 20px auto;
+  border: 2px solid #2C2D32;
 }
 .add-input-button p {
   font-size: 0.6rem;
@@ -1796,8 +1759,10 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .add-input-button:hover {
   cursor: pointer;
-  background-color: #2C2D32;
-  color: white;
+  background-color: #06d6a0;
+  border-color: #06d6a0;
+  box-shadow: 0 0 5px 5px #99e2b4;
+  color: black;
 }
 
 .duplicate-component-button {

@@ -5,6 +5,9 @@
   height: 100%;
   border-top: 1px solid $theme-color-2;
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   .status {
     display: flex;
@@ -48,6 +51,8 @@
 
     }
   }
+
+  @import "add_inputs_container";
 
 
 }

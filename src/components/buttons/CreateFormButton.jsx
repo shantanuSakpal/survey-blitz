@@ -27,7 +27,7 @@ function CreateFormButton() {
                          },
                      ],
                      currSectionId: date,
-                     addInputState: false,
+                     currComponentId: null,
                      is_active: true,
                  }));
                  localStorage.setItem("currFormObject", JSON.stringify({
@@ -43,7 +43,7 @@ function CreateFormButton() {
                              },
                          ],
                          currSectionId: date,
-                         addInputState: false,
+                         currComponentId: null,
                          is_active: true,
 
                      })

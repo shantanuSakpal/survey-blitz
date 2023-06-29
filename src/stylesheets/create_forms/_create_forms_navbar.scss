@@ -234,20 +234,40 @@
 
   }
 
-  .next-button {
-    padding: 5px 10px;
-    border-radius: 10px;
-    background-color: $accent-color-1-light;
-    color: $theme-color;
+  .nav-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     right: 0;
     margin: 10px;
-    
-    font-weight: bold;
+    gap: 20px;
 
-    &:hover {
-      cursor: pointer;
-      background-color: $accent-color-1-dark;
+    .next-button {
+      padding: 5px 10px;
+      border-radius: 10px;
+      background-color: $accent-color-1-light;
+      color: $theme-color;
+
+
+      font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $accent-color-1-dark;
+      }
+    }
+
+    a {
+      color: $accent-color-1-light;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover {
+        color: $accent-color-1-dark;
+      }
+
+
     }
   }
 

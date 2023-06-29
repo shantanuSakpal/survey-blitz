@@ -34,7 +34,7 @@ export const FormPage = () => {
         const formUrl = formUrlArray[formUrlArray.length - 2] + "/" + formUrlArray[formUrlArray.length - 1];
         console.log("formUrl", formUrl);
         const currUserId = localStorage.getItem("userId")
-
+        dispatch(setInitialState(null));
 
         const fetchForm = async () => {
 
@@ -63,10 +63,10 @@ export const FormPage = () => {
     }
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
 
+    console.log("formResponseObject", formResponseObject)
 
     const handleSubmitForm = () => {
         console.log("submitting form...")
-        console.log("formResponseObject", formResponseObject)
         //get userId from local storage
 
         const requestBody = {
@@ -171,7 +171,7 @@ export const FormPage = () => {
     };
 
     return (
-        formResponseObject.is_active ? (
+        formResponseObject && formResponseObject.is_active ? (
             <div className="form-page-container" id="page" onClick={() => {
                 console.log("formResponseObject", formResponseObject)
             }}>
@@ -244,7 +244,7 @@ export const FormPage = () => {
 
                     </div>
 
-                
+
                 </div>
             </div>
         )

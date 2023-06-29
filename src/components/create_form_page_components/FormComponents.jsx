@@ -4,13 +4,10 @@ import {SectionComponent} from "./SectionComponent";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import {useSelector, useDispatch} from "react-redux";
 import {
-    changeAddInputState,
+    
     reorderSections,
     setCurrSectionId,
 } from "../../reducers/formObjectReducer";
-import {AddInputButton} from "../buttons/AddInputButton";
-import AddInput from "./AddInput";
-import {CloseInputButton} from "../buttons/CloseInputButton";
 
 
 function FormComponents() {
@@ -21,7 +18,6 @@ function FormComponents() {
     const formObject = useSelector((state) => state.formObject);
 
     const currSectionId = formObject.currSectionId;
-    const addInputState = formObject.addInputState;
 
     const dispatch = useDispatch();
 
@@ -37,7 +33,7 @@ function FormComponents() {
 
     const handleSectionClick = (sectionId) => {
         dispatch(setCurrSectionId(sectionId));
-        dispatch(changeAddInputState(false));
+
         setSelectedSectionId(sectionId);
         console.log("formObject --------> ", formObject);
     };
@@ -45,24 +41,10 @@ function FormComponents() {
     return (
         <>
             <div className="left-column-container">
-                <div className="add-input-button-container">
-                    <h3>Components</h3>
-                    <div className="add-input-container">
 
-                        <AddInput/>
-                        {
-                            //if addInputState is true, then show the AddInput component
-                            addInputState ? (
-                                <CloseInputButton/>
-                            ) : (
-                                <AddInputButton currSectionId={currSectionId}/>
-                            )
-                        }
-                        {/*<h3>*/}
-                        {/*    Add Input to Section*/}
-                        {/*</h3>*/}
-                    </div>
-                </div>
+                <p>Components</p>
+
+
                 <DragDropContext onDragEnd={onDragEnd}>
                     <Droppable droppableId="form-components-container">
                         {(provided) => (
@@ -101,11 +83,12 @@ function FormComponents() {
                                         );
                                     })}
                                 {provided.placeholder}
-                                <AddSectionButton/>
                             </div>
                         )}
                     </Droppable>
                 </DragDropContext>
+                <AddSectionButton/>
+
             </div>
         </>
     );

@@ -1,0 +1,39 @@
+
+.inputs-container {
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .header-and-close-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  h3 {
+    font-size: 0.7rem;
+    margin: 5px;
+    display: inline;
+  }
+
+  .custom-root-class {
+    color: white;
+  }
+
+  .custom-select-class {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    border: 1px $theme-color-2 solid;
+    border-radius: 10px;
+  }
+
+
+}
+
+
+
+

@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import HomePageNavbar from "../components/home_page_components/HomePageNavbar";
 import {useDispatch, useSelector} from "react-redux";
 import {setInitialState} from "../reducers/adminFormsReducer";
+import {ToastContainer} from "react-toastify";
 
 export const HomePage = () => {
     const {user, setUser} = useContext(UserContext);
@@ -69,6 +70,7 @@ export const HomePage = () => {
                 <FormsContainer/>
 
             </div>
+            <ToastContainer position="top-right" autoClose={2000}/>
         </>
 
     );

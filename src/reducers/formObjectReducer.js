@@ -14,7 +14,7 @@ export const formObjectSlice = createSlice({
             return state;
 
         },
-        setIsActiveStatus: (state, action) => {
+        setIsActiveStatus: (state) => {
             state.is_active = !state.is_active;
             return state;
         },
@@ -92,8 +92,8 @@ export const formObjectSlice = createSlice({
             });
         },
 
-        changeAddInputState: (state, action) => {
-            state.addInputState = action.payload;
+        setCurrComponent: (state, action) => {
+            state.currComponentId = action.payload;
         },
 
         updateSectionName: (state, action) => {
@@ -142,6 +142,19 @@ export const formObjectSlice = createSlice({
         editFormName: (state, action) => {
             state.form_name = action.payload;
 
+        },
+        //change input type
+
+        changeInputType: (state, action) => {
+            state.form_sections.forEach((section) => {
+                if (section.section_id === action.payload.section_id) {
+                    section.section_components.forEach((component) => {
+                        if (component.component_id === action.payload.component_id) {
+                            component.component_type = action.payload.component_type;
+                        }
+                    });
+                }
+            });
         }
     },
 });
@@ -154,7 +167,7 @@ export const {
     addSectionComponent,
     removeSectionComponent,
     setCurrSectionId,
-    changeAddInputState,
+    setCurrComponent,
     updateSectionName,
     duplicateSectionComponent,
     updateComponentIsRequired,
@@ -162,7 +175,8 @@ export const {
     handleComponentReorder,
     editFormName,
     setInitialState,
-    setIsActiveStatus
+    setIsActiveStatus,
+    changeInputType
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;

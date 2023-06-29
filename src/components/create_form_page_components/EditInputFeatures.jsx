@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setInitialState, setIsActiveStatus} from "../../reducers/formObjectReducer";
 import ConfirmDeactivateForm from "../modals/ConfirmDeactivateForm";
+import AddInput from "./AddInput";
 
 function EditInputFeatures(props) {
     const formObject = useSelector(
@@ -15,6 +16,7 @@ function EditInputFeatures(props) {
         dispatch(setIsActiveStatus())
         setConfirmDeactivateModal(false)
     }
+    console.log(formObject.form_sections[0].section_components)
     return (
         <div className="column right-column-container"
              onClick={() => console.log("formObject --------> ", formObject)}
@@ -47,6 +49,13 @@ function EditInputFeatures(props) {
 
                 </label>
             </div>
+
+            {
+                formObject.form_sections[0].section_components.length > 0 && (
+                    <AddInput/>
+                )
+            }
+
             {
                 confirmDeactivateModal && formObject.is_active && (
                     <ConfirmDeactivateForm

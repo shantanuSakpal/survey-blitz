@@ -3,6 +3,7 @@ import React from "react";
 import {SectionHeader} from "./inputComponents/SectionHeader";
 import {FormComponentContainer} from "./inputComponents/FormComponentContainer";
 import {useSelector} from "react-redux";
+import {AddInputButton} from "../buttons/AddInputButton";
 
 function FormDisplay() {
     const formSectionsArray = useSelector(
@@ -10,7 +11,7 @@ function FormDisplay() {
     );
 
     const currSectionId = useSelector((state) => state.formObject.currSectionId);
-    
+
 
     return (
         <div id="middle_column" className=" middle-column-container">
@@ -40,6 +41,7 @@ function FormDisplay() {
                     return null;
                 })
             }
+            <AddInputButton/>
 
         </div>
     );
