@@ -10,16 +10,20 @@ function EditInputFeatures(props) {
     );
     const dispatch = useDispatch();
     const [confirmDeactivateModal, setConfirmDeactivateModal] = useState(false);
+    const currSectionId = formObject.currSectionId
+    const currSectionIndex = formObject.form_sections.findIndex(
+        (section) => section.section_id === currSectionId
+    );
+
 
     const handleDeactivateForm = () => {
 
         dispatch(setIsActiveStatus())
         setConfirmDeactivateModal(false)
     }
-    console.log(formObject.form_sections[0].section_components)
     return (
         <div className="column right-column-container"
-             onClick={() => console.log("formObject --------> ", formObject)}
+
         >
             <div className="status">
                 <div>Status</div>
@@ -51,9 +55,9 @@ function EditInputFeatures(props) {
             </div>
 
             {
-                formObject.form_sections[0].section_components.length > 0 && (
+                (currSectionIndex !== -1 && formObject.form_sections[currSectionIndex].section_components.length > 0) ? (
                     <AddInput/>
-                )
+                ) : null
             }
 
             {

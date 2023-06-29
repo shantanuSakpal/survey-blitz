@@ -2,9 +2,15 @@
   background-color: white;
   padding: 0.5rem;
   border-radius: 10px;
-  border: 1px solid lightgray;
   margin: 10px 0;
   position: relative;
+  transition: all 0.2s ease-out;
+  border: 1px solid lightgray;
+
+
+  &:hover {
+    border: 1px solid $accent-color-1-dark;
+  }
 
   .required-question {
     color: red;
@@ -13,9 +19,14 @@
     right: 20px;
     font-size: 0.7rem;
 
+
   }
 
 
+}
+
+.highlight {
+  box-shadow: 0 0 5px 2px $accent-color-1-dark;
 }
 
 .drag-component {

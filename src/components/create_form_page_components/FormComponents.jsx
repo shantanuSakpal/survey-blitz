@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import {AddSectionButton} from "../buttons/AddSectionButton";
 import {SectionComponent} from "./SectionComponent";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import {useSelector, useDispatch} from "react-redux";
 import {
-    
-    reorderSections,
+
+    reorderSections, setCurrComponent,
     setCurrSectionId,
 } from "../../reducers/formObjectReducer";
 
@@ -15,9 +15,6 @@ function FormComponents() {
         (state) => state.formObject.form_sections
     );
 
-    const formObject = useSelector((state) => state.formObject);
-
-    const currSectionId = formObject.currSectionId;
 
     const dispatch = useDispatch();
 
@@ -29,14 +26,21 @@ function FormComponents() {
         dispatch(reorderSections(items));
     };
 
-    const [selectedSectionId, setSelectedSectionId] = useState(currSectionId);
 
     const handleSectionClick = (sectionId) => {
+        const currSectionIndex = formSectionsArray.findIndex(
+            (section) => section.section_id === sectionId
+        );
+        let currComponentId = null;
+        if (formSectionsArray[currSectionIndex].section_components.length !== 0) {
+            currComponentId = formSectionsArray[currSectionIndex].section_components[0].component_id
+        }
         dispatch(setCurrSectionId(sectionId));
+        localStorage.setItem("currSectionId", sectionId)
+        dispatch(setCurrComponent(currComponentId))
 
-        setSelectedSectionId(sectionId);
-        console.log("formObject --------> ", formObject);
     };
+
 
     return (
         <>
@@ -55,7 +59,7 @@ function FormComponents() {
                             >
                                 {formSectionsArray &&
                                     formSectionsArray.map((component, index) => {
-                                        const isSelected = component.section_id === selectedSectionId;
+
                                         return (
                                             <Draggable
                                                 key={component.section_id}
@@ -64,7 +68,7 @@ function FormComponents() {
                                             >
                                                 {(provided) => (
                                                     <div
-                                                        className={`section-component ${isSelected ? "selected" : ""}`}
+                                                        className={`section-component`}
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
                                                         ref={provided.innerRef}

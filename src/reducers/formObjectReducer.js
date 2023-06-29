@@ -28,6 +28,7 @@ export const formObjectSlice = createSlice({
             state.form_sections = state.form_sections.filter(
                 (section) => section.section_id !== action.payload
             );
+            state.currSectionId = state.form_sections[0].section_id;
         },
 
         setCurrSectionId: (state, action) => {

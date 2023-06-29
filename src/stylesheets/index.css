@@ -677,7 +677,7 @@ body::-webkit-scrollbar-thumb:hover {
   /* Handle on hover */
 }
 .left-column-container .form-components-container .selected {
-  box-shadow: 0 0 5px 2px #99e2b4;
+  border: 3px solid #06d6a0;
   border-radius: 10px;
 }
 .left-column-container .form-components-container::-webkit-scrollbar {
@@ -818,9 +818,13 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: white;
   padding: 0.5rem;
   border-radius: 10px;
-  border: 1px solid lightgray;
   margin: 10px 0;
   position: relative;
+  transition: all 0.2s ease-out;
+  border: 1px solid lightgray;
+}
+.form-component-container:hover {
+  border: 1px solid #06d6a0;
 }
 .form-component-container .required-question {
   color: red;
@@ -828,6 +832,10 @@ body::-webkit-scrollbar-thumb:hover {
   top: 10px;
   right: 20px;
   font-size: 0.7rem;
+}
+
+.highlight {
+  box-shadow: 0 0 5px 2px #06d6a0;
 }
 
 .drag-component {

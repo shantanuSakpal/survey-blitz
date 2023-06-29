@@ -33,12 +33,12 @@ export const FormComponentContainer = ({component_id, component_type}) => {
             <Droppable droppableId="components">
                 {(provided) => (
                     <div
-                        className="form-component-container"
+                        className={`form-component-container ${currComponentId === component_id ? 'highlight' : ''}`}
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                         onClick={() => {
                             dispatch(setCurrComponent(component_id));
-                            console.log(currComponentId)
+
                         }}
                     >
                         {provided.placeholder}

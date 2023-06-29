@@ -18,29 +18,33 @@ export const SectionComponent = ({section_id, index}) => {
     const dispatch = useDispatch();
 
     return (
-        <div id={section_id} className="component-tree-section-style">
-            <div className="drag-component">
-                <DragIndicatorIcon/>
-            </div>
+        <div id={section_id}
+             className={`component-tree-section-style  ${currSectionId === section_id ? "selected" : ""}`}>
+            {
+                formSectionsArray.length > 1 && (
+                    <div className="drag-component">
+                        <DragIndicatorIcon/>
+                    </div>
+                )
+            }
+
             <div className="component-tree-section-header">
-                <div className="component-tree-section-name">
-                    {formSectionsArray[index].section_name}
-                </div>
+                {
+                    formSectionsArray.length > 1 && (
+                        <div className="component-tree-section-name">
+                            {formSectionsArray[index].section_name}
+                        </div>
+                    )
+                }
                 <div
                     className="delete-section-button"
                     onClick={
                         //delete the item from the form
                         () => {
+                            localStorage.setItem("currSectionId", section_id)
                             dispatch(removeSection(section_id));
                             // If the component being removed is the current component, set the current component to the first component in the form
 
-                            if (section_id === currSectionId) {
-                                dispatch(setCurrSectionId(formSectionsArray[0].section_id));
-                            }
-
-                            //if the component being removed is the first component in the form, set the current component to the next component in the form
-
-                            // console.log("deleted section id:", section_id);
                         }
                     }
                 >
