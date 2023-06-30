@@ -5,6 +5,8 @@ function ResponseSubmitted(props) {
         <div>
 
             Your response has been submitted! Thank you!
+            <br/>
+            <a href="/">Back Home</a>
         </div>
     );
 }

@@ -82,7 +82,6 @@ export const ComponentTreeItem = ({
                 onClick={
                     //delete the item from the form
                     () => {
-                        console.log("sdafdf")
                         dispatch(
                             removeSectionComponent({
                                 component_id: component_id,

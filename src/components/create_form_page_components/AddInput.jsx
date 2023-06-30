@@ -22,14 +22,20 @@ export default function AddInput() {
     const dispatch = useDispatch();
     const formObject = useSelector((state) => state.formObject);
     //get the component type of the current component
-    const currComponentType = formObject.form_sections
+    let currComponent = formObject.form_sections
         .find((section) => section.section_id === currSectionId)
-        .section_components.find((component) => component.component_id === currComponentId)
-        .component_type;
+        .section_components.find((component) => component.component_id === currComponentId);
+
+    if (currComponent === undefined) {
+        currComponent = formObject.form_sections
+            .find((section) => section.section_id === currSectionId)
+            .section_components[0];
+    }
+    const currComponentType = currComponent.component_type;
 
 
     const handleOptionChange = (event) => {
-       
+
         dispatch(changeInputType({
             section_id: currSectionId,
             component_id: currComponentId,

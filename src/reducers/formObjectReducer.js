@@ -56,6 +56,9 @@ export const formObjectSlice = createSlice({
                     );
                 }
             });
+            state.currComponentId = state.form_sections
+                .find((section) => section.section_id === action.payload.section_id)
+                .section_components[0].component_id
         },
 
         duplicateSectionComponent: (state, action) => {
