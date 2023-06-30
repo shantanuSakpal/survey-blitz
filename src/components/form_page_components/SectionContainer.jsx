@@ -25,7 +25,7 @@ function SectionContainer({currentSectionIndex}) {
                              className="form-component-container">
                             {
                                 component.is_required &&
-                                <div className="required-question">This is a required question</div>
+                                <div className="required-question">* Required</div>
                             }
                             {component.component_type === "short_text" ? (
                                 <ShortTextInput

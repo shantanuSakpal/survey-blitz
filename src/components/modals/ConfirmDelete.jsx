@@ -4,39 +4,49 @@ import axios from "axios";
 import userContext from "../../context/UserContext";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteForm} from "../../reducers/adminFormsReducer";
+import {removeSection} from "../../reducers/formObjectReducer";
 
-export default function ConfirmDelete({what, setDeleteModalOpen, form}) {
+export default function ConfirmDelete({what, setDeleteModalOpen, currSectionId, form}) {
     const {user} = useContext(userContext);
-    const forms = useSelector(state => state.adminFormsArray);
     const dispatch = useDispatch();
     const handleDelete = async () => {
+        if (what === "section") {
+            localStorage.setItem("currSectionId", currSectionId)
+            dispatch(removeSection(currSectionId));
+            // If the component being removed is the current component, set the current component to the first component in the form
 
-        try {
-            const {form_id, admin_id} = form;
-            const token = user.token; // Replace with the actual token
+        } else {
+            try {
+                const {form_id, admin_id} = form;
+                console.log(form_id, admin_id)
+                const token = user.token; // Replace with the actual token
 
-            const response = await axios.post('http://localhost:3001/admin/deleteForm', {
-                form_id,
-                admin_id,
-                token,
-            });
 
-            if (response.status === 200) {
-                toast.success('Form deleted successfully');
-                dispatch(deleteForm(form_id));
-                // Additional actions after successful deletion
-            } else {
-                console.log(response);
+                const response = await axios.post('http://localhost:3001/admin/deleteForm', {
+                    form_id,
+                    admin_id,
+                    token,
+                });
+
+                if (response.status === 200) {
+                    toast.success('Form deleted successfully');
+                    dispatch(deleteForm(form_id));
+                    // Additional actions after successful deletion
+                } else {
+                    console.log(response);
+                    toast.error('Error deleting form');
+                    // Additional error handling
+                }
+            } catch (error) {
+                console.log(error);
                 toast.error('Error deleting form');
                 // Additional error handling
+            } finally {
+                setDeleteModalOpen(false);
             }
-        } catch (error) {
-            console.log(error);
-            toast.error('Error deleting form');
-            // Additional error handling
-        } finally {
-            setDeleteModalOpen(false);
         }
+
+
     };
 
     return (

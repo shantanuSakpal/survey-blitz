@@ -26,14 +26,24 @@
 
   }
 
-  .icon {
-    width: fit-content;
-    height: fit-content;
-    scale: 0.8;
+  .icons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
     position: absolute;
     right: 10px;
     top: 5px;
+
+    .icon {
+
+      width: fit-content;
+      height: fit-content;
+      scale: 0.8;
+
+    }
   }
+
 
   label {
     color: #999;

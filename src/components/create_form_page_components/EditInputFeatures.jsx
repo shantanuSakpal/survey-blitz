@@ -26,7 +26,7 @@ function EditInputFeatures(props) {
 
         >
             <div className="status">
-                <div>Status</div>
+                <div>Form Status</div>
                 <div className="divider"></div>
                 <label className="switch">
                     {

@@ -20,6 +20,14 @@ export const ComponentTreeItem = ({
                                   }) => {
     //a function to remove the component from the form using component_id
     const dispatch = useDispatch()
+    const formSectionsArray = useSelector(
+        (state) => state.formObject.form_sections
+    );
+
+    // Find the component in the formSectionsArray
+    const currSection = formSectionsArray
+        .find((section) => section.section_id === section_id)
+
     return (
         <div className="component-tree-item">
             <div className="component-tree-item-logo">
@@ -77,23 +85,27 @@ export const ComponentTreeItem = ({
                     }
                 </h4>
             </div>
-            <div
-                className="delete-section-button"
-                onClick={
-                    //delete the item from the form
-                    () => {
-                        dispatch(
-                            removeSectionComponent({
-                                component_id: component_id,
-                                section_id: section_id,
-                            }));
+            {/*<div*/}
+            {/*    className="delete-section-button"*/}
+            {/*    onClick={*/}
+            {/*        //delete the item from the form*/}
+            {/*        () => {*/}
+            {/*            if (currSection.section_components.length > 1)*/}
+            {/*                dispatch(*/}
+            {/*                    removeSectionComponent({*/}
+            {/*                        component_id: component_id,*/}
+            {/*                        section_id: section_id,*/}
+            {/*                    }));*/}
+            {/*            else*/}
+
+            {/*                alert("There must be at least one input in a page");*/}
 
 
-                    }
-                }
-            >
-                <DeleteButton/>
-            </div>
+            {/*        }*/}
+            {/*    }*/}
+            {/*>*/}
+            {/*    <DeleteButton/>*/}
+            {/*</div>*/}
         </div>
     );
 };

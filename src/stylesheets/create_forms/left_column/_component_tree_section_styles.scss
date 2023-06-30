@@ -1,5 +1,5 @@
 .component-tree-section-style {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   border-radius: 5px;
   padding: 0.5rem;
   background-color: $theme-color;
@@ -14,7 +14,9 @@
     color: rgb(156, 156, 156);
     font-size: smaller;
     scale: 0.6;
-    margin: -10px auto;
+    margin: -10px auto 0 auto;
+
+
     width: fit-content;
     height: fit-content;
     border-radius: 10px;
@@ -27,11 +29,14 @@
 
   .component-tree-section-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     font-size: 0.9rem;
     margin-bottom: 5px;
+    margin-left: 5px;
+
+    font-weight: bold;
   }
 
 

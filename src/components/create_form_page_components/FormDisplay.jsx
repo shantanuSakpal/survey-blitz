@@ -22,13 +22,11 @@ function FormDisplay() {
                         return (
                             <div key={section.section_id}
                             >
-                                {
-                                    formSectionsArray.length > 1 && (
-                                        <div>
-                                            <SectionHeader/>
-                                        </div>
-                                    )
-                                }
+
+                                <div>
+                                    <SectionHeader/>
+                                </div>
+                                    
                                 {section.section_components.map((component) => (
                                     <FormComponentContainer
 

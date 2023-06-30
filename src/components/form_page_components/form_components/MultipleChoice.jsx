@@ -44,7 +44,7 @@ export const MultipleChoice = ({component, currSectionId}) => {
             </div>
 
             <div className="choices-container">
-                {component.component_prop_object.choices.map((choice, index) => (
+                {component.component_prop_object.options.map((choice, index) => (
                     <label key={index} className="choice-label">
                         <input
                             type="radio"

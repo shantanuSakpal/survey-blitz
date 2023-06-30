@@ -147,6 +147,13 @@
         width: var(--width-of-input);
         margin: 0.5rem 0;
 
+
+      }
+
+      .error {
+        color: red;
+        font-size: 0.7rem;
+        margin-top: 5px;
       }
 
       /* styling of Input */

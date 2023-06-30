@@ -3,11 +3,13 @@ import AdminFormsListItems from "./AdminFormsListItems";
 import CreateFormButton from "../buttons/CreateFormButton";
 import {useSelector} from "react-redux";
 
-function FormsContainer() {
-    const forms = useSelector(state => state.adminFormsArray);
-    
+function FormsContainer({forms}) {
+
+
     return (
-        <div className="form-card-container">
+        <div className="form-card-container"
+        
+        >
             {
                 forms ? (
                     forms.map((form, index) => {

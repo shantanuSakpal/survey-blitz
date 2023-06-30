@@ -67,7 +67,9 @@ export const HomePage = () => {
 
                 }
 
-                <FormsContainer/>
+                <FormsContainer
+                    forms={forms}
+                />
 
             </div>
             <ToastContainer position="top-right" autoClose={2000}/>

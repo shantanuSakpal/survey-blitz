@@ -20,7 +20,6 @@ export const InputOptions = ({
     const formSectionsArray = useSelector(
         (state) => state.formObject.form_sections
     );
-    console.log(formSectionsArray)
 
     // Find the component in the formSectionsArray
     const currComponent = formSectionsArray
@@ -28,6 +27,8 @@ export const InputOptions = ({
         .section_components.find(
             (component) => component.component_id === component_id
         );
+    const currSection = formSectionsArray
+        .find((section) => section.section_id === currSectionId)
 
     const dispatch = useDispatch();
     const [isToggleClicked, setIsToggleClicked] = useState(false);
@@ -73,12 +74,15 @@ export const InputOptions = ({
             <div
                 className="delete-input-button"
                 onClick={() => {
+                    if (currSection.section_components.length > 1)
+                        dispatch(
+                            removeSectionComponent({
+                                component_id: component_id,
+                                section_id: currSectionId,
+                            }));
+                    else
 
-                    dispatch(
-                        removeSectionComponent({
-                            component_id: component_id,
-                            section_id: currSectionId,
-                        }));
+                        alert("There must be at least one input in a page");
 
                 }}
 

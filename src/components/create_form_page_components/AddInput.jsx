@@ -81,7 +81,7 @@ export default function AddInput() {
                     {inputOptions.map((option) => (
                         <MenuItem key={option.id} value={option.id}>
                             {option.icon}
-                            <div style={{marginLeft: "10px"}}>
+                            <div style={{marginLeft: "10px", fontSize: "0.8rem"}}>
                                 {option.label}
                             </div>
                         </MenuItem>

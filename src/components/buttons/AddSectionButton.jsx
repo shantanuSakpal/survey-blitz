@@ -15,7 +15,7 @@ export const AddSectionButton = () => {
                 dispatch(
                     addSection({
                         section_id: date,
-                        section_name: "Untitled Section",
+                        section_name: "Untitled Page",
                         section_components: [
                             {
                                 component_id: date - 1,
@@ -33,7 +33,7 @@ export const AddSectionButton = () => {
             }}
         >
             <AddBoxIcon fontSize="small"/>
-            <p>Add Section</p>
+            <p>Add Page</p>
         </div>
     );
 };

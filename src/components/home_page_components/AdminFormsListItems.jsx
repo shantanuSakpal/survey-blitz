@@ -15,7 +15,10 @@ function AdminFormsListItems({form}) {
     const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
     ;
     return (
-        <div className="form-card">
+        <div className="form-card"
+
+             
+        >
 
 
             <label className="switch">

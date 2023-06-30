@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '../buttons/button';
 import {useDispatch, useSelector} from 'react-redux';
 import {editFormName} from '../../reducers/formObjectReducer';
@@ -12,7 +12,15 @@ function PublishFormModal({setIsModalOpen, url, handlePublish, generateFormUrl})
     useEffect(() => {
         generateFormUrl(formObject.form_name);
     }, []);
+    const [error, setError] = useState("");
 
+    const checkFormName = () => {
+        if (formObject.form_name === '') {
+            setError("Form name cannot be empty")
+        } else {
+            handlePublish();
+        }
+    }
     return (
         <div className="modal">
             <div className="modal-content">
@@ -38,6 +46,9 @@ function PublishFormModal({setIsModalOpen, url, handlePublish, generateFormUrl})
                     <span className="input-border"></span>
 
                 </div>
+                {
+                    error && <div className="error">{error}</div>
+                }
                 <br/>
                 <label>Generated URL:</label>
                 <br/>
@@ -45,7 +56,7 @@ function PublishFormModal({setIsModalOpen, url, handlePublish, generateFormUrl})
                     <TextareaAutosize className="input" readOnly value={url} minRows={1}/>
                     <span className="input-border"></span>
                 </div>
-                <div className="publish-button" onClick={handlePublish}>
+                <div className="publish-button" onClick={checkFormName}>
                     <Button name="Publish"/>
                 </div>
             </div>

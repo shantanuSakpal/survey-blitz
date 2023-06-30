@@ -6,7 +6,7 @@ import {updateResponse} from "../../../reducers/formResponseObjectReducer";
 export const CheckboxInput = ({component, currSectionId}) => {
     const dispatch = useDispatch();
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const {checkboxes, question, answer} = component.component_prop_object;
+    const {options, question, answer} = component.component_prop_object;
 
     useEffect(() => {
         setSelectedOptions(answer || []);
@@ -52,7 +52,7 @@ export const CheckboxInput = ({component, currSectionId}) => {
             </div>
 
             <div className="checkboxes-container">
-                {checkboxes.map((option, index) => (
+                {options.map((option, index) => (
                     <label key={index} className="checkbox-label">
                         <input
                             type="checkbox"

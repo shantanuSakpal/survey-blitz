@@ -13,8 +13,8 @@ function SectionHeader({currentSectionIndex}) {
     return (
 
         <div className="form-section-header"
-             onClick={() => console.log("currentsecction", currentSection)}>
-            <h4>Section {currentSectionIndex + 1} of {totalSections}</h4>
+        >
+            <h4>Page {currentSectionIndex + 1} of {totalSections}</h4>
             {currentSection.section_name}
         </div>
 

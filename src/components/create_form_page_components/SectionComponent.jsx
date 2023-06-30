@@ -29,27 +29,25 @@ export const SectionComponent = ({section_id, index}) => {
             }
 
             <div className="component-tree-section-header">
-                {
-                    formSectionsArray.length > 1 && (
-                        <div className="component-tree-section-name">
-                            {formSectionsArray[index].section_name}
-                        </div>
-                    )
-                }
-                <div
-                    className="delete-section-button"
-                    onClick={
-                        //delete the item from the form
-                        () => {
-                            localStorage.setItem("currSectionId", section_id)
-                            dispatch(removeSection(section_id));
-                            // If the component being removed is the current component, set the current component to the first component in the form
 
-                        }
-                    }
-                >
-                    {formSectionsArray.length > 1 && <DeleteButton color="white"/>}
+                <div className="component-tree-section-name">
+                    {formSectionsArray[index].section_name}
                 </div>
+                    
+                {/*<div*/}
+                {/*    className="delete-section-button"*/}
+                {/*    onClick={*/}
+                {/*        //delete the item from the form*/}
+                {/*        () => {*/}
+                {/*            localStorage.setItem("currSectionId", section_id)*/}
+                {/*            dispatch(removeSection(section_id));*/}
+                {/*            // If the component being removed is the current component, set the current component to the first component in the form*/}
+
+                {/*        }*/}
+                {/*    }*/}
+                {/*>*/}
+                {/*    {formSectionsArray.length > 1 && <DeleteButton color="white"/>}*/}
+                {/*</div>*/}
             </div>
 
             <div>

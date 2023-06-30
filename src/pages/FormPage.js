@@ -34,7 +34,6 @@ export const FormPage = () => {
         //only keep url after second last slash
         const formUrlArray = currentUrl.split("/");
         const formUrl = formUrlArray[formUrlArray.length - 2] + "/" + formUrlArray[formUrlArray.length - 1];
-        console.log("formUrl", formUrl);
         const currUserId = localStorage.getItem("userId")
         dispatch(setInitialState(null));
 
@@ -42,7 +41,6 @@ export const FormPage = () => {
             axios
                 .get(`http://localhost:3001/getFormQuestions/${formUrl}`)
                 .then((response) => {
-                    console.log(response.data.result.formObject);
                     dispatch(setInitialState(response.data.result.formObject));
                     setIsLoading(false)
                 })
@@ -64,7 +62,6 @@ export const FormPage = () => {
     }
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
 
-    console.log("formResponseObject", formResponseObject)
 
     const handleSubmitForm = () => {
         console.log("submitting form...")
@@ -94,7 +91,6 @@ export const FormPage = () => {
         console.log("checking required fields...");
         // get the current section
         const currentSection = formSections[currentSectionIndex];
-        console.log("currentSection", currentSection);
         // check the currSection.section_components array and check whether the is_required is true, if it is and the component_prop_object.answer is empty, then return false
         const requiredFields = currentSection.section_components.filter(
             (component) => {
@@ -177,9 +173,7 @@ export const FormPage = () => {
             <CircularProgress/>
         ) : (
             formResponseObject && formResponseObject.is_active ? (
-                <div className="form-page-container" id="page" onClick={() => {
-                    console.log("formResponseObject", formResponseObject)
-                }}>
+                <div className="form-page-container" id="page">
                     <div className="form-container">
                         <div className="form-header">
                             <div className="form-name">
@@ -238,9 +232,7 @@ export const FormPage = () => {
 
 
             ) : (
-                <div className="form-page-container" id="page" onClick={() => {
-                    console.log("formResponseObject", formResponseObject)
-                }}>
+                <div className="form-page-container" id="page">
                     <div className="form-container">
                         <div className="form-header">
                             <div className="form-name">

@@ -1,12 +1,9 @@
 .delete-section-button {
-  display: inline;
-  width: 2rem;
-  color: $theme-color-2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: black;
+  scale: 0.8;
+
   &:hover {
     cursor: pointer;
-    color: white;
+    color: red;
   }
 }
