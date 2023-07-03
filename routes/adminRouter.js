@@ -93,7 +93,7 @@ router.post('/signIn', async (req, res) => {
                         form_id: formObject.form_id,
                         formObject: formObject,
                     });
-                    res.status(200).json({ result: form });
+                    res.status(200).json({ result: form,message: 'Form successfully created !' });
                 }
             });
         } catch (error) {
@@ -128,7 +128,7 @@ router.post('/signIn', async (req, res) => {
                     form.formObject = formObject;
                     await form.save();
 
-                    res.status(200).json({ result: form });
+                    res.status(200).json({ result: form,message: 'Form successfully updated !' });
                 }
             });
         } catch (error) {
@@ -234,10 +234,10 @@ router.post('/getFormById', async (req, res) => {
             if (err) {
                 return res.status(401).json({ message: 'Unauthorized' });
             } else {
-                const responses = await Response.find({"formObject.form_id":form_id});
-                if (!responses)
+                const form = await Form.findOne({"form_id":form_id});
+                if (!form)
                     return res.status(404).json({ message: "Form doesn't exist" }); 
-                res.status(200).json({ responses: responses }); 
+                res.status(200).json({ form: form });
             }
         });
        } catch(e) { 
