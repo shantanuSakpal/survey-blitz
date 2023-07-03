@@ -1,0 +1,21 @@
+.analytics-page-container {
+  background-color: aliceblue;
+  min-height: 100vh;
+
+
+  .form-response-header {
+    width: fit-content;
+    border-bottom: 5px solid $accent-color-1-dark;
+
+    text-align: center;
+    margin: 20px auto 10px auto;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+
+  @import "response_table";
+
+}
+

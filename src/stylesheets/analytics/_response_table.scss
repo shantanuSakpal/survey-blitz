@@ -1,0 +1,58 @@
+.table-elements-container {
+  padding: 10px;
+
+  .pagination-and-searchbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    @import "table_search_bar";
+
+  }
+
+  @import "pagination_buttons_container";
+
+  .table {
+    padding: 0;
+    margin: 20px 10px;
+    box-sizing: border-box;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 5px lightgray;
+    text-align: left;
+    overflow: scroll;
+
+    .table-head {
+      background-color: lightgray;
+      height: 1rem;
+
+      .table-head-row {
+        height: 1rem;
+        border: 3px solid red;
+
+        .table-head-cell {
+          border: 1px solid gray;
+          padding: 5px 10px;
+          width: fit-content;
+          max-width: 3rem;
+
+        }
+      }
+
+
+    }
+
+    .table-body {
+
+
+      .table-body-cell {
+        border: 1px solid lightgray;
+        padding: 5px 10px;
+      }
+    }
+
+  }
+
+
+}

@@ -26,12 +26,14 @@ body {
 
 @import "./create_forms/create_forms_navbar";
 @import "./form/form_page";
+@import "./analytics/analytics_page";
 @import "./home/home_page_container";
 @import "create_forms/columns-container";
 @import "./buttons/button";
 @import "signin";
 @import "signup";
 @import "modals/modals";
+@import "loading_page";
 
 
 .page-container {

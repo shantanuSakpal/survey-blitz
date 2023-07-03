@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes, Navigate} from "react-router-dom";
 import CreateForms from "./pages/CreateForms";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
@@ -8,6 +8,9 @@ import {FormPage} from "./pages/FormPage";
 import {HomePage} from "./pages/HomePage";
 import UserContext from "./context/UserContext";
 import ResponseSubmitted from "./pages/ResponseSubmitted";
+import AnalyticsPage from "./pages/AnalyticsPage";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Loading from "./components/Loading";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -20,33 +23,47 @@ function App() {
     }, []);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loading/>;
     }
 
     return (
         <UserContext.Provider value={{user, setUser}}>
+
             <Routes>
-                {user ? (
-                    <>
-                        <Route path="/" element={<HomePage/>}/>
-                        <Route path="/create-form" element={<CreateForms/>}/>
-                    </>
-                ) : (
-                    <Route path="/" element={<Navigate replace to="/signIn"/>}/>
-                )}
+                <Route path="/signIn" element={<SignIn/>}/>
+                <Route path="/signUp" element={<SignUp/>}/>
+
+                <Route
+                    path="/"
+                    element={
+                        <ProtectedRoute>
+                            <HomePage/>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/create-form"
+                    element={
+                        <ProtectedRoute>
+                            <CreateForms/>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/analytics/:id"
+                    element={
+                        <ProtectedRoute>
+                            <AnalyticsPage/>
+                        </ProtectedRoute>
+                    }
+                />
+
                 <Route path="/:id/:form_name" element={<FormPage/>}/>
                 <Route path="/responseSubmitted" element={<ResponseSubmitted/>}/>
-                {
-                    !user ? (
-                        <>
-                            <Route exact path="/signIn" element={<SignIn/>}/>
-                            <Route exact path="/signUp" element={<SignUp/>}/></>
-                    ) : (
-                        <Route path="*" element={<Navigate replace to="/"/>}/>
+                <Route path="*" element={<Navigate to="/signIn"/>}/>
 
-                    )
-                }
             </Routes>
+
         </UserContext.Provider>
     );
 }

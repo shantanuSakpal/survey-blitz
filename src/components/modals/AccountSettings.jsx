@@ -5,9 +5,11 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import {toast} from 'react-toastify';
+import {useNavigate} from "react-router-dom";
 
 function AccountSettings({setModalOpen}) {
-    const {user} = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
+    const navigate = useNavigate();
     const [passwords, setPasswords] = useState({
         currentPassword: "",
         newPassword: "",
@@ -103,8 +105,13 @@ function AccountSettings({setModalOpen}) {
     };
 
     const logout = () => {
+        // Clear user data from localStorage
         localStorage.clear();
-        window.location.reload();
+        // Update user state to null
+        setUser(null);
+        // Navigate to signIn page
+        navigate("/signIn");
+
     }
 
     return (

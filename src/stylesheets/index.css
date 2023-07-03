@@ -303,6 +303,141 @@ body::-webkit-scrollbar-thumb:hover {
   position: relative;
 }
 
+.analytics-page-container {
+  background-color: aliceblue;
+  min-height: 100vh;
+}
+.analytics-page-container .form-response-header {
+  width: fit-content;
+  border-bottom: 5px solid #06d6a0;
+  text-align: center;
+  margin: 20px auto 10px auto;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.analytics-page-container .table-elements-container {
+  padding: 10px;
+}
+.analytics-page-container .table-elements-container .pagination-and-searchbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.analytics-page-container .table-elements-container .pagination-and-searchbar-container .table-search-bar {
+  display: flex;
+  height: 2rem;
+  align-items: center;
+  position: relative;
+}
+.analytics-page-container .table-elements-container .pagination-and-searchbar-container .table-search-bar .icon {
+  position: absolute;
+  left: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+.analytics-page-container .table-elements-container .pagination-and-searchbar-container .table-search-bar .input {
+  height: 100%;
+  line-height: 28px;
+  padding-right: 1rem;
+  padding-left: 2.5rem;
+  width: 100%;
+  outline: none;
+  transition: 0.3s ease;
+  border: 5px solid #99e2b4;
+  border-radius: 10px;
+  caret-color: black;
+}
+.analytics-page-container .table-elements-container .pagination-and-searchbar-container .table-search-bar .input:focus {
+  border-color: #06d6a0;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
+  align-items: center;
+  margin: 10px;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input p span {
+  border: 1px solid gray;
+  margin: 0 10px 0 0;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input input {
+  padding: 5px;
+  width: 2rem;
+  border-radius: 10px;
+  border: 3px solid #99e2b4;
+  text-align: center;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input input:focus {
+  outline: none;
+  border-color: #06d6a0;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .select-page-rows {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 3px solid #99e2b4;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .select-page-rows:focus {
+  outline: none;
+  border-color: #06d6a0;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .pagination-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+  border-radius: 10px;
+  border: 3px solid #99e2b4;
+  background-color: transparent;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .pagination-button:hover {
+  cursor: pointer;
+  border-color: #06d6a0;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .disabled {
+  border: 2px solid lightgray;
+  cursor: not-allowed !important;
+}
+.analytics-page-container .table-elements-container .pagination-buttons-container .disabled:hover {
+  border-color: lightgray;
+}
+.analytics-page-container .table-elements-container .table {
+  padding: 0;
+  margin: 20px 10px;
+  box-sizing: border-box;
+  border: 2px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 5px lightgray;
+  text-align: left;
+  overflow: scroll;
+}
+.analytics-page-container .table-elements-container .table .table-head {
+  background-color: lightgray;
+  height: 1rem;
+}
+.analytics-page-container .table-elements-container .table .table-head .table-head-row {
+  height: 1rem;
+  border: 3px solid red;
+}
+.analytics-page-container .table-elements-container .table .table-head .table-head-row .table-head-cell {
+  border: 1px solid gray;
+  padding: 5px 10px;
+  width: fit-content;
+  max-width: 3rem;
+}
+.analytics-page-container .table-elements-container .table .table-body .table-body-cell {
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+}
+
 .home-page-container {
   background-color: aliceblue;
   min-height: 100vh;
@@ -887,8 +1022,6 @@ body::-webkit-scrollbar-thumb:hover {
   top: 5px;
 }
 .section-name .icons-container .icon {
-  width: fit-content;
-  height: fit-content;
   scale: 0.8;
 }
 .section-name label {
@@ -2674,6 +2807,15 @@ body::-webkit-scrollbar-thumb:hover {
   color: red;
   font-size: 1rem;
   margin-top: 5px;
+}
+
+.loading-page {
+  background-color: #2C2D32;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .page-container {

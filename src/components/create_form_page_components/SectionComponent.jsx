@@ -33,7 +33,7 @@ export const SectionComponent = ({section_id, index}) => {
                 <div className="component-tree-section-name">
                     {formSectionsArray[index].section_name}
                 </div>
-                    
+
                 {/*<div*/}
                 {/*    className="delete-section-button"*/}
                 {/*    onClick={*/}

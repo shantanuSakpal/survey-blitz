@@ -26,7 +26,7 @@ function FormDisplay() {
                                 <div>
                                     <SectionHeader/>
                                 </div>
-                                    
+
                                 {section.section_components.map((component) => (
                                     <FormComponentContainer
 

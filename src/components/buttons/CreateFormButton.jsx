@@ -22,7 +22,7 @@ function CreateFormButton() {
                      form_sections: [
                          {
                              section_id: date,
-                             section_name: "Untitled Section",
+                             section_name: "Untitled Page",
                              section_components: [],
                          },
                      ],
@@ -38,7 +38,7 @@ function CreateFormButton() {
                          form_sections: [
                              {
                                  section_id: date,
-                                 section_name: "Untitled Section",
+                                 section_name: "Untitled Page",
                                  section_components: [
                                      {
                                          component_id: date - 1,

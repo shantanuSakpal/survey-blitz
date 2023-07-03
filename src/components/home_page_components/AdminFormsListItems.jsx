@@ -17,7 +17,7 @@ function AdminFormsListItems({form}) {
     return (
         <div className="form-card"
 
-             
+
         >
 
 
@@ -55,7 +55,7 @@ function AdminFormsListItems({form}) {
                 </button>
                 <button
                     onClick={() => {
-                        localStorage.setItem("currFormId", form.formObject.form_id)
+                        navigate(`/analytics/${form.form_id}`)
                     }}>
                     <AssessmentOutlinedIcon/>
                 </button>

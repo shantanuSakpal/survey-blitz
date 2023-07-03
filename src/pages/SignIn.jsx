@@ -63,6 +63,7 @@ function SignIn() {
             .then((res) => {
                 localStorage.setItem("currUser", JSON.stringify(res.data));
                 setUser(res.data);
+                console.log("User signed in successfully");
                 navigate("/");
             })
             .catch((err) => {
@@ -121,7 +122,7 @@ function SignIn() {
        <span onClick={() => {
            setShowModal(true)
        }}>
-           <a href="#">Forgot Password</a>
+           <a href="/">Forgot Password</a>
        </span>
                     {showModal && (
                         <EnterOtpModal/>
