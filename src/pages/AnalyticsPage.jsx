@@ -54,10 +54,11 @@ function AnalyticsPage(props) {
     return (
 
         <div className="analytics-page-container">
-            <HomePageNavbar username={user?.result.username} page={"analytics"}/>
-            <div className="form-response-header">
-                <h3>{formQuestionsObject?.form_name}</h3>
-            </div>
+            <HomePageNavbar
+                username={user?.result.username}
+                form_name={formQuestionsObject?.form_name}
+                page={"analytics"}/>
+
             {
                 responsesArray && formQuestionsObject && responsesArray.length > 0 ? (
 

@@ -7,17 +7,18 @@
   align-items: center;
   margin: 10px;
   width: fit-content;
-  flex-wrap: wrap;
+ 
+  scale: 0.8;
 
   .go-to-input {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 10px;
+    gap: 10px;;
 
     p {
       span {
-        border: 1px solid gray;
+        border: 1px solid $accent-color-1-dark;
         margin: 0 10px 0 0;
       }
     }
@@ -25,8 +26,17 @@
     input {
       padding: 5px;
       width: 2rem;
+      background-color: $theme-color;
+      border: 1px solid $accent-color-1-light;
       border-radius: 10px;
-      border: 3px solid $accent-color-1-light;
+      color: aliceblue;
+
+      &:focus {
+        border-color: $accent-color-1-dark;
+
+
+      }
+
       text-align: center;
 
       &:focus {
@@ -38,13 +48,18 @@
 
   .select-page-rows {
     padding: 5px 10px;
+    background-color: $theme-color;
+    border: 1px solid $accent-color-1-light;
     border-radius: 10px;
-    border: 3px solid $accent-color-1-light;
+    color: aliceblue;
 
     &:focus {
-      outline: none;
       border-color: $accent-color-1-dark;
+      outline: none;
+
     }
+
+
   }
 
   .pagination-button {
@@ -52,24 +67,29 @@
     justify-content: center;
     align-items: center;
     padding: 0 5px;
+    background-color: $theme-color;
+    border: 1px solid $accent-color-1-light;
     border-radius: 10px;
-    border: 3px solid $accent-color-1-light;
-    background-color: transparent;
+    color: $accent-color-1-light;
 
     &:hover {
       cursor: pointer;
       border-color: $accent-color-1-dark;
+      color: $accent-color-1-dark;
     }
   }
 
   .disabled {
-    border: 2px solid lightgray;
+    border: 2px solid $theme-color;
     cursor: not-allowed !important;
+    color: $theme-color-dark !important;
 
     &:hover {
-
-      border-color: lightgray;
+      border: 2px solid $theme-color;
+      cursor: not-allowed;
+      color: $theme-color-dark !important;
     }
+
   }
 
 

@@ -1,58 +1,106 @@
 .table-elements-container {
   padding: 10px;
+  width: 100vw;
+  height: calc(100vh - 3rem);
+  box-sizing: border-box;
+}
 
-  .pagination-and-searchbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.table-elements-container .pagination-and-searchbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  /* Import styles for the table search bar */
+  @import "table_search_bar";
 
-    @import "table_search_bar";
+}
 
-  }
+/* Import styles for the pagination buttons container */
+@import "pagination_buttons_container";
 
-  @import "pagination_buttons_container";
+.table-elements-container .table-container {
+  margin: 10px;
+  box-sizing: border-box;
+  overflow: auto;
+  max-height: calc(100vh - 7rem);
+  /* Import styles for the response table scrollbar */
+  @import "../scrollbars/response_table_scrollbar";
 
   .table {
-    padding: 0;
-    margin: 20px 10px;
-    box-sizing: border-box;
-    border: 2px solid lightgray;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 5px lightgray;
     text-align: left;
-    overflow: scroll;
+    position: relative;
 
     .table-head {
-      background-color: lightgray;
-      height: 1rem;
+      background-color: $theme-color;
+      border-radius: 10px 0;
+      font-size: 0.8rem;
+      position: sticky;
+      top: 0;
+      z-index: 2;
 
       .table-head-row {
-        height: 1rem;
-        border: 3px solid red;
+
 
         .table-head-cell {
-          border: 1px solid gray;
-          padding: 5px 10px;
-          width: fit-content;
-          max-width: 3rem;
+          border-width: 1px 0 1px 1px;
+          border-style: solid;
+          border-color: $theme-color-light;
 
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+
+          .resize-div {
+            width: 10px;
+            position: absolute;
+            right: -5px;
+            top: 0;
+            height: 100%;
+            cursor: col-resize;
+            user-select: none;
+            touch-action: none;
+            z-index: 100;
+
+            .isResizing {
+              background-color: $theme-color-light;
+            }
+          }
+
+          &:first-child {
+            border-radius: 10px 0 0 0;
+          }
+
+          &:last-child {
+            border-right: 1px solid $theme-color-light;
+            border-radius: 0 10px 0 0;
+          }
         }
       }
-
-
     }
 
     .table-body {
+      font-size: 0.7rem;
 
+      .table-body-row {
+        height: 2rem;
+      }
 
       .table-body-cell {
-        border: 1px solid lightgray;
+        border-width: 0 0 1px 1px;
+        border-style: solid;
+        border-color: $theme-color-light;
         padding: 5px 10px;
+        height: 1rem;
+        width: 5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        position: relative;
+
+        &:last-child {
+          border-right: 1px solid $theme-color-light;
+        }
       }
     }
-
   }
-
-
 }

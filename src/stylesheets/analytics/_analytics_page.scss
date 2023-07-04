@@ -1,17 +1,18 @@
 .analytics-page-container {
-  background-color: aliceblue;
-  min-height: 100vh;
-
+  background-color: $theme-color-dark;
+  height: 100vh;
+  box-sizing: border-box;
+  color: aliceblue;
 
   .form-response-header {
     width: fit-content;
-    border-bottom: 5px solid $accent-color-1-dark;
-
+    border-bottom: 3px solid $accent-color-1-dark;
+    margin: 0 auto;
     text-align: center;
-    margin: 20px auto 10px auto;
-
+    color: aliceblue;
     font-size: 1.2rem;
     font-weight: bold;
+
   }
 
 
