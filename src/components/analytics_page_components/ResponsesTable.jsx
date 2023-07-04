@@ -81,6 +81,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
             header: key,
             accessorKey: key,
             footer: key,
+
         }));
 
         setColumns(uniqueColumns);
@@ -91,16 +92,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
         let newColumnSizing = {};
 
-        headcells.forEach((headcell) => {
-            headcell.style.width = `${headcell.clientWidth}px`;
 
-            newColumnSizing = {
-                ...newColumnSizing,
-                [headcell.dataset.columnName]: headcell.clientWidth,
-            };
-        });
-
-        table.setColumnSizing(newColumnSizing);
     }, [formQuestionsObject, responsesArray]);
 
 
@@ -225,7 +217,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                                             />
                                         ) : null}
                                         {header.isPlaceholder ? null : (
-                                            <div>
+                                            <div style={{width: "3rem", overflow: "hidden", textOverflow: "ellipsis"}}>
                                                 {flexRender(
                                                     header.column.columnDef.header,
                                                     header.getContext()
@@ -250,14 +242,15 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                             <tr className="table-body-row" key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
                                     <td
-                                        className={`table-body-cell `}
+                                        className='table-body-cell'
                                         key={cell.id}
                                         onClick={() => handleCellClick()}
                                         onDoubleClick={() => handleCellDoubleClick(cell)}
+
                                     >
-                                        <div>
-                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                        </div>
+
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+
                                     </td>
                                 ))}
                             </tr>
