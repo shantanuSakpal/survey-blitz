@@ -86,7 +86,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
         setColumns(uniqueColumns);
         setData(transformedResponses);
-      
+
 
     }, [formQuestionsObject, responsesArray]);
 
@@ -241,10 +241,13 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                                         key={cell.id}
                                         onClick={() => handleCellClick()}
                                         onDoubleClick={() => handleCellDoubleClick(cell)}
+                                        style={{width: cell.column.getSize()}}
 
                                     >
 
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        <div>
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        </div>
 
                                     </td>
                                 ))}

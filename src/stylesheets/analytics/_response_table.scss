@@ -46,15 +46,15 @@
           border-style: solid;
           border-color: $theme-color-light;
           padding: 5px 10px;
-
           white-space: nowrap;
           overflow: hidden;
-          box-sizing: border-box;
+
           text-overflow: ellipsis;
           position: relative;
 
+
           div {
-            max-width: 6rem;
+            width: inherit;
             overflow: hidden;
             text-overflow: ellipsis
           }
@@ -100,11 +100,17 @@
           border-style: solid;
           border-color: $theme-color-light;
           padding: 5px 10px;
-          max-width: 6rem;
           white-space: nowrap;
+          width: 100%;
           overflow: hidden;
-          box-sizing: border-box;
+          
           text-overflow: ellipsis;
+
+          div {
+            width: inherit;
+            overflow: hidden;
+            text-overflow: ellipsis
+          }
 
 
           &:last-child {
