@@ -86,12 +86,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
         setColumns(uniqueColumns);
         setData(transformedResponses);
-        const headcells = document.querySelectorAll(
-            ".table thead th"
-        );
-
-        let newColumnSizing = {};
-
+      
 
     }, [formQuestionsObject, responsesArray]);
 
@@ -217,7 +212,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                                             />
                                         ) : null}
                                         {header.isPlaceholder ? null : (
-                                            <div style={{width: "3rem", overflow: "hidden", textOverflow: "ellipsis"}}>
+                                            <div>
                                                 {flexRender(
                                                     header.column.columnDef.header,
                                                     header.getContext()

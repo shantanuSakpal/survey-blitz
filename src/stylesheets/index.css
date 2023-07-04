@@ -490,6 +490,11 @@ body::-webkit-scrollbar-thumb:hover {
   text-overflow: ellipsis;
   position: relative;
 }
+.analytics-page-container .table-elements-container .table-container .table .table-head .table-head-row .table-head-cell div {
+  max-width: 6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .analytics-page-container .table-elements-container .table-container .table .table-head .table-head-row .table-head-cell .resize-div {
   width: 10px;
   position: absolute;

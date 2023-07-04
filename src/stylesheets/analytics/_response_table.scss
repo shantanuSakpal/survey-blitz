@@ -46,12 +46,18 @@
           border-style: solid;
           border-color: $theme-color-light;
           padding: 5px 10px;
-         
+
           white-space: nowrap;
           overflow: hidden;
           box-sizing: border-box;
           text-overflow: ellipsis;
           position: relative;
+
+          div {
+            max-width: 6rem;
+            overflow: hidden;
+            text-overflow: ellipsis
+          }
 
 
           .resize-div {
