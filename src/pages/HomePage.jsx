@@ -63,7 +63,7 @@ export const HomePage = () => {
 
 
                 {
-                    forms ? <h5>Create your first form</h5> : <h5>Your forms</h5>
+                    forms ? <h5>Your forms</h5> : <h5>Create your first form</h5>
 
                 }
 
