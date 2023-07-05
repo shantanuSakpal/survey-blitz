@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import UserContext from '../context/UserContext';
 import axios from 'axios';
 import FormsContainer from '../components/home_page_components/FormsContainer';
@@ -13,6 +13,7 @@ export const HomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const forms = useSelector((state) => state.adminFormsArray);
+    const [filtered_forms, setFilteredForms] = React.useState(null);
 
 
     useEffect(() => {
@@ -42,6 +43,7 @@ export const HomePage = () => {
                     );
                     const fetchedForms = response.data.forms;
                     dispatch(setInitialState(fetchedForms));
+                    setFilteredForms(forms)
                 }
             } catch (error) {
                 console.error('Error:', error);
@@ -53,22 +55,34 @@ export const HomePage = () => {
 
     }, [navigate, setUser]);
 
+
+    const handleSearch = (e) => {
+        if (e === "")
+            setFilteredForms(forms)
+        else {
+            setFilteredForms(forms.filter((form) => form.formObject.form_name.toLowerCase().includes(e.toLowerCase())));
+        }
+
+    }
+
+
     return (
         user &&
         <>
 
 
-            <HomePageNavbar username={user?.result.username}/>
+            <HomePageNavbar page={"home"}
+                            username={user?.result.username}
+                            handleSearch={handleSearch}
+            />
             <div className="home-page-container">
 
-
                 {
-                    forms ? <h5>Your forms</h5> : <h5>Create your first form</h5>
+                    filtered_forms ? <h5>Your forms</h5> : <h5>Create your first form</h5>
 
                 }
-
                 <FormsContainer
-                    forms={forms}
+                    forms={filtered_forms}
                 />
 
             </div>

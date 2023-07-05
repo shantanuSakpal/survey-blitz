@@ -26,7 +26,8 @@ export const adminFormsSlice = createSlice({
             state.splice(index, 1);
             return state;
 
-        }
+        },
+
 
     },
 });
@@ -36,7 +37,7 @@ export const {
     updateResponse,
     setInitialState,
     deleteForm,
-
+    
 } = adminFormsSlice.actions;
 
 export default adminFormsSlice.reducer;

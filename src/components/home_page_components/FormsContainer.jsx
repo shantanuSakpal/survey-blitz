@@ -8,10 +8,10 @@ function FormsContainer({forms}) {
 
     return (
         <div className="form-card-container"
-        
+
         >
             {
-                forms ? (
+                forms.length > 0 ? (
                     forms.map((form, index) => {
 
                         return (
@@ -22,7 +22,7 @@ function FormsContainer({forms}) {
                         )
                     })
                 ) : (
-                    <div>Loading Forms...</div>
+                    <div>No forms found.</div>
                 )
 
 
