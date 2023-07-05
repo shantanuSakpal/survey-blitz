@@ -23,7 +23,7 @@ function HomePageNavbar({username, form_name, page}) {
                     <div className="navbar-header">
                         <div className="navbar-logo"><DynamicFormIcon/></div>
                         <div>
-                            <a href="/home" className="navbar-brand">Form<span>Generator</span></a>
+                            <a href="/" className="navbar-brand">Form<span>Generator</span></a>
                         </div>
                     </div>
                     {

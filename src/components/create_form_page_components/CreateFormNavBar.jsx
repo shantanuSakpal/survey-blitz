@@ -103,7 +103,7 @@ function CreateFormNavBar(props) {
             <div className="navbar-header">
                 <div className="navbar-logo"><DynamicFormIcon/></div>
                 <a href="/">
-                    Forms<span>Generator</span>
+                    Form<span>Generator</span>
                 </a>
             </div>
             <div className="edit-form-name">

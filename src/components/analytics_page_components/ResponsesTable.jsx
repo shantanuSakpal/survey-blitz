@@ -22,8 +22,25 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
     const [data, setData] = useState(null)
     const [sorting, setSorting] = useState([])
     const [filtering, setFiltering] = useState('')
-    const [selectedCell, setSelectedCell] = useState(null);
+    const [selectedCellValue, setSelectedCellValue] = useState({});
 
+    const handleCellClick = (cell) => {
+        const cellValue = cell.getValue(cell.column.id);
+        let ele = document.getElementById(cell.id);
+        let eleCoordinates = ele.getBoundingClientRect();
+        setSelectedCellValue({
+            value: cellValue,
+            x: eleCoordinates.x,
+            y: eleCoordinates.y,
+        });
+        console.log({
+            value: cellValue,
+            x: eleCoordinates.x,
+            y: eleCoordinates.y,
+        })
+
+
+    };
 
     const table = useReactTable({
         data,
@@ -48,10 +65,6 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
     })
 
 
-    const handleCellClick = () => {
-        setSelectedCell(null);
-    };
-
     const handleCellDoubleClick = (cell) => {
         setSelectedCell(cell);
     };
@@ -72,12 +85,13 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
             return transformedResponse;
         });
-
+        let id = 1;
         const uniqueColumns = Array.from(
             new Set(
                 transformedResponses.flatMap(response => Object.keys(response))
             )
         ).map(key => ({
+            id: id++,
             header: key,
             accessorKey: key,
             footer: key,
@@ -177,6 +191,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
 
                 <div className="table-container">
+
                     <table
                         className='table' cellSpacing={0}
                         style={{
@@ -186,6 +201,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                             }px`,
                         }}
                     >
+
                         <thead className=" table-head">
                         {table.getHeaderGroups().map(headerGroup => (
                             <tr
@@ -237,18 +253,13 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                             <tr className="table-body-row" key={row.id}>
                                 {row.getVisibleCells().map((cell) => (
                                     <td
-                                        className='table-body-cell'
+                                        id={cell.id}
+                                        className="table-body-cell"
                                         key={cell.id}
-                                        onClick={() => handleCellClick()}
-                                        onDoubleClick={() => handleCellDoubleClick(cell)}
+                                        onClick={() => handleCellClick(cell)}
                                         style={{width: cell.column.getSize()}}
-
                                     >
-
-                                        <div>
-                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                        </div>
-
+                                        <div>{flexRender(cell.column.columnDef.cell, cell.getContext())}</div>
                                     </td>
                                 ))}
                             </tr>
@@ -257,7 +268,11 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
                     </table>
                 </div>
-
+                {selectedCellValue && (
+                    <div className="selected-cell-popup">
+                        {selectedCellValue.value}
+                    </div>
+                )}
 
             </div>
         ) : (

@@ -311,7 +311,6 @@ body::-webkit-scrollbar-thumb:hover {
   height: 100vh;
   box-sizing: border-box;
   color: aliceblue;
-  /* Import styles for the pagination buttons container */
 }
 .analytics-page-container .form-response-header {
   width: fit-content;
@@ -363,7 +362,7 @@ body::-webkit-scrollbar-thumb:hover {
 .analytics-page-container .table-elements-container .pagination-and-searchbar-container .table-search-bar .input:focus {
   border-color: #06d6a0;
 }
-.analytics-page-container .pagination-buttons-container {
+.analytics-page-container .table-elements-container .pagination-buttons-container {
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
@@ -372,17 +371,17 @@ body::-webkit-scrollbar-thumb:hover {
   width: fit-content;
   scale: 0.8;
 }
-.analytics-page-container .pagination-buttons-container .go-to-input {
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
 }
-.analytics-page-container .pagination-buttons-container .go-to-input p span {
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input p span {
   border: 1px solid #06d6a0;
   margin: 0 10px 0 0;
 }
-.analytics-page-container .pagination-buttons-container .go-to-input input {
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input input {
   padding: 5px;
   width: 2rem;
   background-color: #2C2D32;
@@ -391,25 +390,25 @@ body::-webkit-scrollbar-thumb:hover {
   color: aliceblue;
   text-align: center;
 }
-.analytics-page-container .pagination-buttons-container .go-to-input input:focus {
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input input:focus {
   border-color: #06d6a0;
 }
-.analytics-page-container .pagination-buttons-container .go-to-input input:focus {
+.analytics-page-container .table-elements-container .pagination-buttons-container .go-to-input input:focus {
   outline: none;
   border-color: #06d6a0;
 }
-.analytics-page-container .pagination-buttons-container .select-page-rows {
+.analytics-page-container .table-elements-container .pagination-buttons-container .select-page-rows {
   padding: 5px 10px;
   background-color: #2C2D32;
   border: 1px solid #99e2b4;
   border-radius: 10px;
   color: aliceblue;
 }
-.analytics-page-container .pagination-buttons-container .select-page-rows:focus {
+.analytics-page-container .table-elements-container .pagination-buttons-container .select-page-rows:focus {
   border-color: #06d6a0;
   outline: none;
 }
-.analytics-page-container .pagination-buttons-container .pagination-button {
+.analytics-page-container .table-elements-container .pagination-buttons-container .pagination-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -419,17 +418,17 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
   color: #99e2b4;
 }
-.analytics-page-container .pagination-buttons-container .pagination-button:hover {
+.analytics-page-container .table-elements-container .pagination-buttons-container .pagination-button:hover {
   cursor: pointer;
   border-color: #06d6a0;
   color: #06d6a0;
 }
-.analytics-page-container .pagination-buttons-container .disabled {
+.analytics-page-container .table-elements-container .pagination-buttons-container .disabled {
   border: 2px solid #2C2D32;
   cursor: not-allowed !important;
   color: #121215 !important;
 }
-.analytics-page-container .pagination-buttons-container .disabled:hover {
+.analytics-page-container .table-elements-container .pagination-buttons-container .disabled:hover {
   border: 2px solid #2C2D32;
   cursor: not-allowed;
   color: #121215 !important;
@@ -439,27 +438,28 @@ body::-webkit-scrollbar-thumb:hover {
   box-sizing: border-box;
   overflow: auto;
   max-height: calc(100vh - 7rem);
+  position: relative;
   /* Import styles for the response table scrollbar */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
 .analytics-page-container .table-elements-container .table-container::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  padding: 5px;
+  width: 20px;
+  height: 20px;
 }
 .analytics-page-container .table-elements-container .table-container::-webkit-scrollbar-corner {
   background: transparent;
 }
 .analytics-page-container .table-elements-container .table-container::-webkit-scrollbar-track {
   background: transparent;
+  width: 10px;
 }
 .analytics-page-container .table-elements-container .table-container::-webkit-scrollbar-thumb {
   background: transparent;
   border-radius: 10px;
-  box-shadow: inset 0 0 10px 10px #a2a2a2;
-  border: solid 3px transparent;
+  box-shadow: inset 0 0 10px 5px #a2a2a2;
+  border: solid 7px transparent;
 }
 .analytics-page-container .table-elements-container .table-container::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px #99e2b4;
@@ -503,7 +503,6 @@ body::-webkit-scrollbar-thumb:hover {
   cursor: col-resize;
   user-select: none;
   touch-action: none;
-  z-index: 100;
 }
 .analytics-page-container .table-elements-container .table-container .table .table-head .table-head-row .table-head-cell .resize-div .isResizing {
   background-color: #a2a2a2;
@@ -539,7 +538,6 @@ body::-webkit-scrollbar-thumb:hover {
 .analytics-page-container .table-elements-container .table-container .table .table-body .table-body-row .table-body-cell:last-child {
   border-right: 1px solid #a2a2a2;
 }
-
 .home-page-container {
   background-color: aliceblue;
   min-height: 100vh;
