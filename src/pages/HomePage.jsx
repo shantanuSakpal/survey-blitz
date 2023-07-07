@@ -7,18 +7,18 @@ import HomePageNavbar from "../components/home_page_components/HomePageNavbar";
 import {useDispatch, useSelector} from "react-redux";
 import {setInitialState} from "../reducers/adminFormsReducer";
 import {ToastContainer} from "react-toastify";
+import CreateFormButton from "../components/buttons/CreateFormButton";
 
 export const HomePage = () => {
     const {user, setUser} = useContext(UserContext);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const forms = useSelector((state) => state.adminFormsArray);
-    const [filtered_forms, setFilteredForms] = React.useState(null);
 
 
+    const currUser = JSON.parse(localStorage.getItem('currUser'));
     useEffect(() => {
         //if user is not logged in, redirect to login page
-        const currUser = JSON.parse(localStorage.getItem('currUser'));
         if (!currUser) {
             navigate('/signIn');
         } else {
@@ -26,64 +26,62 @@ export const HomePage = () => {
             setUser(currUser);
         }
 
+        if ((currUser)) {
 
-        const fetchForms = async () => {
             const reqBody = {
-
                 email: currUser.result.email,
                 token: currUser.token,
-
             }
-            try {
 
-                if (currUser) {
+            axios.post('http://localhost:3001/admin/getForms',
+                reqBody
+            ).then((response) => {
+                const fetchedForms = response.data.forms;
+                dispatch(setInitialState(fetchedForms));
 
-                    const response = await axios.post('http://localhost:3001/admin/getForms',
-                        reqBody
-                    );
-                    const fetchedForms = response.data.forms;
-                    dispatch(setInitialState(fetchedForms));
-                    setFilteredForms(forms)
-                }
-            } catch (error) {
+            }).catch((error) => {
                 console.error('Error:', error);
-            }
-        };
+            })
+        }
 
-        if (user !== null)
-            fetchForms();
 
-    }, [navigate, setUser]);
+    }, [setUser]);
 
 
     const handleSearch = (e) => {
-        if (e === "")
-            setFilteredForms(forms)
-        else {
-            setFilteredForms(forms.filter((form) => form.formObject.form_name.toLowerCase().includes(e.toLowerCase())));
-        }
+
 
     }
 
 
     return (
-        user &&
+        currUser &&
         <>
 
 
-            <HomePageNavbar page={"home"}
-                            username={user?.result.username}
-                            handleSearch={handleSearch}
-            />
             <div className="home-page-container">
+                <HomePageNavbar page={"home"}
+                                username={currUser?.result.username}
 
-                {
-                    filtered_forms ? <h5>Your forms</h5> : <h5>Create your first form</h5>
-
-                }
-                <FormsContainer
-                    forms={filtered_forms}
                 />
+
+                <div className="home-page-right-container">
+                    <div className="search-and-sort-container ">
+                        <h4>Your Forms</h4>
+
+                    </div>
+                    {/*{*/}
+                    {/*    forms ? <>*/}
+
+                    {/*        <FormsContainer*/}
+                    {/*            forms={forms}*/}
+                    {/*        />*/}
+                    {/*    </> : <h5>Create your first form</h5>*/}
+
+                    {/*}*/}
+                    {/*<CreateFormButton/>*/}
+                </div>
+
 
             </div>
             <ToastContainer position="top-right" autoClose={2000}/>

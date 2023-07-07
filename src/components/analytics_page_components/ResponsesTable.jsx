@@ -212,7 +212,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                                     <th
                                         className="table-head-cell"
                                         key={header.id}
-                                        // onClick={header.column.getToggleSortingHandler()}
+                                        onClick={header.column.getToggleSortingHandler()}
                                         data-column-name={header.id} // useEffect depends on that !
                                         colSpan={header.colSpan}
                                         style={{width: header.getSize()}}

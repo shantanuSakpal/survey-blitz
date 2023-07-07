@@ -14,7 +14,7 @@ export const AddInputButton = () => {
         let component = {
             component_id: date,
             component_type: "short_text",
-            is_required: false,
+            is_required: true,
             component_prop_object: {
                 "question": ""
             },

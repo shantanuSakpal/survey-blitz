@@ -1,0 +1,65 @@
+.home-page-left-sidebar {
+  width: 18rem;
+  min-width: fit-content;
+  box-sizing: border-box;
+  background-color: $theme-color-light;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1rem;
+
+  .brand-logo-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .links-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    cursor: pointer;
+
+    .link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      color: $theme-color-lightest;
+      position: relative;
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: all 0.125s ease-out;
+
+
+      &.selected {
+        background-color: rgb(125 140 255 / 14%);
+        color: rgba(125, 140, 255, 0.8);
+      }
+
+      p {
+        font-size: 0.7rem;
+
+
+      }
+
+      span {
+        position: absolute;
+        font-size: 0.6rem;
+        right: 10px;
+
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        background-color: rgba(125, 140, 255, 0.07);
+      }
+    }
+  }
+
+
+}

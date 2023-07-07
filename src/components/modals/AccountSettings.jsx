@@ -123,12 +123,12 @@ function AccountSettings({setModalOpen}) {
                 </div>
                 <div className="email-container">
 
-                    <h4>Current Email: </h4>
+                    <h5>Current Email: </h5>
                     <p>{user?.result.email}</p>
                 </div>
 
                 <div className="change-password-container">
-                    <h4>Change Password</h4>
+                    <h5>Change Password</h5>
                     <div className="row">
                         <div className="icon">
                             <VpnKeyIcon/>

@@ -1,27 +1,37 @@
 .profile {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  color: white;
-  width: 20%;
-  gap: 10px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  // calculate width = 100% - 2rem
+  width: calc(100% - 2rem);
 
 
-  &:hover {
-    cursor: pointer;
-    border-color: $accent-color-1-dark;
-
+  .account-icon {
+    scale: 0.8;
+    width: fit-content;
+    display: inline;
   }
 
+  .username {
+    font-size: 0.7rem;
+    font-weight: 600;
+    width: 100%;
+    text-overflow: ellipsis;
+  }
 
   .icon {
     width: min-content;
     scale: 0.7;
-    color: $accent-color-1-dark;
-  }
+    color: $theme-color-lightest;
 
-  .username {
-    font-weight: bold;
+    &:hover {
+      cursor: pointer;
+      color: aliceblue;
+    }
   }
 
 

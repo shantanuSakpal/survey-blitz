@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+.sign-in-page {
+  display: flex;
+  height: 100vh;
+
+
+  .error {
+    color: red;
+    font-size: 0.6rem;
+    margin-top: 5px;
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .left-container {
+    color: aliceblue;
+    overflow: auto;
+    width: 50vw;
+    background-color: $theme-color;
+    padding: 8rem 2rem 2rem 2rem;
+    box-sizing: border-box;
+    position: relative;
+
+    .brand-logo-container {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+    }
+
+
+    @import "./scrollbars/response_table_scrollbar";
+
+
+    .inner-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+
+      .header {
+        font-size: 1.7rem;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      p {
+        font-size: 0.7rem;
+        color: lightgray;
+        text-align: center;
+
+        span {
+
+          color: $accent-color-1-light;
+          display: inline;
+          cursor: pointer;
+          font-weight: bold;
+          margin: 0 5px;
+
+          &:hover {
+            text-decoration: underline;
+            color: $accent-color-1-dark;
+          }
+        }
+      }
+
+
+      .options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+        gap: 25px;
+
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active, {
+          -webkit-box-shadow: 0 0 0 30px $theme-color inset !important;
+        }
+
+        input:-webkit-autofill {
+          -webkit-text-fill-color: aliceblue !important;
+          caret-color: aliceblue;
+        }
+
+
+        .login-with-google-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+          border: 1px solid $theme-color-lighter;
+          background-color: $theme-color-light;
+          color: aliceblue;
+          padding: 10px 20px;
+          border-radius: 10px;
+          font-size: 0.8rem;
+          transition: all 0.2s ease-out;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+
+
+          &:hover {
+            border-color: $theme-color-light;
+            box-shadow: 0 2px 5px 0 $theme-color-dark;
+            cursor: pointer;
+
+
+          }
+
+        }
+
+        .divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          width: 100%;
+
+          color: $theme-color-lighter;
+
+          .horizontal-line {
+            border-bottom: 1px solid $theme-color-lighter;
+            width: 40%;
+
+          }
+
+          p {
+            font-size: 0.6rem;
+          }
+        }
+
+
+        .email-option {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 15px;
+
+          label {
+            width: 100%;
+            font-size: 0.8rem;
+            margin: 5px;
+          }
+
+          input {
+            width: 100%;
+            border: 1px solid $theme-color-lighter;
+            background-color: $theme-color;
+            color: aliceblue;
+            height: 2.3rem;
+            padding: 0 20px;
+            border-radius: 10px;
+            box-sizing: border-box;
+
+            &:focus {
+              outline: none;
+              border-color: $accent-color-1-light;
+            }
+          }
+
+
+          .password-input {
+            position: relative;
+            width: 100%;
+
+
+            .visibility-icon {
+              position: absolute;
+
+              right: 10px;
+              top: 0;
+              margin: 8px 0;
+
+              scale: 0.7;
+              cursor: pointer;
+            }
+          }
+
+          .email-button {
+            width: 100%;
+            border: 1px solid $theme-color-lighter;
+            background-color: $accent-color-1-light;
+            color: aliceblue;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            height: 2.3rem;
+
+
+            &:hover {
+              background-color: $accent-color-1-dark;
+
+              cursor: pointer;
+            }
+
+          }
+
+
+        }
+
+        .forgot-password {
+          font-size: 0.8rem;
+
+          color: $theme-color-lighter;
+          text-decoration: underline;
+
+          &:hover {
+            cursor: pointer;
+            color: $accent-color-1-light;
+          }
+        }
+
+        .terms-and-conditions {
+          margin-top: 40px;
+          font-size: 0.6rem;
+          color: $theme-color-lighter;
+
+          a {
+            color: $theme-color-lighter;
+            display: inline;
+
+
+            &:hover {
+              color: $accent-color-1-dark;
+            }
+          }
+
+        }
+
+      }
+
+
+    }
+  }
+
+  .right-container {
+    width: 50vw;
+    background-color: $theme-color-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  //media query if screen size is less than 750px
+  @media (max-width: 750px) {
+    .left-container {
+      padding: 8rem 15vw 2rem 15vw;
+
+      width: 100vw;
+    }
+
+    .right-container {
+      display: none;
+
+
+    }
+  }
+
+  //media query if screen size is more than 1080px
+  @media (min-width: 1080px) {
+    .left-container {
+
+      padding: 8rem 5rem 2rem 5rem;
+
+    }
+  }
+}

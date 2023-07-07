@@ -11,7 +11,7 @@ function FormsContainer({forms}) {
 
         >
             {
-                forms.length > 0 ? (
+                forms?.length > 0 ? (
                     forms.map((form, index) => {
 
                         return (
@@ -27,7 +27,7 @@ function FormsContainer({forms}) {
 
 
             }
-            <CreateFormButton/>
+           
         </div>
     );
 }

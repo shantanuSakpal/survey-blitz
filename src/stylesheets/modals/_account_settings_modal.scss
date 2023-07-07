@@ -19,10 +19,9 @@
     gap: 20px;
     width: 20rem;
     max-width: 90vw;
-    box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
     height: fit-content;
     font-family: sans-serif;
-    background-color: #212529;
+    background-color: $theme-color;
     padding: 10px 20px;
     border-radius: 10px;
 
@@ -41,7 +40,7 @@
     margin-top: 5px;
   }
 
-  h4 {
+  h5 {
     color: $accent-color-1-light;
 
     span {
@@ -67,7 +66,7 @@
     padding: 10px;
     border-top-right-radius: 10px;
 
-    background-color: $input-background-color;
+    background-color: $theme-color;
     border-bottom-right-radius: 10px;
     outline: none;
     border: none;
@@ -80,14 +79,14 @@
 
 
   input::placeholder {
-    color: $theme-color-2;
+    color: $theme-color-lighter;
     font-size: 0.8rem;
   }
 
   input:-webkit-autofill,
   textarea:-webkit-autofill,
   select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px $input-background-color inset !important;
+    -webkit-box-shadow: 0 0 0 1000px $theme-color inset !important;
     -webkit-text-fill-color: white !important;
   }
 
@@ -121,7 +120,7 @@
 
   .icon {
 
-    background-color: $input-background-color;
+    background-color: $theme-color;
     border-top-left-radius: 10px;
     scale: 0.8;
     border-bottom-left-radius: 10px;
@@ -135,7 +134,7 @@
   button {
     width: fit-content;
     margin: 20px auto;
-    padding: 10px 20px;
+    padding: 5px 10px;
     outline: none;
     border: none;
     border-radius: 20px;
@@ -143,7 +142,7 @@
     color: white;
     background-color: #248277;
     font-family: sans-serif;
-    font-size: 1em;
+    font-size: 0.8rem;
     cursor: pointer;
     transition-duration: 0.25s;
   }
@@ -170,27 +169,6 @@
     color: #06d6a0;
   }
 
-  #MsgBx {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: auto;
-    padding: 20px;
-  }
-
-  #MsgBx > li {
-    list-style: none;
-    color: white;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #036666;
-    width: fit-content;
-    font-family: 'Ubuntu', sans-serif;
-    position: relative;
-    animation: enteranceError 1s ease;
-    margin: 5px;
-  }
 
   input {
     border: 1px solid transparent;
@@ -217,22 +195,33 @@
 
   .modal-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-bottom: 10px;
+    gap: 10px;
+    position: relative;
 
     button {
+      font-size: 0.8rem;
+      font-weight: normal;
       margin: 0;
+      border-radius: 10px;
+      background-color: $accent-color-1-light;
+
+      &:hover {
+        background-color: $accent-color-1-dark;
+      }
     }
 
     .logout {
-      background-color: transparent;
-      color: red;
-      border: 2px solid red;
+      background-color: rgba(255, 0, 0, 0.13);
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: aliceblue;
 
       &:hover {
-        background-color: red;
-        border-color: transparent;
-        color: $theme-color;
+        background-color: rgba(255, 0, 0, 0.63);
+
       }
     }
 

@@ -15,7 +15,11 @@ function SectionHeader({currentSectionIndex}) {
         <div className="form-section-header"
         >
             <h4>Page {currentSectionIndex + 1} of {totalSections}</h4>
-            {currentSection.section_name}
+            {
+                currentSection.section_name !== "Untitled Page" ? (
+                    <h2>{currentSection.section_name}</h2>
+                ) : null
+            }
         </div>
 
     );
