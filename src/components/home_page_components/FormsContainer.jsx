@@ -7,9 +7,12 @@ function FormsContainer({forms}) {
 
 
     return (
-        <div className="form-card-container"
+        <div className="form-cards-container"
 
         >
+            <CreateFormButton/>
+
+
             {
                 forms?.length > 0 ? (
                     forms.map((form, index) => {
@@ -27,7 +30,7 @@ function FormsContainer({forms}) {
 
 
             }
-           
+
         </div>
     );
 }

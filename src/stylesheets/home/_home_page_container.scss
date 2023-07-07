@@ -6,10 +6,10 @@
   display: flex;
   padding: 0;
 
+  @import "home-page-left-sidebar";
 
   @import "home-page-right-container";
 
-  @import "home-page-left-sidebar";
 }
 
 @import "profile";

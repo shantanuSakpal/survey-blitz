@@ -2,5 +2,36 @@
   padding: 1rem;
   width: 100%;
   box-sizing: border-box;
+  height: 100vh;
+  overflow: auto;
+  @import "../scrollbars/home_page_scrollbar";
+
+  .search-and-sort-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h4 {
+      display: inline;
+    }
+
+    @import "search_bar";
+
+    @import "sort_button";
+
+
+  }
+
+  .form-cards-container {
+    padding: 1rem 0;
+    display: grid;
+    justify-content: flex-start;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 20px;
+    
+
+    @import "form_card";
+
+  }
 
 }

@@ -8,7 +8,7 @@ function ResponseSubmitted(props) {
 
             Your response has been submitted! Thank you!
             <br/>
-            <div style={{color: "blue", cursor: "pointer"}} onClick={() => navigate("/")}>Back Home</div>
+            <div style={{color: "blue", cursor: "pointer"}} onClick={() => navigate("/home")}>Back Home</div>
         </div>
     );
 }

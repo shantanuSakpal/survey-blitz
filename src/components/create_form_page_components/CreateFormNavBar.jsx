@@ -39,7 +39,7 @@ function CreateFormNavBar(props) {
             const response = await axios.post('http://localhost:3001/admin/createForm', requestBody);
             console.log('Form stored successfully', response);
             toast.success(response.data.message);
-            navigate("/")
+            navigate("/home")
         } catch (error) {
 
             if (error.response && error.response.status === 400) {
@@ -63,7 +63,7 @@ function CreateFormNavBar(props) {
             const response = await axios.post('http://localhost:3001/admin/updateForm', requestBody);
             console.log('Form stored successfully');
             toast.success(response.data.message)
-            navigate("/")
+            navigate("/home")
         } catch (error) {
             toast.error(error.response.data.message)
             console.error('Error:', error);

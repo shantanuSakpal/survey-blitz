@@ -1,0 +1,62 @@
+.form-card-container {
+  aspect-ratio: 1/1;
+  background-color: $theme-color-light;
+  max-width: 10rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.125s ease-out;
+  box-sizing: border-box;
+  flex-grow: 1;
+
+
+  &:hover {
+    cursor: pointer;
+    //move up slightly
+    transform: translateY(-5px);
+    transition: all 0.125s ease-out;
+
+    .icon {
+      scale: 1.2;
+    }
+  }
+
+  .inner-container {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 20px;
+    text-align: center;
+
+
+    .icon {
+
+      background-color: aliceblue;
+      border-radius: 10px;
+      width: 2.5rem;
+      aspect-ratio: 1/1;
+      color: black;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.125s ease-out;
+
+      img {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
+    .form-name {
+      font-size: 0.7rem;
+
+    }
+  }
+
+
+}

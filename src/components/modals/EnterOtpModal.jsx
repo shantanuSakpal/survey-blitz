@@ -19,7 +19,7 @@ function EnterOtpModal({errors, setErrors, inputValues, handleOnChange}) {
             .then((res) => {
 
                 localStorage.setItem("currUser", JSON.stringify(res.data));
-                navigate("/");
+                navigate("/home");
             })
             .catch((err) => {
                 console.log(err);

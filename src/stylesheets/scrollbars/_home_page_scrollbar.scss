@@ -6,22 +6,22 @@
 
 /* Track */
 &::-webkit-scrollbar-track {
-  background: $theme-color;
+  background: $theme-color-dark;
 }
 
 /* Handle */
 &::-webkit-scrollbar-thumb {
-  background: $theme-color;
+  background: $theme-color-dark;
   border-radius: 10px;
   box-shadow: inset 0 0 10px 10px $theme-color-light;
-  border: solid 3px $theme-color;
+  border: solid 2px $theme-color-dark;
 }
 
 &::-webkit-scrollbar-corner {
-  background: $theme-color;
+  background: $theme-color-dark;
 }
 
 /* Handle on hover */
 &::-webkit-scrollbar-thumb:hover {
-  box-shadow: inset 0 0 10px 10px $accent-color-1-light;
+  box-shadow: inset 0 0 10px 10px $theme-color-lighter;
 }
