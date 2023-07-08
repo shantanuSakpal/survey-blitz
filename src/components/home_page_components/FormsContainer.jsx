@@ -3,8 +3,23 @@ import AdminFormsListItems from "./AdminFormsListItems";
 import CreateFormButton from "../buttons/CreateFormButton";
 import {useSelector} from "react-redux";
 
-function FormsContainer({forms}) {
+function FormsContainer({forms, sortType, searchText}) {
+    console.log("forms", forms);
+    console.log("sortType", sortType);
+    console.log("searchText", searchText);
+    const filteredForms = forms.filter((form) =>
+        form.formObject.form_name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    const sortedForms = [...filteredForms];
 
+    if (sortType === 'alphabetical') {
+        sortedForms.sort((a, b) => a.formObject.form_name.localeCompare(b.formObject.form_name));
+    } else if (sortType === 'newest') {
+        let date1 =
+            sortedForms.sort((a, b) => b.form_id - a.form_id);
+    } else if (sortType === 'oldest') {
+        sortedForms.sort((a, b) => a.form_id - b.form_id);
+    }
 
     return (
         <div className="form-cards-container"
@@ -14,18 +29,17 @@ function FormsContainer({forms}) {
 
 
             {
-                forms?.length > 0 ? (
-                    forms.map((form, index) => {
+                sortedForms?.length && (
+                    sortedForms.map((form, index) => {
 
                         return (
                             <AdminFormsListItems
                                 key={index}
                                 form={form}
+
                             />
                         )
                     })
-                ) : (
-                    <div>No forms found.</div>
                 )
 
 

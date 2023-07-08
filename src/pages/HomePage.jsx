@@ -16,6 +16,7 @@ export const HomePage = () => {
     const dispatch = useDispatch();
     const [forms, setForms] = useState([]);
     const [searchText, setSearchText] = useState('');
+    const [sortType, setSortType] = useState('newest');
 
 
     const currUser = JSON.parse(localStorage.getItem('currUser'));
@@ -90,10 +91,24 @@ export const HomePage = () => {
                                 />
                             </div>
                             <div className="sort-button">
-                                <select name="sort" id="sort">
-                                    <option value="newest">Newest first</option>
-                                    <option value="oldest">Oldest first</option>
-                                    <option value="alphabetical">Alphabetical</option>
+                                <select name="sort" id="sort"
+                                        onChange={(e) => {
+                                            setSortType(e.target.value);
+                                        }}
+                                        value={sortType}
+                                >
+                                    <option value="newest"
+
+                                    >Newest first
+                                    </option>
+                                    <option value="oldest"
+
+                                    >Oldest first
+                                    </option>
+                                    <option value="alphabetical"
+
+                                    >Alphabetical
+                                    </option>
                                 </select>
                             </div>
 
@@ -104,6 +119,8 @@ export const HomePage = () => {
 
                     <FormsContainer
                         forms={forms}
+                        searchText={searchText}
+                        sortType={sortType}
                     />
 
                 </div>

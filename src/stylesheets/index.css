@@ -698,7 +698,7 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 1rem 0;
   display: grid;
   justify-content: flex-start;
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
   gap: 20px;
 }
 .home-page-container .home-page-right-container .form-cards-container .form-card-container {
@@ -749,6 +749,16 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .home-page-container .home-page-right-container .form-cards-container .form-card-container .inner-container .form-name {
   font-size: 0.7rem;
+}
+@media (max-width: 1080px) {
+  .home-page-container .home-page-right-container .form-cards-container .form-card-container {
+    max-width: 12rem;
+  }
+}
+@media (max-width: 600px) {
+  .home-page-container .home-page-right-container .form-cards-container .form-card-container {
+    max-width: 10rem;
+  }
 }
 
 .profile {
@@ -2419,19 +2429,32 @@ body::-webkit-scrollbar-thumb:hover {
   color: #f8f9fa;
   flex-direction: column;
   gap: 20px;
-  width: 20rem;
+  width: 18rem;
   max-width: 90vw;
   height: fit-content;
   font-family: sans-serif;
   background-color: #1e1e24;
   padding: 10px 20px;
   border-radius: 10px;
+  position: relative;
 }
 .account-setting-modal #container .email-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
   text-align: left;
+}
+.account-setting-modal #container .close-btn {
+  position: absolute;
+  color: #444444;
+  top: 10px;
+  right: 10px;
+  width: fit-content;
+  z-index: 5;
+}
+.account-setting-modal #container .close-btn:hover {
+  cursor: pointer;
+  color: #a2a2a2;
 }
 .account-setting-modal .error {
   color: red;
@@ -2489,6 +2512,12 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
   border: 1px solid gray;
 }
+.account-setting-modal .row:not(.name):hover {
+  border: 1px solid #18bed4;
+}
+.account-setting-modal .row:not(.name):focus-within {
+  border: 1px solid #18bed4;
+}
 .account-setting-modal .name {
   width: 100%;
   height: fit-content;
@@ -2542,10 +2571,8 @@ body::-webkit-scrollbar-thumb:hover {
   color: #06d6a0;
 }
 .account-setting-modal input {
-  border: 1px solid transparent;
-}
-.account-setting-modal input:focus {
-  border: 1px solid #18bed4;
+  border: none;
+  outline: none;
 }
 .account-setting-modal .show-icon {
   position: absolute;

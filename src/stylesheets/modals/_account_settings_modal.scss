@@ -17,13 +17,14 @@
     color: #f8f9fa;
     flex-direction: column;
     gap: 20px;
-    width: 20rem;
+    width: 18rem;
     max-width: 90vw;
     height: fit-content;
     font-family: sans-serif;
     background-color: $theme-color;
     padding: 10px 20px;
     border-radius: 10px;
+    position: relative;
 
     .email-container {
       display: flex;
@@ -32,7 +33,22 @@
 
       text-align: left;
     }
+
+    .close-btn {
+      position: absolute;
+      color: $theme-color-lighter;
+      top: 10px;
+      right: 10px;
+      width: fit-content;
+      z-index: 5;
+
+      &:hover {
+        cursor: pointer;
+        color: $theme-color-lightest;
+      }
+    }
   }
+
 
   .error {
     color: red;
@@ -101,6 +117,14 @@
     margin: 10px 0;
     border-radius: 10px;
     border: 1px solid gray;
+
+    &:hover {
+      border: 1px solid $accent-color-1-light;
+    }
+
+    &:focus-within {
+      border: 1px solid $accent-color-1-light;
+    }
 
   }
 
@@ -171,11 +195,10 @@
 
 
   input {
-    border: 1px solid transparent;
+    border: none;
+    outline: none;
 
-    &:focus {
-      border: 1px solid $accent-color-1-light;
-    }
+
   }
 
   .show-icon {

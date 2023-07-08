@@ -6,6 +6,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import {toast} from 'react-toastify';
 import {useNavigate} from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 
 function AccountSettings({setModalOpen}) {
     const {user, setUser} = useContext(UserContext);
@@ -117,6 +118,11 @@ function AccountSettings({setModalOpen}) {
     return (
         <div className="account-setting-modal">
             <form id="container">
+
+                <div className="close-btn" onClick={() => setModalOpen(false)}>
+                    <CloseIcon/>
+                </div>
+                
                 <div className="heading">
 
                     <h3 id="Heading">Hey there,<br/> {user?.result.username} !</h3>
@@ -209,7 +215,7 @@ function AccountSettings({setModalOpen}) {
                     <button type="submit" onClick={changePassword}>
                         Save
                     </button>
-                    <button onClick={() => setModalOpen(false)}>Cancel</button>
+                    <button className='cancel' onClick={() => setModalOpen(false)}>Cancel</button>
                     <button className='logout' onClick={logout}>
                         Logout
                     </button>
