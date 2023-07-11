@@ -1,7 +1,7 @@
 .add-input-button {
   display: flex;
-  width: 1rem;
-  height: 1rem;
+  width: 0.5rem;
+  height: 0.5rem;
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease-out;
@@ -10,9 +10,6 @@
   color: black;
   background-color: white;
 
-  margin: 20px auto;
-  border: 2px solid $theme-color;
-
   p {
     font-size: 0.6rem;
     margin: 0 5px;
@@ -20,9 +17,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: $accent-color-1-dark;
-    border-color: $accent-color-1-dark;
-    box-shadow: 0 0 5px 5px $accent-color-1-light;
+    scale: 1.1;
     color: black;
   }
 }

@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {toast} from 'react-toastify';
+import AppLogo from "../brand_logo/AppLogo";
 
 
 function CreateFormNavBar(props) {
@@ -39,7 +40,7 @@ function CreateFormNavBar(props) {
             const response = await axios.post('http://localhost:3001/admin/createForm', requestBody);
             console.log('Form stored successfully', response);
             toast.success(response.data.message);
-            navigate("/home")
+
         } catch (error) {
 
             if (error.response && error.response.status === 400) {
@@ -61,9 +62,8 @@ function CreateFormNavBar(props) {
 
             // Add the form to the database
             const response = await axios.post('http://localhost:3001/admin/updateForm', requestBody);
-            console.log('Form stored successfully');
+            console.log('Form updated successfully');
             toast.success(response.data.message)
-            navigate("/home")
         } catch (error) {
             toast.error(error.response.data.message)
             console.error('Error:', error);
@@ -73,12 +73,18 @@ function CreateFormNavBar(props) {
 
     const handlePublish = () => {
         console.log('Publishing form...');
-        storeForm();
+        storeForm().then(() => {
+            navigate("/home")
+
+        });
         setIsModalOpen(false);
     };
     const handleUpdateForm = () => {
         console.log('Publishing form...');
-        updateForm();
+        updateForm().then(() => {
+            navigate("/home")
+
+        });
         setIsUpdateModalOpen(false);
     }
 
@@ -100,25 +106,23 @@ function CreateFormNavBar(props) {
 
         <div data-role="navbar" className="create-forms-navbar">
 
-            <div className="navbar-header">
-                <div className="navbar-logo"><DynamicFormIcon/></div>
-                <a href="/">
-                    Form<span>Generator</span>
-                </a>
+            <div className="navbar-brand"
+                 onClick={() => navigate("/home")}
+            >
+                <AppLogo/>
             </div>
-            <div className="edit-form-name">
-                <input
-                    className="form-name-input"
-                    type="text"
-                    placeholder="Tap to edit form title"
-                    value={formObject.form_name}
-                    onChange={(e) => dispatch(editFormName(e.target.value))}
-                />
-                <div className="icon"><BorderColorIcon/></div>
-            </div>
+            {/*<div className="edit-form-name">*/}
+            {/*    <input*/}
+            {/*        className="form-name-input"*/}
+            {/*        type="text"*/}
+            {/*        placeholder="Tap to edit form title"*/}
+            {/*        value={formObject.form_name}*/}
+            {/*        onChange={(e) => dispatch(editFormName(e.target.value))}*/}
+            {/*    />*/}
+            {/*    <div className="icon"><BorderColorIcon/></div>*/}
+            {/*</div>*/}
 
             <div className="nav-buttons">
-                <a href="/">Home</a>
                 <div className="next-button" onClick={handleNext}>Next</div>
             </div>
 

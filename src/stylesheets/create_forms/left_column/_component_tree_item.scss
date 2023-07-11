@@ -1,17 +1,14 @@
 .component-tree-item {
   display: flex;
-  padding: 5px;
+  padding: 0 10px;
   justify-content: space-between;
-  
   border-radius: 10px;
   align-items: center;
-  border: 1px solid $theme-color;
   transition: all 0.2s ease-out;
 
 
   h4 {
-    font-size: 0.7rem;
-
+    font-size: 0.6rem;
     display: inline;
     margin: auto;
     height: max-content;

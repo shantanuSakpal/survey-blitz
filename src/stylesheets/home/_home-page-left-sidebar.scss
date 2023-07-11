@@ -37,7 +37,7 @@
 
       &.selected {
         background-color: $button-background-color-2;
-        color: rgba(125, 140, 255, 0.8);
+        color: $button-background-color-2-font;
       }
 
       p {
@@ -56,7 +56,7 @@
       &:hover {
         cursor: pointer;
 
-        background-color: rgba(125, 140, 255, 0.07);
+        background-color: $button-background-color-2-hover;
       }
     }
   }

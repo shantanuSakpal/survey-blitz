@@ -1,9 +1,8 @@
 .middle-column-container {
-  background-color: rgb(217, 217, 217);
+  background-color: $theme-color-dark;
   color: black;
   width: 60vw;
   height: 90%;
-  border-top: 1px solid $theme-color-light;
   padding: 1rem 1rem 3rem 1rem;
   overflow-y: auto;
   @import "../../scrollbars/scrollbar_style.scss";

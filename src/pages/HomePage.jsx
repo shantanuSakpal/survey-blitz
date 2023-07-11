@@ -11,12 +11,13 @@ import CreateFormButton from "../components/buttons/CreateFormButton";
 import {Search} from "@mui/icons-material";
 
 export const HomePage = () => {
-    const {user, setUser} = useContext(UserContext);
+    // const {user, setUser} = useContext(UserContext);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [forms, setForms] = useState([]);
+
     const [searchText, setSearchText] = useState('');
     const [sortType, setSortType] = useState('newest');
+    const forms = useSelector((state) => state.adminFormsArray);
 
 
     const currUser = JSON.parse(localStorage.getItem('currUser'));
@@ -24,10 +25,11 @@ export const HomePage = () => {
         //if user is not logged in, redirect to login page
         if (!currUser) {
             navigate('/signIn');
-        } else {
-
-            setUser(currUser);
         }
+        // else {
+        //
+        //     setUser(currUser);
+        // }
 
         if ((currUser)) {
 
@@ -41,8 +43,7 @@ export const HomePage = () => {
             ).then((response) => {
                 const fetchedForms = response.data.forms;
                 dispatch(setInitialState(fetchedForms));
-                setForms(fetchedForms);
-                console.log(fetchedForms);
+
 
             }).catch((error) => {
                 console.error('Error:', error);
@@ -50,7 +51,7 @@ export const HomePage = () => {
         }
 
 
-    }, [setUser]);
+    }, []);
 
 
     const handleSearch = (e) => {
@@ -117,11 +118,14 @@ export const HomePage = () => {
 
                     </div>
 
-                    <FormsContainer
-                        forms={forms}
-                        searchText={searchText}
-                        sortType={sortType}
-                    />
+                    {
+                        forms &&
+                        <FormsContainer
+                            forms={forms}
+                            searchText={searchText}
+                            sortType={sortType}
+                        />
+                    }
 
                 </div>
 

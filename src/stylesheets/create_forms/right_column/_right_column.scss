@@ -1,9 +1,9 @@
 .right-column-container {
-  background-color: $theme-color;
+  background-color: $theme-color-light;
   color: white;
   width: 30vw;
   height: 100%;
-  border-top: 1px solid $theme-color-light;
+  border-top: 1px solid $theme-color-dark;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;

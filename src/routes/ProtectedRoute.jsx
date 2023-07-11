@@ -4,10 +4,10 @@ import UserContext from "../context/UserContext";
 
 const ProtectedRoute = (props) => {
     const navigate = useNavigate();
-    const {user} = useContext(UserContext);
-    if (!user) {
-        navigate("/signIn");
-    }
+    // const {user, setUser} = useContext(UserContext);
+    // if (!user) {
+    //     navigate("/signIn");
+    // }
     return (
 
         props.children

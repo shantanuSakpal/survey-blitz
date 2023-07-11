@@ -8,6 +8,7 @@ import {
     reorderSections, setCurrComponent,
     setCurrSectionId,
 } from "../../reducers/formObjectReducer";
+import {AddInputButton} from "../buttons/AddInputButton";
 
 
 function FormComponents() {
@@ -46,7 +47,10 @@ function FormComponents() {
         <>
             <div className="left-column-container">
 
-                <p>Components</p>
+                <div className="container-1">
+                    <p>Components</p>
+                    <AddInputButton/>
+                </div>
 
 
                 <DragDropContext onDragEnd={onDragEnd}>

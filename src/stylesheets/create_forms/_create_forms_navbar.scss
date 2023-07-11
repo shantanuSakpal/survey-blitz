@@ -1,17 +1,21 @@
 
 .create-forms-navbar {
-  background-color: $theme-color;
+  background-color: $theme-color-light;
   color: white;
   padding: 0.5rem 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
   top: 0;
   left: 0;
   right: 0;
-  height: max-content;
+  height: 1.5rem;
   align-items: center;
   z-index: 100;
+
+  .navbar-brand {
+    scale: 0.8;
+  }
 
 
   .navbar-header {
@@ -251,13 +255,14 @@
     gap: 20px;
 
     .next-button {
-      padding: 5px 10px;
+      padding: 10px 15px;
       border-radius: 10px;
       background-color: $accent-color-1-light;
-      color: $theme-color;
+      color: aliceblue;
 
+      font-size: 0.7rem;
+      font-weight: 600;
 
-      font-weight: bold;
 
       &:hover {
         cursor: pointer;

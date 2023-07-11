@@ -22,9 +22,12 @@ export const adminFormsSlice = createSlice({
 
             //delete the form from the array
             const form_id = action.payload;
+
             const index = state.findIndex((form) => form.form_id === form_id);
-            state.splice(index, 1);
-            return state;
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
+            
 
         },
 
@@ -37,7 +40,7 @@ export const {
     updateResponse,
     setInitialState,
     deleteForm,
-    
+
 } = adminFormsSlice.actions;
 
 export default adminFormsSlice.reducer;

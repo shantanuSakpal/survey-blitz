@@ -22,7 +22,7 @@ const SignInPage = () => {
 
     const [forgotPassword, setForgotPassword] = useState(false);
     const [otpInput, setOtpInput] = useState(false);
-    const [resetPassword, serResetPassword] = useState(false);
+    const [resetPassword, setResetPassword] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -104,7 +104,7 @@ const SignInPage = () => {
         //     // Send API request to verify the entered OTP
         //     const response = await axios.post('/api/verify-otp', { email, otp });
         //     // Handle success and set the verification status
-        //     serResetPassword(true);
+        //     setResetPassword(true);
         //     // Show message to the user that OTP is verified and they can fill in the form
         //     console.log('OTP verified successfully');
         // } catch (error) {
@@ -112,7 +112,7 @@ const SignInPage = () => {
         //     console.error('Failed to verify OTP',error);
         // }
         if (otp === "123456") {
-            serResetPassword(true);
+            setResetPassword(true);
         } else {
             setErrors({otp: "Invalid OTP"});
         }

@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
-import AdminFormsListItems from "./AdminFormsListItems";
+import AdminFormsListItem from "./AdminFormsListItem";
 import CreateFormButton from "../buttons/CreateFormButton";
 import {useSelector} from "react-redux";
 
 function FormsContainer({forms, sortType, searchText}) {
-    console.log("forms", forms);
-    console.log("sortType", sortType);
-    console.log("searchText", searchText);
+
     const filteredForms = forms.filter((form) =>
         form.formObject.form_name.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -29,11 +27,11 @@ function FormsContainer({forms, sortType, searchText}) {
 
 
             {
-                sortedForms?.length && (
+                sortedForms?.length > 0 && (
                     sortedForms.map((form, index) => {
 
                         return (
-                            <AdminFormsListItems
+                            <AdminFormsListItem
                                 key={index}
                                 form={form}
 
