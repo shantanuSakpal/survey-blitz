@@ -12,7 +12,7 @@ import AppLogo from "../components/brand_logo/AppLogo";
 
 const SignInPage = () => {
     const navigate = useNavigate();
-    const {user, setUser} = useContext(UserContext);
+    // const {user, setUser} = useContext(UserContext);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };

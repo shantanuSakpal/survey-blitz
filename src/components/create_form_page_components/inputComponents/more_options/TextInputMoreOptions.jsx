@@ -2,6 +2,7 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import {setComponentPropObject} from "../../../../reducers/formObjectReducer";
+import {Check} from "@mui/icons-material";
 
 export const TextInputMoreOptions = ({component_id, currSectionId}) => {
     const formSectionsArray = useSelector(
@@ -37,6 +38,14 @@ export const TextInputMoreOptions = ({component_id, currSectionId}) => {
                     );
                 }}
             >
+                {
+                    currComponent.component_prop_object.is_description ? (
+                        <Check fontSize="smaller"
+                               sx={{
+                                   margin: "0 5px -2px 0"
+                               }}
+                        />) : null
+                }
                 Add Description
             </div>
             <div className="more-options-item"
@@ -54,7 +63,14 @@ export const TextInputMoreOptions = ({component_id, currSectionId}) => {
                          })
                      );
                  }}
-            >Validate Responses
+            >
+                {
+                    currComponent.component_prop_object.is_validation ? (
+                        <Check fontSize="smaller" sx={{
+                            margin: "0 5px -2px 0"
+                        }}/>) : null
+                }
+                Validate Responses
             </div>
         </div>
     );

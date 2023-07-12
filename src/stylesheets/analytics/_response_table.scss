@@ -1,6 +1,6 @@
 .table-elements-container {
   padding: 10px;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 3rem);
   box-sizing: border-box;
 
@@ -8,6 +8,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 5px 10px;
+    box-sizing: border-box;
 
     /* Import styles for the table search bar */
     @import "table_search_bar";
@@ -33,7 +35,7 @@
 
 
       .table-head {
-        background-color: $theme-color;
+        background-color: $theme-color-lighter;
         border-radius: 10px 0;
         font-size: 0.8rem;
         position: sticky;
@@ -46,7 +48,7 @@
           .table-head-cell {
             border-width: 1px 0 1px 1px;
             border-style: solid;
-            border-color: $theme-color-light;
+            border-color: $theme-color-lightest;
             padding: 5px 10px;
             white-space: nowrap;
             overflow: hidden;
@@ -74,7 +76,7 @@
 
 
               .isResizing {
-                background-color: $theme-color-light;
+                background-color: $theme-color-lighter;
               }
             }
 
@@ -83,7 +85,7 @@
             }
 
             &:last-child {
-              border-right: 1px solid $theme-color-light;
+              border-right: 1px solid $theme-color-lighter;
               border-radius: 0 10px 0 0;
             }
           }
@@ -100,7 +102,8 @@
           .table-body-cell {
             border-width: 0 0 1px 1px;
             border-style: solid;
-            border-color: $theme-color-light;
+            border-color: $theme-color-lightest;
+            background-color: $theme-color-light;
             padding: 5px 10px;
             white-space: nowrap;
             width: 100%;
@@ -116,7 +119,7 @@
 
 
             &:last-child {
-              border-right: 1px solid $theme-color-light;
+              border-right: 1px solid $theme-color-lighter;
             }
           }
         }
@@ -128,7 +131,7 @@
 }
 
 .selected-cell-popup {
-  
+
 }
 
 

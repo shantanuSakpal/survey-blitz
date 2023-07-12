@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import UserContext from '../context/UserContext';
 import axios from 'axios';
 import FormsContainer from '../components/home_page_components/FormsContainer';
 import {useNavigate} from 'react-router-dom';
@@ -7,7 +6,6 @@ import HomePageNavbar from "../components/home_page_components/HomePageNavbar";
 import {useDispatch, useSelector} from "react-redux";
 import {setInitialState} from "../reducers/adminFormsReducer";
 import {ToastContainer} from "react-toastify";
-import CreateFormButton from "../components/buttons/CreateFormButton";
 import {Search} from "@mui/icons-material";
 
 export const HomePage = () => {
@@ -18,8 +16,6 @@ export const HomePage = () => {
     const [searchText, setSearchText] = useState('');
     const [sortType, setSortType] = useState('newest');
     const forms = useSelector((state) => state.adminFormsArray);
-
-
     const currUser = JSON.parse(localStorage.getItem('currUser'));
     useEffect(() => {
         //if user is not logged in, redirect to login page
@@ -61,15 +57,18 @@ export const HomePage = () => {
 
 
     return (
-        currUser &&
+        currUser && forms &&
         <>
 
 
             <div className="home-page-container">
-                <HomePageNavbar page={"home"}
-                                username={currUser?.result.username}
+                <div className="home-page-left-sidebar">
+                    <HomePageNavbar page={"home"}
+                                    forms={forms}
+                                    username={currUser?.result.username}
 
-                />
+                    />
+                </div>
 
                 <div className="home-page-right-container">
                     <div className="search-and-sort-container ">

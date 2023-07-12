@@ -52,11 +52,19 @@ function AdminFormsListItem({form}) {
                 className="form-card-container"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
+                onClick={() => setShowMoreOptions(!showMoreOptions)}
+
             >
-                <div className={`more-options ${showMoreOptionsIcon ? '' : 'hide'}`}>
+                <div className={` status-indicator ${form.formObject.is_active ? "active" : "inactive"}`}>
+
+
+                </div>
+                <div className={`more-options ${showMoreOptionsIcon ? '' : 'hide'}`}
+                >
+
+
                     <div
                         className="more-options-icon"
-                        onClick={() => setShowMoreOptions(!showMoreOptions)}
                     >
                         {
                             showMoreOptions ? (
@@ -87,7 +95,9 @@ function AdminFormsListItem({form}) {
                     </div>
                 </div>
 
-                <div className="inner-container">
+                <div className="inner-container"
+                     onClick={handleEdit}
+                >
                     <div className="icon">
                         <img src={formImg} alt=" img"/>
                     </div>

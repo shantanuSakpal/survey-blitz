@@ -5,6 +5,7 @@
   padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
+
   position: relative;
   top: 0;
   left: 0;
@@ -15,67 +16,41 @@
 
   .navbar-brand {
     scale: 0.8;
+    width: 20%;
   }
 
-
-  .navbar-header {
-
-    display: flex;
-    padding: 10px;
-    font-family: 'Belanosima', sans-serif;
-    font-weight: 600;
-    font-size: 1.3rem;
-    align-items: center;
-    position: absolute;
-    left: 0;
-
-
-    .navbar-logo {
-      color: $accent-color-1-dark;
-      margin: 0 10px;
-
-      scale: 1.2;
-    }
-
-
-    span {
-      height: 2px;
-      width: 22px;
-      font-weight: 600;
-      display: inline;
-      color: $accent-color-1-dark;
-    }
-
-
-    a {
-      font-weight: 500;
-      color: $accent-color-1-light;
-      text-decoration: none;
-    }
-
-
-  }
 
   .edit-form-name {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    width: 40%;
+    max-width: 25rem;
+    font-size: 0.8rem;
+
+    label {
+      position: absolute;
+
+      left: 10px;
+      width: fit-content;
+      font-size: 0.5rem;
+    }
 
 
     .form-name-input {
       background-color: $theme-color;
       color: white;
-      padding: 5px 50px 5px 5px;
-      font-size: 1.3rem;
+      padding: 5px 50px 5px 60px;
       text-align: center;
       border-radius: 10px;
-      min-width: 50%;
-      border: 1px solid $accent-color-1-light;
+      border: 1px solid transparent;
+      outline: none;
+      width: 100%;
 
 
       &:focus {
-        border: 1px solid $accent-color-1-dark;
+        border-bottom: 1px solid $accent-color-1-dark;
       }
     }
 
@@ -84,11 +59,7 @@
       right: 10px;
       scale: 0.7;
       color: $accent-color-1-light;
-
-      &:hover {
-        cursor: pointer;
-        color: $accent-color-1-dark;
-      }
+      cursor: text;
     }
   }
 
@@ -247,18 +218,19 @@
 
   .nav-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    position: absolute;
     right: 0;
     margin: 10px;
     gap: 20px;
+    width: 20%;
 
     .next-button {
       padding: 10px 15px;
       border-radius: 10px;
       background-color: $accent-color-1-light;
       color: aliceblue;
+
 
       font-size: 0.7rem;
       font-weight: 600;

@@ -1,16 +1,12 @@
 .form-component-container {
-  background-color: white;
+  background-color: aliceblue;
   padding: 0.5rem;
   border-radius: 10px;
   margin: 10px 0;
   position: relative;
   transition: all 0.2s ease-out;
-  border: 1px solid lightgray;
+  border: 5px solid transparent;
 
-
-  &:hover {
-    border: 1px solid $accent-color-1-dark;
-  }
 
   .required-question {
     color: red;
@@ -26,7 +22,8 @@
 }
 
 .highlight {
-  box-shadow: 0 0 5px 2px $accent-color-1-dark;
+  border-left: 10px solid $accent-color-1-light;
+  border-radius: 10px;
 }
 
 .drag-component {

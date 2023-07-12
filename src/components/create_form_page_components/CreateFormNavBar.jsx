@@ -7,7 +7,6 @@ import _ from "lodash";
 import UserContext from "../../context/UserContext";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {toast} from 'react-toastify';
 import AppLogo from "../brand_logo/AppLogo";
@@ -40,7 +39,7 @@ function CreateFormNavBar(props) {
             const response = await axios.post('http://localhost:3001/admin/createForm', requestBody);
             console.log('Form stored successfully', response);
             toast.success(response.data.message);
-
+            navigate("/home")
         } catch (error) {
 
             if (error.response && error.response.status === 400) {
@@ -62,8 +61,9 @@ function CreateFormNavBar(props) {
 
             // Add the form to the database
             const response = await axios.post('http://localhost:3001/admin/updateForm', requestBody);
-            console.log('Form updated successfully');
+            console.log('Form stored successfully');
             toast.success(response.data.message)
+            navigate("/home")
         } catch (error) {
             toast.error(error.response.data.message)
             console.error('Error:', error);
@@ -73,18 +73,12 @@ function CreateFormNavBar(props) {
 
     const handlePublish = () => {
         console.log('Publishing form...');
-        storeForm().then(() => {
-            navigate("/home")
-
-        });
+        storeForm();
         setIsModalOpen(false);
     };
     const handleUpdateForm = () => {
         console.log('Publishing form...');
-        updateForm().then(() => {
-            navigate("/home")
-
-        });
+        updateForm();
         setIsUpdateModalOpen(false);
     }
 
@@ -111,16 +105,17 @@ function CreateFormNavBar(props) {
             >
                 <AppLogo/>
             </div>
-            {/*<div className="edit-form-name">*/}
-            {/*    <input*/}
-            {/*        className="form-name-input"*/}
-            {/*        type="text"*/}
-            {/*        placeholder="Tap to edit form title"*/}
-            {/*        value={formObject.form_name}*/}
-            {/*        onChange={(e) => dispatch(editFormName(e.target.value))}*/}
-            {/*    />*/}
-            {/*    <div className="icon"><BorderColorIcon/></div>*/}
-            {/*</div>*/}
+            <div className="edit-form-name">
+                <label htmlFor="form-name">Form title</label>
+                <input
+                    className="form-name-input"
+                    type="text"
+                    placeholder="Tap to edit form title"
+                    value={formObject.form_name}
+                    onChange={(e) => dispatch(editFormName(e.target.value))}
+                />
+                <div className="icon"><BorderColorIcon/></div>
+            </div>
 
             <div className="nav-buttons">
                 <div className="next-button" onClick={handleNext}>Next</div>

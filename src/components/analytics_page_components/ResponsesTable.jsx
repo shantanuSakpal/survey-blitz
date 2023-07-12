@@ -14,6 +14,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import SearchIcon from '@mui/icons-material/Search';
 import React, {useEffect, useState} from 'react'
+import {Search} from "@mui/icons-material";
 
 export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
@@ -118,14 +119,14 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
 
                             disabled={!table.getCanPreviousPage()}
                             onClick={() => table.setPageIndex(0)}>
-                            <FirstPageIcon/>
+                            <FirstPageIcon fontSize="smaller"/>
                         </button>
                         <button className={`pagination-button ${!table.getCanPreviousPage() && "disabled"}`}
 
                                 disabled={!table.getCanPreviousPage()}
                                 onClick={() => table.previousPage()}
                         >
-                            <NavigateBeforeIcon/>
+                            <NavigateBeforeIcon fontSize="smaller"/>
                         </button>
 
 
@@ -167,17 +168,17 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                                     table.nextPage();
                                 }}
                         >
-                            <NavigateNextIcon/>
+                            <NavigateNextIcon fontSize="smaller"/>
                         </button>
                         <button className={`pagination-button ${!table.getCanNextPage() && "disabled"}`}
                                 disabled={!table.getCanNextPage()}
                                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}>
-                            <LastPageIcon/>
+                            <LastPageIcon fontSize="smaller"/>
                         </button>
                     </div>
                     <div className="table-search-bar">
                         <div className="icon">
-                            <SearchIcon/>
+                            <Search fontSize="small"/>
                         </div>
                         <input
                             className="input"
@@ -185,6 +186,8 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
                             placeholder="Search in table..."
                             value={filtering}
                             onChange={e => setFiltering(e.target.value)}
+
+
                         />
                     </div>
                 </div>

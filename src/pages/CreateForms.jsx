@@ -18,13 +18,14 @@ function CreateForms() {
     return (
 
         (currForm != null) ? (
-            <> <CreateFormNavBar/>
+            <div className="create-forms-page-container">
+                <CreateFormNavBar/>
                 <div className="columns-container">
                     <FormComponents/>
                     <FormDisplay/>
                     <EditInputFeatures/>
                 </div>
-            </>
+            </div>
         ) : (
             <div>
                 <h1>Form not found</h1>

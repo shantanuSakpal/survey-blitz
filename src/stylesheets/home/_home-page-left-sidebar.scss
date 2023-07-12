@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  padding: 1rem;
+  padding: 5rem 1rem 3rem 1rem;
 
   .brand-logo-container {
     position: absolute;
@@ -15,12 +15,14 @@
   }
 
   .links-container {
-    margin-top: 5rem;
+    margin: 20px 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 5px;
     cursor: pointer;
+    max-height: 100%;
+    overflow: auto;
 
     .link {
       display: flex;

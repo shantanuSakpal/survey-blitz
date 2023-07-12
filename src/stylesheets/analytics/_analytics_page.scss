@@ -1,22 +1,15 @@
 .analytics-page-container {
   background-color: $theme-color-dark;
   height: 100vh;
-  box-sizing: border-box;
   color: aliceblue;
+  box-sizing: border-box;
+  display: flex;
+  padding: 0;
 
-  .form-response-header {
-    width: fit-content;
-    border-bottom: 3px solid $accent-color-1-dark;
-    margin: 0 auto;
-    text-align: center;
-    color: aliceblue;
-    font-size: 1.2rem;
-    font-weight: bold;
+  
+  @import "../home/home-page-left-sidebar";
 
-  }
-
-
-  @import "response_table";
+  @import "analytics_page_right_container";
 
 }
 

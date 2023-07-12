@@ -1,6 +1,6 @@
 .columns-container {
   display: flex;
- 
+
   height: 100vh;
   overflow: hidden;
   box-sizing: border-box;
@@ -13,3 +13,7 @@
 @import "right_column/right_column";
 
 
+.create-forms-page-container {
+  height: 100vh;
+  overflow: hidden;
+}

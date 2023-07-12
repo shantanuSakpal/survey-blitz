@@ -12,6 +12,7 @@ import Loading from "./components/Loading";
 import SignInPage from "./pages/Sign_in";
 import SignUpPage from "./pages/Sign_Up";
 import axios from "axios";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
     const [user, setUser] = useState(null);
@@ -19,7 +20,6 @@ function App() {
 
     useEffect(() => {
         const currUser = JSON.parse(localStorage.getItem("currUser"));
-        console.log(currUser)
         //get the user data from backend using currUser.id
         //
         // if (currUser) {
@@ -89,7 +89,7 @@ function App() {
 
                 <Route path="/:id/:form_name" element={<FormPage/>}/>
                 <Route path="/responseSubmitted" element={<ResponseSubmitted/>}/>
-                <Route path="*" element={<Navigate to="/signIn"/>}/>
+                <Route path="*" element={<ErrorPage/>}/>
 
             </Routes>
 
