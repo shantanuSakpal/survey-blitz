@@ -1064,16 +1064,15 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .left-column-container .component-tree-item {
   display: flex;
-  padding: 0 10px;
-  justify-content: space-between;
+  justify-content: flex-start;
   border-radius: 10px;
   align-items: center;
   transition: all 0.2s ease-out;
+  scale: 0.8;
 }
 .left-column-container .component-tree-item h4 {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   display: inline;
-  margin: auto;
   height: max-content;
   font-weight: lighter;
 }
@@ -1110,8 +1109,8 @@ body::-webkit-scrollbar-thumb:hover {
   background-color: #010100;
   color: black;
   width: 60vw;
-  height: 90%;
-  padding: 1rem 1rem 3rem 1rem;
+  height: calc(100vh - 7rem);
+  padding: 1rem 1rem 7rem 1rem;
   overflow-y: auto; /* Track */
   /* Handle */
   /* Handle on hover */
@@ -2315,6 +2314,7 @@ body::-webkit-scrollbar-thumb:hover {
   margin-top: 5px;
   width: 100%;
   margin-left: 10px;
+  font-weight: lighter;
 }
 .sign-in-page .left-container {
   color: aliceblue;
@@ -2448,7 +2448,6 @@ body::-webkit-scrollbar-thumb:hover {
 .sign-in-page .left-container .inner-container .options .email-option label {
   width: 100%;
   font-size: 0.8rem;
-  margin: 5px;
 }
 .sign-in-page .left-container .inner-container .options .email-option input {
   width: 100%;
@@ -2459,10 +2458,32 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 0 20px;
   border-radius: 10px;
   box-sizing: border-box;
+  margin-top: 5px;
 }
 .sign-in-page .left-container .inner-container .options .email-option input:focus {
   outline: none;
   border-color: #18bed4;
+}
+.sign-in-page .left-container .inner-container .options .email-option input #tooltip {
+  position: relative;
+}
+.sign-in-page .left-container .inner-container .options .email-option input #tooltipText {
+  position: absolute;
+  Left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: #fff;
+  white-space: nowrap;
+  padding: 10px 15px;
+  border-radius: 7px;
+}
+.sign-in-page .left-container .inner-container .options .email-option input #tooltipText::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
 }
 .sign-in-page .left-container .inner-container .options .email-option .password-input {
   position: relative;
@@ -2497,24 +2518,17 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .sign-in-page .left-container .inner-container .options .forgot-password {
   font-size: 0.8rem;
-  color: #45454f;
+  color: #a2a2a2;
   text-decoration: underline;
 }
 .sign-in-page .left-container .inner-container .options .forgot-password:hover {
   cursor: pointer;
   color: #18bed4;
 }
-.sign-in-page .left-container .inner-container .options .terms-and-conditions {
-  margin-top: 40px;
-  font-size: 0.6rem;
+.sign-in-page .left-container .inner-container .options .forgot-password.disabledLink {
   color: #45454f;
-}
-.sign-in-page .left-container .inner-container .options .terms-and-conditions a {
-  color: #45454f;
-  display: inline;
-}
-.sign-in-page .left-container .inner-container .options .terms-and-conditions a:hover {
-  color: rgba(23, 174, 196, 0.82);
+  cursor: not-allowed;
+  text-decoration: none;
 }
 .sign-in-page .right-container {
   width: 50vw;
@@ -2522,10 +2536,26 @@ body::-webkit-scrollbar-thumb:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .sign-in-page .right-container img {
   max-width: 100%;
   max-height: 100%;
+}
+.sign-in-page .right-container .terms-and-conditions {
+  margin-top: 40px;
+  font-size: 0.65rem;
+  color: #45454f;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.sign-in-page .right-container .terms-and-conditions a {
+  color: #a2a2a2;
+  display: inline;
+}
+.sign-in-page .right-container .terms-and-conditions a:hover {
+  color: #18bed4;
 }
 @media (max-width: 750px) {
   .sign-in-page .left-container {

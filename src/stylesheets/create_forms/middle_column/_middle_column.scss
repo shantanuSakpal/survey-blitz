@@ -2,8 +2,8 @@
   background-color: $theme-color-dark;
   color: black;
   width: 60vw;
-  height: 90%;
-  padding: 1rem 1rem 3rem 1rem;
+  height: calc(100vh - 7rem);
+  padding: 1rem 1rem 7rem 1rem;
   overflow-y: auto;
   @import "../../scrollbars/scrollbar_style.scss";
 }

@@ -71,6 +71,7 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
     };
 
     useEffect(() => {
+
         const transformedResponses = responsesArray.map((response, index) => {
             const transformedResponse = {
                 id: index + 1,
@@ -79,7 +80,8 @@ export default function ResponsesTable({formQuestionsObject, responsesArray}) {
             response.formObject.form_sections.forEach((section, index) => {
                 const formSection = formQuestionsObject.form_sections[index];
                 section.section_components.forEach((component, index) => {
-                    const question = formSection.section_components[index].component_prop_object.question;
+
+                    const question = formSection?.section_components[index]?.component_prop_object?.question;
                     transformedResponse[question] = component.component_prop_object.answer;
                 });
             });

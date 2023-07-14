@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import OnboardingImg from '../images/onboardingimage.png';
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import google_icon from "../images/google-icon.png";
@@ -25,6 +25,25 @@ const SignInPage = () => {
     const [resetPassword, setResetPassword] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [resendOtpDisabled, setResendOtpDisabled] = useState(false);
+    const [countdown, setCountdown] = useState(30); // 30 seconds
+
+    useEffect(() => {
+        // Start the countdown when the component mounts
+        let timer = null;
+
+        if (countdown > 0) {
+            timer = setTimeout(() => {
+                setCountdown((prevCountdown) => prevCountdown - 1);
+            }, 1000);
+        } else {
+            setResendOtpDisabled(false);
+        }
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [countdown]);
 
 
     const [inputValues, setInputValues] = useState({
@@ -42,11 +61,20 @@ const SignInPage = () => {
         otp: ""
     });
 
+
     const handleOnChange = (event) => {
         const {name, value} = event.target;
-        setInputValues({...inputValues, [name]: value});
-        setErrors({...errors, [name]: ""});
+
+        if (name === "otp" && value.length > 6) {
+            // If the length of the OTP is more than 6, truncate it to 6 characters
+            setInputValues({...inputValues, [name]: value.substring(0, 6)});
+
+        } else {
+            setInputValues({...inputValues, [name]: value});
+            setErrors({...errors, [name]: ""});
+        }
     };
+
 
     const handleSignInSubmit = (e) => {
         e.preventDefault();
@@ -92,6 +120,7 @@ const SignInPage = () => {
     const handleOtpSubmit = async (e) => {
         e.preventDefault();
 //check if otp contains 6 characters
+//         console.log(inputValues.otp)
 
         const otp = (inputValues.otp);
         if (otp.length !== 6) {
@@ -118,7 +147,17 @@ const SignInPage = () => {
         }
     };
 
+    const handleResendOtp = () => {
+        // Reset the countdown and disable the "Resend OTP" button for 30 seconds
+        setCountdown(30);
+        setResendOtpDisabled(true);
+    };
+
     const handleEmailSubmit = (e) => {
+        //clear otp error
+        setErrors({otp: ""});
+        //clear otp input
+        setInputValues({...inputValues, otp: ""});
 
         const {email} = inputValues;
 
@@ -262,9 +301,9 @@ const SignInPage = () => {
 
                                                 <div className="visibility-icon">
                                                     {showPassword ? (
-                                                        <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
-                                                    ) : (
                                                         <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -274,7 +313,7 @@ const SignInPage = () => {
                                                 onClick={handleSignInSubmit}
                                         >
                                             <EmailIcon/>
-                                            Sign in with Email
+                                            Sign in
                                         </button>
                                     </div>
 
@@ -287,10 +326,7 @@ const SignInPage = () => {
 
                                     </div>
 
-                                    <div className="terms-and-conditions">By signing in, you agree to our <a
-                                        href="#">Terms</a> & <a
-                                        href="#">Privacy Policy</a>.
-                                    </div>
+
                                 </div>
                             </div>)
                         : forgotPassword && !otpInput && !resetPassword ? (
@@ -318,7 +354,11 @@ const SignInPage = () => {
                                         </div>
 
                                         <button className="email-button"
-                                                onClick={handleEmailSubmit}
+                                                onClick={() => {
+                                                    handleResendOtp();
+                                                    handleEmailSubmit();
+                                                }}
+
                                         >
                                             <EmailIcon/>
                                             Send code
@@ -326,19 +366,15 @@ const SignInPage = () => {
                                     </div>
 
 
-                                    <div className="terms-and-conditions">By signing in, you agree to our <a
-                                        href="#">Terms</a> & <a
-                                        href="#">Privacy Policy</a>.
-                                    </div>
                                 </div>
                             </div>
 
                         ) : otpInput && !resetPassword ? (
                             <div className="inner-container">
                                 <div className="header">Check your email</div>
-                                <p>Enter the 6-digit verification code we sent to
+                                <p>Enter the 6-digit verification code sent to
                                     <span>{inputValues.email}</span>
-                                    to verify your email address.
+
                                 </p>
                                 <div className="options">
 
@@ -371,12 +407,18 @@ const SignInPage = () => {
                                         Change email address
 
                                     </div>
+                                    <div className={` forgot-password ${resendOtpDisabled ? "disabledLink" : ""}`}
+                                    >
+                                        {resendOtpDisabled ? (
+                                            <span>Resend OTP (0:{countdown})</span>
 
+                                        ) : (
+                                            <span onClick={handleResendOtp}>Resend OTP</span>
+                                        )}
 
-                                    <div className="terms-and-conditions">By signing up, you agree to our <a
-                                        href="#">Terms</a> & <a
-                                        href="#">Privacy Policy</a>.
                                     </div>
+
+
                                 </div>
                             </div>
                         ) : resetPassword ? (
@@ -403,9 +445,9 @@ const SignInPage = () => {
 
                                                 <div className="visibility-icon">
                                                     {showPassword ? (
-                                                        <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
-                                                    ) : (
                                                         <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -428,10 +470,10 @@ const SignInPage = () => {
 
                                                 <div className="visibility-icon">
                                                     {showConfirmPassword ? (
+                                                        <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
+                                                    ) : (
                                                         <VisibilityOffOutlinedIcon
                                                             onClick={toggleConfirmPasswordVisibility}/>
-                                                    ) : (
-                                                        <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -449,10 +491,7 @@ const SignInPage = () => {
                                         </button>
                                     </div>
 
-                                    <div className="terms-and-conditions">By signing up, you agree to our <a
-                                        href="#">Terms</a> & <a
-                                        href="#">Privacy Policy</a>.
-                                    </div>
+
                                 </div>
                             </div>
                         ) : null
@@ -464,6 +503,10 @@ const SignInPage = () => {
 
             <div className="right-container">
                 <img src={OnboardingImg} alt="Onbarding Image"/>
+                <div className="terms-and-conditions">By signing in, you agree to our <a
+                    href="#">Terms</a> & <a
+                    href="#">Privacy Policy</a>.
+                </div>
             </div>
         </div>
     );

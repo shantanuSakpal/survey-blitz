@@ -90,6 +90,8 @@ function App() {
                 <Route path="/:id/:form_name" element={<FormPage/>}/>
                 <Route path="/responseSubmitted" element={<ResponseSubmitted/>}/>
                 <Route path="*" element={<ErrorPage/>}/>
+               
+                <Route path="/" element={<Navigate to="/home"/>}/>
 
             </Routes>
 

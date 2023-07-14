@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import OnboardingImg from '../images/onboardingimage.png';
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import google_icon from "../images/google-icon.png";
@@ -32,12 +32,45 @@ const SignUpPage = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [verificationStatus, setVerificationStatus] = useState(false);
     const [otpInput, setOtpInput] = useState(false);
+    const [resendOtpDisabled, setResendOtpDisabled] = useState(false);
+    const [countdown, setCountdown] = useState(30); // 30 seconds
+
+    useEffect(() => {
+        // Start the countdown when the component mounts
+        let timer = null;
+
+        if (countdown > 0) {
+            timer = setTimeout(() => {
+                setCountdown((prevCountdown) => prevCountdown - 1);
+            }, 1000);
+        } else {
+            setResendOtpDisabled(false);
+        }
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [countdown]);
+
+    const handleResendOtp = () => {
+        // Reset the countdown and disable the "Resend OTP" button for 30 seconds
+        console.log("reset otp")
+        setCountdown(30);
+        setResendOtpDisabled(true);
+    };
 
 
     const handleOnChange = (event) => {
         const {name, value} = event.target;
-        setInputValues({...inputValues, [name]: value});
-        setErrors({...errors, [name]: ""});
+
+        if (name === "otp" && value.length > 6) {
+            // If the length of the OTP is more than 6, truncate it to 6 characters
+            setInputValues({...inputValues, [name]: value.substring(0, 6)});
+
+        } else {
+            setInputValues({...inputValues, [name]: value});
+            setErrors({...errors, [name]: ""});
+        }
     };
 
     const togglePasswordVisibility = () => {
@@ -49,7 +82,10 @@ const SignUpPage = () => {
     };
 
     const handleEmailSubmit = async (e) => {
-        e.preventDefault();
+        //clear otp error
+        setErrors({otp: ""});
+        //clear otp input
+        setInputValues({...inputValues, otp: ""});
         const {email} = inputValues;
 
         // Check if any of the fields are empty
@@ -117,9 +153,6 @@ const SignUpPage = () => {
 
     const handleSignUpSubmit = async (e) => {
         e.preventDefault();
-        //capitalize first letter of all words in username
-        if (inputValues.username)
-            inputValues.username = inputValues.username.replace(/\b\w/g, l => l.toUpperCase());
 
 
         const {email, password, confirmPassword, username} = inputValues;
@@ -135,6 +168,24 @@ const SignUpPage = () => {
             });
             return;
         }
+
+        //check if username is between 3 and 20 characters after trimmig the leading and ending spaces
+        if (username.trim().length < 3 || username.trim().length > 25) {
+            setErrors({username: "Username must be between 3 and 25 characters"});
+            return;
+        }
+
+        //check if username has any special characters
+        const usernameRegex = /^[a-zA-Z0-9 ]+$/;
+        if (!usernameRegex.test(username)) {
+            setErrors({username: "Username cannot contain special characters"});
+            return;
+        }
+        //capitalize first letter of all words in username and trim leading and ending spaces
+        const usernameTrimed = username.trim()
+        const userNameCaps = usernameTrimed.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
+        console.log("|", userNameCaps, "|")
+
 
         // Check if email is valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -214,13 +265,17 @@ const SignUpPage = () => {
                                             placeholder="Enter your email"
                                             name="email"
                                             required
+                                            value={inputValues.email}
                                             onChange={handleOnChange}
                                         />
                                         {errors.email && <div className="error">{errors.email}</div>}
 
                                     </div>
                                     <button className="email-button"
-                                            onClick={handleEmailSubmit}
+                                            onClick={() => {
+                                                handleEmailSubmit();
+                                                handleResendOtp();
+                                            }}
                                     >
                                         <EmailIcon/>
                                         Verify Email
@@ -228,10 +283,6 @@ const SignUpPage = () => {
                                 </div>
 
 
-                                <div className="terms-and-conditions">By signing up, you agree to our <a
-                                    href="#">Terms</a> & <a
-                                    href="#">Privacy Policy</a>.
-                                </div>
                             </div>
                         </div>
 
@@ -240,7 +291,7 @@ const SignUpPage = () => {
                             <div className="header">Check your email</div>
                             <p>Enter the 6-digit code we sent to
                                 <span>{inputValues.email}</span>
-                                to verify your email address.
+
                             </p>
                             <div className="options">
 
@@ -254,6 +305,7 @@ const SignUpPage = () => {
                                             name="otp"
                                             required
                                             onChange={handleOnChange}
+                                            value={inputValues.otp}
                                         />
 
 
@@ -272,12 +324,17 @@ const SignUpPage = () => {
                                     Change email address
 
                                 </div>
+                                <div className={` forgot-password ${resendOtpDisabled ? "disabledLink" : ""}`}
+                                >
+                                    {resendOtpDisabled ? (
+                                        <span>Resend OTP (0:{countdown})</span>
 
+                                    ) : (
+                                        <span onClick={handleResendOtp}>Resend OTP</span>
+                                    )}
 
-                                <div className="terms-and-conditions">By signing up, you agree to our <a
-                                    href="#">Terms</a> & <a
-                                    href="#">Privacy Policy</a>.
                                 </div>
+
                             </div>
                         </div>
                     ) : verificationStatus === true ? (
@@ -287,7 +344,8 @@ const SignUpPage = () => {
                             <div className="options">
 
                                 <div className="email-option">
-                                    <div style={{width: "100%"}}>
+                                    <div id="tooltip" style={{width: "100%"}}>
+                                        {/*<span id="tooltipText">this is tooltip text</span>*/}
                                         <label htmlFor="username">Your name</label>
                                         <input
                                             name="username"
@@ -314,9 +372,9 @@ const SignUpPage = () => {
 
                                             <div className="visibility-icon">
                                                 {showPassword ? (
-                                                    <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
-                                                ) : (
                                                     <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                ) : (
+                                                    <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
                                                 )}
                                             </div>
                                         </div>
@@ -339,10 +397,10 @@ const SignUpPage = () => {
 
                                             <div className="visibility-icon">
                                                 {showConfirmPassword ? (
+                                                    <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
+                                                ) : (
                                                     <VisibilityOffOutlinedIcon
                                                         onClick={toggleConfirmPasswordVisibility}/>
-                                                ) : (
-                                                    <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
                                                 )}
                                             </div>
                                         </div>
@@ -360,10 +418,7 @@ const SignUpPage = () => {
                                     </button>
                                 </div>
 
-                                <div className="terms-and-conditions">By signing up, you agree to our <a
-                                    href="#">Terms</a> & <a
-                                    href="#">Privacy Policy</a>.
-                                </div>
+
                             </div>
                         </div>
                     ) : null
@@ -374,6 +429,10 @@ const SignUpPage = () => {
 
             <div className="right-container">
                 <img src={OnboardingImg} alt="Onbarding Image"/>
+                <div className="terms-and-conditions">By signing up, you agree to our <a
+                    href="#">Terms</a> & <a
+                    href="#">Privacy Policy</a>.
+                </div>
             </div>
         </div>
     );
