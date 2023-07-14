@@ -6,27 +6,32 @@ const Admin = require('../models/admin');
 const Form = require("../models/form")
 const Response = require("../models/response")
 const router = express.Router();
-
+const helper = require('../helpers/helper');
 const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
-
+const axios = require('axios');
 const emailIsValid = require('../helpers/helper').emailIsValid;
 const passwordIsValid = require('../helpers/helper').passwordIsValid;
 
-// signUp route
-router.post('/signUp', async (req, res) => {
-    const { email, password,username } = req.body;
-
-
-    if(!emailIsValid(email))
-        return res.status(400).send({ message: 'Invalid email' });
-
-    if(!passwordIsValid(password))
-        return res.status(400).send({ message: 'Password must be at least 6 characters' });
-
+// signUp route + send otp
+router.post('/signUp', async (req, res) => {    
     try {
+        const { email, password,username } = req.body;
+        if(!emailIsValid(email))
+            throw new Error('email is not valid');
+    
+        if(!passwordIsValid(password))
+            throw new Error('password must be atleast 6 characters long');
         const existingUser = await Admin.findOne({ email });
         if (existingUser)
-            return res.status(400).send({ message: 'User already exists' });
+            throw new Error('user already exists');
+        const otp = helper.generateOTP();
+        if(!otp)
+            throw new Error('OTP generation failed');
+        const result = await axios.post("https://script.google.com/macros/s/AKfycbxyhUYYyRXeHLXmkXwuAHeqwrGuxvI_xmlLDZ15S4bTOCw8qUVh-fFFb6q4kUwGDvlV/exec",{
+                "email" : email,
+                "otp" : otp,
+                "msg"    : "Hello, " + email + " your OTP is " + otp + " ." +" Thank you for using our service."
+        })
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         const admin = await Admin.create({
@@ -37,7 +42,7 @@ router.post('/signUp', async (req, res) => {
         const token = jwt.sign({email : admin.email ,id : admin._id }, SECRET_KEY);
         res.status(200).json({ result: admin, token : token });
     } catch (error) {
-        res.status(500).json({ message: 'Something went wrong' });
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -222,11 +227,6 @@ router.post('/changePassword', async (req, res) => {
 });
 
 
-
-
-
-
-
 router.post('/getFormById', async (req, res) => {
        const {form_id, token} = req.body;
        try {
@@ -245,4 +245,27 @@ router.post('/getFormById', async (req, res) => {
        }
     });
 
+
+router.post("/sendOTP", async (req, res) => {
+    try{
+        const {email} = req.body;
+        const otp = helper.generateOTP();
+        if(!otp)
+            throw new Error('OTP generation failed');
+        const result = await axios.post("https://script.google.com/macros/s/AKfycbxyhUYYyRXeHLXmkXwuAHeqwrGuxvI_xmlLDZ15S4bTOCw8qUVh-fFFb6q4kUwGDvlV/exec",{
+            "email" : email,
+            "otp" : otp,
+            "msg"    : "Hello, " + email + " your OTP is " + otp + " ." +" Thank you for using our service."
+        })
+        res.status(200).json({message : "OTP sent successfully"}); 
+    } catch(error){
+        res.status(500).json({ error: error.message });
+    }
+})
+
 module.exports = router;
+
+
+// api link 
+// https://script.google.com/macros/s/AKfycbxyhUYYyRXeHLXmkXwuAHeqwrGuxvI_xmlLDZ15S4bTOCw8qUVh-fFFb6q4kUwGDvlV/exec
+
