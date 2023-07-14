@@ -24,14 +24,6 @@ router.post('/signUp', async (req, res) => {
         const existingUser = await Admin.findOne({ email });
         if (existingUser)
             throw new Error('user already exists');
-        const otp = helper.generateOTP();
-        if(!otp)
-            throw new Error('OTP generation failed');
-        const result = await axios.post("https://script.google.com/macros/s/AKfycbxyhUYYyRXeHLXmkXwuAHeqwrGuxvI_xmlLDZ15S4bTOCw8qUVh-fFFb6q4kUwGDvlV/exec",{
-                "email" : email,
-                "otp" : otp,
-                "msg"    : "Hello, " + email + " your OTP is " + otp + " ." +" Thank you for using our service."
-        })
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         const admin = await Admin.create({
@@ -264,8 +256,4 @@ router.post("/sendOTP", async (req, res) => {
 })
 
 module.exports = router;
-
-
-// api link 
-// https://script.google.com/macros/s/AKfycbxyhUYYyRXeHLXmkXwuAHeqwrGuxvI_xmlLDZ15S4bTOCw8qUVh-fFFb6q4kUwGDvlV/exec
 
