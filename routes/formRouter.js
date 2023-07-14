@@ -55,11 +55,13 @@ router.post('/getFormResponses/:formId', async (req, res) => {
                     return res.status(404).json({ message: "User doesn't exist" });
                 const responses = await Response.find({ form_id: formId });
                 res.status(200).json({ responses: responses });
+
             }
         }
         )
     } catch (error) {
         res.status(500).json({ message: 'Something went wrong' });
+
 
         }
 
