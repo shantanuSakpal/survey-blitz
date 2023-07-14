@@ -9,6 +9,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import UserContext from "../context/UserContext";
 import AppLogo from "../components/brand_logo/AppLogo";
+import {CircularProgress} from "@mui/material";
 
 
 const SignUpPage = () => {
@@ -34,6 +35,9 @@ const SignUpPage = () => {
     const [otpInput, setOtpInput] = useState(false);
     const [resendOtpDisabled, setResendOtpDisabled] = useState(false);
     const [countdown, setCountdown] = useState(30); // 30 seconds
+    const [loading, setLoading] = useState(false)
+    const [serverOtp, setServerOtp] = useState("89982745620")
+
 
     useEffect(() => {
         // Start the countdown when the component mounts
@@ -52,11 +56,30 @@ const SignUpPage = () => {
         };
     }, [countdown]);
 
-    const handleResendOtp = () => {
+    const handleResendOtp = async () => {
+        const email = inputValues.email;
+
         // Reset the countdown and disable the "Resend OTP" button for 30 seconds
-        console.log("reset otp")
-        setCountdown(30);
-        setResendOtpDisabled(true);
+        try {
+            setResendOtpDisabled(true);
+            setLoading(true);
+            // Send API request to verify the entered OTP
+            const response = await axios.post('http://localhost:3001/admin/sendOTP', {email});
+            // Handle success and set the setOtpInput status
+            if (response.status === 200) {
+                setLoading(false)
+                setCountdown(30);
+                setServerOtp(response.data.otp)
+            }
+
+
+        } catch (error) {
+            setLoading(false)
+            // Handle error and show message to the user
+            console.log(error)
+            //set error message
+            setErrors({otp: "Something went wrong, please try again."})
+        }
     };
 
 
@@ -104,47 +127,68 @@ const SignUpPage = () => {
             return;
         }
 
-        // try {
-        //     // Send API request to generate OTP and send it to the user's email
-        //     const response = await axios.post('/api/send-otp', { email });
-        //     // Handle success and show message to the user
-        //     console.log('OTP sent successfully');
-        // } catch (error) {
-        //     // Handle error and show message to the user
-        //     console.error('Failed to send OTP',error);
-        // }
-        //remove all erq
-        setErrors({otp: ""});
-        setOtpInput(true);
+        async function sendOtp() {
+            // Reset the countdown and disable the "Resend OTP" button for 30 seconds
+            try {
+                setResendOtpDisabled(true);
+                setLoading(true);
+                // Send API request to verify the entered OTP
+                const response = await axios.post('http://localhost:3001/admin/sendOTP', {email});
+                // Handle success and set the setOtpInput status
+                if (response.status === 200) {
+                    setLoading(false)
+                    setCountdown(30);
+                    setOtpInput(true);
+                    setServerOtp(response.data.otp)
+
+
+                }
+
+            } catch (error) {
+                setLoading(false)
+                // Handle error and show message to the user
+                console.log(error)
+                //set error message
+                setErrors({email: "Something went wrong, please try again."})
+            }
+
+        }
+
+        //check if email is already registered
+        axios
+            .post("http://localhost:3001/admin/checkUser", inputValues)
+            .then((res) => {
+                //if res status is 200, user does not exist,
+                //if res status is 401, user exists
+                if (res.status === 200) {
+                    setErrors({otp: ""});
+                    sendOtp();
+
+                }
+
+            })
+            .catch((err) => {
+                console.log(err);
+                if (err.response && err.response.status === 401) {
+                    setErrors({email: `Email already exists, please Sign In to continue.`});
+                }
+            });
 
 
     };
 
 
-    const handleOtpSubmit = async (e) => {
-        e.preventDefault();
-//check if otp contains 6 characters
+    const handleOtpSubmit = async () => {
+        //check if otp contains 6 characters
 
         const otp = (inputValues.otp);
-
-        if (otp.length !== 6) {
-            setErrors({otp: 'OTP must contain 6 characters'});
+        if (otp.length !== 4) {
+            setErrors({otp: 'OTP must contain 4 characters'});
             return;
         }
 
 
-        // try {
-        //     // Send API request to verify the entered OTP
-        //     const response = await axios.post('/api/verify-otp', { email, otp });
-        //     // Handle success and set the verification status
-        //     setVerificationStatus(true);
-        //     // Show message to the user that OTP is verified and they can fill in the form
-        //     console.log('OTP verified successfully');
-        // } catch (error) {
-        //     // Handle error and show message to the user
-        //     console.error('Failed to verify OTP',error);
-        // }
-        if (otp === "123456") {
+        if (Number(otp) === serverOtp) {
             setVerificationStatus(true);
         } else {
             setErrors({otp: "Invalid OTP"});
@@ -271,14 +315,28 @@ const SignUpPage = () => {
                                         {errors.email && <div className="error">{errors.email}</div>}
 
                                     </div>
-                                    <button className="email-button"
+                                    <button className={`email-button ${loading ? "loading" : ""}`}
                                             onClick={() => {
-                                                handleEmailSubmit();
-                                                handleResendOtp();
+                                                if (!loading) {
+
+                                                    handleEmailSubmit();
+                                                }
                                             }}
+
                                     >
-                                        <EmailIcon/>
-                                        Verify Email
+                                        {
+                                            loading ? (
+                                                    <CircularProgress
+                                                        size={25}
+                                                        sx={{color: "aliceblue"}}/>
+                                                )
+                                                : (
+                                                    <>
+                                                        <EmailIcon/>
+                                                        Send code
+                                                    </>
+                                                )
+                                        }
                                     </button>
                                 </div>
 
@@ -339,7 +397,7 @@ const SignUpPage = () => {
                         </div>
                     ) : verificationStatus === true ? (
                         <div className="inner-container">
-                            <div className="header">Tell us more about yourself !</div>
+                            <div className="header">Tell us more about yourself!</div>
 
                             <div className="options">
 

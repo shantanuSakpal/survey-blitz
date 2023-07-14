@@ -1,14 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import OnboardingImg from '../images/onboardingimage.png';
-import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import google_icon from "../images/google-icon.png";
 import EmailIcon from "@mui/icons-material/Email";
 import {useNavigate} from "react-router-dom";
-import UserContext from "../context/UserContext";
 import axios from "axios";
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import AppLogo from "../components/brand_logo/AppLogo";
+import {CircularProgress} from "@mui/material";
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -27,6 +26,8 @@ const SignInPage = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [resendOtpDisabled, setResendOtpDisabled] = useState(false);
     const [countdown, setCountdown] = useState(30); // 30 seconds
+    const [loading, setLoading] = useState(false)
+    const [serverOtp, setServerOtp] = useState("89982745620")
 
     useEffect(() => {
         // Start the countdown when the component mounts
@@ -109,7 +110,7 @@ const SignInPage = () => {
             .catch((err) => {
                 console.log(err);
                 if (err.response.status === 404) {
-                    setErrors({email: "Email does not exist. Please Sign Up to continue."})
+                    setErrors({email: "Email does not exist. Please create a new account."})
                 } else if (err.response.status === 400) {
                     setErrors({password: "Incorrect Password"})
                 }
@@ -117,43 +118,52 @@ const SignInPage = () => {
     };
 
 
-    const handleOtpSubmit = async (e) => {
-        e.preventDefault();
+    const handleOtpSubmit = async () => {
 //check if otp contains 6 characters
-//         console.log(inputValues.otp)
 
         const otp = (inputValues.otp);
-        if (otp.length !== 6) {
-            setErrors({otp: 'OTP must contain 6 characters'});
+        if (otp.length !== 4) {
+            setErrors({otp: 'OTP must contain 4 characters'});
             return;
         }
 
 
-        // try {
-        //     // Send API request to verify the entered OTP
-        //     const response = await axios.post('/api/verify-otp', { email, otp });
-        //     // Handle success and set the verification status
-        //     setResetPassword(true);
-        //     // Show message to the user that OTP is verified and they can fill in the form
-        //     console.log('OTP verified successfully');
-        // } catch (error) {
-        //     // Handle error and show message to the user
-        //     console.error('Failed to verify OTP',error);
-        // }
-        if (otp === "123456") {
+        if (Number(otp) === serverOtp) {
             setResetPassword(true);
         } else {
             setErrors({otp: "Invalid OTP"});
         }
     };
 
-    const handleResendOtp = () => {
+    const handleResendOtp = async () => {
+        const email = inputValues.email;
+
         // Reset the countdown and disable the "Resend OTP" button for 30 seconds
-        setCountdown(30);
-        setResendOtpDisabled(true);
+        try {
+            setResendOtpDisabled(true);
+            setLoading(true);
+            // Send API request to verify the entered OTP
+            const response = await axios.post('http://localhost:3001/admin/sendOTP', {email});
+            // Handle success and set the setOtpInput status
+            if (response.status === 200) {
+                setLoading(false)
+                setCountdown(30);
+                setServerOtp(response.data.otp)
+            }
+
+
+        } catch (error) {
+            setLoading(false)
+            // Handle error and show message to the user
+            console.log(error)
+            //set error message
+            setErrors({otp: "Something went wrong, please try again."})
+        }
+
+
     };
 
-    const handleEmailSubmit = (e) => {
+    const handleEmailSubmit = async (e) => {
         //clear otp error
         setErrors({otp: ""});
         //clear otp input
@@ -176,7 +186,32 @@ const SignInPage = () => {
             setErrors({email: "Invalid email address"});
             return;
         }
-        setOtpInput(true);
+
+
+        // Reset the countdown and disable the "Resend OTP" button for 30 seconds
+        try {
+            setResendOtpDisabled(true);
+            setLoading(true);
+            // Send API request to verify the entered OTP
+            const response = await axios.post('http://localhost:3001/admin/sendOTP', {email});
+            // Handle success and set the setOtpInput status
+            if (response.status === 200) {
+                setLoading(false)
+                setCountdown(30);
+                setOtpInput(true);
+                setServerOtp(response.data.otp)
+
+
+            }
+
+        } catch (error) {
+            setLoading(false)
+            // Handle error and show message to the user
+            console.log(error)
+            //set error message
+            setErrors({email: "Something went wrong, please try again."})
+        }
+
 
     }
 
@@ -216,7 +251,6 @@ const SignInPage = () => {
             newpassword: inputValues.password,
 
         }).then((res) => {
-                console.log(res.data);
                 axios
                     .post("http://localhost:3001/admin/signIn", inputValues)
                     .then((res) => {
@@ -353,15 +387,28 @@ const SignInPage = () => {
 
                                         </div>
 
-                                        <button className="email-button"
+                                        <button className={`email-button ${loading ? "loading" : ""}`}
                                                 onClick={() => {
-                                                    handleResendOtp();
-                                                    handleEmailSubmit();
+                                                    if (!loading) {
+
+                                                        handleEmailSubmit();
+                                                    }
                                                 }}
 
                                         >
-                                            <EmailIcon/>
-                                            Send code
+                                            {
+                                                loading ? (
+                                                        <CircularProgress
+                                                            size={25}
+                                                            sx={{color: "aliceblue"}}/>
+                                                    )
+                                                    : (
+                                                        <>
+                                                            <EmailIcon/>
+                                                            Send code
+                                                        </>
+                                                    )
+                                            }
                                         </button>
                                     </div>
 
@@ -394,11 +441,26 @@ const SignInPage = () => {
 
                                             {errors.otp && <div className="error">{errors.otp}</div>}
                                         </div>
-                                        <button className="email-button"
-                                                onClick={handleOtpSubmit}
+                                        <button className={`email-button ${loading ? "loading" : ""}`}
+                                                onClick={() => {
+                                                    if (!loading) {
+                                                        handleOtpSubmit();
+                                                    }
+                                                }}
                                         >
 
-                                            Verify OTP
+                                            {
+                                                loading ? (
+                                                        <CircularProgress
+                                                            size={25}
+                                                            sx={{color: "aliceblue"}}/>
+                                                    )
+                                                    : (
+                                                        <>
+                                                            Verify OTP
+                                                        </>
+                                                    )
+                                            }
                                         </button>
                                     </div>
                                     <div className="forgot-password" onClick={() => {

@@ -2572,6 +2572,11 @@ body::-webkit-scrollbar-thumb:hover {
   }
 }
 
+.loading {
+  background-color: transparent !important;
+  border: none !important;
+}
+
 .modal-container {
   position: fixed;
   top: 0;
