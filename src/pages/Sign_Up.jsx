@@ -1,19 +1,20 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import OnboardingImg from '../images/onboardingimage.png';
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import google_icon from "../images/google-icon.png";
 import EmailIcon from "@mui/icons-material/Email";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import UserContext from "../context/UserContext";
 import AppLogo from "../components/brand_logo/AppLogo";
-
+import { CircularProgress } from "@mui/material";
+import { GoogleLogin } from "@react-oauth/google";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
-    const {user, setUser} = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     const [inputValues, setInputValues] = useState({
         email: "",
@@ -32,12 +33,67 @@ const SignUpPage = () => {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [verificationStatus, setVerificationStatus] = useState(false);
     const [otpInput, setOtpInput] = useState(false);
+    const [resendOtpDisabled, setResendOtpDisabled] = useState(false);
+    const [countdown, setCountdown] = useState(30); // 30 seconds
+    const [loading, setLoading] = useState(false)
+    const [serverOtp, setServerOtp] = useState("89982745620")
+
+
+    useEffect(() => {
+        // Start the countdown when the component mounts
+        let timer = null;
+
+        if (countdown > 0) {
+            timer = setTimeout(() => {
+                setCountdown((prevCountdown) => prevCountdown - 1);
+            }, 1000);
+        } else {
+            setResendOtpDisabled(false);
+        }
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [countdown]);
+
+    const handleResendOtp = async () => {
+        const email = inputValues.email;
+
+        // Reset the countdown and disable the "Resend OTP" button for 30 seconds
+        try {
+            setResendOtpDisabled(true);
+            setLoading(true);
+            // Send API request to verify the entered OTP
+            const response = await axios.post('http://localhost:3001/admin/sendOTP', { email });
+            // Handle success and set the setOtpInput status
+            if (response.status === 200) {
+                setLoading(false)
+                setCountdown(30);
+                setServerOtp(response.data.otp)
+            }
+
+
+        } catch (error) {
+            setLoading(false)
+            // Handle error and show message to the user
+            console.log(error)
+            //set error message
+            setErrors({ otp: "Something went wrong, please try again." })
+        }
+    };
 
 
     const handleOnChange = (event) => {
-        const {name, value} = event.target;
-        setInputValues({...inputValues, [name]: value});
-        setErrors({...errors, [name]: ""});
+        const { name, value } = event.target;
+
+        if (name === "otp" && value.length > 6) {
+            // If the length of the OTP is more than 6, truncate it to 6 characters
+            setInputValues({ ...inputValues, [name]: value.substring(0, 6) });
+
+        } else {
+            setInputValues({ ...inputValues, [name]: value });
+            setErrors({ ...errors, [name]: "" });
+        }
     };
 
     const togglePasswordVisibility = () => {
@@ -49,8 +105,11 @@ const SignUpPage = () => {
     };
 
     const handleEmailSubmit = async (e) => {
-        e.preventDefault();
-        const {email} = inputValues;
+        //clear otp error
+        setErrors({ otp: "" });
+        //clear otp input
+        setInputValues({ ...inputValues, otp: "" });
+        const { email } = inputValues;
 
         // Check if any of the fields are empty
         if (!email) {
@@ -64,22 +123,56 @@ const SignUpPage = () => {
         // Check if email is valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            setErrors({email: "Invalid email address"});
+            setErrors({ email: "Invalid email address" });
             return;
         }
 
-        // try {
-        //     // Send API request to generate OTP and send it to the user's email
-        //     const response = await axios.post('/api/send-otp', { email });
-        //     // Handle success and show message to the user
-        //     console.log('OTP sent successfully');
-        // } catch (error) {
-        //     // Handle error and show message to the user
-        //     console.error('Failed to send OTP',error);
-        // }
-        //remove all erq
-        setErrors({otp: ""});
-        setOtpInput(true);
+        async function sendOtp() {
+            // Reset the countdown and disable the "Resend OTP" button for 30 seconds
+            try {
+                setResendOtpDisabled(true);
+                setLoading(true);
+                // Send API request to verify the entered OTP
+                const response = await axios.post('http://localhost:3001/admin/sendOTP', { email });
+                // Handle success and set the setOtpInput status
+                if (response.status === 200) {
+                    setLoading(false)
+                    setCountdown(30);
+                    setOtpInput(true);
+                    setServerOtp(response.data.otp)
+
+
+                }
+
+            } catch (error) {
+                setLoading(false)
+                // Handle error and show message to the user
+                console.log(error)
+                //set error message
+                setErrors({ email: "Something went wrong, please try again." })
+            }
+
+        }
+
+        //check if email is already registered
+        axios
+            .post("http://localhost:3001/admin/checkUser", inputValues)
+            .then((res) => {
+                //if res status is 200, user does not exist,
+                //if res status is 401, user exists
+                if (res.status === 200) {
+                    setErrors({ otp: "" });
+                    sendOtp();
+
+                }
+
+            })
+            .catch((err) => {
+                console.log(err);
+                if (err.response && err.response.status === 401) {
+                    setErrors({ email: `Email already exists, please Sign In to continue.` });
+                }
+            });
 
 
     };
@@ -90,9 +183,8 @@ const SignUpPage = () => {
 //check if otp contains 6 characters
 
         const otp = (inputValues.otp);
-
-        if (otp.length !== 6) {
-            setErrors({otp: 'OTP must contain 6 characters'});
+        if (otp.length !== 4) {
+            setErrors({ otp: 'OTP must contain 4 characters' });
             return;
         }
 
@@ -111,7 +203,7 @@ const SignUpPage = () => {
         if (otp === "123456") {
             setVerificationStatus(true);
         } else {
-            setErrors({otp: "Invalid OTP"});
+            setErrors({ otp: "Invalid OTP" });
         }
     };
 
@@ -122,7 +214,7 @@ const SignUpPage = () => {
             inputValues.username = inputValues.username.replace(/\b\w/g, l => l.toUpperCase());
 
 
-        const {email, password, confirmPassword, username} = inputValues;
+        const { email, password, confirmPassword, username } = inputValues;
 
         // Check if any of the fields are empty
         if (!email || !password || !confirmPassword || !username) {
@@ -136,16 +228,34 @@ const SignUpPage = () => {
             return;
         }
 
+        //check if username is between 3 and 20 characters after trimmig the leading and ending spaces
+        if (username.trim().length < 3 || username.trim().length > 25) {
+            setErrors({ username: "Username must be between 3 and 25 characters" });
+            return;
+        }
+
+        //check if username has any special characters
+        const usernameRegex = /^[a-zA-Z0-9 ]+$/;
+        if (!usernameRegex.test(username)) {
+            setErrors({ username: "Username cannot contain special characters" });
+            return;
+        }
+        //capitalize first letter of all words in username and trim leading and ending spaces
+        const usernameTrimed = username.trim()
+        const userNameCaps = usernameTrimed.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
+        console.log("|", userNameCaps, "|")
+
+
         // Check if email is valid
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            setErrors({email: "Invalid email address"});
+            setErrors({ email: "Invalid email address" });
             return;
         }
 
         // Check if password and confirm password match
         if (password !== confirmPassword) {
-            setErrors({confirmPassword: "Passwords do not match"});
+            setErrors({ confirmPassword: "Passwords do not match" });
             return;
         }
 
@@ -171,7 +281,7 @@ const SignUpPage = () => {
             .catch((err) => {
                 console.log(err);
                 if (err.response && err.response.status === 400) {
-                    setErrors({email: "Email already exists, please Sign In to continue."});
+                    setErrors({ email: "Email already exists, please Sign In to continue." });
                 }
             });
 
@@ -182,7 +292,7 @@ const SignUpPage = () => {
 
             <div className="left-container">
                 <div className="brand-logo-container">
-                    <AppLogo/></div>
+                    <AppLogo /></div>
                 {
                     !verificationStatus && !otpInput ? (
                         <div className="inner-container">
@@ -191,14 +301,22 @@ const SignUpPage = () => {
                                 <span onClick={() => {
                                     navigate('/signIn');
                                 }}>Sign In
-                        </span>
+                                </span>
                             </p>
                             <div className="options">
-
-                                <button type="button" className="login-with-google-btn">
-                                    <img src={google_icon} alt="google icon"/>
-                                    Sign up with Google
-                                </button>
+                                <GoogleLogin onSuccess={
+                                    (credentialResponse) => {
+                                        console.log(credentialResponse.credential)
+                                        axios.post("http://localhost:3001/admin/signUpWithGoogle", { jwtToken: credentialResponse.credential }).then((res) => {
+                                            console.log(res.data)
+                                        }).catch((err) => {
+                                            console.log(err)
+                                        })
+                                    }}
+                                    onFailure={(error) => {
+                                        console.log(error)
+                                    }}
+                                />
                                 <div className="divider">
 
                                     <div className="horizontal-line"></div>
@@ -208,7 +326,7 @@ const SignUpPage = () => {
 
 
                                 <div className="email-option">
-                                    <div style={{width: "100%"}}>
+                                    <div style={{ width: "100%" }}>
                                         <input
                                             type="email"
                                             placeholder="Enter your email"
@@ -219,11 +337,28 @@ const SignUpPage = () => {
                                         {errors.email && <div className="error">{errors.email}</div>}
 
                                     </div>
-                                    <button className="email-button"
-                                            onClick={handleEmailSubmit}
+                                    <button className={`email-button ${loading ? "loading" : ""}`}
+                                        onClick={() => {
+                                            if (!loading) {
+
+                                                handleEmailSubmit();
+                                            }
+                                        }}
+
                                     >
-                                        <EmailIcon/>
-                                        Verify Email
+                                        {
+                                            loading ? (
+                                                <CircularProgress
+                                                    size={25}
+                                                    sx={{ color: "aliceblue" }} />
+                                            )
+                                                : (
+                                                    <>
+                                                        <EmailIcon />
+                                                        Send code
+                                                    </>
+                                                )
+                                        }
                                     </button>
                                 </div>
 
@@ -245,7 +380,7 @@ const SignUpPage = () => {
                             <div className="options">
 
                                 <div className="email-option">
-                                    <div style={{width: "100%"}}>
+                                    <div style={{ width: "100%" }}>
 
 
                                         <input
@@ -260,7 +395,7 @@ const SignUpPage = () => {
                                         {errors.otp && <div className="error">{errors.otp}</div>}
                                     </div>
                                     <button className="email-button"
-                                            onClick={handleOtpSubmit}
+                                        onClick={handleOtpSubmit}
                                     >
 
                                         Verify OTP
@@ -287,7 +422,8 @@ const SignUpPage = () => {
                             <div className="options">
 
                                 <div className="email-option">
-                                    <div style={{width: "100%"}}>
+                                    <div id="tooltip" style={{ width: "100%" }}>
+                                        {/*<span id="tooltipText">this is tooltip text</span>*/}
                                         <label htmlFor="username">Your name</label>
                                         <input
                                             name="username"
@@ -299,7 +435,7 @@ const SignUpPage = () => {
                                         {errors.username && <div className="error">{errors.username}</div>}
                                     </div>
 
-                                    <div style={{width: "100%"}}>
+                                    <div style={{ width: "100%" }}>
                                         <label htmlFor="password">Password</label>
 
                                         <div className="password-input">
@@ -314,9 +450,9 @@ const SignUpPage = () => {
 
                                             <div className="visibility-icon">
                                                 {showPassword ? (
-                                                    <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    <VisibilityOutlinedIcon onClick={togglePasswordVisibility} />
                                                 ) : (
-                                                    <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility} />
                                                 )}
                                             </div>
                                         </div>
@@ -324,7 +460,7 @@ const SignUpPage = () => {
                                     </div>
 
 
-                                    <div style={{width: "100%"}}>
+                                    <div style={{ width: "100%" }}>
 
                                         <label htmlFor="username">Confirm Password</label>
                                         <div className="password-input">
@@ -339,10 +475,10 @@ const SignUpPage = () => {
 
                                             <div className="visibility-icon">
                                                 {showConfirmPassword ? (
-                                                    <VisibilityOffOutlinedIcon
-                                                        onClick={toggleConfirmPasswordVisibility}/>
+                                                    <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility} />
                                                 ) : (
-                                                    <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
+                                                    <VisibilityOffOutlinedIcon
+                                                        onClick={toggleConfirmPasswordVisibility} />
                                                 )}
                                             </div>
                                         </div>
@@ -353,7 +489,7 @@ const SignUpPage = () => {
                                     </div>
 
                                     <button className="email-button"
-                                            onClick={handleSignUpSubmit}
+                                        onClick={handleSignUpSubmit}
                                     >
 
                                         Sign Up
@@ -373,7 +509,11 @@ const SignUpPage = () => {
 
 
             <div className="right-container">
-                <img src={OnboardingImg} alt="Onbarding Image"/>
+                <img src={OnboardingImg} alt="Onbarding Image" />
+                <div className="terms-and-conditions">By signing up, you agree to our <a
+                    href="#">Terms</a> & <a
+                        href="#">Privacy Policy</a>.
+                </div>
             </div>
         </div>
     );
