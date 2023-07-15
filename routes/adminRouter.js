@@ -3,6 +3,7 @@ const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
+const jwt_decode = require('jwt-decode');
 const Form = require("../models/form")
 const Response = require("../models/response")
 const router = express.Router();
@@ -30,6 +31,22 @@ router.post('/signUp', async (req, res) => {
             email,
             username,
             password: hashedPassword,
+        });
+        const token = jwt.sign({ email: admin.email, id: admin._id }, SECRET_KEY);
+        res.status(200).json({ result: admin, token: token });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.post('/signUpWithGoogle', async (req, res) => {
+    const {jwtToken} = req.body;
+    try {
+        const userObject = jwt_decode(jwtToken);
+        const { email, given_name } = userObject;
+        const admin = await Admin.create({
+            email,
+            username : given_name,
         });
         const token = jwt.sign({ email: admin.email, id: admin._id }, SECRET_KEY);
         res.status(200).json({ result: admin, token: token });

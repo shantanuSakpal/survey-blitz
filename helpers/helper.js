@@ -6,6 +6,6 @@ module.exports.passwordIsValid = function (password) {
 }
 
 module.exports.generateOTP = function () {
-    // generate a 4 digit otp
-    return Math.floor(1000 + Math.random() * 9000);
+    // generate a 6 digit otp
+    return Math.floor(100000 + Math.random() * 900000);
 }
