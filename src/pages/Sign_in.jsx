@@ -9,6 +9,7 @@ import axios from "axios";
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import AppLogo from "../components/brand_logo/AppLogo";
+import { GoogleLogin } from "@react-oauth/google";
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -223,10 +224,19 @@ const SignInPage = () => {
                                 </p>
                                 <div className="options">
 
-                                    <button type="button" className="login-with-google-btn">
-                                        <img src={google_icon} alt="google icon"/>
-                                        Sign in with Google
-                                    </button>
+                                <GoogleLogin onSuccess={
+                                    (credentialResponse) => {
+                                        console.log(credentialResponse.credential)
+                                        axios.post("http://localhost:3001/admin/signUpWithGoogle", { jwtToken: credentialResponse.credential }).then((res) => {
+                                            console.log(res.data)
+                                        }).catch((err) => {
+                                            console.log(err)
+                                        })
+                                    }}
+                                    onFailure={(error) => {
+                                        console.log(error)
+                                    }}
+                                />
 
                                     <div className="divider">
 
