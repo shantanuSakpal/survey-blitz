@@ -44,9 +44,15 @@ router.post('/signUpWithGoogle', async (req, res) => {
     try {
         const userObject = jwt_decode(jwtToken);
         const { email, given_name } = userObject;
+        const existingUser = await Admin.findOne({ email });
+        if (existingUser) {
+            const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, SECRET_KEY);
+            return res.status(200).json({ result: existingUser, token: token });
+        }
         const admin = await Admin.create({
             email,
-            username : given_name,
+            username: given_name,
+            password: "google",
         });
         const token = jwt.sign({ email: admin.email, id: admin._id }, SECRET_KEY);
         res.status(200).json({ result: admin, token: token });
