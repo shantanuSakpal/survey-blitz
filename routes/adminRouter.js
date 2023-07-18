@@ -5,8 +5,9 @@ const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
 const jwt_decode = require('jwt-decode');
 const Form = require("../models/form")
-const Response = require("../models/response")
+const {generateOTP} = require("../helpers/helper");
 const router = express.Router();
+const axios = require('axios');
 
 const SECRET_KEY = 'sass-form-generator-done-by-jsonwebtoken$@123456'
 
@@ -328,9 +329,10 @@ router.post('/getFormById', async (req, res) => {
 router.post("/sendOTP", async (req, res) => {
     try {
         const { email } = req.body;
-        const otp = helper.generateOTP();
+        const otp = generateOTP();
         if (!otp)
             throw new Error('OTP generation failed');
+
         const result = await axios.post("https://script.google.com/macros/s/AKfycbxyhUYYyRXeHLXmkXwuAHeqwrGuxvI_xmlLDZ15S4bTOCw8qUVh-fFFb6q4kUwGDvlV/exec", {
             "email": email,
             "otp": otp,
