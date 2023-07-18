@@ -2310,7 +2310,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .sign-in-page .error {
   color: red;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   margin-top: 5px;
   width: 100%;
   margin-left: 10px;
@@ -2369,7 +2369,7 @@ body::-webkit-scrollbar-thumb:hover {
   text-align: center;
 }
 .sign-in-page .left-container .inner-container p {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: lightgray;
   text-align: center;
 }
@@ -2509,7 +2509,7 @@ body::-webkit-scrollbar-thumb:hover {
   color: aliceblue;
   padding: 10px 20px;
   border-radius: 10px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: all 0.2s ease-out;
   display: flex;
   align-items: center;
@@ -2549,7 +2549,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .sign-in-page .right-container .terms-and-conditions {
   margin-top: 40px;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #45454f;
   position: absolute;
   bottom: 10px;

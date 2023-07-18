@@ -7,7 +7,7 @@
 
   .error {
     color: red;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     margin-top: 5px;
     width: 100%;
     margin-left: 10px;
@@ -52,7 +52,7 @@
       }
 
       p {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         color: lightgray;
         text-align: center;
 
@@ -231,7 +231,7 @@
             color: aliceblue;
             padding: 10px 20px;
             border-radius: 10px;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: all 0.2s ease-out;
             display: flex;
             align-items: center;
@@ -293,7 +293,7 @@
 
     .terms-and-conditions {
       margin-top: 40px;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       color: $theme-color-lighter;
       position: absolute;
       bottom: 10px;

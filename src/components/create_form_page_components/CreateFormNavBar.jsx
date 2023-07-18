@@ -17,6 +17,7 @@ function CreateFormNavBar(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+
     const [url, setUrl] = useState('');
 
     function generateFormUrl(formName) {
@@ -27,6 +28,11 @@ function CreateFormNavBar(props) {
     }
 
     const {user, setUser} = useContext(UserContext);
+    //get currUser fron local storage
+    useEffect(() => {
+        const currUser = JSON.parse(localStorage.getItem('currUser'));
+        setUser(currUser);
+    }, []);
     const storeForm = async () => {
         try {
             const requestBody = {
