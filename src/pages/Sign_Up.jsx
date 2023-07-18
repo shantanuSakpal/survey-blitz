@@ -170,14 +170,17 @@ const SignUpPage = () => {
       });
   };
 
-  const handleOtpSubmit = async () => {
-    //check if otp contains 6 characters
+    const handleOtpSubmit = async () => {
+        //check if otp contains only 6 numbers and no letters
+        //regex to check if otp contains only numbers
+        const otpRegex = /^[0-9]*$/;
 
-    const otp = inputValues.otp;
-    if (otp.length !== 6) {
-      setErrors({ otp: "OTP must contain 6 characters" });
-      return;
-    }
+        const {otp} = inputValues;
+
+        if (otp.length !== 6 || !otpRegex.test(otp)) {
+            setErrors({otp: "Invalid OTP"});
+            return;
+        }
 
     if (Number(otp) === serverOtp) {
       setVerificationStatus(true);
@@ -285,7 +288,7 @@ const SignUpPage = () => {
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
                   console.log(credentialResponse.credential);
-                  axios.post("http://localhost:3001/admin/signUpWithGoogle", { jwtToken : credentialResponse.credential}).then((res) => { 
+                  axios.post("http://localhost:3001/admin/signUpWithGoogle", { jwtToken : credentialResponse.credential}).then((res) => {
                     console.log(res.data);
                   }).catch((err) => {
                     console.log(err);

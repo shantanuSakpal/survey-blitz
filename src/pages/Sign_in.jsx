@@ -280,27 +280,23 @@ const SignInPage = () => {
                       onChange={handleOnChange}
                     />
 
-                    <div className="visibility-icon">
-                      {showPassword ? (
-                        <VisibilityOffOutlinedIcon
-                          onClick={togglePasswordVisibility}
-                        />
-                      ) : (
-                        <VisibilityOutlinedIcon
-                          onClick={togglePasswordVisibility}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  {errors.password && (
-                    <div className="error">{errors.password}</div>
-                  )}
-                </div>
-                <button className="email-button" onClick={handleSignInSubmit}>
-                  <EmailIcon />
-                  Sign in with Email
-                </button>
-              </div>
+                                                <div className="visibility-icon">
+                                                    {showPassword ? (
+                                                        <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            {errors.password && <div className="error">{errors.password}</div>}
+                                        </div>
+                                        <button className="email-button"
+                                                onClick={handleSignInSubmit}
+                                        >
+                                            <EmailIcon/>
+                                            Sign in
+                                        </button>
+                                    </div>
 
               <div
                 className="forgot-password"
@@ -337,31 +333,31 @@ const SignInPage = () => {
                 </button>
               </div>
 
-              <div className="terms-and-conditions">
-                By signing in, you agree to our <a href="#">Terms</a> &{" "}
-                <a href="#">Privacy Policy</a>.
-              </div>
-            </div>
-          </div>
-        ) : otpInput && !resetPassword ? (
-          <div className="inner-container">
-            <div className="header">Check your email</div>
-            <p>
-              Enter the 6-digit verification code we sent to
-              <span>{inputValues.email}</span>
-              to verify your email address.
-            </p>
-            <div className="options">
-              <div className="email-option">
-                <div style={{ width: "100%" }}>
-                  <input
-                    type="text"
-                    placeholder="6-digit OTP"
-                    name="otp"
-                    required
-                    value={inputValues.otp}
-                    onChange={handleOnChange}
-                  />
+
+                                </div>
+                            </div>
+
+                        ) : otpInput && !resetPassword ? (
+                            <div className="inner-container">
+                                <div className="header">Check your email</div>
+                                <p>Enter the 6-digit verification code we sent to
+                                    <span>{inputValues.email}</span>
+                                    to verify your email address.
+                                </p>
+                                <div className="options">
+
+                                    <div className="email-option">
+                                        <div style={{width: "100%"}}>
+
+
+                                            <input
+                                                type="text"
+                                                placeholder="6-digit OTP"
+                                                name="otp"
+                                                required
+                                                value={inputValues.otp}
+                                                onChange={handleOnChange}
+                                            />
 
                   {errors.otp && <div className="error">{errors.otp}</div>}
                 </div>
@@ -378,15 +374,12 @@ const SignInPage = () => {
                 Change email address
               </div>
 
-              <div className="terms-and-conditions">
-                By signing up, you agree to our <a href="#">Terms</a> &{" "}
-                <a href="#">Privacy Policy</a>.
-              </div>
-            </div>
-          </div>
-        ) : resetPassword ? (
-          <div className="inner-container">
-            <div className="header">Reset Password</div>
+
+                                </div>
+                            </div>
+                        ) : resetPassword ? (
+                            <div className="inner-container">
+                                <div className="header">Reset Password</div>
 
             <div className="options">
               <div className="email-option">
@@ -402,22 +395,16 @@ const SignInPage = () => {
                       onChange={handleOnChange}
                     />
 
-                    <div className="visibility-icon">
-                      {showPassword ? (
-                        <VisibilityOffOutlinedIcon
-                          onClick={togglePasswordVisibility}
-                        />
-                      ) : (
-                        <VisibilityOutlinedIcon
-                          onClick={togglePasswordVisibility}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  {errors.password && (
-                    <div className="error">{errors.password}</div>
-                  )}
-                </div>
+                                                <div className="visibility-icon">
+                                                    {showPassword ? (
+                                                        <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            {errors.password && <div className="error">{errors.password}</div>}
+                                        </div>
 
                 <div style={{ width: "100%" }}>
                   <label htmlFor="username">Confirm Password</label>
@@ -430,22 +417,20 @@ const SignInPage = () => {
                       onChange={handleOnChange}
                     />
 
-                    <div className="visibility-icon">
-                      {showConfirmPassword ? (
-                        <VisibilityOffOutlinedIcon
-                          onClick={toggleConfirmPasswordVisibility}
-                        />
-                      ) : (
-                        <VisibilityOutlinedIcon
-                          onClick={toggleConfirmPasswordVisibility}
-                        />
-                      )}
-                    </div>
-                  </div>
-                  {errors.confirmPassword && (
-                    <div className="error">{errors.confirmPassword}</div>
-                  )}
-                </div>
+                                                <div className="visibility-icon">
+                                                    {showConfirmPassword ? (
+                                                        <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOffOutlinedIcon
+                                                            onClick={toggleConfirmPasswordVisibility}/>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            {errors.confirmPassword && (
+                                                <div className="error">{errors.confirmPassword}</div>
+                                            )}
+
+                                        </div>
 
                 <button
                   className="email-button"
@@ -455,14 +440,14 @@ const SignInPage = () => {
                 </button>
               </div>
 
-              <div className="terms-and-conditions">
-                By signing up, you agree to our <a href="#">Terms</a> &{" "}
-                <a href="#">Privacy Policy</a>.
-              </div>
+
+                                </div>
+                            </div>
+                        ) : null
+                }
+
+
             </div>
-          </div>
-        ) : null}
-      </div>
 
       <div className="right-container">
         <img src={OnboardingImg} alt="Onbarding Image" />

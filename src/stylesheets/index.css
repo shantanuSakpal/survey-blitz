@@ -2491,12 +2491,14 @@ body::-webkit-scrollbar-thumb:hover {
 .sign-in-page .left-container .inner-container .options .email-option .password-input {
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 .sign-in-page .left-container .inner-container .options .email-option .password-input .visibility-icon {
   position: absolute;
   right: 10px;
   top: 0;
-  margin: 8px 0;
+  margin: 12px 0;
   scale: 0.7;
   cursor: pointer;
 }
