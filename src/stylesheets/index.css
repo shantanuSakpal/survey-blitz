@@ -2321,9 +2321,11 @@ body::-webkit-scrollbar-thumb:hover {
   overflow: auto;
   width: 50vw;
   background-color: #1e1e24;
-  padding: 8rem 2rem 2rem 2rem;
   box-sizing: border-box;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* Track */
   /* Handle */
   /* Handle on hover */
@@ -2359,6 +2361,7 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  width: 80%;
 }
 .sign-in-page .left-container .inner-container .header {
   font-size: 1.7rem;
@@ -2544,7 +2547,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .sign-in-page .right-container .terms-and-conditions {
   margin-top: 40px;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: #45454f;
   position: absolute;
   bottom: 10px;

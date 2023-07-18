@@ -182,8 +182,8 @@ const SignUpPage = () => {
         //check if otp contains 6 characters
 
         const otp = (inputValues.otp);
-        if (otp.length !== 4) {
-            setErrors({otp: 'OTP must contain 4 characters'});
+        if (otp.length !== 6) {
+            setErrors({otp: 'OTP must contain 6 characters'});
             return;
         }
 

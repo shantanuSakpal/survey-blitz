@@ -7,7 +7,6 @@ import axios from "axios";
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import AppLogo from "../components/brand_logo/AppLogo";
-import {CircularProgress} from "@mui/material";
 
 const SignInPage = () => {
     const navigate = useNavigate();
@@ -62,20 +61,11 @@ const SignInPage = () => {
         otp: ""
     });
 
-
     const handleOnChange = (event) => {
         const {name, value} = event.target;
-
-        if (name === "otp" && value.length > 6) {
-            // If the length of the OTP is more than 6, truncate it to 6 characters
-            setInputValues({...inputValues, [name]: value.substring(0, 6)});
-
-        } else {
-            setInputValues({...inputValues, [name]: value});
-            setErrors({...errors, [name]: ""});
-        }
+        setInputValues({...inputValues, [name]: value});
+        setErrors({...errors, [name]: ""});
     };
-
 
     const handleSignInSubmit = (e) => {
         e.preventDefault();
@@ -110,7 +100,7 @@ const SignInPage = () => {
             .catch((err) => {
                 console.log(err);
                 if (err.response.status === 404) {
-                    setErrors({email: "Email does not exist. Please create a new account."})
+                    setErrors({email: "Email does not exist. Please Sign Up to continue."})
                 } else if (err.response.status === 400) {
                     setErrors({password: "Incorrect Password"})
                 }
@@ -118,56 +108,36 @@ const SignInPage = () => {
     };
 
 
-    const handleOtpSubmit = async () => {
+    const handleOtpSubmit = async (e) => {
+        e.preventDefault();
 //check if otp contains 6 characters
 
         const otp = (inputValues.otp);
-        if (otp.length !== 4) {
-            setErrors({otp: 'OTP must contain 4 characters'});
+        if (otp.length !== 6) {
+            setErrors({otp: 'OTP must contain 6 characters'});
             return;
         }
 
 
-        if (Number(otp) === serverOtp) {
-            setResetPassword(true);
+        // try {
+        //     // Send API request to verify the entered OTP
+        //     const response = await axios.post('/api/verify-otp', { email, otp });
+        //     // Handle success and set the verification status
+        //     serResetPassword(true);
+        //     // Show message to the user that OTP is verified and they can fill in the form
+        //     console.log('OTP verified successfully');
+        // } catch (error) {
+        //     // Handle error and show message to the user
+        //     console.error('Failed to verify OTP',error);
+        // }
+        if (otp === "123456") {
+            serResetPassword(true);
         } else {
             setErrors({otp: "Invalid OTP"});
         }
     };
 
-    const handleResendOtp = async () => {
-        const email = inputValues.email;
-
-        // Reset the countdown and disable the "Resend OTP" button for 30 seconds
-        try {
-            setResendOtpDisabled(true);
-            setLoading(true);
-            // Send API request to verify the entered OTP
-            const response = await axios.post('http://localhost:3001/admin/sendOTP', {email});
-            // Handle success and set the setOtpInput status
-            if (response.status === 200) {
-                setLoading(false)
-                setCountdown(30);
-                setServerOtp(response.data.otp)
-            }
-
-
-        } catch (error) {
-            setLoading(false)
-            // Handle error and show message to the user
-            console.log(error)
-            //set error message
-            setErrors({otp: "Something went wrong, please try again."})
-        }
-
-
-    };
-
-    const handleEmailSubmit = async (e) => {
-        //clear otp error
-        setErrors({otp: ""});
-        //clear otp input
-        setInputValues({...inputValues, otp: ""});
+    const handleEmailSubmit = (e) => {
 
         const {email} = inputValues;
 
@@ -186,32 +156,7 @@ const SignInPage = () => {
             setErrors({email: "Invalid email address"});
             return;
         }
-
-
-        // Reset the countdown and disable the "Resend OTP" button for 30 seconds
-        try {
-            setResendOtpDisabled(true);
-            setLoading(true);
-            // Send API request to verify the entered OTP
-            const response = await axios.post('http://localhost:3001/admin/sendOTP', {email});
-            // Handle success and set the setOtpInput status
-            if (response.status === 200) {
-                setLoading(false)
-                setCountdown(30);
-                setOtpInput(true);
-                setServerOtp(response.data.otp)
-
-
-            }
-
-        } catch (error) {
-            setLoading(false)
-            // Handle error and show message to the user
-            console.log(error)
-            //set error message
-            setErrors({email: "Something went wrong, please try again."})
-        }
-
+        setOtpInput(true);
 
     }
 
@@ -251,6 +196,7 @@ const SignInPage = () => {
             newpassword: inputValues.password,
 
         }).then((res) => {
+                console.log(res.data);
                 axios
                     .post("http://localhost:3001/admin/signIn", inputValues)
                     .then((res) => {
@@ -335,9 +281,9 @@ const SignInPage = () => {
 
                                                 <div className="visibility-icon">
                                                     {showPassword ? (
-                                                        <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
-                                                    ) : (
                                                         <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -347,7 +293,7 @@ const SignInPage = () => {
                                                 onClick={handleSignInSubmit}
                                         >
                                             <EmailIcon/>
-                                            Sign in
+                                            Sign in with Email
                                         </button>
                                     </div>
 
@@ -387,41 +333,28 @@ const SignInPage = () => {
 
                                         </div>
 
-                                        <button className={`email-button ${loading ? "loading" : ""}`}
-                                                onClick={() => {
-                                                    if (!loading) {
-
-                                                        handleEmailSubmit();
-                                                    }
-                                                }}
-
+                                        <button className="email-button"
+                                                onClick={handleEmailSubmit}
                                         >
-                                            {
-                                                loading ? (
-                                                        <CircularProgress
-                                                            size={25}
-                                                            sx={{color: "aliceblue"}}/>
-                                                    )
-                                                    : (
-                                                        <>
-                                                            <EmailIcon/>
-                                                            Send code
-                                                        </>
-                                                    )
-                                            }
+                                            <EmailIcon/>
+                                            Send code
                                         </button>
                                     </div>
 
 
+                                    <div className="terms-and-conditions">By signing in, you agree to our <a
+                                        href="#">Terms</a> & <a
+                                        href="#">Privacy Policy</a>.
+                                    </div>
                                 </div>
                             </div>
 
                         ) : otpInput && !resetPassword ? (
                             <div className="inner-container">
                                 <div className="header">Check your email</div>
-                                <p>Enter the 6-digit verification code sent to
+                                <p>Enter the 6-digit verification code we sent to
                                     <span>{inputValues.email}</span>
-
+                                    to verify your email address.
                                 </p>
                                 <div className="options">
 
@@ -441,26 +374,11 @@ const SignInPage = () => {
 
                                             {errors.otp && <div className="error">{errors.otp}</div>}
                                         </div>
-                                        <button className={`email-button ${loading ? "loading" : ""}`}
-                                                onClick={() => {
-                                                    if (!loading) {
-                                                        handleOtpSubmit();
-                                                    }
-                                                }}
+                                        <button className="email-button"
+                                                onClick={handleOtpSubmit}
                                         >
 
-                                            {
-                                                loading ? (
-                                                        <CircularProgress
-                                                            size={25}
-                                                            sx={{color: "aliceblue"}}/>
-                                                    )
-                                                    : (
-                                                        <>
-                                                            Verify OTP
-                                                        </>
-                                                    )
-                                            }
+                                            Verify OTP
                                         </button>
                                     </div>
                                     <div className="forgot-password" onClick={() => {
@@ -469,18 +387,12 @@ const SignInPage = () => {
                                         Change email address
 
                                     </div>
-                                    <div className={` forgot-password ${resendOtpDisabled ? "disabledLink" : ""}`}
-                                    >
-                                        {resendOtpDisabled ? (
-                                            <span>Resend OTP (0:{countdown})</span>
 
-                                        ) : (
-                                            <span onClick={handleResendOtp}>Resend OTP</span>
-                                        )}
 
+                                    <div className="terms-and-conditions">By signing up, you agree to our <a
+                                        href="#">Terms</a> & <a
+                                        href="#">Privacy Policy</a>.
                                     </div>
-
-
                                 </div>
                             </div>
                         ) : resetPassword ? (
@@ -507,9 +419,9 @@ const SignInPage = () => {
 
                                                 <div className="visibility-icon">
                                                     {showPassword ? (
-                                                        <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
-                                                    ) : (
                                                         <VisibilityOffOutlinedIcon onClick={togglePasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOutlinedIcon onClick={togglePasswordVisibility}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -532,10 +444,10 @@ const SignInPage = () => {
 
                                                 <div className="visibility-icon">
                                                     {showConfirmPassword ? (
-                                                        <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
-                                                    ) : (
                                                         <VisibilityOffOutlinedIcon
                                                             onClick={toggleConfirmPasswordVisibility}/>
+                                                    ) : (
+                                                        <VisibilityOutlinedIcon onClick={toggleConfirmPasswordVisibility}/>
                                                     )}
                                                 </div>
                                             </div>
@@ -553,7 +465,10 @@ const SignInPage = () => {
                                         </button>
                                     </div>
 
-
+                                    <div className="terms-and-conditions">By signing up, you agree to our <a
+                                        href="#">Terms</a> & <a
+                                        href="#">Privacy Policy</a>.
+                                    </div>
                                 </div>
                             </div>
                         ) : null

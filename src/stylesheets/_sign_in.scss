@@ -19,9 +19,12 @@
     overflow: auto;
     width: 50vw;
     background-color: $theme-color;
-    padding: 8rem 2rem 2rem 2rem;
+
     box-sizing: border-box;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .brand-logo-container {
       position: absolute;
@@ -39,6 +42,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      width: 80%;
 
 
       .header {
@@ -287,7 +291,7 @@
 
     .terms-and-conditions {
       margin-top: 40px;
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       color: $theme-color-lighter;
       position: absolute;
       bottom: 10px;
