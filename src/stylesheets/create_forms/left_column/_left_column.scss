@@ -8,45 +8,68 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 10px;
+
   align-items: center;
   flex-wrap: wrap;
-  padding: 10px;
+  box-sizing: border-box;
 
-  .container-1 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-
-    p {
-      font-size: 0.7rem;
-      font-weight: bold;
-      height: fit-content;
-      width: 100%;
-
-
-    }
-  }
-
-
-  .form-components-container {
-
-    overflow-x: auto;
-    overflow-y: auto;
-    height: 70%;
+  .sections-container {
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
-    margin-right: -10px;
+    border-bottom: 1px solid $theme-color-lighter;
+    max-height: 45%;
+
+    @import "section";
+
+
+  }
+
+  .section-components-container {
+
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 55%;
+
+
+    @import "section_component";
+
+
+  }
+
+  .container-1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: small;
+    height: 2rem;
+
+
+  }
+
+  .container-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    overflow: auto;
+    max-height: calc(100% - 3rem);
+    border-radius: 10px;
 
 
     @import "../../scrollbars/form_components_scrollbar";
 
-
   }
 
-  @import "component_tree_section_styles.scss";
-  @import "component_tree_item";
-  @import "add_section_button";
+
+}
+
+.container-2:first-child {
+
+  border: 3px solid red;
+
 }

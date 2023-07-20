@@ -1,0 +1,94 @@
+
+.section-component {
+
+  width: 100%;
+
+
+  .component {
+
+    width: 100%;
+    box-sizing: border-box;
+    height: 2.5rem;
+    position: relative;
+    transition: all 0.125s ease-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    background-color: $theme-color-lighter;
+    //when the component is being dragged
+
+
+    &:hover {
+      border: 1px solid $theme-color-lightest;
+
+
+    }
+
+    &.selected {
+      background-color: $button-background-color-2;
+      color: aliceblue;
+
+    }
+
+
+    .container-3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0 0 25px;
+
+      .component-logo {
+        width: fit-content;
+        transform: translate(5px, 2px);
+
+      }
+
+      .component-name {
+        font-size: small;
+        font-weight: normal;
+        white-space: nowrap;
+
+
+      }
+
+
+    }
+
+
+    .drag-component-small {
+      cursor: move;
+      color: rgb(156, 156, 156);
+      font-size: smaller;
+      position: absolute;
+      //center vertically
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+
+      &:hover {
+        color: aliceblue;
+      }
+
+    }
+
+
+    .delete-section-button {
+      scale: 0.8;
+      color: $theme-color-lightest;
+
+
+      &:hover {
+        color: red;
+      }
+    }
+
+
+  }
+
+
+}
+
+

@@ -1,10 +1,11 @@
 .middle-column-container {
   background-color: $theme-color-dark;
   color: black;
+  min-height: 100%;;
   width: 60vw;
-  height: calc(100vh - 7rem);
   padding: 1rem 1rem 7rem 1rem;
   overflow-y: auto;
+  box-sizing: border-box;
   @import "../../scrollbars/scrollbar_style.scss";
 }
 

@@ -39,7 +39,7 @@ function CreateFormButton() {
                             {
                                 component_id: date - 1,
                                 component_type: "short_text",
-                                is_required: false,
+                                is_required: true,
                                 component_prop_object: {
                                     question: "",
 

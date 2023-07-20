@@ -38,6 +38,14 @@ export const formObjectSlice = createSlice({
         reorderSections: (state, action) => {
             state.form_sections = action.payload;
         },
+        reorderComponents: (state, action) => {
+            state.form_sections.forEach((section) => {
+                if (section.section_id === action.payload.section_id) {
+                    section.section_components = action.payload.section_components;
+                }
+            });
+
+        },
 
         addSectionComponent: (state, action) => {
             state.form_sections.forEach((section) => {
@@ -180,7 +188,8 @@ export const {
     editFormName,
     setInitialState,
     setIsActiveStatus,
-    changeInputType
+    changeInputType,
+    reorderComponents
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;

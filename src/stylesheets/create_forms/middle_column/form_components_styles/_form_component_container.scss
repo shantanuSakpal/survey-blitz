@@ -1,12 +1,19 @@
 .form-component-container {
   background-color: aliceblue;
   padding: 0.5rem;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 10px 0;
   position: relative;
-  transition: all 0.2s ease-out;
-  border: 5px solid transparent;
+  transition: all 0.1s ease-out;
+  border: 3px solid transparent;
 
+
+  &.highlight {
+
+    border: 3px solid $accent-color-1-dark;
+    border-left: 10px solid $accent-color-1-dark;
+    height: 120%;
+  }
 
   .required-question {
     color: red;
@@ -21,10 +28,6 @@
 
 }
 
-.highlight {
-  border-left: 10px solid $accent-color-1-light;
-  border-radius: 10px;
-}
 
 .drag-component {
   //rotate 90 degrees

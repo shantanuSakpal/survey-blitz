@@ -63,6 +63,8 @@ export const TimeInput = ({component_id, currSectionId}) => {
             </div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <MobileTimePicker
+                    disabled={true}
+
                     label="select time"
                     defaultValue={dayjs(new Date())}
                     value={value}

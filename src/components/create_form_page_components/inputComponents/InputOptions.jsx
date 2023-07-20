@@ -35,6 +35,7 @@ export const InputOptions = ({
     const [isMoreOptionsOpen, setIsMoreOptionsOpen] = useState(false);
     const moreOptionsRef = useRef(null);
 
+
     const handleIsRequiredToggleMouseDown = () => {
         setIsToggleClicked(true);
     };
@@ -61,6 +62,24 @@ export const InputOptions = ({
         }
     };
 
+    const handleDelete = (e) => {
+        e.stopPropagation()
+        if (currSection.section_components.length > 1) {
+            console.log("delete", component_id)
+            localStorage.setItem("currComponentId", currComponent.component_id)
+            dispatch(setCurrComponent(currComponent.component_id))
+            dispatch(
+                removeSectionComponent({
+                    component_id: component_id,
+                    section_id: currSectionId,
+                }));
+
+        } else
+
+            alert("There must be at least one input in a page");
+
+    }
+
     useEffect(() => {
         document.addEventListener("mousedown", handleOutsideClick);
 
@@ -73,17 +92,8 @@ export const InputOptions = ({
         <div className="input-options-container">
             <div
                 className="delete-input-button"
-                onClick={() => {
-                    if (currSection.section_components.length > 1)
-                        dispatch(
-                            removeSectionComponent({
-                                component_id: component_id,
-                                section_id: currSectionId,
-                            }));
-                    else
-
-                        alert("There must be at least one input in a page");
-
+                onClick={(event) => {
+                    handleDelete(event)
                 }}
 
             >

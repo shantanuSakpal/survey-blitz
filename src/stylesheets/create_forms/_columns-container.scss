@@ -1,8 +1,6 @@
 .columns-container {
   display: flex;
-
-  height: 100vh;
-  overflow: hidden;
+  height: calc(100vh - 3rem);
   box-sizing: border-box;
   position: relative;
 
@@ -15,5 +13,5 @@
 
 .create-forms-page-container {
   height: 100vh;
-  overflow: hidden;
+  box-sizing: border-box;
 }

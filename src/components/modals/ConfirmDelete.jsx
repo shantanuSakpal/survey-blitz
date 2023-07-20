@@ -4,21 +4,27 @@ import axios from "axios";
 import userContext from "../../context/UserContext";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteForm} from "../../reducers/adminFormsReducer";
-import {removeSection} from "../../reducers/formObjectReducer";
+import {removeSection, setCurrComponent, setCurrSectionId} from "../../reducers/formObjectReducer";
 
 export default function ConfirmDelete({what, setDeleteModalOpen, currSectionId, form}) {
     const {user} = useContext(userContext);
     const dispatch = useDispatch();
-    const handleDelete = async () => {
-        if (what === "section") {
-            localStorage.setItem("currSectionId", currSectionId)
+    const formSectionsArray = useSelector(
+        (state) => state.formObject.form_sections
+    );
+    const handleDelete = async (e) => {
+        e.stopPropagation()
+        if (what === "page") {
+            localStorage.setItem("currComponentId", formSectionsArray[0].section_components[0].component_id)
+            localStorage.setItem("currSectionId", formSectionsArray[0].section_id)
+            dispatch(setCurrComponent(formSectionsArray[0].section_components[0].component_id))
+            dispatch(setCurrSectionId(formSectionsArray[0].section_id))
             dispatch(removeSection(currSectionId));
             // If the component being removed is the current component, set the current component to the first component in the form
 
         } else {
             try {
                 const {form_id, admin_id} = form;
-                console.log(form_id, admin_id)
                 const token = user.token; // Replace with the actual token
 
 
@@ -72,7 +78,7 @@ export default function ConfirmDelete({what, setDeleteModalOpen, currSectionId, 
                     }>
                         <button className="delete" type="button"
                                 onClick={
-                                    () => handleDelete()
+                                    (event) => handleDelete(event)
                                 }
                         >Delete
                         </button>

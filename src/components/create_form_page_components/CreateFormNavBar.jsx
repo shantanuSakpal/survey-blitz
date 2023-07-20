@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {editFormName} from "../../reducers/formObjectReducer";
+import {editFormName, setIsActiveStatus} from "../../reducers/formObjectReducer";
 import PublishFormModal from "../modals/PublishFormModal";
 import ConfirmOverwrite from "../modals/ConfirmOverwrite";
 import _ from "lodash";
@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {toast} from 'react-toastify';
 import AppLogo from "../brand_logo/AppLogo";
+import ConfirmDeactivateForm from "../modals/ConfirmDeactivateForm";
 
 
 function CreateFormNavBar(props) {
@@ -29,10 +30,19 @@ function CreateFormNavBar(props) {
 
     const {user, setUser} = useContext(UserContext);
     //get currUser fron local storage
+
+    const [confirmDeactivateModal, setConfirmDeactivateModal] = useState(false);
     useEffect(() => {
         const currUser = JSON.parse(localStorage.getItem('currUser'));
         setUser(currUser);
     }, []);
+    const handleDeactivateForm = () => {
+
+        dispatch(setIsActiveStatus())
+        setConfirmDeactivateModal(false)
+    }
+
+
     const storeForm = async () => {
         try {
             const requestBody = {
@@ -111,8 +121,8 @@ function CreateFormNavBar(props) {
             >
                 <AppLogo/>
             </div>
+
             <div className="edit-form-name">
-                <label htmlFor="form-name">Form title</label>
                 <input
                     className="form-name-input"
                     type="text"
@@ -123,7 +133,35 @@ function CreateFormNavBar(props) {
                 <div className="icon"><BorderColorIcon/></div>
             </div>
 
+
             <div className="nav-buttons">
+                <div className="status">
+
+                    {
+                        formObject.is_active ? (
+                            <div className="active"> Form Active</div>
+                        ) : (
+                            <div className="inactive">Form Inactive</div>
+                        )
+                    }
+                    <label className="switch">
+                        <input type="checkbox" className="checkbox"
+                               checked={formObject.is_active}
+                               readOnly
+                        />
+                        <div className="slider"
+                             onClick={() => {
+                                 if (formObject.is_active)
+                                     setConfirmDeactivateModal(true)
+                                 else
+                                     handleDeactivateForm()
+
+                             }
+                             }
+                        ></div>
+
+                    </label>
+                </div>
                 <div className="next-button" onClick={handleNext}>Next</div>
             </div>
 
@@ -144,6 +182,14 @@ function CreateFormNavBar(props) {
                         setIsUpdateModalOpen={setIsUpdateModalOpen}/>
                 </div>
             )}
+            {
+                confirmDeactivateModal && formObject.is_active && (
+                    <ConfirmDeactivateForm
+                        setConfirmDeactivateModal={setConfirmDeactivateModal}
+                        handleDeactivateForm={handleDeactivateForm}
+                    />
+                )
+            }
 
         </div>
     );

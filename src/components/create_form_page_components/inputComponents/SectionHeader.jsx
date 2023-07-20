@@ -73,7 +73,7 @@ export const SectionHeader = ({}) => {
                     <div
                     >
                         <ConfirmDelete
-                            what={"section"}
+                            what={"page"}
                             setDeleteModalOpen={setConfirmDeleteOpen}
                             currSectionId={currSectionId}
 
