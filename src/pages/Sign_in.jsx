@@ -70,9 +70,12 @@ const SignInPage = () => {
       setResendOtpDisabled(true);
       setLoading(true);
       // Send API request to verify the entered OTP
-      const response = await axios.post("http://localhost:3001/admin/sendOTP", {
-        email,
-      });
+      const response = await axios.post(
+        "https://surveyblitz-api.onrender.com/admin/sendOTP",
+        {
+          email,
+        }
+      );
       // Handle success and set the setOtpInput status
       if (response.status === 200) {
         setLoading(false);
@@ -122,7 +125,7 @@ const SignInPage = () => {
     }
 
     axios
-      .post("http://localhost:3001/admin/signIn", inputValues)
+      .post("https://surveyblitz-api.onrender.com/admin/signIn", inputValues)
       .then((res) => {
         console.log("sign in data", res.data);
         localStorage.setItem("currUser", JSON.stringify(res.data));
@@ -194,7 +197,7 @@ const SignInPage = () => {
         setLoading(true);
         // Send API request to verify the entered OTP
         const response = await axios.post(
-          "http://localhost:3001/admin/sendOTP",
+          "https://surveyblitz-api.onrender.com/admin/sendOTP",
           { email }
         );
         // Handle success and set the setOtpInput status
@@ -245,14 +248,17 @@ const SignInPage = () => {
       return;
     }
     axios
-      .post("http://localhost:3001/admin/resetPassword", {
+      .post("https://surveyblitz-api.onrender.com/admin/resetPassword", {
         email: inputValues.email,
         newpassword: inputValues.password,
       })
       .then((res) => {
         console.log(res.data);
         axios
-          .post("http://localhost:3001/admin/signIn", inputValues)
+          .post(
+            "https://surveyblitz-api.onrender.com/admin/signIn",
+            inputValues
+          )
           .then((res) => {
             localStorage.setItem("currUser", JSON.stringify(res.data));
             console.log("User signed in successfully");
@@ -315,9 +321,12 @@ const SignInPage = () => {
               <GoogleLogin
                 onSuccess={(credentialResponse) => {
                   axios
-                    .post("http://localhost:3001/admin/signUpWithGoogle", {
-                      jwtToken: credentialResponse.credential,
-                    })
+                    .post(
+                      "https://surveyblitz-api.onrender.com/admin/signUpWithGoogle",
+                      {
+                        jwtToken: credentialResponse.credential,
+                      }
+                    )
                     .then((res) => {
                       // console.log("google data", res.data);
                       localStorage.setItem(

@@ -48,7 +48,7 @@ function CreateFormNavBar({ settingsOpen, setSettingsOpen }) {
 
       // Add the form to the database
       const response = await axios.post(
-        "http://localhost:3001/admin/createForm",
+        "https://surveyblitz-api.onrender.com/admin/createForm",
         requestBody
       );
       console.log("Form stored successfully", response);
@@ -75,7 +75,7 @@ function CreateFormNavBar({ settingsOpen, setSettingsOpen }) {
 
       // Add the form to the database
       const response = await axios.post(
-        "http://localhost:3001/admin/updateForm",
+        "https://surveyblitz-api.onrender.com/admin/updateForm",
         requestBody
       );
       console.log("Form stored successfully");

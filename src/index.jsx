@@ -7,6 +7,11 @@ import { store } from "./store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import "dotenv";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
+if (process.env.NODE_ENV === "production") {
+  disableReactDevTools();
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
