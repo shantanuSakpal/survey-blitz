@@ -50,7 +50,7 @@ router.post('/signUpWithGoogle', async (req, res) => {
         const existingUser = await Admin.findOne({ email });
         if (existingUser) {
             const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, SECRET_KEY);
-            return res.status(200).json({ result: existingUser, token: token });
+            return res.status(200).json({result: existingUser, token: token });
         }
         const admin = await Admin.create({
             email,
@@ -69,16 +69,23 @@ router.post('/signIn', async (req, res) => {
 
     try {
         const existingUser = await Admin.findOne({ email });
-        if (!existingUser)
+        if (!existingUser) {
             return res.status(404).json({ message: "User doesn't exist" });
+        }
 
+        // Check if the user has a password property in the database
+        if (!existingUser.password) {
+            return res.status(401).json({ message: 'You signed up with Google. Sign in with Google.' });
+        }
+
+        // Verify the provided password
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
-        if (!isPasswordCorrect)
+        if (!isPasswordCorrect) {
             return res.status(400).json({ message: 'Invalid credentials' });
+        }
 
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, SECRET_KEY);
         res.status(200).json({ result: existingUser, token: token });
-
     } catch (error) {
         res.status(500).json({ message: 'Something went wrong' });
     }
