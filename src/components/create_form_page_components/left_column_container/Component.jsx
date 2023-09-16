@@ -9,8 +9,8 @@ import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
 import EventIcon from "@mui/icons-material/Event";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import {DeleteButton} from "../buttons/DeleteButton";
-import {removeSectionComponent, setCurrComponent} from "../../reducers/formObjectReducer";
+import {DeleteButton} from "../../buttons/DeleteButton";
+import {removeSectionComponent, setCurrComponent} from "../../../reducers/formObjectReducer";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -30,8 +30,6 @@ export const Component = ({
     const sectionIndex = formSectionsArray.findIndex(
         (section) => section.section_id === currSectionId
     );
-
-    console.log("sclicked ", currComponentId)
 
     const handleComponentDelete = (e, componentId, sectionId) => {
         e.stopPropagation();

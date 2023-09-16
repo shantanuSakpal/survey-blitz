@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import AddInput from "./AddInput";
+import Settings from "./Settings";
 
-function EditInputFeatures(props) {
+function EditInputFeatures({settingsOpen}) {
     const formObject = useSelector(
         (state) => state.formObject
     );
@@ -16,12 +17,19 @@ function EditInputFeatures(props) {
         <div className="column right-column-container"
 
         >
-
-
             {
-                (currSectionIndex !== -1 && formObject.form_sections[currSectionIndex].section_components.length > 0) ? (
-                    <AddInput/>
-                ) : null
+                settingsOpen ? (
+
+                        <Settings/>
+                    )
+                    : (
+
+                        <div className="add-input-container">
+                            <AddInput/>
+                        </div>
+
+
+                    )
             }
 
 

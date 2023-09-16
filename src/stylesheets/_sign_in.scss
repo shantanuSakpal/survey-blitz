@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&display=swap");
 
 .sign-in-page {
   display: flex;
   height: 100vh;
-
 
   .error {
     color: red;
@@ -32,9 +31,7 @@
       left: 2rem;
     }
 
-
     @import "./scrollbars/response_table_scrollbar";
-
 
     .inner-container {
       display: flex;
@@ -43,7 +40,6 @@
       justify-content: center;
       gap: 10px;
       width: 80%;
-
 
       .header {
         font-size: 1.7rem;
@@ -57,7 +53,6 @@
         text-align: center;
 
         span {
-
           color: $accent-color-1-light;
           display: inline;
           cursor: pointer;
@@ -71,7 +66,6 @@
         }
       }
 
-
       .options {
         display: flex;
         flex-direction: column;
@@ -80,11 +74,10 @@
         margin-top: 20px;
         gap: 25px;
 
-
         input:-webkit-autofill,
         input:-webkit-autofill:hover,
         input:-webkit-autofill:focus,
-        input:-webkit-autofill:active, {
+        input:-webkit-autofill:active {
           -webkit-box-shadow: 0 0 0 30px $theme-color inset !important;
         }
 
@@ -92,7 +85,6 @@
           -webkit-text-fill-color: aliceblue !important;
           caret-color: aliceblue;
         }
-
 
         .login-with-google-btn {
           display: flex;
@@ -113,15 +105,11 @@
             height: 20px;
           }
 
-
           &:hover {
             border-color: $theme-color-light;
             box-shadow: 0 2px 5px 0 $theme-color-dark;
             cursor: pointer;
-
-
           }
-
         }
 
         .divider {
@@ -136,14 +124,12 @@
           .horizontal-line {
             border-bottom: 1px solid $theme-color-lighter;
             width: 40%;
-
           }
 
           p {
             font-size: 0.6rem;
           }
         }
-
 
         .email-option {
           width: 100%;
@@ -156,7 +142,6 @@
           label {
             width: 100%;
             font-size: 0.8rem;
-
           }
 
           input {
@@ -177,12 +162,11 @@
 
             #tooltip {
               position: relative;
-
             }
 
             #tooltipText {
               position: absolute;
-              Left: 50%;
+              left: 50%;
               top: 0;
               transform: translateX(-50%);
               background-color: #000;
@@ -192,7 +176,6 @@
               border-radius: 7px;
             }
 
-
             #tooltipText::before {
               content: "";
               position: absolute;
@@ -200,17 +183,13 @@
               top: 100%;
               transform: translateX(-50%);
             }
-
-
           }
-
 
           .password-input {
             position: relative;
             width: 100%;
             display: flex;
             align-items: center;
-
 
             .visibility-icon {
               position: absolute;
@@ -239,17 +218,12 @@
             gap: 10px;
             height: 2.3rem;
 
-
             &:hover {
               background-color: $accent-color-1-dark;
 
               cursor: pointer;
             }
-
-
           }
-
-
         }
 
         .forgot-password {
@@ -269,11 +243,7 @@
             text-decoration: none;
           }
         }
-
-
       }
-
-
     }
   }
 
@@ -284,7 +254,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-
 
     img {
       max-width: 100%;
@@ -303,17 +272,19 @@
         color: $theme-color-lightest;
         display: inline;
 
-
         &:hover {
           color: $accent-color-1-light;
         }
       }
-
     }
   }
 
   //media query if screen size is less than 750px
   @media (max-width: 750px) {
+    .header {
+      display: flex;
+      flex-direction: column;
+    }
     .left-container {
       padding: 8rem 15vw 2rem 15vw;
 
@@ -322,17 +293,19 @@
 
     .right-container {
       display: none;
-
-
+    }
+  }
+  @media (max-width: 1080px) {
+    .header {
+      display: flex;
+      flex-direction: column;
     }
   }
 
   //media query if screen size is more than 1080px
   @media (min-width: 1080px) {
     .left-container {
-
       padding: 8rem 5rem 2rem 5rem;
-
     }
   }
 }
@@ -340,6 +313,4 @@
 .loading {
   background-color: transparent !important;
   border: none !important;
-
-
 }

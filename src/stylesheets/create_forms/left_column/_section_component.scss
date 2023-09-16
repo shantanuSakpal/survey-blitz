@@ -22,9 +22,7 @@
 
 
     &:hover {
-      border: 1px solid $theme-color-lightest;
-
-
+      background-color: $button-background-color-2-hover;
     }
 
     &.selected {

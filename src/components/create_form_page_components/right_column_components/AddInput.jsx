@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import MenuItem from "@mui/material/MenuItem";
@@ -14,7 +14,7 @@ import {
     AccessTime,
     UploadFile,
 } from "@mui/icons-material";
-import {changeInputType} from "../../reducers/formObjectReducer";
+import {changeInputType} from "../../../reducers/formObjectReducer";
 
 export default function AddInput() {
     const currSectionId = useSelector((state) => state.formObject.currSectionId);
@@ -31,9 +31,7 @@ export default function AddInput() {
             .find((section) => section.section_id === currSectionId)
             .section_components[0];
     }
-    const currComponentType = currComponent.component_type;
-
-
+    let currComponentType = currComponent.component_type;
     const handleOptionChange = (event) => {
 
         dispatch(changeInputType({

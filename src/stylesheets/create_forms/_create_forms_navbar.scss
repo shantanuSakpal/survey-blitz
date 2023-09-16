@@ -2,7 +2,7 @@
 .create-forms-navbar {
   background-color: $theme-color-light;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
@@ -14,55 +14,145 @@
   align-items: center;
   z-index: 100;
 
-  .navbar-brand {
+  .navbar-brand-and-title {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    gap: 10px;
     width: 20%;
+
+    .brand-name {
+
+
+    }
+
+    .form-name-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+      .form-icon {
+        padding: 5px;
+        border-radius: 10px;
+        background-color: aliceblue;
+        width: 20px;
+        height: 20px;
+      }
+
+      .form-name {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+    }
+
+
   }
 
 
-  .edit-form-name {
+  .form-options-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: 40%;
-    max-width: 25rem;
-    font-size: 1rem;
+    gap: 2rem;
 
+    .responses {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      font-size: small;
+      font-weight: bold;
+      gap: 5px;
+      color: $theme-color-lightest;
 
-  }
+      &:hover {
+        cursor: pointer;
+        color: aliceblue;
+      }
+    }
 
+    .edit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      font-size: small;
+      font-weight: bold;
+      gap: 5px;
+      color: $theme-color-lightest;
 
-  .form-name-input {
-    background-color: $theme-color;
-    color: white;
-    padding: 5px 50px 5px 60px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    outline: none;
-    width: 100%;
-
-
-    &:focus {
-      border-bottom: 1px solid $accent-color-1-dark;
+      &:hover {
+        cursor: pointer;
+        color: aliceblue;
+      }
     }
   }
 
-  .icon {
-    position: absolute;
-    right: 10px;
-    scale: 0.7;
-    color: $accent-color-1-light;
-    cursor: text;
+  .nav-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    width: 20%;
+
+    .settings {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      font-size: small;
+      font-weight: bold;
+      gap: 5px;
+      color: $theme-color-lightest;
+      width: 7rem;
+      padding: 7px 0;
+      border-radius: 10px;
+
+      &:hover {
+        cursor: pointer;
+        color: aliceblue;
+      }
+
+      &.settings-open {
+        color: aliceblue;
+        background-color: $theme-color-lighter;
+      }
+    }
+
+
+    .next-button {
+      padding: 10px 10px;
+      border-radius: 10px;
+      background-color: $accent-color-1-light;
+      color: aliceblue;
+
+
+      font-size: 0.8rem;
+      font-weight: 600;
+
+
+      &:hover {
+        cursor: pointer;
+        background-color: $accent-color-1-dark;
+      }
+    }
+
+    a {
+      color: $accent-color-1-light;
+      text-decoration: none;
+      font-weight: bold;
+
+      &:hover {
+        color: $accent-color-1-dark;
+      }
+
+
+    }
   }
-}
 
 
-h2 {
-  font-weight: bold;
 }
 
 
@@ -213,80 +303,6 @@ h2 {
 
 }
 
-.nav-buttons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  right: 0;
-  margin: 10px;
-  gap: 20px;
-  width: 20%;
-
-  .status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    width: fit-content;
-    font-size: small;
-    font-weight: bold;
-    gap: 5px;
-    white-space: nowrap;
-
-    .switch {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      width: fit-content;
-      text-align: center;
-      scale: 0.8;
-
-
-      @import "../buttons/is_active";
-
-    }
-
-    .active {
-      color: aliceblue;
-
-    }
-
-    .inactive {
-      color: $theme-color-lightest;
-
-    }
-  }
-
-  .next-button {
-    padding: 10px 15px;
-    border-radius: 10px;
-    background-color: $accent-color-1-light;
-    color: aliceblue;
-
-
-    font-size: 0.7rem;
-    font-weight: 600;
-
-
-    &:hover {
-      cursor: pointer;
-      background-color: $accent-color-1-dark;
-    }
-  }
-
-  a {
-    color: $accent-color-1-light;
-    text-decoration: none;
-    font-weight: bold;
-
-    &:hover {
-      color: $accent-color-1-dark;
-    }
-
-
-  }
-}
 
 
 

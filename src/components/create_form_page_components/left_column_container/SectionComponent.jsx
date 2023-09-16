@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {DeleteButton} from "../buttons/DeleteButton";
+import {DeleteButton} from "../../buttons/DeleteButton";
 import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
-import ConfirmDelete from "../modals/ConfirmDelete";
+import ConfirmDelete from "../../modals/ConfirmDelete";
 
 export const SectionComponent = ({section_id, index}) => {
     const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);

@@ -1,9 +1,9 @@
 import React from "react";
 
-import {SectionHeader} from "./inputComponents/SectionHeader";
-import {FormComponentContainer} from "./inputComponents/FormComponentContainer";
+import {SectionHeader} from "../inputComponents/SectionHeader";
+import {FormComponentContainer} from "../inputComponents/FormComponentContainer";
 import {useSelector} from "react-redux";
-import {AddInputButton} from "../buttons/AddInputButton";
+import {AddInputButton} from "../../buttons/AddInputButton";
 
 function FormDisplay() {
     const formObject = useSelector(

@@ -34,11 +34,11 @@
       right: 0;
       font-size: small;
       margin: 10px;
-      color: $accent-color-1-light;
+      color: $theme-color-lightest;
 
       &:hover {
         cursor: pointer;
-        color: $accent-color-1-dark;
+        color: aliceblue;
       }
     }
 
@@ -48,6 +48,7 @@
     color: red;
     font-size: 1rem;
     margin-top: 5px;
+    white-space: pre-wrap;
   }
 
 

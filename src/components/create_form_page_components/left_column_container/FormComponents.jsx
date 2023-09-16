@@ -1,5 +1,5 @@
 import React from "react";
-import {AddSectionButton} from "../buttons/AddSectionButton";
+import {AddSectionButton} from "../../buttons/AddSectionButton";
 import {SectionComponent} from "./SectionComponent";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import {useSelector, useDispatch} from "react-redux";
@@ -8,8 +8,8 @@ import {
     reorderComponents,
     setCurrComponent,
     setCurrSectionId,
-} from "../../reducers/formObjectReducer";
-import {AddInputButton} from "../buttons/AddInputButton";
+} from "../../../reducers/formObjectReducer";
+import {AddInputButton} from "../../buttons/AddInputButton";
 import {Component} from "./Component";
 
 function FormComponents() {
