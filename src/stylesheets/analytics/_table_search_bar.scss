@@ -1,0 +1,41 @@
+.table-search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 10px;
+
+  padding: 5px 10px;
+
+  .icon {
+    width: fit-content;
+    margin-bottom: -5px;
+
+    color: $theme-color-lighter;
+
+  }
+
+  input {
+    width: 5rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: aliceblue;
+    font-weight: 500;
+    font-size: 0.7rem;
+
+    &::placeholder {
+      color: $theme-color-lightest;
+      font-size: 0.6rem;
+    }
+  }
+
+  &:hover {
+    background-color: $theme-color-light;
+    cursor: text;
+  }
+
+  &:focus-within {
+    background-color: $theme-color-light;
+  }
+}

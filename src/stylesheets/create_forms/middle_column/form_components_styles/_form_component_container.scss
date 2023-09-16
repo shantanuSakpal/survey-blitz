@@ -1,0 +1,57 @@
+.form-component-container {
+  background-color: aliceblue;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 10px 0;
+  position: relative;
+  transition: all 0.1s ease-out;
+  border: 3px solid transparent;
+
+
+  &.highlight {
+
+    border: 3px solid $accent-color-1-dark;
+    border-left: 10px solid $accent-color-1-dark;
+    height: 120%;
+  }
+
+  .required-question {
+    color: red;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 0.7rem;
+
+
+  }
+
+
+}
+
+
+.drag-component {
+  //rotate 90 degrees
+  transform: rotate(90deg);
+  cursor: move;
+  color: rgb(156, 156, 156);
+  font-size: smaller;
+  scale: 0.8;
+  margin: -10px auto;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+
+  &:hover {
+    color: black;
+  }
+}
+
+@import "./section_header";
+@import "./short_text";
+@import "./long_text";
+@import "./time_input";
+@import "./date_input";
+@import "./checkbox_input";
+@import "./dropdown_input";
+@import "./multiple_choice";
+@import "./more_options_container";

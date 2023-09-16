@@ -1,0 +1,17 @@
+.right-column-container {
+  background-color: $theme-color-light;
+  color: white;
+  width: 30vw;
+  min-height: 100%;
+  border-top: 1px solid $theme-color-dark;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+
+
+  @import "add_inputs_container";
+  @import "settings";
+
+
+}

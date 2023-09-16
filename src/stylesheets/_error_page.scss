@@ -1,0 +1,18 @@
+.errorpage {
+  background-color: #f7f9fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .err {
+    box-shadow: 100px 100px 100px #f7f9fb;
+    height: 90vh;
+  }
+
+  a {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+

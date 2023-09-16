@@ -1,0 +1,17 @@
+.home-page-container {
+  background-color: $theme-color-dark;
+  height: 100vh;
+  color: aliceblue;
+  box-sizing: border-box;
+  display: flex;
+  padding: 0;
+
+  @import "home-page-left-sidebar";
+
+  @import "home-page-right-container";
+
+}
+
+@import "profile";
+
+

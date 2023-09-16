@@ -1,0 +1,17 @@
+.columns-container {
+  display: flex;
+  height: calc(100vh - 3rem);
+  box-sizing: border-box;
+  position: relative;
+
+}
+
+@import "left_column/left_column";
+@import "middle_column/middle_column";
+@import "right_column/right_column";
+
+
+.create-forms-page-container {
+  height: 100vh;
+  box-sizing: border-box;
+}

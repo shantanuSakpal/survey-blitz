@@ -1,0 +1,238 @@
+.account-setting-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+
+  #container {
+    margin: auto;
+    display: flex;
+    color: #f8f9fa;
+    flex-direction: column;
+    gap: 20px;
+    width: 18rem;
+    max-width: 90vw;
+    height: fit-content;
+    font-family: sans-serif;
+    background-color: $theme-color;
+    padding: 10px 20px;
+    border-radius: 10px;
+    position: relative;
+
+    .email-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      text-align: left;
+    }
+
+    .close-btn {
+      position: absolute;
+      color: $theme-color-lighter;
+      top: 10px;
+      right: 10px;
+      width: fit-content;
+      z-index: 5;
+      scale: 0.8;
+
+      &:hover {
+        cursor: pointer;
+        color: $theme-color-lightest;
+      }
+    }
+  }
+
+  .error {
+    color: red;
+    font-size: 0.7rem;
+    margin-top: 5px;
+  }
+
+  h5 {
+    color: $accent-color-1-light;
+
+    span {
+      color: white;
+      font-weight: normal;
+    }
+  }
+
+  #Heading {
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  label {
+    font-size: 1em;
+    font-weight: 500;
+    margin: 10px 0;
+  }
+
+  input {
+    padding: 10px;
+    border-top-right-radius: 10px;
+
+    background-color: $theme-color;
+    border-bottom-right-radius: 10px;
+    outline: none;
+    border: none;
+    font-size: 0.8rem;
+    transition-duration: 0.15s;
+    caret-color: #f8f9fa;
+
+    color: #f8f9fa;
+  }
+
+  input::placeholder {
+    color: $theme-color-lighter;
+    font-size: 0.8rem;
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px $theme-color inset !important;
+    -webkit-text-fill-color: white !important;
+  }
+
+  .row:not(.name) {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: 50px;
+    position: relative;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid gray;
+
+    &:hover {
+      border: 1px solid $accent-color-1-light;
+    }
+
+    &:focus-within {
+      border: 1px solid $accent-color-1-light;
+    }
+  }
+
+  .name {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    margin-top: 10px;
+  }
+
+  .name > input {
+    width: calc(50% - 5px);
+    margin: 5px;
+    border-radius: 10px;
+  }
+
+  .icon {
+    background-color: $theme-color;
+    border-top-left-radius: 10px;
+    scale: 0.8;
+    border-bottom-left-radius: 10px;
+    fill: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    width: fit-content;
+    margin: 20px auto;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    color: white;
+    background-color: #248277;
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition-duration: 0.25s;
+  }
+
+  button:hover {
+    background-color: #036666;
+  }
+
+  span {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #99e2b4;
+    margin: 0 5px;
+  }
+
+  a:hover {
+    color: #06d6a0;
+  }
+
+  input {
+    border: none;
+    outline: none;
+  }
+
+  .show-icon {
+    position: absolute;
+    scale: 0.8;
+    right: 10px;
+    margin: 10px 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    gap: 10px;
+    position: relative;
+
+    button {
+      font-size: 0.8rem;
+      font-weight: normal;
+      margin: 0;
+      border-radius: 10px;
+      background-color: $accent-color-1-light;
+
+      &:hover {
+        background-color: $accent-color-1-dark;
+      }
+    }
+
+    .logout {
+      background-color: rgba(255, 0, 0, 0.13);
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: aliceblue;
+
+      &:hover {
+        background-color: rgba(255, 0, 0, 0.63);
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.analytics-page-container {
+  background-color: $theme-color-dark;
+  height: 100vh;
+  color: aliceblue;
+  box-sizing: border-box;
+  display: flex;
+  padding: 0;
+
+  
+  @import "../home/home-page-left-sidebar";
+
+  @import "analytics_page_right_container";
+
+}
+

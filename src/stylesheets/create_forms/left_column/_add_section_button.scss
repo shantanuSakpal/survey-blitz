@@ -1,0 +1,23 @@
+.add-section-button {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  margin: 5px auto;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: all 0.2s ease-out;
+  border-radius: 10px;
+
+  p {
+    font-size: 0.8rem;
+    margin: 0 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $theme-color-light;
+  }
+}

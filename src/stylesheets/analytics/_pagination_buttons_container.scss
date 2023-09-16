@@ -1,0 +1,118 @@
+.pagination-buttons-container {
+
+
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+  align-items: center;
+
+  width: fit-content;
+
+  .go-to-input {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+
+    p {
+      font-size: 0.6rem;
+
+
+      span {
+        border: 1px solid $accent-color-1-dark;
+        margin: 0 10px 0 0;
+      }
+    }
+
+    input {
+      padding: 5px;
+      width: 1.5rem;
+      background-color: $theme-color-dark;
+      border: 1px solid $theme-color-light;
+      border-radius: 10px;
+      color: aliceblue;
+      font-size: 0.6rem;
+      outline: none;
+      text-align: center;
+
+      &:hover {
+        outline: none;
+        background-color: $theme-color-light;
+      }
+
+
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  .select-page-rows {
+    padding: 5px;
+    background-color: $theme-color-dark;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: aliceblue;
+    font-size: 0.6rem;
+    outline: none;
+
+
+    &:hover {
+      cursor: pointer;
+      background-color: $theme-color-light;
+      outline: none;
+
+    }
+
+
+  }
+
+  strong {
+    font-size: 0.6rem;
+    margin: 0 10px;
+    width: fit-content;
+  }
+
+  .pagination-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+    background-color: $theme-color-dark;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    color: aliceblue;
+    width: 1.5rem;
+    height: 1.2rem;
+
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $theme-color-light;
+      background-color: $theme-color-light;
+
+    }
+  }
+
+  .disabled {
+    border: 1px solid transparent;
+    cursor: not-allowed !important;
+    color: $theme-color-lighter !important;
+
+    &:hover {
+      border: 1px solid transparent;
+      cursor: not-allowed;
+      color: $theme-color-dark !important;
+    }
+
+  }
+
+
+}

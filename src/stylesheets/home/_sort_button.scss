@@ -1,0 +1,32 @@
+.sort-button {
+  height: 100%;
+
+  select {
+    padding: 8px 10px 8px 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    color: $theme-color-lightest;
+    border: none;
+    font-size: 0.7rem;
+    outline: none;
+
+    &:hover {
+      background-color: $theme-color-light;
+      cursor: pointer;
+    }
+
+    option {
+      background-color: $theme-color-light;
+      border: none;
+      color: $theme-color-lightest;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: $theme-color-light;
+        cursor: pointer;
+      }
+    }
+  }
+
+
+}

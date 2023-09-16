@@ -1,0 +1,75 @@
+.left-column-container {
+  background-color: $theme-color-light;
+  color: white;
+  width: 30vw;
+  height: 100%;
+  overflow: hidden;
+  border-top: 1px solid $theme-color-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+
+  .sections-container {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid $theme-color-lighter;
+    max-height: 45%;
+
+    @import "section";
+
+
+  }
+
+  .section-components-container {
+
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 55%;
+
+
+    @import "section_component";
+
+
+  }
+
+  .container-1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: small;
+    height: 2rem;
+
+
+  }
+
+  .container-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    overflow: auto;
+    max-height: calc(100% - 3rem);
+    border-radius: 10px;
+
+
+    @import "../../scrollbars/form_components_scrollbar";
+
+  }
+
+
+}
+
+.container-2:first-child {
+
+  border: 3px solid red;
+
+}
