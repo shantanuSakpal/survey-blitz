@@ -13,7 +13,7 @@ const formRouter = require("./routes/formRouter");
 const app = express();
 const port = 3001;
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use("/admin", adminRouter);
 app.use("/", formRouter);
