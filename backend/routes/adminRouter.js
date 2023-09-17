@@ -11,6 +11,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
+const GOOGLE_SCRIPT_FOR_OTP = process.env.GOOGLE_SCRIPT_FOR_OTP;
 
 const emailIsValid = require("../helpers/helper").emailIsValid;
 const passwordIsValid = require("../helpers/helper").passwordIsValid;
@@ -406,20 +407,17 @@ router.post("/sendOTP", async (req, res) => {
     const otp = generateOTP();
     if (!otp) throw new Error("OTP generation failed");
 
-    const result = await axios.post(
-      "https://script.google.com/macros/s/AKfycbxyhUYYyRXeHLXmkXwuAHeqwrGuxvI_xmlLDZ15S4bTOCw8qUVh-fFFb6q4kUwGDvlV/exec",
-      {
-        email: email,
-        otp: otp,
-        msg:
-          "Hello, " +
-          email +
-          " your OTP is " +
-          otp +
-          " ." +
-          " Thank you for using our service.",
-      }
-    );
+    const result = await axios.post(GOOGLE_SCRIPT_FOR_OTP, {
+      email: email,
+      otp: otp,
+      msg:
+        "Hello, " +
+        email +
+        " your OTP is " +
+        otp +
+        " ." +
+        " Thank you for using Survey Blitz !",
+    });
     res.status(200).json({ otp: otp, message: "OTP sent successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });

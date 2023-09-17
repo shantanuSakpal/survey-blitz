@@ -291,7 +291,9 @@ const SignUpPage = () => {
                   axios
                     .post(
                       "https://surveyblitz-api.onrender.com/admin/signUpWithGoogle",
-                      { jwtToken: credentialResponse.credential }
+                      {
+                        jwtToken: credentialResponse.credential,
+                      }
                     )
                     .then((res) => {
                       // console.log(res.data);
