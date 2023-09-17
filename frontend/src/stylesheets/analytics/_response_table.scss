@@ -1,0 +1,138 @@
+.table-elements-container {
+  padding: 10px;
+  width: 100%;
+  height: calc(100vh - 3rem);
+  box-sizing: border-box;
+
+  .pagination-and-searchbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    box-sizing: border-box;
+
+    /* Import styles for the table search bar */
+    @import "table_search_bar";
+
+  }
+
+  @import "pagination_buttons_container";
+
+  .table-container {
+    margin: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+    max-height: calc(100vh - 7rem);
+    position: relative;
+
+
+    /* Import styles for the response table scrollbar */
+    @import "../scrollbars/response_table_scrollbar";
+
+    .table {
+      text-align: left;
+      position: relative;
+
+
+      .table-head {
+        background-color: $theme-color-lighter;
+        border-radius: 10px 0;
+        font-size: 0.8rem;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+
+        .table-head-row {
+          height: 2rem;
+
+          .table-head-cell {
+            border-width: 1px 0 1px 1px;
+            border-style: solid;
+            border-color: $theme-color-lightest;
+            padding: 5px 10px;
+            white-space: nowrap;
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+            position: relative;
+
+
+            div {
+              width: inherit;
+              overflow: hidden;
+              text-overflow: ellipsis
+            }
+
+
+            .resize-div {
+              width: 10px;
+              position: absolute;
+              right: -5px;
+              top: 0;
+              height: 100%;
+              cursor: col-resize;
+              user-select: none;
+              touch-action: none;
+
+
+              .isResizing {
+                background-color: $theme-color-lighter;
+              }
+            }
+
+            &:first-child {
+              border-radius: 10px 0 0 0;
+            }
+
+            &:last-child {
+              border-right: 1px solid $theme-color-lighter;
+              border-radius: 0 10px 0 0;
+            }
+          }
+        }
+      }
+
+      .table-body {
+        font-size: 0.7rem;
+
+        .table-body-row {
+          height: 1rem;
+
+
+          .table-body-cell {
+            border-width: 0 0 1px 1px;
+            border-style: solid;
+            border-color: $theme-color-lightest;
+            background-color: $theme-color-light;
+            padding: 5px 10px;
+            white-space: nowrap;
+            width: 100%;
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            div {
+              width: inherit;
+              overflow: hidden;
+              text-overflow: ellipsis
+            }
+
+
+            &:last-child {
+              border-right: 1px solid $theme-color-lighter;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+}
+
+.selected-cell-popup {
+
+}
+
+
+

@@ -1,0 +1,24 @@
+.analytics-page-right-container {
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: auto;
+  @import "../scrollbars/home_page_scrollbar";
+
+
+  .form-response-header {
+    width: fit-content;
+    border-bottom: 3px solid $accent-color-1-dark;
+    margin: 0 auto;
+    text-align: center;
+    color: aliceblue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+
+  }
+
+
+  @import "response_table";
+}

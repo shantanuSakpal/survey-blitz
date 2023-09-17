@@ -1,0 +1,14 @@
+.delete-input-button {
+
+  width: 2rem;
+  color: $theme-color-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scale: 0.8;
+
+  &:hover {
+    cursor: pointer;
+    color: $theme-color;
+  }
+}

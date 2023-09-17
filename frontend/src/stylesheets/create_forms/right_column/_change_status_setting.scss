@@ -1,0 +1,33 @@
+.change-status-setting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: fit-content;
+  gap: 5px;
+  white-space: nowrap;
+  margin: 0 auto;
+
+  .switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: fit-content;
+    text-align: center;
+
+
+    @import "../../buttons/is_active";
+
+  }
+
+  .active {
+    color: aliceblue;
+
+  }
+
+  .inactive {
+    color: #f85b5b;
+
+  }
+}

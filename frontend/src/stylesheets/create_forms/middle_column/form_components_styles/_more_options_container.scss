@@ -1,0 +1,21 @@
+.more-options-container {
+  position: absolute;
+  right: 0;
+  bottom: 2rem;
+  background-color: white;
+  border: 1px solid rgb(192, 192, 192);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px gray;
+  width: max-content;
+  font-size: 0.8rem;
+  color: black;
+
+  .more-options-item {
+    padding: 0.5rem;
+
+    &:hover {
+      color: black;
+      background-color: lightgray;
+    }
+  }
+}
