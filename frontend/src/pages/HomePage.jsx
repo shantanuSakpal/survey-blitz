@@ -109,7 +109,7 @@ export const HomePage = () => {
             )}
           </div>
         </div>
-        <ToastContainer position="top-right" autoClose={2000} />
+        <ToastContainer position="bottom-right" autoClose={1000} />
       </>
     )
   );

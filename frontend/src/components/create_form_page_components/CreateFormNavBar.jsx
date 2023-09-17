@@ -104,7 +104,7 @@ function CreateFormNavBar({ settingsOpen, setSettingsOpen }) {
 
   return (
     <div data-role="navbar" className="create-forms-navbar">
-      <div className="navbar-brand-and-title" onClick={() => navigate("/home")}>
+      <div className="navbar-brand-and-title">
         <div className="brand-name">
           <div className="brand-logo" onClick={() => navigate("/home")}>
             <DynamicFormIcon />

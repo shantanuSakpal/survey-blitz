@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
+const corsOptions = require("./config/corsOptions");
 
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.DATABASE_URI;
@@ -12,8 +13,8 @@ const formRouter = require("./routes/formRouter");
 const app = express();
 const port = 3001;
 
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
 app.use("/admin", adminRouter);
 app.use("/", formRouter);
 
