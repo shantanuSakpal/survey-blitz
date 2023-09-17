@@ -40,7 +40,7 @@ export const NewFormModal = ({ setModalOpen }) => {
     const adminId = user.result._id;
     const formattedFormName = _.kebabCase(formName);
     const randomString = Math.random().toString(36).substring(2, 7);
-    const baseUrl = "http://localhost:3000"; //
+    const baseUrl = "https://surveyblitz.onrender.com"; //
     formUrl = `${baseUrl}/${adminId}/${formattedFormName + "-" + randomString}`;
     console.log(formUrl);
   }
