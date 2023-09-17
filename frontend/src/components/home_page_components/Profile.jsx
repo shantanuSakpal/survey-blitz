@@ -21,7 +21,7 @@ function Profile({ setModalOpen, username }) {
         <div className="account-icon">
           <AccountCircleIcon />
         </div>
-        <div className="username">fasdfasdfhahfdahsdofhasodhfaosd</div>
+        <div className="username">{username}</div>
       </div>
       <div className="icon">
         <MoreVertIcon />

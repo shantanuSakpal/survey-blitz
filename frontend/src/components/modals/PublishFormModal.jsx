@@ -42,7 +42,7 @@ function PublishFormModal({ setIsModalOpen, setIsShareModalOpen }) {
     }
     setError("");
     setFormUrlEnd(e.target.value);
-    let newFormUrl = `https://surveyblitz.onrender.com/${user.result._id}/${e.target.value}`;
+    let newFormUrl = `https://surveyblitz.vercel.app/${user.result._id}/${e.target.value}`;
     setFormUrl(newFormUrl);
     dispatch(editFormUrl(newFormUrl));
   };
