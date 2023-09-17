@@ -12,7 +12,7 @@ function SectionHeader({currentSectionIndex}) {
 
     return (
 
-        <div className="form-section-header"
+        <div className={`form-section-header ${formResponseObject?.theme}`}
         >
             <h4>Page {currentSectionIndex + 1} of {totalSections}</h4>
             {

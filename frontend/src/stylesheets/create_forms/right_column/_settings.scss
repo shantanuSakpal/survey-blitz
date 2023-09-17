@@ -7,6 +7,18 @@
 
   box-sizing: border-box;
 
+  p {
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    padding: 5px 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  &.close {
+    display: none;
+  }
 
   .collapse-btn {
     box-sizing: border-box;
@@ -17,7 +29,8 @@
     align-items: center;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    border-bottom: 2px solid $theme-color-lighter;
+    border-top: 1px solid $theme-color-lighter;
+    border-bottom: 1px solid $theme-color-lighter;
     cursor: pointer;
     gap: 5px;
     font-size: small;
@@ -35,8 +48,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-
     }
 
     .arrow-icon {
@@ -48,15 +59,12 @@
       align-items: center;
       justify-content: center;
       right: 10px;
-
     }
 
     &.active {
       background-color: $theme-color-lighter;
     }
-
   }
-
 
   .content {
     width: 100%;
@@ -69,10 +77,9 @@
     box-sizing: border-box;
     //border-radius: 10px;
     border-bottom: 2px solid $theme-color-lighter;
-
   }
 
-  @import 'change_status_setting';
-  @import 'edit_form_name_setting';
-
+  @import "change_status_setting";
+  @import "edit_form_name_setting";
+  @import "change_theme";
 }

@@ -1,50 +1,36 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import AdminFormsListItem from "./AdminFormsListItem";
 import CreateFormButton from "../buttons/CreateFormButton";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
-function FormsContainer({forms, sortType, searchText}) {
+function FormsContainer({ forms, sortType, searchText }) {
+  const filteredForms = forms.filter((form) =>
+    form.formObject.form_name.toLowerCase().includes(searchText.toLowerCase())
+  );
+  const sortedForms = [...filteredForms];
 
-    const filteredForms = forms.filter((form) =>
-        form.formObject.form_name.toLowerCase().includes(searchText.toLowerCase())
+  if (sortType === "alphabetical") {
+    sortedForms.sort((a, b) =>
+      a.formObject.form_name.localeCompare(b.formObject.form_name)
     );
-    const sortedForms = [...filteredForms];
+  } else if (sortType === "newest") {
+    let date1 = sortedForms.sort((a, b) => b.form_id - a.form_id);
+  } else if (sortType === "oldest") {
+    sortedForms.sort((a, b) => a.form_id - b.form_id);
+  }
 
-    if (sortType === 'alphabetical') {
-        sortedForms.sort((a, b) => a.formObject.form_name.localeCompare(b.formObject.form_name));
-    } else if (sortType === 'newest') {
-        let date1 =
-            sortedForms.sort((a, b) => b.form_id - a.form_id);
-    } else if (sortType === 'oldest') {
-        sortedForms.sort((a, b) => a.form_id - b.form_id);
-    }
+  return (
+    <div className="form-cards-container">
+      <CreateFormButton />
 
-    return (
-        <div className="form-cards-container"
-
-        >
-            <CreateFormButton/>
-
-
-            {
-                sortedForms?.length > 0 && (
-                    sortedForms.map((form, index) => {
-
-                        return (
-                            <AdminFormsListItem
-                                key={index}
-                                form={form}
-
-                            />
-                        )
-                    })
-                )
-
-
-            }
-
-        </div>
-    );
+      {sortedForms?.length > 0 &&
+        sortedForms.map((form, index) => {
+          return (
+            form.deleted === 0 && <AdminFormsListItem key={index} form={form} />
+          );
+        })}
+    </div>
+  );
 }
 
 export default FormsContainer;

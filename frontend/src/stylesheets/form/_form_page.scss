@@ -1,34 +1,64 @@
-$form-page-background-color: $theme-color;
-$form-container-color: white;
 
 .form-page-container {
   padding: 1rem;
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  background-color: $form-page-background-color;
+
+  //add the  class for the corresponding theme
+
 
   .form-container {
     border-radius: 10px;
     padding: 1rem;
     max-width: 600px;
     width: 100%;
-    background-color: $form-page-background-color;
     display: flex;
-
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
+    border: 2px solid;
+
+    //add the  class for the corresponding theme
+
+    &.white {
+      border-color: $form-theme-white-dark;
+
+    }
+
+    &.pink {
+      border-color: $form-theme-pink-dark;
+
+    }
+
+    &.blue {
+      border-color: $form-theme-blue-dark;
+
+    }
 
     .form-header {
-
       padding: 10px 20px;
       border-radius: 10px;
-      background-color: $form-container-color;
       display: flex;
       flex-direction: column;
       gap: 5px;
       align-items: center;
+
+      &.white {
+        background-color: $form-theme-white-accent;
+
+      }
+
+
+      &.pink {
+        background-color: $form-theme-pink-accent;
+
+      }
+
+      &.blue {
+        background-color: $form-theme-blue-accent;
+
+      }
 
       .form-name {
         font-size: 2rem;
@@ -39,9 +69,13 @@ $form-container-color: white;
       }
     }
 
+    .form-component-container {
+      &.unfilled-input {
+        border: 3px solid red;
+      }
+    }
+
+
     @import "./form_page_components/section_styles";
-
   }
-
 }
-

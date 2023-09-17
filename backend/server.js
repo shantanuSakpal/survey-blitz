@@ -24,7 +24,44 @@ async function main() {
   console.log("Connected to MongoDB");
 }
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  const html = `
+    <html>
+      <head>
+        <style>
+          body {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+          }
+          p{
+            font-size: 20px;
+            font-family: sans-serif;
+            
+          }
+         
+          p span{
+            color: #18bed4;
+            
+          }  
+          p a{
+            color: #18bed4;
+            
+          }
+        </style>
+      </head>
+      <body>
+        <div>
+          <h1>Welcome to SurveyBlitz</h1> <br/> 
+          <p> To get your <span>Surveys Simplified</span> and  <span>Results Amplified</span>, visit <a href="https://surveyblitz.onrender.com/">our website !</a></p>
+        </div>
+      </body>
+    </html>
+  `;
+  res.send(html);
 });
 
 app.listen(port, () => {

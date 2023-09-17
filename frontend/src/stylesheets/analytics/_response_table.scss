@@ -13,7 +13,6 @@
 
     /* Import styles for the table search bar */
     @import "table_search_bar";
-
   }
 
   @import "pagination_buttons_container";
@@ -25,7 +24,6 @@
     max-height: calc(100vh - 7rem);
     position: relative;
 
-
     /* Import styles for the response table scrollbar */
     @import "../scrollbars/response_table_scrollbar";
 
@@ -33,10 +31,8 @@
       text-align: left;
       position: relative;
 
-
       .table-head {
         background-color: $theme-color-lighter;
-        border-radius: 10px 0;
         font-size: 0.8rem;
         position: sticky;
         top: 0;
@@ -56,13 +52,11 @@
             text-overflow: ellipsis;
             position: relative;
 
-
             div {
               width: inherit;
               overflow: hidden;
-              text-overflow: ellipsis
+              text-overflow: ellipsis;
             }
-
 
             .resize-div {
               width: 10px;
@@ -74,19 +68,17 @@
               user-select: none;
               touch-action: none;
 
-
               .isResizing {
                 background-color: $theme-color-lighter;
               }
-            }
 
-            &:first-child {
-              border-radius: 10px 0 0 0;
+              &:hover {
+                background-color: $theme-color-lightest;
+              }
             }
 
             &:last-child {
               border-right: 1px solid $theme-color-lighter;
-              border-radius: 0 10px 0 0;
             }
           }
         }
@@ -97,7 +89,6 @@
 
         .table-body-row {
           height: 1rem;
-
 
           .table-body-cell {
             border-width: 0 0 1px 1px;
@@ -114,9 +105,8 @@
             div {
               width: inherit;
               overflow: hidden;
-              text-overflow: ellipsis
+              text-overflow: ellipsis;
             }
-
 
             &:last-child {
               border-right: 1px solid $theme-color-lighter;
@@ -126,13 +116,7 @@
       }
     }
   }
-
-
 }
 
 .selected-cell-popup {
-
 }
-
-
-

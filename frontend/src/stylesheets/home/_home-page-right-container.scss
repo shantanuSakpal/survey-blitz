@@ -19,6 +19,35 @@
 
     @import "sort_button";
 
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+
+
+      p {
+        font-size: 0.8rem;
+        color: $theme-color-lightest;
+      }
+
+      .theme-toggle-btn {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+
+        &.theme-light {
+          background-color: aliceblue;
+        }
+
+        &.theme-dark {
+          background-color: gray;
+        }
+
+      }
+    }
+
 
   }
 

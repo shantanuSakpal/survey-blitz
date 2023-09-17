@@ -1,106 +1,73 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsActiveStatus } from "../../reducers/formObjectReducer";
 import PublishFormModal from "../modals/PublishFormModal";
-import ConfirmOverwrite from "../modals/ConfirmOverwrite";
-import _ from "lodash";
 import UserContext from "../../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import ConfirmDeactivateForm from "../modals/ConfirmDeactivateForm";
 import DynamicFormIcon from "@mui/icons-material/DynamicForm";
 import formImg from "../../images/form-image-1.svg";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
-import CloseIcon from "@mui/icons-material/Close";
+import ShareFormModal from "../modals/ShareFormModal";
+import { CircularProgress } from "@mui/material";
+import { createPortal } from "react-dom";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
-function CreateFormNavBar({ settingsOpen, setSettingsOpen }) {
+function CreateFormNavBar({}) {
   const formObject = useSelector((state) => state.formObject);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [url, setUrl] = useState("");
   const { user, setUser } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
-  useEffect(() => {
-    const currUser = JSON.parse(localStorage.getItem("currUser"));
-    setUser(currUser);
-    generateFormUrl(formObject.form_name);
-  }, []);
-
-  function generateFormUrl(formName) {
-    const formattedFormName = _.kebabCase(formName); // Convert form name to kebab-case
-    const baseUrl = "https://example.com/forms"; // Replace with your base URL
-    const newUrl = `${baseUrl}/${formattedFormName}`;
-    setUrl(newUrl);
-  }
-
-  const storeForm = async () => {
+  const saveFormChanges = async () => {
+    setIsLoading(true);
     try {
       const requestBody = {
-        email: user.result.email,
-        token: user.token, // Replace with your authentication token
+        form_id: formObject.form_id,
+        admin_id: user.result._id,
         formObject: formObject,
+        token: user.token,
       };
 
       // Add the form to the database
       const response = await axios.post(
-        "https://surveyblitz-api.onrender.com/admin/createForm",
+        "http://localhost:3001/admin/saveChanges",
         requestBody
       );
-      console.log("Form stored successfully", response);
+      console.log("Form saved successfully");
       toast.success(response.data.message);
-      navigate("/home");
+      setIsLoading(false);
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setIsUpdateModalOpen(true);
-        console.log("open modal");
+        toast.error(error.response.data);
       } else {
         console.error("Error:", error);
         toast.error(error.response.data.message);
       }
+      setIsLoading(false);
     }
   };
 
-  const updateForm = async () => {
-    try {
-      const requestBody = {
-        email: user.result.email,
-        token: user.token, // Replace with your authentication token
-        formObject: formObject,
-      };
+  useEffect(() => {
+    const currUser = JSON.parse(localStorage.getItem("currUser"));
+    setUser(currUser);
+  }, []);
 
-      // Add the form to the database
-      const response = await axios.post(
-        "https://surveyblitz-api.onrender.com/admin/updateForm",
-        requestBody
-      );
-      console.log("Form stored successfully");
-      toast.success(response.data.message);
-      navigate("/home");
-    } catch (error) {
-      toast.error(error.response.data.message);
-      console.error("Error:", error);
-    }
-  };
+  // useEffect(() => {
+  //   // Function to save the form changes
 
-  const handlePublish = () => {
-    console.log("Publishing form...");
-    storeForm();
-    setIsModalOpen(false);
-  };
-  const handleUpdateForm = () => {
-    console.log("Publishing form...");
-    updateForm();
-    setIsUpdateModalOpen(false);
-  };
+  //   // Save the form changes every 30 seconds
+  //   const saveInterval = setInterval(() => {
+  //     saveFormChanges();
+  //   }, 30000);
 
-  const handleNext = () => {
-    setIsModalOpen(true);
-  };
+  //   // Clear the interval on component unmount
+  //   return () => clearInterval(saveInterval);
+  // }, []);
 
   return (
     <div data-role="navbar" className="create-forms-navbar">
@@ -120,56 +87,86 @@ function CreateFormNavBar({ settingsOpen, setSettingsOpen }) {
       </div>
 
       <div className="form-options-container">
-        <div className="responses">
+        <div
+          className="btn"
+          onClick={() => {
+            navigate(`/analytics/${formObject.form_id}`);
+          }}
+          // onClick={() => {
+          //   const formId = formObject.form_id;
+          //   navigate(`/analytics/${formId}`);
+          // }}
+        >
           <TableChartIcon fontSize={"small"} />
           <p>Responses</p>
         </div>
-        <div className="edit">
+
+        <a className="btn edit" href={`/form/${formObject.form_id}`}>
           <ModeEditIcon fontSize={"small"} />
           <p>Edit</p>
-        </div>
+        </a>
+
+        <a
+          className="btn"
+          href={formObject.form_url}
+          target="_blank"
+          // onClick={() => {
+          //   window.location.href = formObject.form_url;
+          // }}
+        >
+          <VisibilityOutlinedIcon fontSize={"small"} />
+          <p>Preview</p>
+        </a>
       </div>
 
       <div className="nav-buttons">
+        <p>Last saved 30sec ago</p>
         <div
-          className={`settings ${settingsOpen ? "settings-open" : ""}`}
-          onClick={() => setSettingsOpen(!settingsOpen)}
+          className="next-button"
+          onClick={() => {
+            saveFormChanges();
+          }}
         >
-          {settingsOpen ? (
-            <>
-              <CloseIcon fontSize={"small"} />
-              <p>Settings</p>
-            </>
-          ) : (
-            <>
-              <SettingsSuggestIcon fontSize={"small"} />
-              <p>Settings</p>
-            </>
-          )}
+          {isLoading ? <CircularProgress size={15} color="primary" /> : "Save"}
         </div>
-        <div className="next-button" onClick={handleNext}>
-          Next
-        </div>
+        {formObject.is_active ? (
+          <div
+            className="next-button"
+            onClick={() => {
+              setIsShareModalOpen(true);
+            }}
+          >
+            Share
+          </div>
+        ) : (
+          <div
+            className="next-button"
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
+          >
+            Publish
+          </div>
+        )}
       </div>
 
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <PublishFormModal
-            handlePublish={handlePublish}
-            url={url}
-            generateFormUrl={generateFormUrl}
-            setIsModalOpen={setIsModalOpen}
-          />
-        </div>
-      )}
-      {isUpdateModalOpen && (
-        <div className="modal-overlay">
-          <ConfirmOverwrite
-            handleUpdateForm={handleUpdateForm}
-            setIsUpdateModalOpen={setIsUpdateModalOpen}
-          />
-        </div>
-      )}
+      {isModalOpen &&
+        createPortal(
+          <div className="modal-overlay">
+            <PublishFormModal
+              setIsShareModalOpen={setIsShareModalOpen}
+              setIsModalOpen={setIsModalOpen}
+            />
+          </div>,
+          document.body
+        )}
+      {isShareModalOpen &&
+        createPortal(
+          <div className="modal-overlay">
+            <ShareFormModal setIsShareModalOpen={setIsShareModalOpen} />
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

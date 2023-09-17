@@ -3,6 +3,22 @@
   padding: 0.5rem;
   border-radius: 10px;
   border: 1px solid lightgray;
+
+
+  &.white {
+    background-color: $form-theme-white;
+
+  }
+
+  &.pink {
+    background-color: $form-theme-pink;
+
+  }
+
+  &.blue {
+    background-color: $form-theme-blue;
+
+  }
 }
 
 .section-name {

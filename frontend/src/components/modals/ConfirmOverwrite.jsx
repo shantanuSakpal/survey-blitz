@@ -21,7 +21,6 @@ function ConfirmOverwrite({setIsUpdateModalOpen, handleUpdateForm}) {
                     </div>
                     <div className="publish-button" onClick={() => {
 
-                        setIsUpdateModalOpen(false)
                     }}>
                         <Button name="No"/>
                     </div>

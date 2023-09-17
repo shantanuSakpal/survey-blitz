@@ -1,12 +1,25 @@
 .form-component-container {
-  background-color: aliceblue;
   padding: 0.5rem;
   border-radius: 5px;
   margin: 10px 0;
   position: relative;
   transition: all 0.1s ease-out;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
 
+  &.white {
+    background-color: $form-theme-white-accent;
+    border-color: $form-theme-white-dark;
+  }
+
+  &.pink {
+    background-color: $form-theme-pink-accent;
+    border-color: $form-theme-pink-dark;
+  }
+
+  &.blue {
+    background-color: $form-theme-blue-accent;
+    border-color: $form-theme-blue-dark;
+  }
 
   &.highlight {
 

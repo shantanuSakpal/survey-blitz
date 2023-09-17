@@ -17,12 +17,27 @@
     border: 2px solid var(--color);
     border-radius: 6px;
     position: relative;
+
+    &.white {
+      border-color: $form-theme-white-dark;
+      color: $form-theme-white-dark;
+    }
+
+    &.pink {
+      border-color: $form-theme-pink-dark;
+      color: $form-theme-pink-dark;
+    }
+
+    &.blue {
+      border-color: $form-theme-blue-dark;
+      color: $form-theme-blue-dark;
+    }
   }
 
   button::before {
     position: absolute;
     content: "";
-    background: var(--color);
+    background: $form-theme-white-dark;
     width: 150px;
     height: 200px;
     z-index: -1;

@@ -1,22 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
 
+//vars for the apps theme color
 $theme-color-dark: #010100;
 $theme-color: #1e1e24;
-$theme-color-light: #2D2D33;
+$theme-color-light: #2d2d33;
 $theme-color-lighter: rgba(69, 69, 79, 0.56);
 $theme-color-lightest: #989797;
 
 $accent-color-1-light: #18bed4;
 $accent-color-1-dark: rgba(23, 174, 196, 0.82);
-$button-background-color: #19BED5;
+$button-background-color: #19bed5;
 $button-background-color-hover: rgba(25, 190, 213, 0.82);
 
 $button-background-color-2: rgb(125 140 255 / 14%);
 $button-background-color-2-font: rgba(125, 140, 255, 0.8);
 $button-background-color-2-hover: rgba(125, 140, 255, 0.07);
-
-;
 
 $box-dark-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
 * {
@@ -24,12 +23,34 @@ $box-dark-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
   padding: 0;
 }
 
+$light-theme-primary: #ffffff;
+$light-theme-secondary: #666666;
+
+$pink-theme-primary: rgb(255, 79, 223);
+$pink-theme-secondary: rgb(255, 161, 238);
+
+$blue-theme-primary: rgb(3, 112, 255);
+$blue-theme-secondary: rgb(125, 177, 255);
+
+
+//vars for the form theme colors
+$form-theme-white: #bdbdbd;
+$form-theme-white-accent: aliceblue;
+$form-theme-white-dark: #3d3d3d;
+
+$form-theme-pink: #fa5c77;
+$form-theme-pink-accent: #fdadbd;
+$form-theme-pink-dark: #ff244b;
+
+$form-theme-blue: #13cffa;
+$form-theme-blue-accent: #b9f5ff;
+$form-theme-blue-dark: blue;
+
 body {
   min-height: 100vh;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   @import "./scrollbars/home_page_scrollbar";
 }
-
 
 @import "./create_forms/create_forms_navbar";
 @import "./form/form_page";
@@ -41,9 +62,7 @@ body {
 @import "modals/modals";
 @import "loading_page";
 @import "./brand_logo/app_logo";
-
-
+@import "mobile_error_page";
 .page-container {
   min-height: 100vh;
 }
-

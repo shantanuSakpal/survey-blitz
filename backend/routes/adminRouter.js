@@ -151,25 +151,23 @@ router.post("/createForm", async (req, res) => {
           return res.status(404).json({ message: "User doesn't exist" });
 
         // Check if a form with the same name already exists for the admin
-        const existingForm = await Form.findOne({
-          admin_id: admin._id,
-          "formObject.form_name": formObject.form_name,
-        });
-        if (existingForm) {
-          return res
-            .status(400)
-            .json({ message: "Form with the same name already exists" });
-        }
+
+        // if (existingForm) {
+        //   return res
+        //     .status(403)
+        //     .json({ message: "Something went wrong. Please try again." });
+        // }
 
         admin.form_id.push(formObject.form_id);
         await admin.save();
 
-        formObject.url =
-          "/" + admin._id + "/" + _.kebabCase(formObject.form_name);
         const form = await Form.create({
           admin_id: admin._id,
           form_id: formObject.form_id,
           formObject: formObject,
+          form_url: formObject.form_url,
+          is_active: formObject.is_active,
+          deleted: 0,
         });
         res
           .status(200)
@@ -181,40 +179,61 @@ router.post("/createForm", async (req, res) => {
   }
 });
 
-// Update form API endpoint
-router.post("/updateForm", async (req, res) => {
-  const { email, token, formObject } = req.body;
+//api to publish form using form_id and admin_id
+router.post("/publishForm", async (req, res) => {
+  const { form_id, admin_id, formObject, token } = req.body;
   try {
     jwt.verify(token, SECRET_KEY, async (err) => {
       if (err) {
         return res.status(401).json({ message: "Unauthorized" });
-      } else {
-        const admin = await Admin.findOne({ email });
-        if (!admin) {
-          return res.status(404).json({ message: "User doesn't exist" });
-        }
-
-        // Find the form by form name and admin ID
-        const form = await Form.findOne({
-          admin_id: admin._id,
-          "formObject.form_name": formObject.form_name,
-        });
-
-        if (!form) {
-          return res.status(404).json({ message: "Form doesn't exist" });
-        }
-
-        // Update the formObject with the new formObject
-        form.formObject = formObject;
-        await form.save();
-
-        res
-          .status(200)
-          .json({ result: form, message: "Form successfully updated !" });
       }
+
+      const form = await Form.findOne({ form_id, admin_id });
+
+      if (!form) {
+        return res.status(404).json({ message: "Form doesn't exist" });
+      }
+
+      // Update the formObject with the new formObject
+      form.formObject = formObject;
+      form.is_active = true;
+      form.formObject.is_active = true;
+      form.form_url = formObject.form_url;
+      await form.save();
+
+      return res.status(200).json({ message: "Form published successfully" });
     });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+//soft save
+router.post("/saveChanges", async (req, res) => {
+  console.log("saving");
+  const { form_id, admin_id, formObject, token } = req.body;
+  try {
+    jwt.verify(token, SECRET_KEY, async (err) => {
+      if (err) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const form = await Form.findOne({ form_id, admin_id });
+
+      if (!form) {
+        return res.status(404).json({ message: "Form doesn't exist" });
+      }
+
+      // Update the formObject with the new formObject
+      form.formObject = formObject;
+      await form.save();
+
+      return res.status(200).json({ message: "Changes saved" });
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
@@ -240,9 +259,9 @@ router.post("/getForms", async (req, res) => {
 });
 
 //delete form
+
 router.post("/deleteForm", async (req, res) => {
   const { form_id, admin_id, token } = req.body;
-  console.log("form_id", form_id);
   try {
     jwt.verify(token, SECRET_KEY, async (err) => {
       if (err) {
@@ -255,9 +274,47 @@ router.post("/deleteForm", async (req, res) => {
         return res.status(404).json({ message: "Form doesn't exist" });
       }
 
-      await form.deleteOne();
+      // Update the 'deleted' field in the formObject to 1
 
-      return res.status(200).json({ message: "Form deleted successfully" });
+      form.deleted = 1;
+
+      // Save the updated form document
+      await form.save();
+
+      return res
+        .status(200)
+        .json({ message: "Form marked as deleted successfully" });
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+//change status
+
+router.post("/changeStatus", async (req, res) => {
+  const { form_id, admin_id, token, status } = req.body;
+  try {
+    jwt.verify(token, SECRET_KEY, async (err) => {
+      if (err) {
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      const form = await Form.findOne({ form_id, admin_id });
+
+      if (!form) {
+        return res.status(404).json({ message: "Form doesn't exist" });
+      }
+
+      // Update the 'is_active' field in the formObject to the desired status
+      form.formObject.is_active = status;
+      form.is_active = status;
+
+      // Save the updated form document
+      await form.save();
+
+      return res.status(200).json({ message: "Form status change successful" });
     });
   } catch (error) {
     console.error(error);

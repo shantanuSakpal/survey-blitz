@@ -10,7 +10,6 @@
   .icon {
     width: fit-content;
     margin-bottom: -5px;
-
     color: $theme-color-lighter;
 
   }
@@ -22,7 +21,7 @@
     outline: none;
     color: aliceblue;
     font-weight: 500;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
 
     &::placeholder {
       color: $theme-color-lightest;

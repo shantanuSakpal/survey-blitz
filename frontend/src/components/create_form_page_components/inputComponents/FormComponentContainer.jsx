@@ -11,14 +11,14 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import {DropDown} from "./DropDown";
 import {MultipleChoice} from "./MultipleChoice";
 
-export const FormComponentContainer = ({component_id, component_type}) => {
+export const FormComponentContainer = ({theme, component_id, component_type}) => {
     const currSectionId = useSelector((state) => state.formObject.currSectionId);
     const currComponentId = useSelector((state) => state.formObject.currComponentId);
     const dispatch = useDispatch();
 
     return (
         <div
-            className={`form-component-container ${currComponentId === component_id ? 'highlight' : ''}`}
+            className={`form-component-container ${theme} ${currComponentId === component_id ? 'highlight' : ''}`}
             onClick={() => {
                 dispatch(setCurrComponent(component_id));
             }}

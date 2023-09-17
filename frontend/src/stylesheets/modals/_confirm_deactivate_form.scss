@@ -42,6 +42,24 @@
       }
     }
 
+    .buttons-container {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .publish-button {
+        border-radius: 10px;
+        padding: 5px 10px;
+        background-color: $accent-color-1-light;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $accent-color-1-dark;
+        }
+
+      }
+    }
+
   }
 
   .error {

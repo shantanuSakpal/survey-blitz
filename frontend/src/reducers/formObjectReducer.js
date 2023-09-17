@@ -1,24 +1,24 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
 const initialState = null;
-
 
 export const formObjectSlice = createSlice({
     name: "formObject",
     initialState,
     reducers: {
         setInitialState: (state, action) => {
-
             state = action.payload;
             return state;
+        },
 
+        setTheme: (state, action) => {
+            state.theme = action.payload;
+            return state;
         },
         setIsActiveStatus: (state) => {
             state.is_active = !state.is_active;
             return state;
         },
-
 
         addSection: (state, action) => {
             state.form_sections.push(action.payload);
@@ -44,7 +44,6 @@ export const formObjectSlice = createSlice({
                     section.section_components = action.payload.section_components;
                 }
             });
-
         },
 
         addSectionComponent: (state, action) => {
@@ -64,9 +63,9 @@ export const formObjectSlice = createSlice({
                     );
                 }
             });
-            state.currComponentId = state.form_sections
-                .find((section) => section.section_id === action.payload.section_id)
-                .section_components[0].component_id
+            state.currComponentId = state.form_sections.find(
+                (section) => section.section_id === action.payload.section_id
+            ).section_components[0].component_id;
         },
 
         duplicateSectionComponent: (state, action) => {
@@ -153,8 +152,14 @@ export const formObjectSlice = createSlice({
 
         editFormName: (state, action) => {
             state.form_name = action.payload;
-
         },
+        editFormDesc: (state, action) => {
+            state.form_description = action.payload;
+        },
+        editFormUrl: (state, action) => {
+            state.form_url = action.payload;
+        },
+
         //change input type
 
         changeInputType: (state, action) => {
@@ -167,7 +172,7 @@ export const formObjectSlice = createSlice({
                     });
                 }
             });
-        }
+        },
     },
 });
 
@@ -189,7 +194,10 @@ export const {
     setInitialState,
     setIsActiveStatus,
     changeInputType,
-    reorderComponents
+    reorderComponents,
+    editFormDesc,
+    editFormUrl,
+    setTheme,
 } = formObjectSlice.actions;
 
 export default formObjectSlice.reducer;

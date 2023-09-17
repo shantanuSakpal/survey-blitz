@@ -38,7 +38,7 @@ function AnalyticsPage(props) {
       };
 
       axios
-        .post("https://surveyblitz-api.onrender.com/admin/getForms", reqBody)
+        .post("http://localhost:3001/admin/getForms", reqBody)
         .then((response) => {
           const fetchedForms = response.data.forms;
           dispatch(setInitialState(fetchedForms));
@@ -57,10 +57,7 @@ function AnalyticsPage(props) {
       token: currUser?.token,
     };
     axios
-      .post(
-        `https://surveyblitz-api.onrender.com/getFormResponses/${formId}`,
-        reqBody
-      )
+      .post(`http://localhost:3001/getFormResponses/${formId}`, reqBody)
       .then((res) => {
         //set the responses
         setResponsesArray(res.data.responses);
@@ -71,7 +68,7 @@ function AnalyticsPage(props) {
       });
 
     axios
-      .post(`https://surveyblitz-api.onrender.com/admin/getFormById`, {
+      .post(`http://localhost:3001/admin/getFormById`, {
         form_id: formId,
         token: currUser?.token,
       })
@@ -109,8 +106,10 @@ function AnalyticsPage(props) {
             formQuestionsObject={formQuestionsObject}
             responsesArray={responsesArray}
           />
+        ) : formQuestionsObject.is_active ? (
+          <div>This form currently active and has no responses.</div>
         ) : (
-          <div>This form currently has no responses.</div>
+          <div>This form currently inactive and has no responses.</div>
         )}
       </div>
     </div>

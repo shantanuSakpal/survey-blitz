@@ -10,6 +10,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
 
+
   #container {
     margin: auto;
     display: flex;
@@ -48,6 +49,7 @@
       }
     }
   }
+
 
   .error {
     color: red;
@@ -92,6 +94,7 @@
     color: #f8f9fa;
   }
 
+
   input::placeholder {
     color: $theme-color-lighter;
     font-size: 0.8rem;
@@ -103,6 +106,7 @@
     -webkit-box-shadow: 0 0 0 1000px $theme-color inset !important;
     -webkit-text-fill-color: white !important;
   }
+
 
   .row:not(.name) {
     width: 100%;
@@ -122,6 +126,7 @@
     &:focus-within {
       border: 1px solid $accent-color-1-light;
     }
+
   }
 
   .name {
@@ -129,15 +134,17 @@
     height: fit-content;
     display: flex;
     margin-top: 10px;
+
   }
 
   .name > input {
     width: calc(50% - 5px);
     margin: 5px;
-    border-radius: 10px;
+    border-radius: 10px;;
   }
 
   .icon {
+
     background-color: $theme-color;
     border-top-left-radius: 10px;
     scale: 0.8;
@@ -146,6 +153,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
   }
 
   button {
@@ -154,7 +162,7 @@
     padding: 5px 10px;
     outline: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     font-weight: 700;
     color: white;
     background-color: #248277;
@@ -172,6 +180,7 @@
     display: flex;
     justify-content: center;
     margin: 10px;
+
   }
 
   a {
@@ -180,13 +189,17 @@
     margin: 0 5px;
   }
 
+
   a:hover {
     color: #06d6a0;
   }
 
+
   input {
     border: none;
     outline: none;
+
+
   }
 
   .show-icon {
@@ -232,7 +245,9 @@
 
       &:hover {
         background-color: rgba(255, 0, 0, 0.63);
+
       }
     }
+
   }
 }

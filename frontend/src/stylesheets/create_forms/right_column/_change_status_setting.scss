@@ -15,19 +15,17 @@
     flex-wrap: wrap;
     width: fit-content;
     text-align: center;
-
+    scale: 0.8;
 
     @import "../../buttons/is_active";
-
   }
 
   .active {
+    font-size: small;
     color: aliceblue;
-
   }
 
   .inactive {
     color: #f85b5b;
-
   }
 }

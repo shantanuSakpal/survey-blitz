@@ -1,9 +1,9 @@
 .form-section-header {
-  padding: 10px 20px;
+  padding: 0 20px;
   font-size: 1.2rem;
   border-radius: 10px;
-  background-color: $form-container-color;
   font-weight: bold;
+
 
   h4 {
     font-size: 0.7rem;
@@ -12,6 +12,21 @@
 
 .form-section-container {
   padding: 0;
+
+  &.white {
+    background-color: $form-theme-white-accent;
+
+  }
+
+  &.pink {
+    background-color: $form-theme-pink-accent;
+
+  }
+
+  &.blue {
+    background-color: $form-theme-blue-accent;
+
+  }
 }
 
 .form-section-footer {
@@ -21,5 +36,10 @@
   align-items: center;
   padding: 10px;
   position: relative;
+
+  @import "../../buttons/next_section";
+  @import "../../buttons/prev_section";
+
+
 }
 

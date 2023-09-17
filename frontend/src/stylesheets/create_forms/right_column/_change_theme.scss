@@ -1,0 +1,36 @@
+.theme-toggle-btn-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .theme-toggle {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid $theme-color-light;
+
+    &.theme-light {
+      background-color: $light-theme-primary;
+      color: $light-theme-secondary;
+    }
+
+    &.theme-pink {
+      background-color: $pink-theme-primary;
+      color: $pink-theme-secondary;
+    }
+
+    &.theme-blue {
+      background-color: $blue-theme-primary;
+      color: $blue-theme-secondary;
+    }
+
+    &.selected {
+      border: 3px solid $accent-color-1-dark;
+    }
+  }
+}

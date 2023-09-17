@@ -6,7 +6,8 @@ import CollapseButton from './CollapseButton';
 
 function Settings() {
     return (
-        <div className="settings-container">
+        <div className={`settings-container`}>
+            <p>Settings</p>
             <CollapseButton
                 icon={<AbcIcon fontSize="large"/>}
                 text="Edit form name"

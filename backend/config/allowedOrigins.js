@@ -1,7 +1,7 @@
 const allowedOrigins = [
   "http://localhost:3000",
   "https://surveyblitz.vercel.app",
-  "https://surveyblitz-api.onrender.com",
+  "http://localhost:3001",
   "https://surveyblitz.onrender.com",
 ];
 

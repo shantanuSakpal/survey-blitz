@@ -1,38 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import AddInput from "./AddInput";
 import Settings from "./Settings";
 
-function EditInputFeatures({settingsOpen}) {
-    const formObject = useSelector(
-        (state) => state.formObject
-    );
-    const currSectionId = formObject.currSectionId
-    const currSectionIndex = formObject.form_sections.findIndex(
-        (section) => section.section_id === currSectionId
-    );
-
-
+function EditInputFeatures({}) {
+    const formObject = useSelector((state) => state.formObject);
     return (
-        <div className="column right-column-container"
+        <div className="column right-column-container">
+            <Settings/>
 
-        >
-            {
-                settingsOpen ? (
-
-                        <Settings/>
-                    )
-                    : (
-
-                        <div className="add-input-container">
-                            <AddInput/>
-                        </div>
-
-
-                    )
-            }
-
-
+            <div className="add-input-container">
+                <p>Change the input type</p>
+                <AddInput/>
+            </div>
         </div>
     );
 }

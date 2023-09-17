@@ -20,7 +20,6 @@ export const LongTextInput = ({ component_id, currSectionId }) => {
     .section_components.find(
       (component) => component.component_id === component_id
     );
-
   const handleChange = (event) => {
     const updatedText = event.target.value;
     setText(updatedText);

@@ -16,25 +16,27 @@ export default function ConfirmDelete({
   currSectionId,
   form,
 }) {
-  const { user } = useContext(userContext);
   const dispatch = useDispatch();
-  const formSectionsArray = useSelector(
-    (state) => state.formObject.form_sections
-  );
+  const { user } = useContext(userContext);
+  let formSectionsArray = null;
+  const formObject = useSelector((state) => state.formObject);
+  if (formObject) {
+    formSectionsArray = formObject.form_sections;
+  }
   const handleDelete = async (e) => {
     e.stopPropagation();
     if (what === "page") {
       localStorage.setItem(
         "currComponentId",
-        formSectionsArray[0].section_components[0].component_id
+        formSectionsArray[0]?.section_components[0].component_id
       );
-      localStorage.setItem("currSectionId", formSectionsArray[0].section_id);
+      localStorage.setItem("currSectionId", formSectionsArray[0]?.section_id);
       dispatch(
         setCurrComponent(
-          formSectionsArray[0].section_components[0].component_id
+          formSectionsArray[0]?.section_components[0].component_id
         )
       );
-      dispatch(setCurrSectionId(formSectionsArray[0].section_id));
+      dispatch(setCurrSectionId(formSectionsArray[0]?.section_id));
       dispatch(removeSection(currSectionId));
       // If the component being removed is the current component, set the current component to the first component in the form
     } else {
@@ -43,7 +45,7 @@ export default function ConfirmDelete({
         const token = user.token; // Replace with the actual token
 
         const response = await axios.post(
-          "https://surveyblitz-api.onrender.com/admin/deleteForm",
+          "http://localhost:3001/admin/deleteForm",
           {
             form_id,
             admin_id,
@@ -71,7 +73,14 @@ export default function ConfirmDelete({
   };
 
   return (
-    <div className="confirm-delete-modal">
+    <div
+      className="confirm-delete-modal"
+      onClick={(e) => {
+        e.stopPropagation(); // Stop propagation of the click event
+        if (e.target.className === "new-form-modal-container")
+          setDeleteModalOpen(false);
+      }}
+    >
       <div className="card">
         <div className="header">
           <div className="image">

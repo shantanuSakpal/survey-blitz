@@ -8,9 +8,10 @@ import ConfirmDelete from "../../modals/ConfirmDelete";
 
 export const SectionHeader = ({}) => {
 
-    const formSectionsArray = useSelector(
-        (state) => state.formObject.form_sections
+    const formObject = useSelector(
+        (state) => state.formObject
     );
+    const formSectionsArray = formObject.form_sections;
 
     const currSectionId = useSelector((state) => state.formObject.currSectionId);
 
@@ -22,7 +23,7 @@ export const SectionHeader = ({}) => {
     const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
 
     return (
-        <div className="section-header">
+        <div className={`section-header ${formObject.theme}`}>
             <div className="section-name">
                 <input
                     className="section-name-input"

@@ -7,6 +7,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
+import { changePasswordInDb } from "../../utils/changePassword";
 
 function AccountSettings({ setModalOpen }) {
   const { user, setUser } = useContext(UserContext);
@@ -73,40 +74,14 @@ function AccountSettings({ setModalOpen }) {
       return;
     }
 
-    try {
-      const response = await axios.post(
-        "https://surveyblitz-api.onrender.com/admin/changePassword",
-        {
-          email: user.result.email,
-          token: user.token,
-          password: newPassword,
-          currentPassword: currentPassword,
-        }
-      );
-
-      console.log("response.data", response.data);
-
-      // Clear input fields
-      setPasswords({
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      });
-
-      // Close the modal
-      setModalOpen(false);
-
-      // Show success toast
-      toast.success(response.data.message);
-    } catch (error) {
-      console.error("error", error);
-      // Handle error error
-      // Show error toast
-      setErrors({
-        currentPassword: "Password is incorrect",
-      });
-      // toast.error(error.response.data.message);
-    }
+    await changePasswordInDb(
+      user,
+      newPassword,
+      currentPassword,
+      setModalOpen,
+      setPasswords,
+      setErrors
+    );
   };
 
   const logout = () => {
@@ -119,7 +94,13 @@ function AccountSettings({ setModalOpen }) {
   };
 
   return (
-    <div className="account-setting-modal">
+    <div
+      className="account-setting-modal"
+      onClick={(e) => {
+        e.stopPropagation(); // Stop propagation of the click event
+        if (e.target.className === "account-setting-modal") setModalOpen(false);
+      }}
+    >
       <form id="container">
         <div className="close-btn" onClick={() => setModalOpen(false)}>
           <CloseIcon />
