@@ -10,14 +10,14 @@
   "live": "nodemon server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Punit-esh/sass-form-generator-backend.git"
+    "url": "git+https://github.com/shantanuSakpal/survey-blitz"
   },
-  "author": "",
+  "author": "Shantanu Sakpal",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Punit-esh/sass-form-generator-backend/issues"
+    "url": "https://github.com/shantanuSakpal/survey-blitz/issues"
   },
-  "homepage": "https://github.com/Punit-esh/sass-form-generator-backend#readme",
+  "homepage": "https://github.com/shantanuSakpal/survey-blitz#readme",
   "dependencies": {
     "@fvilers/disable-react-devtools": "^1.3.0",
     "axios": "^1.4.0",
