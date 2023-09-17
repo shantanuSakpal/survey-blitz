@@ -291,7 +291,7 @@ const SignInPage = () => {
 
         {!forgotPassword && !otpInput && !resetPassword ? (
           <div className="inner-container">
-            <div className="header">Welcome to Form Generator</div>
+            <div className="header">Welcome to Survery Blitz</div>
             <p>
               Don't have an account?
               <span

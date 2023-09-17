@@ -285,7 +285,6 @@ body::-webkit-scrollbar-thumb:hover {
 .form-page-container .form-container .form-section-footer .next-section-button button:before {
   top: 100%;
   left: 100%;
-  -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
 .form-page-container .form-container .form-section-footer .next-section-button button:hover::before {
@@ -339,7 +338,6 @@ body::-webkit-scrollbar-thumb:hover {
 .form-page-container .form-container .form-section-footer .prev-section-button button:before {
   top: 100%;
   left: 100%;
-  -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
 .form-page-container .form-container .form-section-footer .prev-section-button button:hover::before {
@@ -357,6 +355,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .analytics-page-container .home-page-left-sidebar {
   width: 18rem;
+  min-width: -moz-fit-content;
   min-width: fit-content;
   box-sizing: border-box;
   background-color: #2d2d33;
@@ -439,6 +438,7 @@ body::-webkit-scrollbar-thumb:hover {
   box-shadow: inset 0 0 10px 10px rgba(69, 69, 79, 0.56);
 }
 .analytics-page-container .analytics-page-right-container .form-response-header {
+  width: -moz-fit-content;
   width: fit-content;
   border-bottom: 3px solid rgba(23, 174, 196, 0.82);
   margin: 0 auto;
@@ -471,6 +471,7 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 5px 10px;
 }
 .analytics-page-container .analytics-page-right-container .table-elements-container .pagination-and-searchbar-container .table-search-bar .icon {
+  width: -moz-fit-content;
   width: fit-content;
   margin-bottom: -5px;
   color: rgba(69, 69, 79, 0.56);
@@ -483,6 +484,10 @@ body::-webkit-scrollbar-thumb:hover {
   color: aliceblue;
   font-weight: 500;
   font-size: 0.7rem;
+}
+.analytics-page-container .analytics-page-right-container .table-elements-container .pagination-and-searchbar-container .table-search-bar input::-moz-placeholder {
+  color: #989797;
+  font-size: 0.6rem;
 }
 .analytics-page-container .analytics-page-right-container .table-elements-container .pagination-and-searchbar-container .table-search-bar input::placeholder {
   color: #989797;
@@ -500,6 +505,7 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: space-evenly;
   gap: 5px;
   align-items: center;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .analytics-page-container .analytics-page-right-container .table-elements-container .pagination-buttons-container .go-to-input {
@@ -555,6 +561,7 @@ body::-webkit-scrollbar-thumb:hover {
 .analytics-page-container .analytics-page-right-container .table-elements-container .pagination-buttons-container strong {
   font-size: 0.6rem;
   margin: 0 10px;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .analytics-page-container .analytics-page-right-container .table-elements-container .pagination-buttons-container .pagination-button {
@@ -651,7 +658,9 @@ body::-webkit-scrollbar-thumb:hover {
   top: 0;
   height: 100%;
   cursor: col-resize;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   touch-action: none;
 }
 .analytics-page-container .analytics-page-right-container .table-elements-container .table-container .table .table-head .table-head-row .table-head-cell .resize-div .isResizing {
@@ -698,6 +707,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .home-page-container .home-page-left-sidebar {
   width: 18rem;
+  min-width: -moz-fit-content;
   min-width: fit-content;
   box-sizing: border-box;
   background-color: #2d2d33;
@@ -796,6 +806,7 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 5px 10px;
 }
 .home-page-container .home-page-right-container .search-and-sort-container .search-bar .icon {
+  width: -moz-fit-content;
   width: fit-content;
   margin-bottom: -5px;
   color: rgba(69, 69, 79, 0.56);
@@ -808,6 +819,9 @@ body::-webkit-scrollbar-thumb:hover {
   color: aliceblue;
   font-weight: 500;
   font-size: 0.8rem;
+}
+.home-page-container .home-page-right-container .search-and-sort-container .search-bar input::-moz-placeholder {
+  color: #989797;
 }
 .home-page-container .home-page-right-container .search-and-sort-container .search-bar input::placeholder {
   color: #989797;
@@ -920,12 +934,16 @@ body::-webkit-scrollbar-thumb:hover {
   color: #989797;
 }
 .home-page-container .home-page-right-container .form-cards-container .form-card-container .more-options .options-modal {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   position: absolute;
   top: 100%;
   right: 0;
+  width: -moz-fit-content;
   width: fit-content;
   min-width: 5rem;
+  height: -moz-fit-content;
   height: fit-content;
   z-index: 999;
   border: 1px solid rgba(69, 69, 79, 0.56);
@@ -963,7 +981,6 @@ body::-webkit-scrollbar-thumb:hover {
 .home-page-container .home-page-right-container .form-cards-container .form-card-container .inner-container {
   display: flex;
   flex-direction: column;
-  -webkit-box-align: center;
   align-items: center;
   justify-content: center;
   gap: 20px;
@@ -1020,16 +1037,20 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .profile .account-icon {
   scale: 0.8;
+  width: -moz-fit-content;
   width: fit-content;
   display: inline;
 }
 .profile .username {
   font-size: 0.8rem;
   font-weight: 600;
-  width: 100%;
+  width: -moz-fit-content;
+  width: fit-content;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 .profile .icon {
+  width: -moz-min-content;
   width: min-content;
   scale: 0.8;
   color: #989797;
@@ -1151,6 +1172,7 @@ body::-webkit-scrollbar-thumb:hover {
   margin: 0 0 0 25px;
 }
 .left-column-container .section-components-container .section-component .component .container-3 .component-logo {
+  width: -moz-fit-content;
   width: fit-content;
   transform: translate(5px, 2px);
 }
@@ -1296,7 +1318,9 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: smaller;
   scale: 0.8;
   margin: -10px auto;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 10px;
 }
@@ -1404,18 +1428,7 @@ body::-webkit-scrollbar-thumb:hover {
   opacity: 0.5;
 }
 .section-name .section-name-input:focus ~ .section-name-highlight {
-  -webkit-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
-}
-
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: #5264ae;
-  }
-  to {
-    width: 0;
-    background: transparent;
-  }
 }
 @keyframes inputHighlighter {
   from {
@@ -2042,6 +2055,7 @@ body::-webkit-scrollbar-thumb:hover {
   border: 1px solid rgb(192, 192, 192);
   border-radius: 10px;
   box-shadow: 5px 5px 10px gray;
+  width: -moz-max-content;
   width: max-content;
   font-size: 0.8rem;
   color: black;
@@ -2183,6 +2197,7 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
+  width: -moz-fit-content;
   width: fit-content;
   gap: 5px;
   white-space: nowrap;
@@ -2193,6 +2208,7 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  width: -moz-fit-content;
   width: fit-content;
   text-align: center;
   scale: 0.8;
@@ -2824,6 +2840,7 @@ body::-webkit-scrollbar-thumb:hover {
   gap: 20px;
   width: 18rem;
   max-width: 90vw;
+  height: -moz-fit-content;
   height: fit-content;
   font-family: sans-serif;
   background-color: #1e1e24;
@@ -2842,6 +2859,7 @@ body::-webkit-scrollbar-thumb:hover {
   color: rgba(69, 69, 79, 0.56);
   top: 10px;
   right: 10px;
+  width: -moz-fit-content;
   width: fit-content;
   z-index: 5;
   scale: 0.8;
@@ -2885,6 +2903,10 @@ body::-webkit-scrollbar-thumb:hover {
   caret-color: #f8f9fa;
   color: #f8f9fa;
 }
+.account-setting-modal input::-moz-placeholder {
+  color: rgba(69, 69, 79, 0.56);
+  font-size: 0.8rem;
+}
 .account-setting-modal input::placeholder {
   color: rgba(69, 69, 79, 0.56);
   font-size: 0.8rem;
@@ -2897,6 +2919,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .account-setting-modal .row:not(.name) {
   width: 100%;
+  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: 10% 90%;
@@ -2914,6 +2937,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .account-setting-modal .name {
   width: 100%;
+  height: -moz-fit-content;
   height: fit-content;
   display: flex;
   margin-top: 10px;
@@ -2934,6 +2958,7 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: center;
 }
 .account-setting-modal button {
+  width: -moz-fit-content;
   width: fit-content;
   margin: 20px auto;
   padding: 5px 10px;
@@ -3127,6 +3152,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 20rem;
   max-width: 90vw;
   box-shadow: 1px 2px 71px -6px rgba(0, 0, 0, 0.67);
+  height: -moz-fit-content;
   height: fit-content;
   font-family: sans-serif;
   background-color: #212529;
@@ -3135,6 +3161,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: relative;
 }
 .confirm-deactivate-modal .container .close-modal-button {
+  width: -moz-fit-content;
   width: fit-content;
   position: absolute;
   top: 0;
@@ -3187,6 +3214,7 @@ body::-webkit-scrollbar-thumb:hover {
   gap: 20px;
   min-width: 30rem;
   max-width: 90vw;
+  height: -moz-fit-content;
   height: fit-content;
   font-family: sans-serif;
   background-color: #2d2d33;
@@ -3198,6 +3226,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: absolute;
   top: 10px;
   right: 20px;
+  width: -moz-fit-content;
   width: fit-content;
   z-index: 5;
   font-size: 1.5rem;
@@ -3280,6 +3309,7 @@ body::-webkit-scrollbar-thumb:hover {
   gap: 20px;
   min-width: 30rem;
   max-width: 90vw;
+  height: -moz-fit-content;
   height: fit-content;
   font-family: sans-serif;
   background-color: #2d2d33;
@@ -3291,6 +3321,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: absolute;
   top: 10px;
   right: 20px;
+  width: -moz-fit-content;
   width: fit-content;
   z-index: 5;
   font-size: 1.5rem;
@@ -3373,6 +3404,7 @@ body::-webkit-scrollbar-thumb:hover {
   gap: 20px;
   min-width: 30rem;
   max-width: 90vw;
+  height: -moz-fit-content;
   height: fit-content;
   font-family: sans-serif;
   background-color: #2d2d33;
@@ -3384,6 +3416,7 @@ body::-webkit-scrollbar-thumb:hover {
   position: absolute;
   top: 10px;
   right: 20px;
+  width: -moz-fit-content;
   width: fit-content;
   z-index: 5;
   font-size: 1.5rem;
@@ -3486,6 +3519,4 @@ body::-webkit-scrollbar-thumb:hover {
 
 .page-container {
   min-height: 100vh;
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
