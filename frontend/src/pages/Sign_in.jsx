@@ -28,7 +28,7 @@ const SignInPage = () => {
   const [resendOtpDisabled, setResendOtpDisabled] = useState(false);
   const [countdown, setCountdown] = useState(30); // 30 seconds
   const [loading, setLoading] = useState(false);
-  const [serverOtp, setServerOtp] = useState("89982745620");
+  const [serverOtp, setServerOtp] = useState(null);
 
   useEffect(() => {
     // Start the countdown when the component mounts
@@ -64,11 +64,11 @@ const SignInPage = () => {
 
   const handleResendOtp = async () => {
     const email = inputValues.email;
+    setLoading(true);
 
     // Reset the countdown and disable the "Resend OTP" button for 30 seconds
     try {
       setResendOtpDisabled(true);
-      setLoading(true);
       // Send API request to verify the entered OTP
       const response = await axios.post(
         "https://surveyblitz-api.onrender.com/admin/sendOTP",
@@ -169,6 +169,9 @@ const SignInPage = () => {
   };
 
   const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
     //clear otp error
     setErrors({ otp: "" });
     //clear otp input
@@ -194,7 +197,6 @@ const SignInPage = () => {
       // Reset the countdown and disable the "Resend OTP" button for 30 seconds
       try {
         setResendOtpDisabled(true);
-        setLoading(true);
         // Send API request to verify the entered OTP
         const response = await axios.post(
           "https://surveyblitz-api.onrender.com/admin/sendOTP",
@@ -234,11 +236,11 @@ const SignInPage = () => {
     }
 
     // Check password requirements
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
+    const passwordRegex = /^(?=.*[0-9]).{6,}$/;
     if (!passwordRegex.test(password)) {
       setErrors({
         password:
-          "Password must consist of at least 6 characters, a capital letter, a number and at least one of the special characters !@#$%^&*",
+          "Password must consist of at least 6 characters and contain at least one number.",
       });
       return;
     }

@@ -34,7 +34,7 @@ const SignUpPage = () => {
   const [resendOtpDisabled, setResendOtpDisabled] = useState(false);
   const [countdown, setCountdown] = useState(30); // 30 seconds
   const [loading, setLoading] = useState(false);
-  const [serverOtp, setServerOtp] = useState("89982745620");
+  const [serverOtp, setServerOtp] = useState(null);
 
   useEffect(() => {
     // Start the countdown when the component mounts
@@ -55,11 +55,11 @@ const SignUpPage = () => {
 
   const handleResendOtp = async () => {
     const email = inputValues.email;
+    setLoading(true);
 
     // Reset the countdown and disable the "Resend OTP" button for 30 seconds
     try {
       setResendOtpDisabled(true);
-      setLoading(true);
       // Send API request to verify the entered OTP
       const response = await axios.post(
         "https://surveyblitz-api.onrender.com/admin/sendOTP",
@@ -124,11 +124,11 @@ const SignUpPage = () => {
       return;
     }
 
+    setLoading(true);
     async function sendOtp() {
       // Reset the countdown and disable the "Resend OTP" button for 30 seconds
       try {
         setResendOtpDisabled(true);
-        setLoading(true);
         // Send API request to verify the entered OTP
         const response = await axios.post(
           "https://surveyblitz-api.onrender.com/admin/sendOTP",
@@ -147,6 +147,8 @@ const SignUpPage = () => {
         console.log(error);
         //set error message
         setErrors({ email: "Something went wrong, please try again." });
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -167,6 +169,7 @@ const SignUpPage = () => {
           setErrors({
             email: `Email already exists, please Sign In to continue.`,
           });
+          setLoading(false);
         }
       });
   };
@@ -240,20 +243,22 @@ const SignUpPage = () => {
     }
 
     // Check password requirements
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
+    const passwordRegex = /^(?=.*[0-9]).{6,}$/;
     if (!passwordRegex.test(password)) {
       setErrors({
         password:
-          "Password must consist of at least 6 characters, a capital letter, a number and at least one of the special characters !@#$%^&*",
+          "Password must consist of at least 6 characters and contain at least one number.",
       });
       return;
     }
+
+    setLoading(true);
+
     axios
       .post("https://surveyblitz-api.onrender.com/admin/signUp", inputValues)
       .then((res) => {
         localStorage.setItem("currUser", JSON.stringify(res.data));
         console.log("User signed in successfully");
-
         navigate("/home");
       })
       .catch((err) => {
@@ -263,6 +268,7 @@ const SignUpPage = () => {
             email: "Email already exists, please Sign In to continue.",
           });
         }
+        setLoading(false);
       });
   };
 
@@ -480,7 +486,13 @@ const SignUpPage = () => {
                 </div>
 
                 <button className="email-button" onClick={handleSignUpSubmit}>
-                  Sign Up
+                  {
+                    loading ? (
+                      <CircularProgress size={25} sx={{ color: "aliceblue" }} />
+                    ) : (
+                      "Sign Up"
+                    ) /*<EmailIcon />*/
+                  }
                 </button>
               </div>
             </div>
