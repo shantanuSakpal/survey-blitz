@@ -45,7 +45,7 @@ export default function ConfirmDelete({
         const token = user.token; // Replace with the actual token
 
         const response = await axios.post(
-          "http://localhost:3001/admin/deleteForm",
+          "https://surveyblitz-api.onrender.com/admin/deleteForm",
           {
             form_id,
             admin_id,

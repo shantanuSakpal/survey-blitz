@@ -62,7 +62,7 @@ function PublishFormModal({ setIsModalOpen, setIsShareModalOpen }) {
 
       // Add the form to the database
       const response = await axios.post(
-        "http://localhost:3001/admin/publishForm",
+        "https://surveyblitz-api.onrender.com/admin/publishForm",
         requestBody
       );
       console.log("Form published successfully");

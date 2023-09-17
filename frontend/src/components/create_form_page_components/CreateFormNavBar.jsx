@@ -35,7 +35,7 @@ function CreateFormNavBar({}) {
 
       // Add the form to the database
       const response = await axios.post(
-        "http://localhost:3001/admin/saveChanges",
+        "https://surveyblitz-api.onrender.com/admin/saveChanges",
         requestBody
       );
       console.log("Form saved successfully");

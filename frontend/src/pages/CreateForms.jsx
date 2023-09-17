@@ -37,7 +37,7 @@ function CreateForms() {
       };
       try {
         const response = await axios.post(
-          "http://localhost:3001/admin/getFormById",
+          "https://surveyblitz-api.onrender.com/admin/getFormById",
           requestBody
         );
         setLoading(false);

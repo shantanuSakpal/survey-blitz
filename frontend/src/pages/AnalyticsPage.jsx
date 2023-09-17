@@ -38,7 +38,7 @@ function AnalyticsPage(props) {
       };
 
       axios
-        .post("http://localhost:3001/admin/getForms", reqBody)
+        .post("https://surveyblitz-api.onrender.com/admin/getForms", reqBody)
         .then((response) => {
           const fetchedForms = response.data.forms;
           dispatch(setInitialState(fetchedForms));
@@ -57,7 +57,10 @@ function AnalyticsPage(props) {
       token: currUser?.token,
     };
     axios
-      .post(`http://localhost:3001/getFormResponses/${formId}`, reqBody)
+      .post(
+        `https://surveyblitz-api.onrender.com/getFormResponses/${formId}`,
+        reqBody
+      )
       .then((res) => {
         //set the responses
         setResponsesArray(res.data.responses);
@@ -68,7 +71,7 @@ function AnalyticsPage(props) {
       });
 
     axios
-      .post(`http://localhost:3001/admin/getFormById`, {
+      .post(`https://surveyblitz-api.onrender.com/admin/getFormById`, {
         form_id: formId,
         token: currUser?.token,
       })
