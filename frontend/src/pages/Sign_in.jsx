@@ -123,6 +123,7 @@ const SignInPage = () => {
       setErrors({ email: "Invalid email address" });
       return;
     }
+    setLoading(true);
 
     axios
       .post("https://surveyblitz-api.onrender.com/admin/signIn", inputValues)
@@ -134,6 +135,7 @@ const SignInPage = () => {
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
         if (err.response.status === 404) {
           setErrors({
             email: "Email does not exist. Please Sign Up to continue.",
@@ -169,7 +171,6 @@ const SignInPage = () => {
   };
 
   const handleEmailSubmit = async (e) => {
-    e.preventDefault();
     setLoading(true);
 
     //clear otp error
@@ -223,6 +224,7 @@ const SignInPage = () => {
 
   const handleResetPasswordSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const { password, confirmPassword } = inputValues;
 
@@ -267,6 +269,7 @@ const SignInPage = () => {
             navigate("/home");
           })
           .catch((err) => {
+            setLoading(false);
             console.log(err);
             if (err.response.status === 404) {
               setErrors({
@@ -378,8 +381,14 @@ const SignInPage = () => {
                   className="email-button"
                   onClick={handleSignInSubmit}
                 >
-                  <EmailIcon />
-                  Sign in
+                  {loading ? (
+                    <CircularProgress size={25} sx={{ color: "aliceblue" }} />
+                  ) : (
+                    <>
+                      <EmailIcon />
+                      Sign In
+                    </>
+                  )}
                 </button>
               </form>
 
@@ -564,8 +573,8 @@ const SignInPage = () => {
       <div className="right-container">
         <img src={OnboardingImg} alt="Onbarding Image" />
         <div className="terms-and-conditions">
-          By signing in, you agree to our <a href="#">Terms</a> &{" "}
-          <a href="#">Privacy Policy</a>.
+          Made with ❤️ and 🧠 by{" "}
+          <a href="https://github.com/shantanuSakpal">@shantanuSakpal</a>.
         </div>
       </div>
     </div>

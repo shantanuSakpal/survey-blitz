@@ -2672,7 +2672,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .sign-in-page .left-container .inner-container .options .email-option input #tooltipText {
   position: absolute;
-  Left: 50%;
+  left: 50%;
   top: 0;
   transform: translateX(-50%);
   background-color: #000;
@@ -2750,7 +2750,7 @@ body::-webkit-scrollbar-thumb:hover {
 .sign-in-page .right-container .terms-and-conditions {
   margin-top: 40px;
   font-size: 0.8rem;
-  color: rgba(69, 69, 79, 0.56);
+  color: #989797;
   position: absolute;
   bottom: 10px;
   left: 10px;

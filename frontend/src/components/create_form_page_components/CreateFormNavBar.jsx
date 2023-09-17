@@ -127,7 +127,11 @@ function CreateFormNavBar({}) {
             saveFormChanges();
           }}
         >
-          {isLoading ? <CircularProgress size={15} color="primary" /> : "Save"}
+          {isLoading ? (
+            <CircularProgress size={15} sx={{ color: "aliceblue" }} />
+          ) : (
+            "Save"
+          )}
         </div>
         {formObject.is_active ? (
           <div

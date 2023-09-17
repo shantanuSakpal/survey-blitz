@@ -56,7 +56,7 @@ app.get("/", (req, res) => {
       <body>
         <div>
           <h1>Welcome to SurveyBlitz</h1> <br/> 
-          <p> To get your <span>Surveys Simplified</span> and  <span>Results Amplified</span>, visit <a href="https://surveyblitz.onrender.com/">our website !</a></p>
+          <p> To get your <span>Surveys Simplified</span> and  <span>Results Amplified</span>, visit <a href="https://surveyblitz.vercel.app/">our website !</a></p>
         </div>
       </body>
     </html>
