@@ -405,18 +405,20 @@ router.post("/sendOTP", async (req, res) => {
   try {
     const { email } = req.body;
     const otp = generateOTP();
+
     if (!otp) throw new Error("OTP generation failed");
 
-    const result = await axios.post(GOOGLE_SCRIPT_FOR_OTP, {
+    const postBody = {
       email: email,
       otp: otp,
-      msg:
-        "Hello, " +
-        email +
-        " your OTP is " +
-        otp +
-        " ." +
-        " Thank you for using Survey Blitz !",
+    };
+
+    const response = await fetch(GOOGLE_SCRIPT_FOR_OTP, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postBody),
     });
     res.status(200).json({ otp: otp, message: "OTP sent successfully" });
   } catch (error) {
